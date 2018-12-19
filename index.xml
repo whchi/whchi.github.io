@@ -6,23 +6,10 @@
     <description>Recent content on 雜談與紀錄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 19 Dec 2018 17:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 19 Dec 2018 15:48:17 +0800</lastBuildDate>
     
 	<atom:link href="http://whchi.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>使用 Github 管理 Docker image</title>
-      <link>http://whchi.github.io/posts/use-github-to-manage-your-docker-image/</link>
-      <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
-      
-      <guid>http://whchi.github.io/posts/use-github-to-manage-your-docker-image/</guid>
-      <description>Docker hub 本身有提供 autobuild trigger，只需透過UI設定與github連動即可做到使用git branch進行docker file的管理，以下分別列出Github與Docker hub需要的設定
-Github 這裡的 branch 會對應到 Docker hub 的 tag
- 建立 github repo，命名為 dockerfile clone 到本地後建立新的分支，命名使用自己喜歡的方式命名e.g: centos7-autotagging 於分支底下建立Dockerfile並撰寫內容 寫好後docker build . -t &#39;local-centos7-autotagging&#39; 測試build(加上 -t 是讓 local 方便操作) build通過後git push origin centos7-autotagging建立並推送至遠端分支  Docker hub 這裡的 tag 會對應到 github 的 branch
- 建立repo  選擇剛剛建立好的 repository，如果沒連接 github 帳號會要求進行連接  連接完畢並建立 repo 即可  如有設定好連動即可自動推送並建置image，結果如圖) 之後要拉自己的環境時只需要docker pull {username}/{repo name}:{tagname}即可
-搭配docker-compose更方便，可參考我的範例</description>
-    </item>
     
     <item>
       <title>Hugo安裝</title>
