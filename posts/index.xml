@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on My New Hugo Site</title>
+    <title>Posts on 雜談與紀錄</title>
     <link>http://whchi.github.io/posts/</link>
-    <description>Recent content in Posts on My New Hugo Site</description>
+    <description>Recent content in Posts on 雜談與紀錄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <lastBuildDate>Wed, 19 Dec 2018 15:48:17 +0800</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Hugo安裝</title>
-      <link>http://whchi.github.io/posts/my-first-post/</link>
+      <link>http://whchi.github.io/posts/hugo-installation/</link>
       <pubDate>Wed, 19 Dec 2018 15:48:17 +0800</pubDate>
       
-      <guid>http://whchi.github.io/posts/my-first-post/</guid>
+      <guid>http://whchi.github.io/posts/hugo-installation/</guid>
       <description>Step1. install hugo Mac only
 
 install homebrew
