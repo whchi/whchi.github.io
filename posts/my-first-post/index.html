@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Hugo安裝 &middot; My New Hugo Site</title>
+  <meta name="description" content="" />
+  
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/xcode.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/latolatinfonts.css" />
+  
+</head>
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="/" class="nav-text">
+    My New Hugo Site
+  </a></h1>
+  <div class="hamburger-menu">
+		<input type="checkbox" onclick="hamburgerMenuPressed()"/>
+		<span></span>
+		<span></span>
+    <ul class="hamburger-menu-overlay">
+      <li><a href="/" class="hamburger-menu-overlay-link">Home</a></li>
+      
+      
+    </ul>
+  </div>
+</nav>
+    <main class="content side-text-padding">
+      <article class="post dropcase">
+        <header class="post-header">
+        	<h1 class="post-title">Hugo安裝</h1>
+          <p class="post-date">Posted <time datetime="2018-12-19">Dec 19, 2018</time></p>
+        </header>
+        
+        
+
+<h2 id="step1-install-hugo">Step1. install hugo</h2>
+
+<p>Mac only</p>
+
+<p><br />
+install <a href="https://brew.sh/index_zh-tw">homebrew</a></p>
+
+<pre><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+
+<p>then install hugo</p>
+
+<pre><code>brew install hugo
+</code></pre>
+
+<h2 id="step2-start-a-hugo-project">Step2. start a hugo project</h2>
+
+<p>make your project folder</p>
+
+<pre><code>hugo new site your_blog
+cd your_blog
+</code></pre>
+
+<h2 id="step3-add-theme">Step3. add theme</h2>
+
+<p>you can find more themes <a href="https://themes.gohugo.io">here</a></p>
+
+<pre><code>mkdir themes
+
+# use git clone
+git clone https://github.com/josephhutch/aether.git themes/aether
+
+# use git submodule(recommend)
+git submodule add https://github.com/josephhutch/aether themes/aether
+</code></pre>
+
+<p>enable theme</p>
+
+<pre><code>vim config.toml
+# add new line
+theme = &quot;aether&quot;
+</code></pre>
+
+<h2 id="step4-add-post">Step4. add post</h2>
+
+<p><code>hugo new posts/first-post.md</code>
+change <code>draft: true</code> then run <code>hugo server -w</code> for local test</p>
+
+<h2 id="step5-publish-to-github">Step5. publish to github</h2>
+
+<p>Because this is my personal website, so I use User/Organization Pages</p>
+
+<ol>
+<li>create <code>{your-project}</code> repo on your github</li>
+<li>create <code>{username}.github.io</code> repo on your github</li>
+<li>add github page to submodule <code>git submodule add -b master git@github.com:{username}/{username}.github.io.git public</code>(you can use https as git url too)</li>
+</ol>
+
+<p>add shell to project folder</p>
+
+<pre><code>#!/bin/bash
+
+echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
+
+# Build the project.
+hugo # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
+
+# Go To Public folder
+cd public
+# Add changes to git.
+git add .
+
+# Commit changes.
+msg=&quot;rebuilding site `date`&quot;
+if [ $# -eq 1 ]
+  then msg=&quot;$1&quot;
+fi
+git commit -m &quot;$msg&quot;
+
+# Push source and build repos.
+git push origin master
+
+# Come Back up to the Project Root
+cd ..
+</code></pre>
+
+<h2 id="reference">reference</h2>
+
+<ul>
+<li><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">hosting hugo on github</a></li>
+<li><a href="https://medium.com/@chs_wei/在-github-部署-hugo-靜態網站-9c40682dfe40">在github部署hugo靜態網站</a></li>
+</ul>
+
+      </article>
+      
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="/" class="card home-card" style="background-image: url( /img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/core.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+  </body>
+</html>

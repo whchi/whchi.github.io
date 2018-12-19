@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>http://whchi.github.io/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 19 Dec 2018 15:48:17 +0800</lastBuildDate>
+    
+	<atom:link href="http://whchi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo安裝</title>
+      <link>http://whchi.github.io/posts/my-first-post/</link>
+      <pubDate>Wed, 19 Dec 2018 15:48:17 +0800</pubDate>
+      
+      <guid>http://whchi.github.io/posts/my-first-post/</guid>
+      <description>Step1. install hugo Mac only
+
+install homebrew
+/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  then install hugo
+brew install hugo  Step2. start a hugo project make your project folder
+hugo new site your_blog cd your_blog  Step3. add theme you can find more themes here
+mkdir themes # use git clone git clone https://github.com/josephhutch/aether.git themes/aether # use git submodule(recommend) git submodule add https://github.com/josephhutch/aether themes/aether  enable theme
+vim config.</description>
+    </item>
+    
+  </channel>
+</rss>
