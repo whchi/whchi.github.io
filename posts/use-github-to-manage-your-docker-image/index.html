@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Posts &middot; 雜談與紀錄</title>
+  <title>使用 Github 管理 Docker image &middot; 雜談與紀錄</title>
   <meta name="description" content="" />
   
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/css/latolatinfonts.css" />
   
 </head>
-  <body class="list-body">
+  <body class="single-body">
     <nav class="nav-bar side-padding">
   <h1 class="nav-header"><a href="/" class="nav-text">
     雜談與紀錄
@@ -33,29 +33,51 @@
     </ul>
   </div>
 </nav>
-    <main class="card-container side-gutter">
-      <header class="list-header">
-        <p class="list-header-subtext"></p>
-        <h1 class="list-header-title">Posts</h1>
-      </header>
+    <main class="content side-text-padding">
+      <article class="post dropcase">
+        <header class="post-header">
+        	<h1 class="post-title">使用 Github 管理 Docker image</h1>
+          <p class="post-date">Posted <time datetime="2018-12-19">Dec 19, 2018</time></p>
+        </header>
+        
+        
+
+<p>Docker hub 本身有提供 autobuild trigger，只需透過UI設定與github連動即可做到使用git branch進行docker file的管理，以下分別列出Github與Docker hub需要的設定</p>
+
+<h2 id="github">Github</h2>
+
+<p><strong>這裡的 branch 會對應到 Docker hub 的 tag</strong></p>
+
+<ol>
+<li>建立 github repo，命名為 dockerfile</li>
+<li>clone 到本地後建立新的分支，命名使用自己喜歡的方式命名<code>e.g: centos7-autotagging</code></li>
+<li>於分支底下建立<code>Dockerfile</code>並撰寫內容</li>
+<li>寫好後<code>docker build . -t 'local-centos7-autotagging'</code> 測試build(加上 -t 是讓 local 方便操作)</li>
+<li>build通過後<code>git push origin centos7-autotagging</code>建立並推送至遠端分支</li>
+</ol>
+
+<h2 id="docker-hub">Docker hub</h2>
+
+<p><strong>這裡的 tag 會對應到 github 的 branch</strong></p>
+
+<ol>
+<li>建立repo
+<img src="/images/dockerhub-create.png" alt="" /></li>
+<li>選擇剛剛建立好的 repository，如果沒連接 github 帳號會要求進行連接
+<img src="/images/dockerhub-choose-github-repo.png" alt="" /></li>
+<li>連接完畢並建立 repo 即可</li>
+</ol>
+
+<p>如有設定好連動即可自動推送並建置image，結果如圖)
+<img src="/images/dockerhub-automatic-building.png" alt="" /></p>
+
+<p>之後要拉自己的環境時只需要<code>docker pull {username}/{repo name}:{tagname}</code>即可<br />
+搭配docker-compose更方便，可參考我的<strong><a href="https://github.com/whchi/dockerfile/tree/pyml">範例</a></strong></p>
+
+      </article>
       
-      
-      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
-  href="http://whchi.github.io/posts/use-github-to-manage-your-docker-image/" class="card blog-card" rel="bookmark" >
-    
-  <article class="card-body">
-    <h2 class="card-title">使用 Github 管理 Docker image</h2>
-    <p class="card-text">Docker hub 本身有提供 autobuild trigger，只需透過UI設定與github連動即可做到使用git branch進行docker file的管理，以下分別列出Github與Docker hub需要的設定
-Github 這裡的 branch 會對應到 Docker hub 的 tag
- 建立 github repo，命名為 dockerfile clone 到本地後建立新的分支，命名使用自己喜歡的方式命名e.g: centos7-autotagging 於分支底下建立Dockerfile並撰寫內容 寫好後docker build . -t 'local-centos7-autotagging' 測試build(加上 -t 是讓 local 方便操作) build通過後git push origin centos7-autotagging建立並推送至遠端分支  Docker hub 這裡的 tag 會對應到 github 的 branch
- 建立repo  選擇剛剛建立好的 repository，如果沒連接 github 帳號會要求進行連接  連接完畢並建立 repo 即可  如有設定好連動即可自動推送並建置image，結果如圖) 之後要拉自己的環境時只需要docker pull {username}/{repo name}:{tagname}即可
-搭配docker-compose更方便，可參考我的範例</p>
-    <div class="card-subtext muted-text">
-      <p>Posted <time datetime="2018-12-19">Dec 19, 2018</time></p>
-      <p></p>
-    </div>
-  </article>
-</a>
+    </main>
+    <nav class="end-nav side-padding">
       
       <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
   href="http://whchi.github.io/posts/hugo-installation/" class="card blog-card" rel="bookmark" >
@@ -71,14 +93,17 @@ hugo new site your_blog cd your_blog  Step3. add theme you can find more themes 
 mkdir themes # use git clone git clone https://github.com/josephhutch/aether.git themes/aether # use git submodule(recommend) git submodule add https://github.com/josephhutch/aether themes/aether  enable theme
 vim config.</p>
     <div class="card-subtext muted-text">
-      <p>Posted <time datetime="2018-12-19">Dec 19, 2018</time></p>
+      <p>Posted <time datetime="2018-12-19 1219:00">Dec 19, 2018</time></p>
       <p></p>
     </div>
   </article>
 </a>
       
-    </main>
-    
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="/" class="card home-card" style="background-image: url( /img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
