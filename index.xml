@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>雜談與紀錄</title>
+    <link>https://whchi.github.io/</link>
+    <description>Recent content on 雜談與紀錄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Thu, 20 Dec 2018 14:31:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://whchi.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://whchi.github.io/pages/about/</link>
+      <pubDate>Thu, 20 Dec 2018 14:31:46 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/pages/about/</guid>
+      <description> 慢慢把以前的筆記整理上來
+skills  Experienced in Web Backend development (Php, node, python). Development enviorment: docker, vagrant  </description>
+    </item>
+    
+    <item>
+      <title>使用 Github 管理 Docker image</title>
+      <link>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</link>
+      <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</guid>
+      <description>Docker hub 本身有提供 autobuild trigger，只需透過UI設定與github連動即可做到使用git branch進行docker file的管理，以下分別列出Github與Docker hub需要的設定
+Github 這裡的 branch 會對應到 Docker hub 的 tag
+ 建立 github repo，命名為 dockerfile clone 到本地後建立新的分支，命名使用自己喜歡的方式命名e.g: centos7-autotagging 於分支底下建立Dockerfile並撰寫內容 寫好後docker build . -t &#39;local-centos7-autotagging&#39; 測試build(加上 -t 是讓 local 方便操作) build通過後git push origin centos7-autotagging建立並推送至遠端分支  Docker hub 這裡的 tag 會對應到 github 的 branch
+ 建立repo  選擇剛剛建立好的 repository，如果沒連接 github 帳號會要求進行連接  連接完畢並建立 repo 即可  如有設定好連動即可自動推送並建置image，結果如圖) 之後要拉自己的環境時只需要docker pull {username}/{repo name}:{tagname}即可
+搭配docker-compose更方便，可參考我的範例</description>
+    </item>
+    
+    <item>
+      <title>Hugo安裝</title>
+      <link>https://whchi.github.io/posts/hugo-installation/</link>
+      <pubDate>Wed, 19 Dec 2018 15:48:17 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/hugo-installation/</guid>
+      <description>Step1. install hugo install homebrew
+/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  then install hugo
+brew install hugo  Step2. start a hugo project make your project folder
+hugo new site your_blog cd your_blog  Step3. add theme you can find more themes here
+mkdir themes # use git clone git clone https://github.com/josephhutch/aether.git themes/aether # use git submodule(recommend) git submodule add https://github.com/josephhutch/aether.git themes/aether  enable theme
+vim config.toml # add new line theme = &amp;quot;aether&amp;quot;  Step4.</description>
+    </item>
+    
+  </channel>
+</rss>

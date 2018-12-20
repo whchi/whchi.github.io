@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Hugo安裝 &middot;  雜談與紀錄" />
+  
+  <meta property="og:site_name" content="雜談與紀錄" />
+  <meta property="og:url" content="https://whchi.github.io/posts/hugo-installation/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2018-12-19T15:48:17&#43;08:00" />
+  
+  <meta property="og:article:tag" content="hugo" />
+  
+  
+
+  <title>
+     Hugo安裝 &middot;  雜談與紀錄
+  </title>
+
+  <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/github.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="https://whchi.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whchi.github.io/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="https://whchi.github.io/css/custom-hamburg.css">
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(https://whchi.github.io/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="https://whchi.github.io/">雜談與紀錄</a></h1>
+          
+          <h4 class="tag-line">
+            that/s all
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="https://whchi.github.io/pages/about">
+            About
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">Hugo安裝</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    
+
+<h2 id="step1-install-hugo">Step1. install hugo</h2>
+
+<p>install <a href="https://brew.sh/index_zh-tw">homebrew</a></p>
+
+<pre><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+
+<p>then install hugo</p>
+
+<pre><code>brew install hugo
+</code></pre>
+
+<h2 id="step2-start-a-hugo-project">Step2. start a hugo project</h2>
+
+<p>make your project folder</p>
+
+<pre><code>hugo new site your_blog
+cd your_blog
+</code></pre>
+
+<h2 id="step3-add-theme">Step3. add theme</h2>
+
+<p>you can find more themes <a href="https://themes.gohugo.io">here</a></p>
+
+<pre><code>mkdir themes
+
+# use git clone
+git clone https://github.com/josephhutch/aether.git themes/aether
+
+# use git submodule(recommend)
+git submodule add https://github.com/josephhutch/aether.git themes/aether
+</code></pre>
+
+<p>enable theme</p>
+
+<pre><code>vim config.toml
+# add new line
+theme = &quot;aether&quot;
+</code></pre>
+
+<h2 id="step4-add-post">Step4. add post</h2>
+
+<p><code>hugo new posts/first-post.md</code>
+change <code>draft: true</code> then run <code>hugo server -w</code> for local test</p>
+
+<h2 id="step5-publish-to-github">Step5. publish to github</h2>
+
+<p>Because this is my personal website, so I use User/Organization Pages</p>
+
+<ol>
+<li>create <code>{your-project}</code> repo on your github</li>
+<li>create <code>{username}.github.io</code> repo on your github</li>
+
+<li><p>add github page to submodule <code>git submodule add -b master git@github.com:{username}/{username}.github.io.git public</code>(you can use https as git url too)</p></li>
+
+<li><p>add shell to project folder, named <code>deploy.sh</code></p>
+
+<pre><code>#!/bin/bash
+echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
+
+# Build the project.
+hugo # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
+
+# Go To Public folder
+cd public
+# Add changes to git.
+git add .
+
+# Commit changes.
+msg=&quot;rebuilding site `date`&quot;
+if [ $# -eq 1 ]
+then msg=&quot;$1&quot;
+fi
+git commit -m &quot;$msg&quot;
+
+# Push source and build repos.
+git push origin master
+
+# Come Back up to the Project Root
+cd ..
+</code></pre></li>
+
+<li><p>run <code>git commit -am &quot;yout website-hugo commit message &quot;</code> then <code>git push origin master</code></p></li>
+
+<li><p>deploy to <code>{yourname}.github.io</code> with <code>./deploy.sh &quot;your commit message&quot;</code></p></li>
+</ol>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">hosting hugo on github</a></li>
+<li><a href="https://medium.com/@chs_wei/在-github-部署-hugo-靜態網站-9c40682dfe40">在github部署hugo靜態網站</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2018-12-19
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/hugo/">#Hugo</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="https://whchi.github.io/posts/use-github-to-manage-your-docker-image/">
+        <div>
+          <span aria-hidden="true">&larr;</span> 上一篇
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+        <div>
+          已是最新的文章 <span aria-hidden="true">&#10006;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; whchi 2018
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  
+  
+  
+  
+  <div class="info" id="gdprInfo">
+    <div class="info-content">
+      我們使用您的 cookie 來瞭解您以便提供更佳的體驗．如繼續使用我們的網站，吉表示您接受我們使用您的 cookie
+    </div>
+    <div>
+      <a class="btn btn-default" onclick='document.cookie = "the-green-spot-gdpr-ok=true; path=/";document.getElementById("gdprInfo").style.display = "none";console.log("OK")'>
+        OK
+      </a>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function getCookie(name) {
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+    var gdprAlreadyShowed = getCookie("the-green-spot-gdpr-ok");
+    if (gdprAlreadyShowed) {
+      document.getElementById("gdprInfo").style.display = "none"
+    }
+  </script>
+  
+</body>
+</html>
+

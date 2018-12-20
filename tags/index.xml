@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 雜談與紀錄</title>
+    <link>https://whchi.github.io/tags/</link>
+    <description>Recent content in Tags on 雜談與紀錄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Wed, 19 Dec 2018 17:32:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker</title>
+      <link>https://whchi.github.io/tags/docker/</link>
+      <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>https://whchi.github.io/tags/github/</link>
+      <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://whchi.github.io/tags/hugo/</link>
+      <pubDate>Wed, 19 Dec 2018 15:48:17 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
