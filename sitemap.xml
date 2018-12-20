@@ -3,63 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://whchi.github.io/pages/about/</loc>
+    <loc>https://whchi.github.io/pages/about/</loc>
     <lastmod>2018-12-20T14:31:46+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://whchi.github.io/posts/use-github-to-manage-your-docker-image/</loc>
+    <loc>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</loc>
     <lastmod>2018-12-19T17:32:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://whchi.github.io/posts/hugo-installation/</loc>
+    <loc>https://whchi.github.io/posts/hugo-installation/</loc>
     <lastmod>2018-12-19T15:48:17+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://whchi.github.io/categories/</loc>
+    <loc>https://whchi.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://whchi.github.io/tags/docker/</loc>
+    <loc>https://whchi.github.io/tags/docker/</loc>
     <lastmod>2018-12-19T17:32:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://whchi.github.io/tags/github/</loc>
+    <loc>https://whchi.github.io/tags/github/</loc>
     <lastmod>2018-12-19T17:32:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://whchi.github.io/tags/hugo/</loc>
+    <loc>https://whchi.github.io/tags/hugo/</loc>
     <lastmod>2018-12-19T15:48:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://whchi.github.io/pages/</loc>
+    <loc>https://whchi.github.io/pages/</loc>
     <lastmod>2018-12-20T14:31:46+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://whchi.github.io/posts/</loc>
+    <loc>https://whchi.github.io/posts/</loc>
     <lastmod>2018-12-19T17:32:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://whchi.github.io/tags/</loc>
+    <loc>https://whchi.github.io/tags/</loc>
     <lastmod>2018-12-19T17:32:42+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://whchi.github.io/</loc>
+    <loc>https://whchi.github.io/</loc>
     <lastmod>2018-12-20T14:31:46+08:00</lastmod>
     <priority>0</priority>
   </url>
