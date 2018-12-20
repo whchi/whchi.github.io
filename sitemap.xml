@@ -8,7 +8,18 @@
   </url>
   
   <url>
+    <loc>https://whchi.github.io/posts/hugo-installation/</loc>
+    <lastmod>2018-12-19T15:48:17+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/hugo/</loc>
+    <lastmod>2018-12-19T15:48:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -19,7 +30,14 @@
   </url>
   
   <url>
+    <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2018-12-19T15:48:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/tags/</loc>
+    <lastmod>2018-12-19T15:48:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
