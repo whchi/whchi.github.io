@@ -143,28 +143,37 @@ change <code>draft: true</code> then run <code>hugo server -w</code> for local t
 <li><p>add shell to project folder, named <code>deploy.sh</code></p>
 
 <pre><code>#!/bin/bash
-echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
 
+echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
 # Build the project.
 hugo # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
+
 
 # Go To Public folder
 cd public
 # Add changes to git.
+git checkout master
+
 git add .
 
 # Commit changes.
-msg=&quot;rebuilding site `date`&quot;
-if [ $# -eq 1 ]
-then msg=&quot;$1&quot;
-fi
-git commit -m &quot;$msg&quot;
+git commit -m &quot;rebuilding site `date`&quot;
 
 # Push source and build repos.
 git push origin master
 
 # Come Back up to the Project Root
 cd ..
+
+msg=&quot;updated at `date`&quot;
+if [ $# -eq 1 ]
+then msg=&quot;$1&quot;
+fi
+git add .
+git commit -m &quot;$msg&quot;
+
+git push origin master
+
 </code></pre></li>
 
 <li><p>run <code>git commit -am &quot;yout website-hugo commit message &quot;</code> then <code>git push origin master</code></p></li>
