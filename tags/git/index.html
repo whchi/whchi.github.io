@@ -4,17 +4,17 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content=" Tags &middot;  雜談與紀錄" />
+  <meta property="og:title" content=" Git &middot;  雜談與紀錄" />
   
   <meta property="og:site_name" content="雜談與紀錄" />
-  <meta property="og:url" content="https://whchi.github.io/tags/" />
+  <meta property="og:url" content="https://whchi.github.io/tags/git/" />
   
   
   <meta property="og:type" content="website" />
   
 
   <title>
-     Tags &middot;  雜談與紀錄
+     Git &middot;  雜談與紀錄
   </title>
 
   <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
@@ -70,28 +70,58 @@
     </header>
     <main class="container">
 
-<section class="taxonomy-terms">
-    <h1>Tags</h1>
-    
-    <div class="container">
+<section class="article-list">
+  <div id="container-tags-title">
+    <h1>Tag: Git</h1>
+    <a class="btn btn-primary" id="btn-all-tags" href="https://whchi.github.io/tags">
+      所有標籤
+    </a>
+  </div>
+  
+    <div class="delimiter"></div>
+    <article>
+  <header>
+    <h1 class="li-h1"><a href="https://whchi.github.io/posts/difference-between-subtree-and-submodule/">git 管理子庫的兩種方式</a></h1>
+    <div class="clearfix">
+      <div class="post-date pull-left">
+        <span class="li-small">
+          發佈時間
+          2018-12-21
+        </span>
+      </div>
+      <div class="pull-right">
         
-        <a class="tag-container" href="/tags/docker/">
-            Docker
-        </a>
         
-        <a class="tag-container" href="/tags/git/">
-            Git
-        </a>
+        <span class="post-tag small"><a href="https://whchi.github.io/tags/git/">#Git</a></span>
         
-        <a class="tag-container" href="/tags/github/">
-            Github
-        </a>
         
-        <a class="tag-container" href="/tags/hugo/">
-            Hugo
-        </a>
         
+        <span class="post-tag small"><a href="https://whchi.github.io/tags/hugo/">#Hugo</a></span>
+        
+        
+      </div>
     </div>
+  </header>
+  <div>
+    
+    最近架設 hugo 時查詢的資料發現有使用 git subtree跟 git submodule兩種抓 theme 的方法，研究後把差別記錄在這
+主要差異 submodule: 適合不需對 sub repo 進行 push 的動作時使用 subtree: 適合需要把 master repo的某些 feature 獨立成一個 git branch 時使用
+subtree  concept
+把整個外部 repo 以及 commit log 拷貝到新的 repo 中，如同名稱一樣，就是「子樹」的概念，可把它視為完全獨立於 master repo 底下的 repo init  remote as subtree: git remote add {remote-name} {remote repo} + git subtree add -P {localModulePath} {remote-name} {ref branch} local as subtree: git subtree split -P {localModulePath} -b {ref branch}  delete
+    
+  </div>
+  <footer>
+    <div class="read-more-container">
+      <a class="btn btn-primary" href="https://whchi.github.io/posts/difference-between-subtree-and-submodule/">
+        <div>
+          <span aria-hidden="true">&#35;</span>閱讀更多
+        </div>
+      </a>
+    </div>
+  </footer>
+</article>
+
+  
 </section>
   </main>
   <footer class="container global-footer">
