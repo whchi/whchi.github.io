@@ -95,9 +95,9 @@
 
 <ol>
 <li>建立 github repo，命名為 dockerfile</li>
-<li>clone 到本地後建立新的分支，命名使用自己喜歡的方式命名<code>e.g: centos7-autotagging</code></li>
+<li>clone 到本地後建立新的分支，命名使用自己喜歡的方式命名，e.g: <code>centos7-autotagging</code></li>
 <li>於分支底下建立<code>Dockerfile</code>並撰寫內容</li>
-<li>寫好後<code>docker build . -t 'local-centos7-autotagging'</code> 測試build(加上 -t 是讓 local 方便操作)</li>
+<li>寫好後<code>docker build . -t 'local-centos7-autotagging'</code> 測試 build (加上 -t 是讓 local 方便操作)</li>
 <li>build通過後<code>git push origin centos7-autotagging</code>建立並推送至遠端分支</li>
 </ol>
 
@@ -117,7 +117,7 @@
 <img src="/images/dockerhub-automatic-building.png" alt="" /></p>
 
 <p>之後要拉自己的環境時只需要<code>docker pull {username}/{repo name}:{tagname}</code>即可<br />
-搭配docker-compose更方便，可參考我的<strong><a href="https://github.com/whchi/dockerfile/tree/pyml">範例</a></strong></p>
+搭配 docker-compose 更方便，可參考我的<strong><a href="https://github.com/whchi/dockerfile/tree/pyml">範例</a></strong></p>
 
   </section>
   <div class="clearfix">
