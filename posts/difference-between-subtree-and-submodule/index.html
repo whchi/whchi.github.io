@@ -87,12 +87,12 @@
   <section>
     
 
-<p>最近架設 hugo 時查詢的資料發現有使用 <code>git subtree</code>跟 <code>git submodule</code>兩種抓 theme 的方法，研究後把差別記錄在這</p>
+<p>最近架設 hugo 時查詢的資料發現有使用<code>git subtree</code>跟<code>git submodule</code>兩種抓 theme 的方法，研究後把差別記錄在這</p>
 
 <h2 id="主要差異">主要差異</h2>
 
 <p>submodule: 適合不需對 sub repo 進行 push 的動作時使用
-subtree: 適合需要把 master repo的某些 feature 獨立成一個 git branch 時使用</p>
+subtree: 適合需要把 master repo 的某些 feature 獨立成一個 git branch 時使用</p>
 
 <h2 id="subtree">subtree</h2>
 
@@ -242,28 +242,6 @@ subtree: 適合需要把 master repo的某些 feature 獨立成一個 git branch
   
   
   
-  
-  <div class="info" id="gdprInfo">
-    <div class="info-content">
-      我們使用您的 cookie 來瞭解您以便提供更佳的體驗．如繼續使用我們的網站，吉表示您接受我們使用您的 cookie
-    </div>
-    <div>
-      <a class="btn btn-default" onclick='document.cookie = "the-green-spot-gdpr-ok=true; path=/";document.getElementById("gdprInfo").style.display = "none";console.log("OK")'>
-        OK
-      </a>
-    </div>
-  </div>
-  <script type="text/javascript">
-    function getCookie(name) {
-      var value = "; " + document.cookie;
-      var parts = value.split("; " + name + "=");
-      if (parts.length == 2) return parts.pop().split(";").shift();
-    }
-    var gdprAlreadyShowed = getCookie("the-green-spot-gdpr-ok");
-    if (gdprAlreadyShowed) {
-      document.getElementById("gdprInfo").style.display = "none"
-    }
-  </script>
   
 </body>
 </html>

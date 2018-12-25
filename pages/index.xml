@@ -19,7 +19,7 @@
       
       <guid>https://whchi.github.io/pages/about/</guid>
       <description> 慢慢把以前的筆記整理上來
-skills  Experienced in Web Backend development (Php, node, python). Development enviorment: docker, vagrant  </description>
+skills  Web Backend development: php, node, python Web Frontend development: vue.js, jQuery Development enviorment: docker, vagrant, GCP services Linux(centos, ubuntu) Version control: git MySQL  contact  email: whccchi@gmail.com  </description>
     </item>
     
   </channel>

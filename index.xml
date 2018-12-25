@@ -18,8 +18,8 @@
       <pubDate>Fri, 21 Dec 2018 09:35:24 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/difference-between-subtree-and-submodule/</guid>
-      <description>最近架設 hugo 時查詢的資料發現有使用 git subtree跟 git submodule兩種抓 theme 的方法，研究後把差別記錄在這
-主要差異 submodule: 適合不需對 sub repo 進行 push 的動作時使用 subtree: 適合需要把 master repo的某些 feature 獨立成一個 git branch 時使用
+      <description>最近架設 hugo 時查詢的資料發現有使用git subtree跟git submodule兩種抓 theme 的方法，研究後把差別記錄在這
+主要差異 submodule: 適合不需對 sub repo 進行 push 的動作時使用 subtree: 適合需要把 master repo 的某些 feature 獨立成一個 git branch 時使用
 subtree  concept
 把整個外部 repo 以及 commit log 拷貝到新的 repo 中，如同名稱一樣，就是「子樹」的概念，可把它視為完全獨立於 master repo 底下的 repo init  remote as subtree: git remote add {remote-name} {remote repo} + git subtree add -P {localModulePath} {remote-name} {ref branch} local as subtree: git subtree split -P {localModulePath} -b {ref branch}  delete</description>
     </item>
@@ -31,7 +31,7 @@ subtree  concept
       
       <guid>https://whchi.github.io/pages/about/</guid>
       <description> 慢慢把以前的筆記整理上來
-skills  Experienced in Web Backend development (Php, node, python). Development enviorment: docker, vagrant  </description>
+skills  Web Backend development: php, node, python Web Frontend development: vue.js, jQuery Development enviorment: docker, vagrant, GCP services Linux(centos, ubuntu) Version control: git MySQL  contact  email: whccchi@gmail.com  </description>
     </item>
     
     <item>
@@ -42,9 +42,9 @@ skills  Experienced in Web Backend development (Php, node, python). Development 
       <guid>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</guid>
       <description>Docker hub 本身有提供 autobuild trigger，只需透過UI設定與github連動即可做到使用git branch進行docker file的管理，以下分別列出Github與Docker hub需要的設定
 Github 這裡的 branch 會對應到 Docker hub 的 tag
- 建立 github repo，命名為 dockerfile clone 到本地後建立新的分支，命名使用自己喜歡的方式命名e.g: centos7-autotagging 於分支底下建立Dockerfile並撰寫內容 寫好後docker build . -t &#39;local-centos7-autotagging&#39; 測試build(加上 -t 是讓 local 方便操作) build通過後git push origin centos7-autotagging建立並推送至遠端分支  Docker hub 這裡的 tag 會對應到 github 的 branch
+ 建立 github repo，命名為 dockerfile clone 到本地後建立新的分支，命名使用自己喜歡的方式命名，e.g: centos7-autotagging 於分支底下建立Dockerfile並撰寫內容 寫好後docker build . -t &#39;local-centos7-autotagging&#39; 測試 build (加上 -t 是讓 local 方便操作) build通過後git push origin centos7-autotagging建立並推送至遠端分支  Docker hub 這裡的 tag 會對應到 github 的 branch
  建立repo  選擇剛剛建立好的 repository，如果沒連接 github 帳號會要求進行連接  連接完畢並建立 repo 即可  如有設定好連動即可自動推送並建置image，結果如圖) 之後要拉自己的環境時只需要docker pull {username}/{repo name}:{tagname}即可
-搭配docker-compose更方便，可參考我的範例</description>
+搭配 docker-compose 更方便，可參考我的範例</description>
     </item>
     
     <item>
