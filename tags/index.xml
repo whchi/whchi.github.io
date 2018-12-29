@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 19 Dec 2018 17:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 29 Dec 2018 17:30:24 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Devops</title>
+      <link>https://whchi.github.io/tags/devops/</link>
+      <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/devops/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Docker</title>
@@ -18,6 +27,15 @@
       <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
       
       <guid>https://whchi.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Elk</title>
+      <link>https://whchi.github.io/tags/elk/</link>
+      <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/elk/</guid>
       <description></description>
     </item>
     
@@ -45,6 +63,33 @@
       <pubDate>Fri, 21 Dec 2018 09:35:24 +0800</pubDate>
       
       <guid>https://whchi.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kafka</title>
+      <link>https://whchi.github.io/tags/kafka/</link>
+      <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/kafka/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Laravel</title>
+      <link>https://whchi.github.io/tags/laravel/</link>
+      <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/laravel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Php</title>
+      <link>https://whchi.github.io/tags/php/</link>
+      <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/php/</guid>
       <description></description>
     </item>
     

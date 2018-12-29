@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" 將 laravel log 透過 kafka 送入 ELK &middot;  雜談與紀錄" />
+  
+  <meta property="og:site_name" content="雜談與紀錄" />
+  <meta property="og:url" content="https://whchi.github.io/posts/laravel-log-to-elk-via-kafka/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2018-12-29T17:30:24&#43;08:00" />
+  
+  <meta property="og:article:tag" content="laravel" />
+  
+  <meta property="og:article:tag" content="devops" />
+  
+  <meta property="og:article:tag" content="php" />
+  
+  <meta property="og:article:tag" content="kafka" />
+  
+  <meta property="og:article:tag" content="elk" />
+  
+  
+
+  <title>
+     將 laravel log 透過 kafka 送入 ELK &middot;  雜談與紀錄
+  </title>
+
+  <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/github.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="https://whchi.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whchi.github.io/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="https://whchi.github.io/css/custom-hamburg.css">
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(https://whchi.github.io/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="https://whchi.github.io/">雜談與紀錄</a></h1>
+          
+          <h4 class="tag-line">
+            that/s all
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="https://whchi.github.io/pages/about">
+            About
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">將 laravel log 透過 kafka 送入 ELK</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    
+
+<p>簡單解釋一下</p>
+
+<h3 id="elk-是什麼">ELK 是什麼</h3>
+
+<blockquote>
+<p>Elasticsearch + Logstash + Kibana = ELK</p>
+</blockquote>
+
+<ul>
+<li><a href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a>: 搜尋引擎，類似的有 luence / solr</li>
+<li><a href="https://www.elastic.co/products/logstash">Logstash</a>: 搜集 log 的服務，可透過撰寫設定檔的方式指定不同的 input / output</li>
+<li><a href="https://www.elastic.co/products/kibana">Kibana</a>: 視覺化 elasticsearch 資料的網頁服務</li>
+</ul>
+
+<p>如果有點進去連結的人會發現<strong>根本就是同一間公司的產品啊！！</strong><br />
+&hellip;是的沒錯，市面上類似的競爭者還有 <strong>Graylog</strong></p>
+
+<h3 id="kafka-是什麼">kafka 是什麼</h3>
+
+<p>由 Apache 基金會維護的 MQ(Message Queue) 服務，看到 <strong>Apache</strong> 這幾個字基本上就放心地使用吧</p>
+
+<ul>
+<li>專有名詞簡述</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="left">名詞</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">broker</td>
+<td align="left">每個群集都會有 1toN 個服務器，這個服務器被稱作 broker</td>
+</tr>
+
+<tr>
+<td align="left">topic</td>
+<td align="left">每條訊息所屬的類別(物理上分開儲存)</td>
+</tr>
+
+<tr>
+<td align="left">partition</td>
+<td align="left">物理上的概念，每個topic有 1toN 個topic</td>
+</tr>
+
+<tr>
+<td align="left">producer</td>
+<td align="left">訊息生產者</td>
+</tr>
+
+<tr>
+<td align="left">consumer</td>
+<td align="left">訊息接收者</td>
+</tr>
+
+<tr>
+<td align="left">consumer group</td>
+<td align="left">每個 consumer 屬於一個 group，可作群組訊息管理</td>
+</tr>
+</tbody>
+</table>
+
+<p><br>
+大概有個概念就行了</p>
+
+<h2 id="install-elk-kafka">Install ELK+Kafka</h2>
+
+<p>這裡用<code>docker-compose</code>安裝</p>
+
+<ol>
+<li>先把庫抓下來<code>git clone https://github.com/wurstmeister/kafka-docker.git</code></li>
+<li>修改<code>docker-compose-single-broker.yml</code>如下
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">version: <span style="color:#e6db74">&#39;3&#39;</span>
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - <span style="color:#e6db74">&#34;2181:2181&#34;</span>
+    container_name: local_zp
+  kafka:
+    build: .
+    ports:
+      - <span style="color:#e6db74">&#34;9092:9092&#34;</span>
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: local_kafka <span style="color:#75715e"># kafka command 啟動時的 hostname</span>
+      KAFKA_CREATE_TOPICS: <span style="color:#e6db74">&#34;localtest&#34;</span>
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:<span style="color:#ae81ff">2181</span>
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: local_kafka
+  elk:
+    image: sebp/elk
+    ports:
+     - <span style="color:#e6db74">&#39;5601:5601&#39;</span>
+     - <span style="color:#e6db74">&#39;9200:9200&#39;</span>
+     - <span style="color:#e6db74">&#39;5044:5044&#39;</span>
+    container_name: local_elk</code></pre></div></li>
+<li>啟動容器<code>docker-compose -f docker-compose-single-broker.yml up</code></li>
+</ol>
+
+<h4 id="設定-logstash-conf">設定 logstash conf</h4>
+
+<p>進入 local_elk container 並增加 logstash 接收 kafka 訊息的設定如下
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-conf" data-lang="conf">input {
+  kafka {
+    bootstrap_servers =&gt; &#34;local_kafka:9092&#34;
+    topics =&gt; [&#34;localtest&#34;]
+  }
+}
+
+output {
+   if [type] == &#34;laravel&#34; {
+       elasticsearch {
+         hosts =&gt; &#34;localhost:9200&#34;
+         index =&gt; &#34;laravel-%{+YYYY.MM.dd}&#34; }
+   }
+}</code></pre></div>
+完成後重啟 logstash <code>service logstash restart</code></p>
+
+<p><strong>需要注意的地方是 <code>bootstrap_servers</code> 與 <code>KAFKA_ADVERTISED_HOST_NAME</code> 要一致，不然 logstash 會找不到</strong></p>
+
+<h2 id="laravel-寫些什麼">laravel 寫些什麼</h2>
+
+<ol>
+<li>安裝套件<code>composer require nmred/kafka-php</code></li>
+<li>繼承 laravel logger
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Hubs</span>;
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Monolog\Handler\AbstractProcessingHandler</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">KafkaLogHubber</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">AbstractProcessingHandler</span>
+{
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct()
+    {
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bubble</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+    }
+
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">write</span>(<span style="color:#66d9ef">array</span> $record)
+    {
+        $config <span style="color:#f92672">=</span> <span style="color:#a6e22e">\Kafka\ProducerConfig</span><span style="color:#f92672">::</span><span style="color:#a6e22e">getInstance</span>();
+        $config<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setMetadataRefreshIntervalMs</span>(<span style="color:#ae81ff">10000</span>);
+        $config<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setMetadataBrokerList</span>(<span style="color:#e6db74">&#39;127.0.0.1:9092&#39;</span>);
+        $config<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setBrokerVersion</span>(<span style="color:#e6db74">&#39;2.1.0&#39;</span>);
+        $config<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setRequiredAck</span>(<span style="color:#ae81ff">1</span>);
+        $config<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setIsAsyn</span>(<span style="color:#66d9ef">false</span>);
+        $config<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setProduceInterval</span>(<span style="color:#ae81ff">500</span>);
+        $producer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">\Kafka\Producer</span>();
+        $producer<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">send</span>([
+            [
+                <span style="color:#e6db74">&#39;topic&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;logstash&#39;</span>,
+                <span style="color:#e6db74">&#39;value&#39;</span> <span style="color:#f92672">=&gt;</span> $record[<span style="color:#e6db74">&#39;formatted&#39;</span>],
+                <span style="color:#e6db74">&#39;key&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;&#39;</span>,
+            ],
+        ]);
+
+    }
+
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getDefaultFormatter</span>()
+    {
+        <span style="color:#75715e">// setup formatter (default use LineFormatter)
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">\Monolog\Formatter\LogstashFormatter</span>;
+    }
+}
+</code></pre></div></li>
+<li>修改預設的 logger 為 KafkaLogHubber
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#75715e">// in bootstrap/app.php
+</span><span style="color:#75715e"></span>
+<span style="color:#f92672">...</span>
+
+$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">configureMonologUsing</span>(<span style="color:#66d9ef">function</span> ($monolog) {
+    $monolog<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">pushHandler</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">\App\Hubs\KafkaLogHubber</span>);
+});
+
+<span style="color:#f92672">...</span>
+
+<span style="color:#66d9ef">return</span> $app;
+</code></pre></div>
+之後在任何地方使用 <code>\Illuminate\Support\Facades\Log</code> 都會寫到 kafka 裡面拉</li>
+</ol>
+
+<hr />
+
+<p>要查看結果有兩個方法</p>
+
+<ol>
+<li>使用 kibana: <code>localhost:5601</code>即可</li>
+<li>使用 <a href="http://www.kafkatool.com">kafka tool</a>: 使用這個方法的人記得修改<code>/etc/hosts</code>讓本地可以認識<code>local_kafka</code>這個 domain</li>
+</ol>
+
+<h2 id="補充說明">補充說明</h2>
+
+<ul>
+<li>範例使用laravel5.5, 5.6+ 的 logging 更加彈性，可擴充至 custom channel 進而保留原始的 logging</li>
+<li>要直接測試 kafka 參考 <a href="https://github.com/weiboad/kafka-php">kafka-php github</a></li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<ul>
+<li><a href="https://www.elastic.co/guide/en/logstash/current/config-examples.html">logstash examples</a></li>
+<li><a href="https://58hualong.cn/blog/post/laravel-shiyong-kafka-yibu-yanchi-xieru-de-rizhi-de-fangfa">laravel 使用 kafka 寫入 log</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2018-12-29
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/laravel/">#Laravel</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/devops/">#Devops</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/php/">#Php</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/kafka/">#Kafka</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/elk/">#Elk</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span> 已是最舊的文章
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="https://whchi.github.io/posts/difference-between-subtree-and-submodule/">
+        <div>
+          下一篇 <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; whchi 2018
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  
+  
+  
+  
+</body>
+</html>
+

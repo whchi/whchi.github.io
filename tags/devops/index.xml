@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devops on 雜談與紀錄</title>
+    <link>https://whchi.github.io/tags/devops/</link>
+    <description>Recent content in Devops on 雜談與紀錄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Sat, 29 Dec 2018 17:30:24 +0800</lastBuildDate>
+    
+	<atom:link href="https://whchi.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>將 laravel log 透過 kafka 送入 ELK</title>
+      <link>https://whchi.github.io/posts/laravel-log-to-elk-via-kafka/</link>
+      <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/laravel-log-to-elk-via-kafka/</guid>
+      <description>簡單解釋一下
+ELK 是什麼  Elasticsearch + Logstash + Kibana = ELK
+  Elasticsearch: 搜尋引擎，類似的有 luence / solr Logstash: 搜集 log 的服務，可透過撰寫設定檔的方式指定不同的 input / output Kibana: 視覺化 elasticsearch 資料的網頁服務  如果有點進去連結的人會發現根本就是同一間公司的產品啊！！
+&amp;hellip;是的沒錯，市面上類似的競爭者還有 Graylog
+kafka 是什麼 由 Apache 基金會維護的 MQ(Message Queue) 服務，看到 Apache 這幾個字基本上就放心地使用吧
+ 專有名詞簡述     名詞 說明     broker 每個群集都會有 1toN 個服務器，這個服務器被稱作 broker   topic 每條訊息所屬的類別(物理上分開儲存)   partition 物理上的概念，每個topic有 1toN 個topic   producer 訊息生產者   consumer 訊息接收者   consumer group 每個 consumer 屬於一個 group，可作群組訊息管理</description>
+    </item>
+    
+  </channel>
+</rss>
