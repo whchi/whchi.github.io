@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://whchi.github.io/posts/laravel-package/</loc>
+    <lastmod>2019-03-18T16:38:36+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/posts/hugo-shortcodes-with-gist/</loc>
     <lastmod>2018-12-29T18:24:20+08:00</lastmod>
   </url>
@@ -87,7 +92,7 @@
   
   <url>
     <loc>https://whchi.github.io/tags/laravel/</loc>
-    <lastmod>2018-12-29T17:30:24+08:00</lastmod>
+    <lastmod>2019-03-18T16:38:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -105,7 +110,7 @@
   
   <url>
     <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2018-12-29T18:24:20+08:00</lastmod>
+    <lastmod>2019-03-18T16:38:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -117,7 +122,7 @@
   
   <url>
     <loc>https://whchi.github.io/</loc>
-    <lastmod>2018-12-29T18:24:20+08:00</lastmod>
+    <lastmod>2019-03-18T16:38:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -7,10 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 29 Dec 2018 18:24:20 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 18 Mar 2019 16:38:36 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>開發並部署 laravel package 到 github 上</title>
+      <link>https://whchi.github.io/posts/laravel-package/</link>
+      <pubDate>Mon, 18 Mar 2019 16:38:36 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/laravel-package/</guid>
+      <description>注意事項  路徑要符合 PSR-4 規範，autoload 才找得到 使用 git-tag 對 package 版號控管 套件內的 composer.json 的 require 很重要，如果有相依於 laravel 版本的話要注意  資料夾呈現結果如圖
+接下來說明步驟
+開發 Step1. 建立專案 cd /path/to/your/package-develop-project &amp;amp;&amp;amp; composer create-project --prefer-dist laravel/laravel . &amp;quot;5.5.*&amp;quot; 這裡以 5.5 為例
+Step2. 建立 package 開發路徑 於 laravel documentroot 建立 packages folder
+path如下
+packages/{vendor-name}/{package-name}/src
+並於 src 層初始化 composer.json composer init，填入相關資料，以下是我的範例 { &amp;#34;name&amp;#34;: &amp;#34;cw/kafkalogger&amp;#34;, &amp;#34;description&amp;#34;: &amp;#34;send log direct into kafka&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;library&amp;#34;, &amp;#34;license&amp;#34;: &amp;#34;MIT&amp;#34;, &amp;#34;authors&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;whchi&amp;#34;, &amp;#34;email&amp;#34;: &amp;#34;whccchi@gmail.</description>
+    </item>
     
     <item>
       <title>Hugo shortcodes With embed gist</title>
