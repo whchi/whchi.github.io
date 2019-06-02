@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Mon, 18 Mar 2019 16:38:36 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 02 Jun 2019 20:16:20 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>安裝 fork 過來的 composer 套件</title>
+      <link>https://whchi.github.io/posts/install-custom-composer-package/</link>
+      <pubDate>Sun, 02 Jun 2019 20:16:20 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/install-custom-composer-package/</guid>
+      <description> 前陣子遇到使用的套件有相依套件的衝突，發 PR 套件原作者發現上次更新時間是 500 年前，所以就研究了一下怎麼只裝自己 fork 的版本
+設定如下
+ composer.json { ... &amp;#34;repositories&amp;#34;: [ { &amp;#34;type&amp;#34;: &amp;#34;vcs&amp;#34;, &amp;#34;url&amp;#34;: &amp;#34;https://github.com/{yourname}/package&amp;#34; } ], &amp;#34;require&amp;#34;: { &amp;#34;vendor/package&amp;#34;: &amp;#34;dev-{your fork branch name}&amp;#34; } } &amp;gt; 建議 branch name 切開，不要用 master
+Reference https://getcomposer.org/doc/05-repositories.md#vcs
+  </description>
+    </item>
     
     <item>
       <title>開發並部署 laravel package 到 github 上</title>
