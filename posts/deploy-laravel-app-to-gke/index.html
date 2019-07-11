@@ -139,14 +139,14 @@
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8000</span></code></pre></div></p>
 
 <ul>
-<li><p>build &amp; push image</p>
+<li>build &amp; push image</li>
+</ul>
 
 <pre><code class="language-sh">docker build -t phpapp:1.0.0 -f Dockerfile.php .
 # then
 docker push gcr.io/{your-gcp-project-name}/phpapp:1.0.0
 # 這裡以 gcr 為例, 推到 dockerhub 也可以, 總之要有一個本地連的到的地方
-</code></pre></li>
-</ul>
+</code></pre>
 
 <h3 id="yaml">yaml</h3>
 
