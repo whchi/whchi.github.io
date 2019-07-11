@@ -99,21 +99,78 @@
 
 <h2 id="名詞解釋">名詞解釋</h2>
 
-<p>在 k8s 中有多種類型的 <a href="https://kubernetes.io/docs/reference/kubectl/overview/#resource-types">resource objects</a>, 下面簡單介紹本文所需知道的類型
-|資源名稱|簡單說明|
-|:&ndash;|:&ndash;|
-|pod|組成的最小單位, 可由單一或是多個 container 組成, 撰寫 yaml 時建議直接用 deployment|
-|node|實際提供 pods 環境的機器(虛擬 or 實體)|
-|deployment|pods instance template|
-|service|定義了如何連到 pods 的方式(protocol, port, kind)|
-|ingress|think as L7 LBS(F5)|
-|configmap|可在runtime時再把設定檔綁到特定的 pods 上, 讓設定更加彈性|
-|persistentvolume|short for pv, think as external HD|
-|persistentvolumeclaims|short for pvc, 存取pv的抽象層, 建好的 pv 需要透過 pvc 才能被掛載, 類似用 deploy 去掛 pod 的感覺|
-|service.NodePort|讓叢集對外的最原始方式, 直接在 node 上開個 port|
-|service.ClusterIP|預設的service type, 叢集中提供一個 cluster-internal ip讓叢集內/間的 pods 可以直接存取|
-|service.LoadBalancer|一般對外的方式, 有需要的請參考<a href="https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer">官方說明</a>|
-|Ingress|不是 service type, 但能夠做到巷一台 L7 的服務掛給你對外|</p>
+<p>在 k8s 中有多種類型的 <a href="https://kubernetes.io/docs/reference/kubectl/overview/#resource-types">resource objects</a>, 下面簡單介紹本文所需知道的類型</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">資源名稱</th>
+<th align="left">簡單說明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">pod</td>
+<td align="left">組成的最小單位, 可由單一或是多個 container 組成, 撰寫 yaml 時建議直接用 deployment</td>
+</tr>
+
+<tr>
+<td align="left">node</td>
+<td align="left">實際提供 pods 環境的機器(虛擬 or 實體)</td>
+</tr>
+
+<tr>
+<td align="left">deployment</td>
+<td align="left">pods instance template</td>
+</tr>
+
+<tr>
+<td align="left">service</td>
+<td align="left">定義了如何連到 pods 的方式(protocol, port, kind)</td>
+</tr>
+
+<tr>
+<td align="left">ingress</td>
+<td align="left">think as L7 LBS(F5)</td>
+</tr>
+
+<tr>
+<td align="left">configmap</td>
+<td align="left">可在runtime時再把設定檔綁到特定的 pods 上, 讓設定更加彈性</td>
+</tr>
+
+<tr>
+<td align="left">persistentvolume</td>
+<td align="left">short for pv, think as external HD</td>
+</tr>
+
+<tr>
+<td align="left">persistentvolumeclaims</td>
+<td align="left">short for pvc, 存取pv的抽象層, 建好的 pv 需要透過 pvc 才能被掛載, 類似用 deploy 去掛 pod 的感覺</td>
+</tr>
+
+<tr>
+<td align="left">service.NodePort</td>
+<td align="left">讓叢集對外的最原始方式, 直接在 node 上開個 port</td>
+</tr>
+
+<tr>
+<td align="left">service.ClusterIP</td>
+<td align="left">預設的service type, 叢集中提供一個 cluster-internal ip讓叢集內/間的 pods 可以直接存取</td>
+</tr>
+
+<tr>
+<td align="left">service.LoadBalancer</td>
+<td align="left">一般對外的方式, 有需要的請參考<a href="https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer">官方說明</a></td>
+</tr>
+
+<tr>
+<td align="left">Ingress</td>
+<td align="left">不是 service type, 但能夠做到巷一台 L7 的服務掛給你對外</td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="架構圖">架構圖</h2>
 
@@ -124,7 +181,9 @@
 <p><a href="https://laravel.com/docs/5.8/installation">安裝完laravel</a>之後寫個 Dockerfile build image, 參考如下</p>
 
 <ul>
-<li><p>Dockerfile.php
+<li>Dockerfile.php</li>
+</ul>
+
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> php:7.3.3</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apt-get update -y <span style="color:#f92672">&amp;&amp;</span> apt-get install -y openssl zip unzip git<span style="color:#960050;background-color:#1e0010">
@@ -138,9 +197,10 @@
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>USER www-data<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span><span style="color:#e6db74"> php artisan serve --host=0.0.0.0 --port=8000 #實務上不會這樣做, 本文只是為了可以建立環境所以這樣做</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8000</span></code></pre></div></p></li>
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8000</span></code></pre></div>
 
-<li><p>build &amp; push image</p></li>
+<ul>
+<li>build &amp; push image</li>
 </ul>
 
 <pre><code class="language-sh">docker build -t phpapp:1.0.0 -f Dockerfile.php .
