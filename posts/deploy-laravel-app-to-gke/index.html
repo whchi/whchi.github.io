@@ -117,7 +117,7 @@
 
 <h2 id="架構圖">架構圖</h2>
 
-<p><img src="/static/images/k8s-infa-sample.png" alt="" /></p>
+<p><img src="/images/k8s-infa-sample.png" alt="" /></p>
 
 <h3 id="建立-laravel-app-image-push-to-gcr">建立 laravel app image &amp; push to GCR</h3>
 
@@ -136,14 +136,17 @@
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>USER www-data<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span><span style="color:#e6db74"> php artisan serve --host=0.0.0.0 --port=8000 #實務上不會這樣做, 本文只是為了可以建立環境所以這樣做</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8000</span></code></pre></div>
-* build &amp; push image</p>
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8000</span></code></pre></div></p>
+
+<ul>
+<li><p>build &amp; push image</p>
 
 <pre><code class="language-sh">docker build -t phpapp:1.0.0 -f Dockerfile.php .
 # then
 docker push gcr.io/{your-gcp-project-name}/phpapp:1.0.0
 # 這裡以 gcr 為例, 推到 dockerhub 也可以, 總之要有一個本地連的到的地方
-</code></pre>
+</code></pre></li>
+</ul>
 
 <h3 id="yaml">yaml</h3>
 
@@ -253,16 +256,16 @@ spec:
 
 <h3 id="ingress-yml">ingress.yml</h3>
 
-<p>apiVersion: extensions/v1beta1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: external-ip-name # 預留外部靜態ip的名稱
+    kubernetes.io/ingress.global-static-ip-name: external-ip-name <span style="color:#75715e"># 預留外部靜態ip的名稱</span>
 spec:
   backend:
-    serviceName: nginx-local #必須為 NodePort, 名稱為 nginx-k8s.yml 的 metadata
-    servicePort: 80</p>
+    serviceName: nginx-local <span style="color:#75715e">#必須為 NodePort, 名稱為 nginx-k8s.yml 的 metadata</span>
+    servicePort: <span style="color:#ae81ff">80</span></code></pre></div>
 
 <h3 id="mysql">mysql</h3>
 
