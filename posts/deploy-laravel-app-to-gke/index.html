@@ -326,7 +326,7 @@ spec:
 <li>ingress.yml</li>
 </ul>
 
-<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: extensions/v1beta1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ingress
@@ -336,8 +336,12 @@ spec:
   backend:
     serviceName: nginx-local <span style="color:#75715e">#必須為 NodePort, 名稱為 nginx-k8s.yml 的 metadata</span>
     servicePort: <span style="color:#ae81ff">80</span></code></pre></div>
-* mysql.yml
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"></code></pre></div></p>
+
+<ul>
+<li>mysql.yml</li>
+</ul>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"></code></pre></div>
 
 <h2 id="references">References</h2>
 
