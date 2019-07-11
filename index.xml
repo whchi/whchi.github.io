@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sun, 02 Jun 2019 20:16:20 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jul 2019 15:27:23 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>部署laravel應用程式到GKE上</title>
+      <link>https://whchi.github.io/posts/deploy-laravel-app-to-gke/</link>
+      <pubDate>Thu, 11 Jul 2019 15:27:23 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/deploy-laravel-app-to-gke/</guid>
+      <description>內文僅記錄主要概念
+最近有機會接觸到 GKE 相關的東西, 趁記憶猶新趕緊紀錄一下, 流程大概為 1. 開啟 GKE instance 2. 建立 &amp;amp; push laravel app docker image to GCR 3. 撰寫 yaml 檔並把程式部署到 GKE 上 &amp;gt; GKE: 由 google 推出的 k8s engine 代管服務, 其他還有 AWS 的 EKS, M$ 的 AKS
+名詞解釋 在 k8s 中有多種類型的 resource objects, 下面簡單介紹本文所需知道的類型 |資源名稱|簡單說明| |:&amp;ndash;|:&amp;ndash;| |pod|組成的最小單位, 可由單一或是多個 container 組成, 撰寫 yaml 時建議直接用 deployment| |node|實際提供 pods 環境的機器(虛擬 or 實體)| |deployment|pods instance template| |service|定義了如何連到 pods 的方式(protocol, port, kind)| |ingress|think as L7 LBS(F5)| |configmap|可在runtime時再把設定檔綁到特定的 pods 上, 讓設定更加彈性| |persistentvolume|short for pv, think as external HD| |persistentvolumeclaims|short for pvc, 存取pv的抽象層, 建好的 pv 需要透過 pvc 才能被掛載, 類似用 deploy 去掛 pod 的感覺| |service.</description>
+    </item>
     
     <item>
       <title>安裝 fork 過來的 composer 套件</title>
@@ -71,7 +82,8 @@ kafka 是什麼 由 Apache 基金會維護的 MQ(Message Queue) 服務，看到 
       
       <guid>https://whchi.github.io/posts/difference-between-subtree-and-submodule/</guid>
       <description>最近架設 hugo 時查詢的資料發現有使用git subtree跟git submodule兩種抓 theme 的方法，研究後把差別記錄在這
-主要差異 submodule: 適合不需對 sub repo 進行 push 的動作時使用 subtree: 適合需要把 master repo 的某些 feature 獨立成一個 git branch 時使用
+主要差異 submodule: 適合不需對 sub repo 進行 push 的動作時使用
+subtree: 適合需要把 master repo 的某些 feature 獨立成一個 git branch 時使用
 subtree  concept
 把整個外部 repo 以及 commit log 拷貝到新的 repo 中，如同名稱一樣，就是「子樹」的概念，可把它視為完全獨立於 master repo 底下的 repo init  remote as subtree: git remote add {remote-name} {remote repo} + git subtree add -P {localModulePath} {remote-name} {ref branch} local as subtree: git subtree split -P {localModulePath} -b {ref branch}  delete</description>
     </item>
