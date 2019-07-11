@@ -98,11 +98,11 @@
 
 <blockquote>
 <p><a href="https://cloud.google.com/kubernetes-engine/">GKE</a>: 由 google 推出的 k8s engine 代管服務, 其他還有 AWS 的 EKS, M$ 的 AKS</p>
+</blockquote>
 
 <h2 id="名詞解釋">名詞解釋</h2>
 
 <p>在 k8s 中有多種類型的 <a href="https://kubernetes.io/docs/reference/kubectl/overview/#resource-types">resource objects</a>, 下面簡單介紹本文所需知道的類型</p>
-</blockquote>
 
 <table>
 <thead>
@@ -216,7 +216,9 @@ docker push gcr.io/{your-gcp-project-name}/phpapp:1.0.0
 
 <p>這裡直接把 deploy 跟 service 寫在一起</p>
 
-<h4 id="nginx-k8s-yml">nginx-k8s.yml</h4>
+<ul>
+<li>nginx-k8s.yml</li>
+</ul>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: v1
 data:
@@ -278,7 +280,9 @@ spec:
     app: nginx <span style="color:#75715e"># 這裡用 select 對應到實際的 deployment</span>
   type: NodePort <span style="color:#75715e"># 要注意的是, Ingress 目前只支援 NodePort, 如果不用 Ingress 的話可使用 ClusterIP</span></code></pre></div>
 
-<h4 id="php-k8s-yml">php-k8s.yml</h4>
+<ul>
+<li>php-k8s.yml</li>
+</ul>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: extensions/v1beta1
 kind: Deployment
@@ -318,9 +322,11 @@ spec:
     app: phpapp
   type: ClusterIP</code></pre></div>
 
-<h3 id="ingress-yml">ingress.yml</h3>
+<ul>
+<li>ingress.yml</li>
+</ul>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: extensions/v1beta1
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ingress
@@ -330,8 +336,8 @@ spec:
   backend:
     serviceName: nginx-local <span style="color:#75715e">#必須為 NodePort, 名稱為 nginx-k8s.yml 的 metadata</span>
     servicePort: <span style="color:#ae81ff">80</span></code></pre></div>
-
-<h3 id="mysql">mysql</h3>
+* mysql.yml
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"></code></pre></div></p>
 
 <h2 id="references">References</h2>
 
