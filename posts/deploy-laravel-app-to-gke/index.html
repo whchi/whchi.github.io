@@ -102,7 +102,7 @@
 <p><a href="https://cloud.google.com/kubernetes-engine/">GKE</a>: 由 google 推出的 k8s engine 代管服務, 其他還有 AWS 的 EKS, M$ 的 AKS</p>
 </blockquote>
 
-<h1 id="前置作業">前置作業</h1>
+<h2 id="前置作業">前置作業</h2>
 
 <p><a href="https://cloud.google.com/kubernetes-engine/docs/quickstart?hl=zh-tw">GKE quickstart</a></p>
 
@@ -187,6 +187,7 @@
 
 <blockquote>
 <p>這裡沒有找到比較好的解釋說明兩者的差異, 我個人是偏好不變的資源用 create, 因為兩種command 建立出來的資源是在 command 中是互斥的, 避免 apply 倒不會動的資源</p>
+</blockquote>
 
 <pre><code class="language-sh"># 1. create resource
 kubectl create -f xxxx.yml
@@ -199,7 +200,6 @@ kubectl replace -f xxxx.yml # use create
 kubectl apply -f xxxx.yml # use apply
 
 </code></pre>
-</blockquote>
 
 <h2 id="預計建立架構">預計建立架構</h2>
 
