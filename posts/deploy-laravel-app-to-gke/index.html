@@ -93,18 +93,18 @@
 
 <p><font color="red">內文僅記錄主要概念</font></p>
 
-<p>最近有機會接觸到 GKE 相關的東西, 趁記憶猶新趕緊紀錄一下, 流程大概為
-1. 開啟 <a href="https://cloud.google.com/kubernetes-engine/?hl=zh-tw">GKE instance</a>
-2. 建立 &amp; push laravel app docker image to <a href="https://cloud.google.com/container-registry/">GCR</a>
+<p>最近有機會接觸到 GKE 相關的東西, 趁記憶猶新趕緊紀錄一下, 流程大概為<br />
+1. 開啟 <a href="https://cloud.google.com/kubernetes-engine/?hl=zh-tw">GKE instance</a><br />
+2. 建立 &amp; push laravel app docker image to <a href="https://cloud.google.com/container-registry/">GCR</a><br />
 3. 撰寫 yaml 檔並把程式部署到 GKE 上</p>
 
 <blockquote>
 <p><a href="https://cloud.google.com/kubernetes-engine/">GKE</a>: 由 google 推出的 k8s engine 代管服務, 其他還有 AWS 的 EKS, M$ 的 AKS</p>
+</blockquote>
 
 <h1 id="前置作業">前置作業</h1>
 
 <p><a href="https://cloud.google.com/kubernetes-engine/docs/quickstart?hl=zh-tw">GKE quickstart</a></p>
-</blockquote>
 
 <h2 id="名詞解釋">名詞解釋</h2>
 
@@ -183,8 +183,10 @@
 
 <h2 id="建立資源指令">建立資源指令</h2>
 
-<p>有兩種方法使用<code>kubectl</code>告訴 k8s 你要建立的資源, 分別是<a href="https://kubernetes.io/docs/tasks/manage-kubernetes-objects/imperative-config/">create(命令式)</a>和<a href="https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/">apply(宣告式)</a>
-&gt; 這裡沒有找到比較好的解釋說明兩者的差異, 我個人是偏好不變的資源用 create, 因為兩種command 建立出來的資源是在 command 中是互斥的, 避免 apply 倒不會動的資源</p>
+<p>有兩種方法使用<code>kubectl</code>告訴 k8s 你要建立的資源, 分別是<a href="https://kubernetes.io/docs/tasks/manage-kubernetes-objects/imperative-config/">create(命令式)</a>和<a href="https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/">apply(宣告式)</a></p>
+
+<blockquote>
+<p>這裡沒有找到比較好的解釋說明兩者的差異, 我個人是偏好不變的資源用 create, 因為兩種command 建立出來的資源是在 command 中是互斥的, 避免 apply 倒不會動的資源</p>
 
 <pre><code class="language-sh"># 1. create resource
 kubectl create -f xxxx.yml
@@ -197,8 +199,9 @@ kubectl replace -f xxxx.yml # use create
 kubectl apply -f xxxx.yml # use apply
 
 </code></pre>
+</blockquote>
 
-<h2 id="架構圖">架構圖</h2>
+<h2 id="預計建立架構">預計建立架構</h2>
 
 <p><img src="/images/k8s-infa-sample.png" alt="" /></p>
 
@@ -355,13 +358,13 @@ spec:
 kubectl create secret generic {secret-name} --from-file /path/to/service-account.json
 # 2. use shell
 cat /path/to/service-account.json | base64
-# then copy and paste to cloudsql-instance-credentials.yml
+# then paste to cloudsql-instance-credentials.yml
 </code></pre>
 
 <p>先跑完 credential 再跑下面的 yml, 不然跑的時候會找不到</p>
 
 <ul>
-<li>cloudsql-instance-credentials.yml</li>
+<li>cloudsql-instance-credentials.yml (用 kubectl create 後也會建立此檔, 使用方法 2 的話可以先建立後再copy-paste)</li>
 </ul>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: v1
@@ -370,7 +373,8 @@ metadata:
   name: cloudsql-instance-credentials
 type: Opaque <span style="color:#75715e"># k8s 提供的一種非明碼儲存方式, 使用 `kubectl create secret generic`也會產生一樣的檔案</span>
 data:
-  cw-it-lab-line-poc.json: <span style="color:#75715e">#base64 encoded service-account.json</span></code></pre></div>
+  <span style="color:#75715e"># base64 encoded service-account.json</span>
+  service-account.json: xxxxxxxxxxx=</code></pre></div>
 
 <ul>
 <li>cloudsql.yml</li>
@@ -453,8 +457,10 @@ spec:
   type: ClusterIP</code></pre></div>
 
 <ul>
-<li>ingress.yml
-不一定要用ingress, 也可以使用 LoadBalancer
+<li>ingress.yml</li>
+</ul>
+
+<p>不一定要用ingress, 也可以使用 LoadBalancer
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -464,12 +470,11 @@ metadata:
 spec:
   backend:
     serviceName: nginx-local <span style="color:#75715e">#必須為 NodePort, 名稱為 nginx-k8s.yml 的 metadata</span>
-    servicePort: <span style="color:#ae81ff">80</span></code></pre></div></li>
-</ul>
+    servicePort: <span style="color:#ae81ff">80</span></code></pre></div></p>
 
 <h2 id="備註">備註</h2>
 
-<p>nginx 跟 php 做分拆的話會有靜態檔案的問題, 這邊還沒想到一個很好的解法, 之前嘗試過的解法是用k8s的 pv(persistentVolume) + pvc(persistentVolumeClaim) 去掛可以掛 ROX(目前GCE還不支援) 的 disk 來做到多個 replicas 的時候也能正確 mount 新的靜態檔案</p>
+<p>nginx 跟 php 做分拆的話會有靜態檔案的問題, 這邊還沒想到一個很好的解法, 之前嘗試過的解法是用k8s的 pv(persistentVolume) + pvc(persistentVolumeClaim) 去掛可以掛 ROX(目前 GCE 還不支援) 的 disk 來做到多個 replicas 的時候也能正確 mount 新的靜態檔案</p>
 
 <p>不過圖檔之類的東西應該不適合丟在 pv 做, 畢竟流量就是$$</p>
 
