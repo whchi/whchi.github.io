@@ -12,13 +12,15 @@
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2019-07-11T15:27:23&#43;08:00" />
+  <meta property="og:article:published_time" content="2019-07-13T00:37:23&#43;08:00" />
   
   <meta property="og:article:tag" content="devops" />
   
-  <meta property="og:article:tag" content="gke" />
+  <meta property="og:article:tag" content="GKE" />
   
   <meta property="og:article:tag" content="laravel" />
+  
+  <meta property="og:article:tag" content="k8s" />
   
   
 
@@ -98,6 +100,10 @@
 
 <blockquote>
 <p><a href="https://cloud.google.com/kubernetes-engine/">GKE</a>: 由 google 推出的 k8s engine 代管服務, 其他還有 AWS 的 EKS, M$ 的 AKS</p>
+
+<h1 id="前置作業">前置作業</h1>
+
+<p><a href="https://cloud.google.com/kubernetes-engine/docs/quickstart?hl=zh-tw">GKE quickstart</a></p>
 </blockquote>
 
 <h2 id="名詞解釋">名詞解釋</h2>
@@ -174,6 +180,23 @@
 </tr>
 </tbody>
 </table>
+
+<h2 id="建立資源指令">建立資源指令</h2>
+
+<p>有兩種方法使用<code>kubectl</code>告訴 k8s 你要建立的資源, 分別是<a href="https://kubernetes.io/docs/tasks/manage-kubernetes-objects/imperative-config/">create(命令式)</a>和<a href="https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/">apply(宣告式)</a>
+&gt; 這裡沒有找到比較好的解釋說明兩者的差異, 我個人是偏好不變的資源用 create, 因為兩種command 建立出來的資源是在 command 中是互斥的, 避免 apply 倒不會動的資源</p>
+
+<pre><code class="language-sh"># 1. create resource
+kubectl create -f xxxx.yml
+# or
+kubectl apply -f xxxx.yml
+
+# 2. reload resource
+kubectl replace -f xxxx.yml # use create
+# or
+kubectl apply -f xxxx.yml # use apply
+
+</code></pre>
 
 <h2 id="架構圖">架構圖</h2>
 
@@ -323,25 +346,134 @@ spec:
   type: ClusterIP</code></pre></div>
 
 <ul>
-<li>ingress.yml</li>
+<li>mysql.yml</li>
 </ul>
 
+<p>這裡用 cloudSQL, credential 的部分指的是 service account 金鑰, 有幾種方式設定</p>
+
+<pre><code class="language-sh"># 1. use kubectl (recommend)
+kubectl create secret generic {secret-name} --from-file /path/to/service-account.json
+# 2. use shell
+cat /path/to/service-account.json | base64
+# then copy and paste to cloudsql-instance-credentials.yml
+</code></pre>
+
+<p>先跑完 credential 再跑下面的 yml, 不然跑的時候會找不到</p>
+
+<ul>
+<li>cloudsql-instance-credentials.yml</li>
+</ul>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudsql-instance-credentials
+type: Opaque <span style="color:#75715e"># k8s 提供的一種非明碼儲存方式, 使用 `kubectl create secret generic`也會產生一樣的檔案</span>
+data:
+  cw-it-lab-line-poc.json: <span style="color:#75715e">#base64 encoded service-account.json</span></code></pre></div>
+
+<ul>
+<li>cloudsql.yml</li>
+</ul>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cloudsql-proxy
+spec:
+  replicas: <span style="color:#ae81ff">1</span>
+  template:
+    metadata:
+      labels:
+        component: cloudsql-proxy
+    spec:
+      containers:
+        - name: cloudsql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:<span style="color:#ae81ff">1.14</span>
+          ports:
+            - containerPort: <span style="color:#ae81ff">3306</span>
+          command:
+            - /cloud_sql_proxy
+            - -instances={gcp-project-name}:{cloud-sql-region}:{cloud-sql-database-name}=tcp:<span style="color:#ae81ff">0.0</span>.<span style="color:#ae81ff">0.0</span>:<span style="color:#ae81ff">3306</span>
+            - -credential_file=/secrets/cloudsql/{your-service-account.json} <span style="color:#75715e"># 具有讀寫 cloudsql database 權限的service account 金鑰檔</span>
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: <span style="color:#66d9ef">true</span>
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloudsql-instance-credentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudsql-proxy-service
+spec:
+  ports:
+    - protocol: TCP
+      port: <span style="color:#ae81ff">3306</span>
+      targetPort: <span style="color:#ae81ff">3306</span>
+  selector:
+    component: cloudsql-proxy</code></pre></div>
+
+<ul>
+<li>redis.yml</li>
+</ul>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis-pod
+spec:
+  replicas: <span style="color:#ae81ff">1</span>
+  template:
+    metadata:
+      labels:
+        app: redis-pod
+    spec:
+      containers:
+        - name: redis
+          image: redis:<span style="color:#ae81ff">5.0</span>.<span style="color:#ae81ff">5</span>
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: <span style="color:#ae81ff">6379</span>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-svc <span style="color:#75715e"># 記得把 laravel 的 env 中 redis 連線名稱改為這個</span>
+spec:
+  ports:
+    - port: <span style="color:#ae81ff">6379</span>
+      targetPort: <span style="color:#ae81ff">6379</span>
+      protocol: TCP
+  selector:
+    app: redis-pod
+  type: ClusterIP</code></pre></div>
+
+<ul>
+<li>ingress.yml
+不一定要用ingress, 也可以使用 LoadBalancer
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: external-ip-name <span style="color:#75715e"># 預留外部靜態ip的名稱</span>
+    kubernetes.io/ingress.global-static-ip-name: <span style="color:#e6db74">&#34;external-ip-name&#34;</span> <span style="color:#75715e"># 預留外部靜態ip的名稱, @see [GCP保留靜態IP位址](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address?hl=zh-tw)</span>
 spec:
   backend:
     serviceName: nginx-local <span style="color:#75715e">#必須為 NodePort, 名稱為 nginx-k8s.yml 的 metadata</span>
-    servicePort: <span style="color:#ae81ff">80</span></code></pre></div>
-
-<ul>
-<li>mysql.yml</li>
+    servicePort: <span style="color:#ae81ff">80</span></code></pre></div></li>
 </ul>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"></code></pre></div>
+<h2 id="備註">備註</h2>
+
+<p>nginx 跟 php 做分拆的話會有靜態檔案的問題, 這邊還沒想到一個很好的解法, 之前嘗試過的解法是用k8s的 pv(persistentVolume) + pvc(persistentVolumeClaim) 去掛可以掛 ROX(目前GCE還不支援) 的 disk 來做到多個 replicas 的時候也能正確 mount 新的靜態檔案</p>
+
+<p>不過圖檔之類的東西應該不適合丟在 pv 做, 畢竟流量就是$$</p>
+
+<p>上面的 yml 有蠻多細節沒補到, 如果有拿去 try 的要稍微研究一下拉~</p>
 
 <h2 id="references">References</h2>
 
@@ -354,6 +486,10 @@ spec:
 <li><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">k8s label and selector</a></li>
 <li><a href="https://github.com/Kong/kubernetes-ingress-controller/issues/85">(github issue) Ingress Controller for ClusterIP service type</a></li>
 <li><a href="https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0">Ingress, ClusterIP and NodePort compression</a></li>
+<li><a href="https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine?hl=zh-tw">gke connect to cloudsql setup</a></li>
+<li><a href="https://stackoverflow.com/questions/47369351/kubectl-apply-vs-kubectl-create">kubectl create vs apply</a></li>
+<li><a href="https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address?hl=zh-tw">GCP保留靜態IP位址</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options">k8s persistentVolume</a></li>
 </ul>
 
   </section>
@@ -362,7 +498,7 @@ spec:
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2019-7-11
+        2019-7-13
       </span>
     </div>
     
@@ -378,6 +514,10 @@ spec:
       
       
       <span class="post-tag small"><a href="https://whchi.github.io/tags/laravel/">#Laravel</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/k8s/">#K8s</a></span>
       
       
     </div>
