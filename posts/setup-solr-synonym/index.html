@@ -88,7 +88,7 @@
 <p>將說明從安裝到設定的過程
 &gt; 現在 solr 已經到 8.2 了, 但因為歷史包袱所以還是用 4.10</p>
 
-<h1 id="設定">設定</h1>
+<h2 id="設定">設定</h2>
 
 <p>在本地建立core folder, 結構圖如下</p>
 
@@ -110,7 +110,7 @@
 
 <p>主要說明幾個檔案</p>
 
-<h2 id="core-properties">core.properties</h2>
+<h3 id="core-properties">core.properties</h3>
 
 <p>告訴 solr 要讀取的 core 資訊, 範例參考</p>
 
@@ -120,7 +120,7 @@ schema=schema.xml
 dataDir=data
 </code></pre>
 
-<h2 id="solrconfig-xml">solrconfig.xml</h2>
+<h3 id="solrconfig-xml">solrconfig.xml</h3>
 
 <p>增加 dataimport
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;requestHandler</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;/dataimport&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;org.apache.solr.handler.dataimport.DataImportHandler&#34;</span><span style="color:#f92672">&gt;</span>
@@ -129,7 +129,7 @@ dataDir=data
     <span style="color:#f92672">&lt;/lst&gt;</span>
 <span style="color:#f92672">&lt;/requestHandler&gt;</span></code></pre></div></p>
 
-<h2 id="db-data-config-xml">db-data-config.xml</h2>
+<h3 id="db-data-config-xml">db-data-config.xml</h3>
 
 <p>設定要 import 的 data 的 query, 範例參考
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dataConfig&gt;</span>
@@ -144,7 +144,7 @@ dataDir=data
     <span style="color:#f92672">&lt;/document&gt;</span>
 <span style="color:#f92672">&lt;/dataConfig&gt;</span></code></pre></div></p>
 
-<h2 id="schema-xml">schema.xml</h2>
+<h3 id="schema-xml">schema.xml</h3>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;fields&gt;</span>
     <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;text_syn&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
@@ -161,7 +161,7 @@ dataDir=data
     <span style="color:#f92672">&lt;/analyzer&gt;</span>
 <span style="color:#f92672">&lt;/fieldType&gt;</span></code></pre></div>
 
-<h2 id="synonym-txt">synonym.txt</h2>
+<h3 id="synonym-txt">synonym.txt</h3>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"># , 表示同等意思
 # =&gt; 表示用左側搜會用右側搜
@@ -170,7 +170,7 @@ dataDir=data
 流行性感冒 =&gt; 流感
 TV =&gt; Taiwan-Value</code></pre></div>
 
-<h1 id="使用-docker-compose-安裝">使用 docker-compose 安裝</h1>
+<h2 id="使用-docker-compose-安裝">使用 docker-compose 安裝</h2>
 
 <p>上面的設定完成後跑下面的<code>docker-compose.yml</code>進行安裝, 附上相關 jar 的載點<br />
 <a href="https://mvnrepository.com/artifact/com.chenlb.mmseg4j/mmseg4j-core/1.10.0">mmseg4j-core-1.10.0.jar</a>、
@@ -267,7 +267,7 @@ services:
     - <span style="color:#e6db74">&#34;3306:3306&#34;</span>
     privileged: <span style="color:#66d9ef">true</span></code></pre></div>
 
-<h1 id="測試">測試</h1>
+<h2 id="測試">測試</h2>
 
 <p>安裝成功後開啟瀏覽器輸入<code>localhost:8983</code> 會看到 solr 的 UI, 選擇<code>mycore</code>跑完<code>full-import</code>後點擊<code>Analysis</code>頁籤<br />
 於選擇建立的欄位進行測試如圖
@@ -275,7 +275,7 @@ services:
 輸入有寫在 synonym.txt 裡面的字串進行分析, 有看到如下圖結果表示成功
 <img src="/images/solr-synonym-setup-success.png" alt="" /></p>
 
-<h1 id="references">References</h1>
+<h2 id="references">References</h2>
 
 <ul>
 <li><a href="http://function1122.blogspot.com/2010/10/mmseg4j-java-55.html">碼上會！ mmseg4j 中文斷詞java 實作 (55行)</a></li>

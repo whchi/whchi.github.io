@@ -92,7 +92,7 @@
 <p>前陣子需要用 mac 連 sql server, 記錄一下<br />
 這裡用<a href="http://mirlab.org/jang/books/asp/odbc&amp;dsn.asp?title=18-1%20ODBC%20%BBP%20DSN%20%C2%B2%A4%B6">DSN</a>連線</p>
 
-<h1 id="step1-安裝driver">Step1 安裝driver</h1>
+<h2 id="step1-安裝driver">Step1 安裝driver</h2>
 
 <p>使用 brew</p>
 
@@ -100,7 +100,7 @@
 brew install unixodbc freetds
 </code></pre>
 
-<h1 id="step2-修改-odbc-設定">Step2 修改 odbc 設定</h1>
+<h2 id="step2-修改-odbc-設定">Step2 修改 odbc 設定</h2>
 
 <p>in <code>/usr/local/etc/odbcinst.ini</code></p>
 
@@ -127,7 +127,7 @@ Servername          = TEST_DB # 隨便
     tds version = 7.3 # version 說明參考 https://www.freetds.org/userguide/choosingtdsprotocol.htm
 </code></pre>
 
-<h1 id="step3-測試連線">Step3 測試連線</h1>
+<h2 id="step3-測試連線">Step3 測試連線</h2>
 
 <p>設定完成後用command測試能否連上</p>
 
@@ -142,7 +142,7 @@ using default charset &quot;UTF-8&quot;
 1&gt;
 </code></pre>
 
-<h1 id="python-連線範例">python 連線範例</h1>
+<h2 id="python-連線範例">python 連線範例</h2>
 
 <p>安裝必要套件</p>
 
@@ -162,7 +162,7 @@ con = engine.connect()
 # more sample @see https://kite.com/python/docs/sqlalchemy.dialects.mssql.pyodbc
 </code></pre>
 
-<h1 id="reference">Reference</h1>
+<h2 id="reference">Reference</h2>
 
 <ul>
 <li><a href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Mac-OSX">Connecting to SQL Server from Mac OSX</a></li>
