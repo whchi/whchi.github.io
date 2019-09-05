@@ -122,14 +122,12 @@ dataDir=data
 
 <h2 id="solrconfig-xml">solrconfig.xml</h2>
 
-<p>增加 dataimport</p>
-
-<pre><code class="language-xml">&lt;requestHandler name=&quot;/dataimport&quot; class=&quot;org.apache.solr.handler.dataimport.DataImportHandler&quot;&gt;
-    &lt;lst name=&quot;defaults&quot;&gt;
-        &lt;str name=&quot;config&quot;&gt;db-data-config.xml&lt;/str&gt;
-    &lt;/lst&gt;
-&lt;/requestHandler&gt;
-</code></pre>
+<p>增加 dataimport
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;requestHandler</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;/dataimport&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;org.apache.solr.handler.dataimport.DataImportHandler&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;lst</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;defaults&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;str</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;config&#34;</span><span style="color:#f92672">&gt;</span>db-data-config.xml<span style="color:#f92672">&lt;/str&gt;</span>
+    <span style="color:#f92672">&lt;/lst&gt;</span>
+<span style="color:#f92672">&lt;/requestHandler&gt;</span></code></pre></div></p>
 
 <h2 id="db-data-config-xml">db-data-config.xml</h2>
 
@@ -273,9 +271,9 @@ services:
 
 <p>安裝成功後開啟瀏覽器輸入<code>localhost:8983</code> 會看到 solr 的 UI, 選擇<code>mycore</code>跑完<code>full-import</code>後點擊<code>Analysis</code>頁籤<br />
 於選擇建立的欄位進行測試如圖
-<img src="images/solr-analysis-field.png" alt="" />
+<img src="/images/solr-analysis-field.png" alt="" />
 輸入有寫在 synonym.txt 裡面的字串進行分析, 有看到如下圖結果表示成功
-<img src="images/solr-synonym-setup-success.png" alt="" /></p>
+<img src="/images/solr-synonym-setup-success.png" alt="" /></p>
 
 <h1 id="references">References</h1>
 
