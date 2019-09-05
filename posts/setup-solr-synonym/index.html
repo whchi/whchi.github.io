@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" 設定 solr 同義詞 &middot;  雜談與紀錄" />
+  
+  <meta property="og:site_name" content="雜談與紀錄" />
+  <meta property="og:url" content="https://whchi.github.io/posts/setup-solr-synonym/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2019-09-05T11:55:11&#43;08:00" />
+  
+  <meta property="og:article:tag" content="solr" />
+  
+  
+
+  <title>
+     設定 solr 同義詞 &middot;  雜談與紀錄
+  </title>
+
+  <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/github.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="https://whchi.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whchi.github.io/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="https://whchi.github.io/css/custom-hamburg.css">
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(https://whchi.github.io/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="https://whchi.github.io/">雜談與紀錄</a></h1>
+          
+          <h4 class="tag-line">
+            that/s all
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="https://whchi.github.io/pages/about">
+            About
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">設定 solr 同義詞</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    
+
+<p>將說明從安裝到設定的過程
+&gt; 現在 solr 已經到 8.2 了, 但因為歷史包袱所以還是用 4.10</p>
+
+<h1 id="設定">設定</h1>
+
+<p>在本地建立core folder, 結構圖如下</p>
+
+<pre><code class="language-sh">cores
+└── mycore
+    ├── conf
+    │   ├── _rest_managed.json
+    │   ├── dataimport.properties
+    │   ├── db-data-config.xml
+    │   ├── protwords.txt
+    │   ├── schema.xml
+    │   ├── solrconfig.xml
+    │   ├── stopwords.txt
+    │   ├── stopwords_en.txt
+    │   └── synonyms.txt
+    ├── core.properties
+    └── data/
+</code></pre>
+
+<p>主要說明幾個檔案</p>
+
+<h2 id="core-properties">core.properties</h2>
+
+<p>告訴 solr 要讀取的 core 資訊, 範例參考</p>
+
+<pre><code class="language-properties">name=mycore
+config=solrconfig.xml
+schema=schema.xml
+dataDir=data
+</code></pre>
+
+<h2 id="solrconfig-xml">solrconfig.xml</h2>
+
+<p>增加 dataimport</p>
+
+<pre><code class="language-xml">&lt;requestHandler name=&quot;/dataimport&quot; class=&quot;org.apache.solr.handler.dataimport.DataImportHandler&quot;&gt;
+    &lt;lst name=&quot;defaults&quot;&gt;
+        &lt;str name=&quot;config&quot;&gt;db-data-config.xml&lt;/str&gt;
+    &lt;/lst&gt;
+&lt;/requestHandler&gt;
+</code></pre>
+
+<h2 id="db-data-config-xml">db-data-config.xml</h2>
+
+<p>設定要 import 的 data 的 query, 範例參考</p>
+
+<pre><code class="language-xml">&lt;dataConfig&gt;
+    &lt;dataSource type=&quot;JdbcDataSource&quot; driver=&quot;com.mysql.jdbc.Driver&quot; url=&quot;jdbc:mysql://localhost:3306/test&quot; user=&quot;myusername&quot; password=&quot;mypassword&quot;/&gt;
+        &lt;document name=&quot;mydocument&quot;&gt;
+        &lt;entity name=&quot;item&quot; query=&quot;SELECT * FROM your_table&quot;&gt;
+            &lt;field column=&quot;ID&quot; name=&quot;id&quot; /&gt;
+            &lt;field column=&quot;SNO&quot; name=&quot;no&quot; /&gt;
+            &lt;field column=&quot;SNAME&quot; name=&quot;name&quot; /&gt;
+            &lt;field column=&quot;STYPE&quot; name=&quot;type&quot; /&gt;
+        &lt;/entity&gt;
+    &lt;/document&gt;
+&lt;/dataConfig&gt;
+</code></pre>
+
+<h2 id="schema-xml">schema.xml</h2>
+
+<pre><code class="language-xml">&lt;fields&gt;
+    &lt;field name=&quot;name&quot; type=&quot;text_syn&quot; indexed=&quot;true&quot; stored=&quot;true&quot; required=&quot;true&quot; multiValued=&quot;false&quot; /&gt;
+    &lt;field name=&quot;type&quot; indexed=&quot;false&quot; type=&quot;string&quot; stored=&quot;true&quot; required=&quot;false&quot; multiValued=&quot;false&quot; /&gt;
+    &lt;field name=&quot;no&quot; indexed=&quot;true&quot; type=&quot;int&quot; stored=&quot;true&quot; required=&quot;false&quot; multiValued=&quot;false&quot; /&gt;
+    &lt;field name=&quot;id&quot; indexed=&quot;true&quot; type=&quot;int&quot; stored=&quot;true&quot; required=&quot;false&quot; multiValued=&quot;false&quot; /&gt;
+&lt;/fields&gt;
+...
+&lt;fieldType name=&quot;text_syn&quot; class=&quot;solr.TextField&quot; autoGeneratePhraseQueries=&quot;true&quot;&gt;
+    &lt;analyzer&gt;
+        &lt;tokenizer class=&quot;com.chenlb.mmseg4j.solr.MMSegTokenizerFactory&quot; mode=&quot;complex&quot; dicPath=&quot;/opt/solr-multicore/dics&quot;/&gt; &lt;!-- 使用mmseg跑同義詞 tokenizer --&gt;
+        &lt;charFilter class=&quot;solr.HTMLStripCharFilterFactory&quot;/&gt; &lt;!-- 對token做html strip --&gt;
+        &lt;filter class=&quot;solr.LowerCaseFilterFactory&quot;/&gt; &lt;!-- 全部token轉小寫 --&gt;
+        &lt;filter class=&quot;solr.StopFilterFactory&quot; ignoreCase=&quot;true&quot; words=&quot;stopwords.txt&quot;/&gt; &lt;!-- token參考停用字, 不一定要 --&gt;
+    &lt;/analyzer&gt;
+&lt;/fieldType&gt;
+</code></pre>
+
+<h2 id="synonym-txt">synonym.txt</h2>
+
+<pre><code class="language-txt"># , 表示同等意思
+# =&gt; 表示用左側搜會用右側搜
+# 但因為會先跑 token, 所以有要做同意的字也要把他設進 words.dic 裡面
+台灣,臺灣
+流行性感冒 =&gt; 流感
+TV =&gt; Taiwan-Value
+</code></pre>
+
+<h1 id="使用-docker-compose-安裝">使用 docker-compose 安裝</h1>
+
+<p>上面的設定完成後跑下面的<code>docker-compose.yml</code>進行安裝, 附上相關 jar 的載點<br />
+<a href="https://mvnrepository.com/artifact/com.chenlb.mmseg4j/mmseg4j-core/1.10.0">mmseg4j-core-1.10.0.jar</a>、
+<a href="https://mvnrepository.com/artifact/com.chenlb.mmseg4j/mmseg4j-solr/2.2.0">mmseg4j-solr-2.2.0.jar</a>、
+<a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java/5.1.47">mysql-connector-java-5.1.47.jar</a>、
+<a href="https://mvnrepository.com/artifact/org.apache.solr/solr-dataimporthandler/4.10.4">solr-dataimporthandler-4.10.4.jar</a>、
+<a href="https://mvnrepository.com/artifact/org.apache.solr/solr-dataimporthandler-extras/4.10.4">solr-dataimporthandler-extras-4.10.4.jar</a>
+* 關於 mysql 設定</p>
+
+<p>參考 <a href="https://hub.docker.com/_/mysql">docker mysql</a>
+* 關於字典檔</p>
+
+<p>以 <code>.dic</code> 結尾
+|檔案|說明|
+|:&ndash;|:&ndash;|
+|units.dic|單位詞(年月日時分秒&hellip;)|
+|chars.dic|單一串字典|
+|words.dic|想要被切出來的詞庫, 比如說「三生有幸」原本可能是「三」「生」「有」「幸」, 加入後就會直接被切成「三生有幸」|
+|wordsXXXX.dic|XXXX自定義, 主要是切開管理字典檔|
+除了最後一項尚上述的字典都有開源載點
+* docker-compose.yml</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">version: <span style="color:#e6db74">&#39;3&#39;</span>
+services:
+  solr:
+    image: geerlingguy/solr:<span style="color:#ae81ff">4.10.4</span>
+    container_name: local_solr4
+    ports:
+      - <span style="color:#e6db74">&#39;8983:8983&#39;</span>
+    restart: always
+    volumes: [
+        <span style="color:#e6db74">&#39;./cores/mycore:/var/solr/mycore:rw&#39;</span>, <span style="color:#75715e"># 保存core</span>
+        <span style="color:#e6db74">&#39;./jars/mmseg4j-core-1.10.0.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mmseg4j-core-1.10.0.jar&#39;</span>,
+        <span style="color:#e6db74">&#39;./jars/mmseg4j-solr-2.2.0.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mmseg4j-solr-2.2.0.jar&#39;</span>,
+        <span style="color:#e6db74">&#39;./jars/mysql-connector-java-5.1.47.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mysql-connector-java-5.1.47.jar&#39;</span>,
+        <span style="color:#e6db74">&#39;./jars/solr-dataimporthandler-4.10.4.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/solr-dataimporthandler-4.10.4.jar&#39;</span>,
+        <span style="color:#e6db74">&#39;./jars/solr-dataimporthandler-extras-4.10.4.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/solr-dataimporthandler-extras-4.10.4.jar&#39;</span>,
+        <span style="color:#e6db74">&#39;./dict:/opt/solr-multicore/dics/&#39;</span> <span style="color:#75715e"># 自定義字典檔, 可以去開源詞庫抓獲自行定義</span>
+    ]
+    command:
+      [
+        <span style="color:#e6db74">&#39;/opt/solr/bin/solr&#39;</span>,
+        <span style="color:#e6db74">&#39;start&#39;</span>,
+        <span style="color:#e6db74">&#39;-p&#39;</span>,
+        <span style="color:#e6db74">&#39;8983&#39;</span>,
+        <span style="color:#e6db74">&#39;-s&#39;</span>,
+        <span style="color:#e6db74">&#39;/var/solr&#39;</span>,
+        <span style="color:#e6db74">&#39;-m&#39;</span>,
+        <span style="color:#e6db74">&#39;1024m&#39;</span>,
+        <span style="color:#e6db74">&#39;-f&#39;</span>,
+      ]
+  mysql:
+    image: mysql:<span style="color:#ae81ff">5.7</span>
+    volumes:
+    - ./mysql/var/lib/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    ports:
+    - <span style="color:#e6db74">&#34;3306:3306&#34;</span>
+    privileged: <span style="color:#66d9ef">true</span></code></pre></div>
+
+<h1 id="測試">測試</h1>
+
+<p>安裝成功後開啟瀏覽器輸入<code>localhost:8983</code> 會看到 solr 的 UI, 選擇<code>mycore</code>跑完<code>full-import</code>後點擊<code>Analysis</code>頁籤<br />
+於選擇建立的欄位進行測試如圖
+<img src="images/solr-analysis-field.png" alt="" />
+輸入有寫在 synonym.txt 裡面的字串進行分析, 有看到如下圖結果表示成功
+<img src="images/solr-synonym-setup-success.png" alt="" /></p>
+
+<h1 id="references">References</h1>
+
+<ul>
+<li><a href="http://function1122.blogspot.com/2010/10/mmseg4j-java-55.html">碼上會！ mmseg4j 中文斷詞java 實作 (55行)</a></li>
+<li><a href="https://lucene.apache.org/solr/guide/6_6/about-filters.html">solr filter</a></li>
+<li><a href="https://lucene.apache.org/solr/guide/6_6/tokenizers.html#tokenizers">solr tokenizer</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2019-9-5
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/solr/">#solr</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span> 已是最舊的文章
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="https://whchi.github.io/posts/mac-connect-to-sql-server/">
+        <div>
+          下一篇 <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; whchi 2018
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  
+  
+  
+  
+</body>
+</html>
+
