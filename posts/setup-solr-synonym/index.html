@@ -133,49 +133,44 @@ dataDir=data
 
 <h2 id="db-data-config-xml">db-data-config.xml</h2>
 
-<p>設定要 import 的 data 的 query, 範例參考</p>
-
-<pre><code class="language-xml">&lt;dataConfig&gt;
-    &lt;dataSource type=&quot;JdbcDataSource&quot; driver=&quot;com.mysql.jdbc.Driver&quot; url=&quot;jdbc:mysql://localhost:3306/test&quot; user=&quot;myusername&quot; password=&quot;mypassword&quot;/&gt;
-        &lt;document name=&quot;mydocument&quot;&gt;
-        &lt;entity name=&quot;item&quot; query=&quot;SELECT * FROM your_table&quot;&gt;
-            &lt;field column=&quot;ID&quot; name=&quot;id&quot; /&gt;
-            &lt;field column=&quot;SNO&quot; name=&quot;no&quot; /&gt;
-            &lt;field column=&quot;SNAME&quot; name=&quot;name&quot; /&gt;
-            &lt;field column=&quot;STYPE&quot; name=&quot;type&quot; /&gt;
-        &lt;/entity&gt;
-    &lt;/document&gt;
-&lt;/dataConfig&gt;
-</code></pre>
+<p>設定要 import 的 data 的 query, 範例參考
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dataConfig&gt;</span>
+    <span style="color:#f92672">&lt;dataSource</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;JdbcDataSource&#34;</span> <span style="color:#a6e22e">driver=</span><span style="color:#e6db74">&#34;com.mysql.jdbc.Driver&#34;</span> <span style="color:#a6e22e">url=</span><span style="color:#e6db74">&#34;jdbc:mysql://localhost:3306/test&#34;</span> <span style="color:#a6e22e">user=</span><span style="color:#e6db74">&#34;myusername&#34;</span> <span style="color:#a6e22e">password=</span><span style="color:#e6db74">&#34;mypassword&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;document</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;mydocument&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;entity</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;item&#34;</span> <span style="color:#a6e22e">query=</span><span style="color:#e6db74">&#34;SELECT * FROM your_table&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;ID&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;SNO&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;no&#34;</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;SNAME&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;STYPE&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;type&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/entity&gt;</span>
+    <span style="color:#f92672">&lt;/document&gt;</span>
+<span style="color:#f92672">&lt;/dataConfig&gt;</span></code></pre></div></p>
 
 <h2 id="schema-xml">schema.xml</h2>
 
-<pre><code class="language-xml">&lt;fields&gt;
-    &lt;field name=&quot;name&quot; type=&quot;text_syn&quot; indexed=&quot;true&quot; stored=&quot;true&quot; required=&quot;true&quot; multiValued=&quot;false&quot; /&gt;
-    &lt;field name=&quot;type&quot; indexed=&quot;false&quot; type=&quot;string&quot; stored=&quot;true&quot; required=&quot;false&quot; multiValued=&quot;false&quot; /&gt;
-    &lt;field name=&quot;no&quot; indexed=&quot;true&quot; type=&quot;int&quot; stored=&quot;true&quot; required=&quot;false&quot; multiValued=&quot;false&quot; /&gt;
-    &lt;field name=&quot;id&quot; indexed=&quot;true&quot; type=&quot;int&quot; stored=&quot;true&quot; required=&quot;false&quot; multiValued=&quot;false&quot; /&gt;
-&lt;/fields&gt;
-...
-&lt;fieldType name=&quot;text_syn&quot; class=&quot;solr.TextField&quot; autoGeneratePhraseQueries=&quot;true&quot;&gt;
-    &lt;analyzer&gt;
-        &lt;tokenizer class=&quot;com.chenlb.mmseg4j.solr.MMSegTokenizerFactory&quot; mode=&quot;complex&quot; dicPath=&quot;/opt/solr-multicore/dics&quot;/&gt; &lt;!-- 使用mmseg跑同義詞 tokenizer --&gt;
-        &lt;charFilter class=&quot;solr.HTMLStripCharFilterFactory&quot;/&gt; &lt;!-- 對token做html strip --&gt;
-        &lt;filter class=&quot;solr.LowerCaseFilterFactory&quot;/&gt; &lt;!-- 全部token轉小寫 --&gt;
-        &lt;filter class=&quot;solr.StopFilterFactory&quot; ignoreCase=&quot;true&quot; words=&quot;stopwords.txt&quot;/&gt; &lt;!-- token參考停用字, 不一定要 --&gt;
-    &lt;/analyzer&gt;
-&lt;/fieldType&gt;
-</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;fields&gt;</span>
+    <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;text_syn&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;type&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;no&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/fields&gt;</span>
+<span style="color:#f92672">&lt;fieldType</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;text_syn&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.TextField&#34;</span> <span style="color:#a6e22e">autoGeneratePhraseQueries=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;analyzer&gt;</span>
+        <span style="color:#f92672">&lt;tokenizer</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.chenlb.mmseg4j.solr.MMSegTokenizerFactory&#34;</span> <span style="color:#a6e22e">mode=</span><span style="color:#e6db74">&#34;complex&#34;</span> <span style="color:#a6e22e">dicPath=</span><span style="color:#e6db74">&#34;/opt/solr-multicore/dics&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- 使用mmseg跑同義詞 tokenizer --&gt;</span>
+        <span style="color:#f92672">&lt;charFilter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.HTMLStripCharFilterFactory&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- 對token做html strip --&gt;</span>
+        <span style="color:#f92672">&lt;filter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.LowerCaseFilterFactory&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- 全部token轉小寫 --&gt;</span>
+        <span style="color:#f92672">&lt;filter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.StopFilterFactory&#34;</span> <span style="color:#a6e22e">ignoreCase=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">words=</span><span style="color:#e6db74">&#34;stopwords.txt&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- token參考停用字, 不一定要 --&gt;</span>
+    <span style="color:#f92672">&lt;/analyzer&gt;</span>
+<span style="color:#f92672">&lt;/fieldType&gt;</span></code></pre></div>
 
 <h2 id="synonym-txt">synonym.txt</h2>
 
-<pre><code class="language-txt"># , 表示同等意思
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"># , 表示同等意思
 # =&gt; 表示用左側搜會用右側搜
 # 但因為會先跑 token, 所以有要做同意的字也要把他設進 words.dic 裡面
 台灣,臺灣
 流行性感冒 =&gt; 流感
-TV =&gt; Taiwan-Value
-</code></pre>
+TV =&gt; Taiwan-Value</code></pre></div>
 
 <h1 id="使用-docker-compose-安裝">使用 docker-compose 安裝</h1>
 
