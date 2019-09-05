@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hugo on 雜談與紀錄</title>
+    <title>hugo on 雜談與紀錄</title>
     <link>https://whchi.github.io/tags/hugo/</link>
-    <description>Recent content in Hugo on 雜談與紀錄</description>
+    <description>Recent content in hugo on 雜談與紀錄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
@@ -18,8 +18,7 @@
       <pubDate>Sat, 29 Dec 2018 18:24:20 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/hugo-shortcodes-with-gist/</guid>
-      <description>  create layouts/shortcodes folder if not exists add gist.html and past follow code below    then you can use it in your .md file by {{&amp;lt; gist embedhash &amp;gt;}}
-Reference  http://blog.cronally.com/embed-gists-with-hugo/  </description>
+      <description>embed gist</description>
     </item>
     
     <item>
@@ -28,11 +27,7 @@ Reference  http://blog.cronally.com/embed-gists-with-hugo/  </description>
       <pubDate>Fri, 21 Dec 2018 09:35:24 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/difference-between-subtree-and-submodule/</guid>
-      <description>最近架設 hugo 時查詢的資料發現有使用git subtree跟git submodule兩種抓 theme 的方法，研究後把差別記錄在這
-主要差異 submodule: 適合不需對 sub repo 進行 push 的動作時使用
-subtree: 適合需要把 master repo 的某些 feature 獨立成一個 git branch 時使用
-subtree  concept
-把整個外部 repo 以及 commit log 拷貝到新的 repo 中，如同名稱一樣，就是「子樹」的概念，可把它視為完全獨立於 master repo 底下的 repo init  remote as subtree: git remote add {remote-name} {remote repo} + git subtree add -P {localModulePath} {remote-name} {ref branch} local as subtree: git subtree split -P {localModulePath} -b {ref branch}  delete</description>
+      <description>subtree or submodule? that is a question.</description>
     </item>
     
     <item>
@@ -41,12 +36,7 @@ subtree  concept
       <pubDate>Wed, 19 Dec 2018 15:48:17 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/hugo-installation/</guid>
-      <description>Step1. install hugo install homebrew
-/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;  then install hugo
-brew install hugo  Step2. start a hugo project make your project folder
-hugo new site your_blog cd your_blog  Step3. add theme you can find more themes here
-mkdir themes # use git clone git clone https://github.com/josephhutch/aether.git themes/aether # use git submodule(recommend) git submodule add https://github.com/josephhutch/aether.git themes/aether  enable theme
-vim config.toml # add new line theme = &amp;quot;aether&amp;quot;  Step4.</description>
+      <description>簡單介紹安裝hugo的方法，mac only</description>
     </item>
     
   </channel>

@@ -130,26 +130,25 @@ subtree: 適合需要把 master repo 的某些 feature 獨立成一個 git branc
 <li><code>git rm --cached {localpath}</code> + <code>.git/config</code> + <code>.gitmodules</code></li>
 <li><code>git submodule deinit {localpath}</code> + <code>git rm {localpath}</code></li>
 </ul></li>
-<li>push</li>
-</ul>
 
-<pre><code>  cd /path/to/submodule
-  git checkout master
-  git commit -am 'commit msg'
-  git push origin master
+<li><p>push</p>
 
-  # push 完 submodule 之後 root 層會多一個 unstaged 的 change
-  # 內容是 submodule 的 hash 改變
-  # 因此要回到 root 多進行一次 push 才能確保專案正常
+<pre><code>cd /path/to/submodule
+git checkout master
+git commit -am 'commit msg'
+git push origin master
 
-  cd /path/to/root
-  git commit -am 'commit msg'
-  git push origin master
-</code></pre>
+# push 完 submodule 之後 root 層會多一個 unstaged 的 change
+# 內容是 submodule 的 hash 改變
+# 因此要回到 root 多進行一次 push 才能確保專案正常
 
-<ul>
-<li>pull<br />
-<code>git submodule update --init</code> or <code>git submodule init</code> + <code>git submodule update</code></li>
+cd /path/to/root
+git commit -am 'commit msg'
+git push origin master
+</code></pre></li>
+
+<li><p>pull<br />
+<code>git submodule update --init</code> or <code>git submodule init</code> + <code>git submodule update</code></p></li>
 </ul>
 
 <h2 id="reference">Reference</h2>
@@ -174,11 +173,11 @@ subtree: 適合需要把 master repo 的某些 feature 獨立成一個 git branc
     <div class="pull-right">
       
       
-      <span class="post-tag small"><a href="https://whchi.github.io/tags/git/">#Git</a></span>
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/git/">#git</a></span>
       
       
       
-      <span class="post-tag small"><a href="https://whchi.github.io/tags/hugo/">#Hugo</a></span>
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/hugo/">#hugo</a></span>
       
       
     </div>

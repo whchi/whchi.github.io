@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gist on 雜談與紀錄</title>
+    <title>gist on 雜談與紀錄</title>
     <link>https://whchi.github.io/tags/gist/</link>
-    <description>Recent content in Gist on 雜談與紀錄</description>
+    <description>Recent content in gist on 雜談與紀錄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
@@ -18,8 +18,7 @@
       <pubDate>Sat, 29 Dec 2018 18:24:20 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/hugo-shortcodes-with-gist/</guid>
-      <description>  create layouts/shortcodes folder if not exists add gist.html and past follow code below    then you can use it in your .md file by {{&amp;lt; gist embedhash &amp;gt;}}
-Reference  http://blog.cronally.com/embed-gists-with-hugo/  </description>
+      <description>embed gist</description>
     </item>
     
   </channel>

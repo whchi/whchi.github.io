@@ -7,22 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sun, 02 Jun 2019 20:16:20 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jul 2019 00:37:23 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Composer</title>
-      <link>https://whchi.github.io/tags/composer/</link>
-      <pubDate>Sun, 02 Jun 2019 20:16:20 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/composer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Devops</title>
+      <title>devops</title>
       <link>https://whchi.github.io/tags/devops/</link>
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
@@ -31,52 +22,7 @@
     </item>
     
     <item>
-      <title>Docker</title>
-      <link>https://whchi.github.io/tags/docker/</link>
-      <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Elk</title>
-      <link>https://whchi.github.io/tags/elk/</link>
-      <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/elk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Gist</title>
-      <link>https://whchi.github.io/tags/gist/</link>
-      <pubDate>Sat, 29 Dec 2018 18:24:20 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/gist/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>https://whchi.github.io/tags/git/</link>
-      <pubDate>Fri, 21 Dec 2018 09:35:24 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Github</title>
-      <link>https://whchi.github.io/tags/github/</link>
-      <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Gke</title>
+      <title>GKE</title>
       <link>https://whchi.github.io/tags/gke/</link>
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
@@ -85,16 +31,7 @@
     </item>
     
     <item>
-      <title>Hugo</title>
-      <link>https://whchi.github.io/tags/hugo/</link>
-      <pubDate>Sat, 29 Dec 2018 18:24:20 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>K8s</title>
+      <title>k8s</title>
       <link>https://whchi.github.io/tags/k8s/</link>
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
@@ -103,16 +40,7 @@
     </item>
     
     <item>
-      <title>Kafka</title>
-      <link>https://whchi.github.io/tags/kafka/</link>
-      <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/kafka/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Laravel</title>
+      <title>laravel</title>
       <link>https://whchi.github.io/tags/laravel/</link>
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
@@ -121,11 +49,83 @@
     </item>
     
     <item>
-      <title>Php</title>
+      <title>composer</title>
+      <link>https://whchi.github.io/tags/composer/</link>
+      <pubDate>Sun, 02 Jun 2019 20:16:20 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/composer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>php</title>
       <link>https://whchi.github.io/tags/php/</link>
       <pubDate>Sun, 02 Jun 2019 20:16:20 +0800</pubDate>
       
       <guid>https://whchi.github.io/tags/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gist</title>
+      <link>https://whchi.github.io/tags/gist/</link>
+      <pubDate>Sat, 29 Dec 2018 18:24:20 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/gist/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://whchi.github.io/tags/hugo/</link>
+      <pubDate>Sat, 29 Dec 2018 18:24:20 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>elk</title>
+      <link>https://whchi.github.io/tags/elk/</link>
+      <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/elk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kafka</title>
+      <link>https://whchi.github.io/tags/kafka/</link>
+      <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/kafka/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://whchi.github.io/tags/git/</link>
+      <pubDate>Fri, 21 Dec 2018 09:35:24 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://whchi.github.io/tags/docker/</link>
+      <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>https://whchi.github.io/tags/github/</link>
+      <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/github/</guid>
       <description></description>
     </item>
     

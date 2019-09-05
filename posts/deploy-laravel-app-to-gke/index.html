@@ -228,14 +228,14 @@ kubectl apply -f xxxx.yml # use apply
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8000</span></code></pre></div>
 
 <ul>
-<li>build &amp; push image</li>
-</ul>
+<li><p>build &amp; push image</p>
 
 <pre><code class="language-sh">docker build -t phpapp:1.0.0 -f Dockerfile.php .
 # then
 docker push gcr.io/{your-gcp-project-name}/phpapp:1.0.0
 # 這裡以 gcr 為例, 推到 dockerhub 也可以, 總之要有一個本地連的到的地方
-</code></pre>
+</code></pre></li>
+</ul>
 
 <h3 id="yaml">yaml</h3>
 
@@ -397,7 +397,7 @@ spec:
             - containerPort: <span style="color:#ae81ff">3306</span>
           command:
             - /cloud_sql_proxy
-            - -instances={gcp-project-name}:{cloud-sql-region}:{cloud-sql-database-name}=tcp:<span style="color:#ae81ff">0.0</span>.<span style="color:#ae81ff">0.0</span>:<span style="color:#ae81ff">3306</span>
+            - -instances={gcp-project-name}:{cloud-sql-region}:{cloud-sql-database-name}=tcp:<span style="color:#ae81ff">0.0.0.0</span>:<span style="color:#ae81ff">3306</span>
             - -credential_file=/secrets/cloudsql/{your-service-account.json} <span style="color:#75715e"># 具有讀寫 cloudsql database 權限的service account 金鑰檔</span>
           volumeMounts:
             - name: cloudsql-instance-credentials
@@ -437,7 +437,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:<span style="color:#ae81ff">5.0</span>.<span style="color:#ae81ff">5</span>
+          image: redis:<span style="color:#ae81ff">5.0.5</span>
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: <span style="color:#ae81ff">6379</span>
@@ -509,19 +509,19 @@ spec:
     <div class="pull-right">
       
       
-      <span class="post-tag small"><a href="https://whchi.github.io/tags/devops/">#Devops</a></span>
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/devops/">#devops</a></span>
       
       
       
-      <span class="post-tag small"><a href="https://whchi.github.io/tags/gke/">#Gke</a></span>
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/gke/">#GKE</a></span>
       
       
       
-      <span class="post-tag small"><a href="https://whchi.github.io/tags/laravel/">#Laravel</a></span>
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/laravel/">#laravel</a></span>
       
       
       
-      <span class="post-tag small"><a href="https://whchi.github.io/tags/k8s/">#K8s</a></span>
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/k8s/">#k8s</a></span>
       
       
     </div>

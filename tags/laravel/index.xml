@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Laravel on 雜談與紀錄</title>
+    <title>laravel on 雜談與紀錄</title>
     <link>https://whchi.github.io/tags/laravel/</link>
-    <description>Recent content in Laravel on 雜談與紀錄</description>
+    <description>Recent content in laravel on 雜談與紀錄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
@@ -18,15 +18,7 @@
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/deploy-laravel-app-to-gke/</guid>
-      <description>內文僅記錄主要概念
-最近有機會接觸到 GKE 相關的東西, 趁記憶猶新趕緊紀錄一下, 流程大概為
-1. 開啟 GKE instance
-2. 建立 &amp;amp; push laravel app docker image to GCR
-3. 撰寫 yaml 檔並把程式部署到 GKE 上
- GKE: 由 google 推出的 k8s engine 代管服務, 其他還有 AWS 的 EKS, M$ 的 AKS
- 前置作業 GKE quickstart
-名詞解釋 在 k8s 中有多種類型的 resource objects, 下面簡單介紹本文所需知道的類型
-   資源名稱 簡單說明     pod 組成的最小單位, 可由單一或是多個 container 組成, 撰寫 yaml 時建議直接用 deployment   node 實際提供 pods 環境的機器(虛擬 or 實體)   deployment pods instance template   service 定義了如何連到 pods 的方式(protocol, port, kind)   ingress think as L7 LBS(F5)   configmap 可在runtime時再把設定檔綁到特定的 pods 上, 讓設定更加彈性   persistentvolume short for pv, think as external HD   persistentvolumeclaims short for pvc, 存取pv的抽象層, 建好的 pv 需要透過 pvc 才能被掛載, 類似用 deploy 去掛 pod 的感覺   service.</description>
+      <description>這是一篇 quick guide about 建立三層&lt;del&gt;肉&lt;/del&gt;式架構</description>
     </item>
     
     <item>
@@ -35,13 +27,7 @@
       <pubDate>Mon, 18 Mar 2019 16:38:36 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/laravel-package/</guid>
-      <description>注意事項  路徑要符合 PSR-4 規範，autoload 才找得到 使用 git-tag 對 package 版號控管 套件內的 composer.json 的 require 很重要，如果有相依於 laravel 版本的話要注意  資料夾呈現結果如圖
-接下來說明步驟
-開發 Step1. 建立專案 cd /path/to/your/package-develop-project &amp;amp;&amp;amp; composer create-project --prefer-dist laravel/laravel . &amp;quot;5.5.*&amp;quot; 這裡以 5.5 為例
-Step2. 建立 package 開發路徑 於 laravel documentroot 建立 packages folder
-path如下
-packages/{vendor-name}/{package-name}/src
-並於 src 層初始化 composer.json composer init，填入相關資料，以下是我的範例 { &amp;#34;name&amp;#34;: &amp;#34;cw/kafkalogger&amp;#34;, &amp;#34;description&amp;#34;: &amp;#34;send log direct into kafka&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;library&amp;#34;, &amp;#34;license&amp;#34;: &amp;#34;MIT&amp;#34;, &amp;#34;authors&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;whchi&amp;#34;, &amp;#34;email&amp;#34;: &amp;#34;whccchi@gmail.</description>
+      <description>最近花了點時間把以前寫的東西改成laravel package，留個筆記</description>
     </item>
     
     <item>
@@ -50,12 +36,7 @@ packages/{vendor-name}/{package-name}/src
       <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/laravel-log-to-elk-via-kafka/</guid>
-      <description>簡單解釋一下
-ELK 是什麼  Elasticsearch + Logstash + Kibana = ELK
-  Elasticsearch: 搜尋引擎，類似的有 luence / solr Logstash: 搜集 log 的服務，可透過撰寫設定檔的方式指定不同的 input / output Kibana: 視覺化 elasticsearch 資料的網頁服務  如果有點進去連結的人會發現根本就是同一間公司的產品啊！！
-&amp;hellip;是的沒錯，市面上類似的競爭者還有 Graylog
-kafka 是什麼 由 Apache 基金會維護的 MQ(Message Queue) 服務，看到 Apache 這幾個字基本上就放心地使用吧
- 專有名詞簡述     名詞 說明     broker 每個群集都會有 1toN 個服務器，這個服務器被稱作 broker   topic 每條訊息所屬的類別(物理上分開儲存)   partition 物理上的概念，每個topic有 1toN 個topic   producer 訊息生產者   consumer 訊息接收者   consumer group 每個 consumer 屬於一個 group，可作群組訊息管理</description>
+      <description>就像在烤肉時，把雞肉、青椒以及杏苞姑串再一起的概念</description>
     </item>
     
   </channel>

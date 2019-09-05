@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>K8s on 雜談與紀錄</title>
+    <title>k8s on 雜談與紀錄</title>
     <link>https://whchi.github.io/tags/k8s/</link>
-    <description>Recent content in K8s on 雜談與紀錄</description>
+    <description>Recent content in k8s on 雜談與紀錄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
@@ -18,15 +18,7 @@
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/deploy-laravel-app-to-gke/</guid>
-      <description>內文僅記錄主要概念
-最近有機會接觸到 GKE 相關的東西, 趁記憶猶新趕緊紀錄一下, 流程大概為
-1. 開啟 GKE instance
-2. 建立 &amp;amp; push laravel app docker image to GCR
-3. 撰寫 yaml 檔並把程式部署到 GKE 上
- GKE: 由 google 推出的 k8s engine 代管服務, 其他還有 AWS 的 EKS, M$ 的 AKS
- 前置作業 GKE quickstart
-名詞解釋 在 k8s 中有多種類型的 resource objects, 下面簡單介紹本文所需知道的類型
-   資源名稱 簡單說明     pod 組成的最小單位, 可由單一或是多個 container 組成, 撰寫 yaml 時建議直接用 deployment   node 實際提供 pods 環境的機器(虛擬 or 實體)   deployment pods instance template   service 定義了如何連到 pods 的方式(protocol, port, kind)   ingress think as L7 LBS(F5)   configmap 可在runtime時再把設定檔綁到特定的 pods 上, 讓設定更加彈性   persistentvolume short for pv, think as external HD   persistentvolumeclaims short for pvc, 存取pv的抽象層, 建好的 pv 需要透過 pvc 才能被掛載, 類似用 deploy 去掛 pod 的感覺   service.</description>
+      <description>這是一篇 quick guide about 建立三層&lt;del&gt;肉&lt;/del&gt;式架構</description>
     </item>
     
   </channel>
