@@ -184,21 +184,56 @@ TV =&gt; Taiwan-Value
 <a href="https://mvnrepository.com/artifact/com.chenlb.mmseg4j/mmseg4j-solr/2.2.0">mmseg4j-solr-2.2.0.jar</a>、
 <a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java/5.1.47">mysql-connector-java-5.1.47.jar</a>、
 <a href="https://mvnrepository.com/artifact/org.apache.solr/solr-dataimporthandler/4.10.4">solr-dataimporthandler-4.10.4.jar</a>、
-<a href="https://mvnrepository.com/artifact/org.apache.solr/solr-dataimporthandler-extras/4.10.4">solr-dataimporthandler-extras-4.10.4.jar</a>
-* 關於 mysql 設定</p>
+<a href="https://mvnrepository.com/artifact/org.apache.solr/solr-dataimporthandler-extras/4.10.4">solr-dataimporthandler-extras-4.10.4.jar</a></p>
 
-<p>參考 <a href="https://hub.docker.com/_/mysql">docker mysql</a>
-* 關於字典檔</p>
+<ul>
+<li>關於 mysql 設定</li>
+</ul>
 
-<p>以 <code>.dic</code> 結尾
-|檔案|說明|
-|:&ndash;|:&ndash;|
-|units.dic|單位詞(年月日時分秒&hellip;)|
-|chars.dic|單一串字典|
-|words.dic|想要被切出來的詞庫, 比如說「三生有幸」原本可能是「三」「生」「有」「幸」, 加入後就會直接被切成「三生有幸」|
-|wordsXXXX.dic|XXXX自定義, 主要是切開管理字典檔|
-除了最後一項尚上述的字典都有開源載點
-* docker-compose.yml</p>
+<p>參考 <a href="https://hub.docker.com/_/mysql">docker mysql</a></p>
+
+<ul>
+<li>關於字典檔</li>
+</ul>
+
+<p>以 <code>.dic</code> 結尾</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">檔案</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">units.dic</td>
+<td align="left">單位詞(年月日時分秒&hellip;)</td>
+</tr>
+
+<tr>
+<td align="left">chars.dic</td>
+<td align="left">單一串字典</td>
+</tr>
+
+<tr>
+<td align="left">words.dic</td>
+<td align="left">想要被切出來的詞庫, 比如說「三生有幸」原本可能是「三」「生」「有」「幸」, 加入後就會直接被切成「三生有幸」</td>
+</tr>
+
+<tr>
+<td align="left">wordsXXXX.dic</td>
+<td align="left">XXXX自定義, 主要是切開管理字典檔</td>
+</tr>
+</tbody>
+</table>
+
+<p>除了最後一項尚上述的字典都有開源載點</p>
+
+<ul>
+<li>docker-compose.yml</li>
+</ul>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">version: <span style="color:#e6db74">&#39;3&#39;</span>
 services:
