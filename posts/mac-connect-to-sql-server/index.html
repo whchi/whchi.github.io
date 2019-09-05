@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Mac Connect to SQL Server &middot;  雜談與紀錄" />
+  
+  <meta property="og:site_name" content="雜談與紀錄" />
+  <meta property="og:url" content="https://whchi.github.io/posts/mac-connect-to-sql-server/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2019-09-05T11:30:49&#43;08:00" />
+  
+  <meta property="og:article:tag" content="mac" />
+  
+  <meta property="og:article:tag" content="sqlserver" />
+  
+  <meta property="og:article:tag" content="python" />
+  
+  
+
+  <title>
+     Mac Connect to SQL Server &middot;  雜談與紀錄
+  </title>
+
+  <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/github.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="https://whchi.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whchi.github.io/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="https://whchi.github.io/css/custom-hamburg.css">
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(https://whchi.github.io/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="https://whchi.github.io/">雜談與紀錄</a></h1>
+          
+          <h4 class="tag-line">
+            that/s all
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="https://whchi.github.io/pages/about">
+            About
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">Mac Connect to SQL Server</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    
+
+<p>前陣子需要用 mac 連 sql server, 記錄一下<br />
+這裡用<a href="http://mirlab.org/jang/books/asp/odbc&amp;dsn.asp?title=18-1%20ODBC%20%BBP%20DSN%20%C2%B2%A4%B6">DSN</a>連線</p>
+
+<h1 id="step1-安裝driver">Step1 安裝driver</h1>
+
+<p>使用 brew</p>
+
+<pre><code class="language-sh">brew update
+brew install unixodbc freetds
+</code></pre>
+
+<h1 id="step2-修改-odbc-設定">Step2 修改 odbc 設定</h1>
+
+<p>in <code>/usr/local/etc/odbcinst.ini</code></p>
+
+<pre><code class="language-sh">[FreeTDS]
+Description=FreeTDS Driver for Mac &amp; MSSQL
+Driver=/usr/local/lib/libtdsodbc.so # 這兩個 .so 在下 brew install unixodbc 的時候會自己裝到這
+Setup=/usr/local/lib/libtdsodbc.so
+UsageCount=1
+</code></pre>
+
+<p>in <code>/usr/local/etc/odbc.ini</code></p>
+
+<pre><code class="language-sh">[TEST_DB] # DSN名稱, 要跟 freetds.conf 的 name mapping
+Description         = test_db # 隨便
+Driver              = FreeTDS # 要跟 odbcinst.ini 的 name mapping
+Servername          = TEST_DB # 隨便
+</code></pre>
+
+<p>in <code>/usr/local/etc/freetds.conf</code></p>
+
+<pre><code class="language-sh">[TEST_DB]
+    host = sqlserver host
+    port = sqlserver port
+    tds version = 7.3 # version 說明參考 https://www.freetds.org/userguide/choosingtdsprotocol.htm
+</code></pre>
+
+<h1 id="step3-測試連線">Step3 測試連線</h1>
+
+<p>設定完成後用command測試能否連上</p>
+
+<pre><code class="language-sh">tsql -S TEST_DB -U username -P password
+</code></pre>
+
+<p>下完有看到類似下面的畫面表示成功</p>
+
+<pre><code class="language-sh">locale is &quot;zh_TW.UTF-8&quot;
+locale charset is &quot;UTF-8&quot;
+using default charset &quot;UTF-8&quot;
+1&gt;
+</code></pre>
+
+<h1 id="python-連線範例">python 連線範例</h1>
+
+<p>安裝必要套件</p>
+
+<pre><code class="language-sh">pip install sqlalchemy pyodbc
+</code></pre>
+
+<p>範例如下</p>
+
+<pre><code class="language-py">from sqlalchemy import create_engine
+namespace = YOUR_NAME_SPACE
+account = YOUR_ACCOUNT
+password = YOUR_PASSWORD
+DSN = 'TEST_DB'
+engine = create_engine(
+    f'mssql+pyodbc://{namespace}\\{account}:{password}@{DSN}')
+con = engine.connect()
+# more sample @see https://kite.com/python/docs/sqlalchemy.dialects.mssql.pyodbc
+</code></pre>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Mac-OSX">Connecting to SQL Server from Mac OSX</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2019-9-5
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/mac/">#mac</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/sqlserver/">#sqlserver</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/python/">#python</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span> 已是最舊的文章
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="https://whchi.github.io/posts/deploy-laravel-app-to-gke/">
+        <div>
+          下一篇 <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; whchi 2018
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  
+  
+  
+  
+</body>
+</html>
+

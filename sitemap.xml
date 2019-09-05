@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://whchi.github.io/tags/mac/</loc>
+    <lastmod>2019-09-05T11:30:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/mac-connect-to-sql-server/</loc>
+    <lastmod>2019-09-05T11:30:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2019-09-05T11:30:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/python/</loc>
+    <lastmod>2019-09-05T11:30:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/sqlserver/</loc>
+    <lastmod>2019-09-05T11:30:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/</loc>
+    <lastmod>2019-09-05T11:30:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/</loc>
+    <lastmod>2019-09-05T11:30:49+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/tags/devops/</loc>
     <lastmod>2019-07-13T00:37:23+08:00</lastmod>
   </url>
@@ -23,22 +58,7 @@
   </url>
   
   <url>
-    <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2019-07-13T00:37:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/</loc>
-    <lastmod>2019-07-13T00:37:23+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://whchi.github.io/posts/deploy-laravel-app-to-gke/</loc>
-    <lastmod>2019-07-13T00:37:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/</loc>
     <lastmod>2019-07-13T00:37:23+08:00</lastmod>
   </url>
   
