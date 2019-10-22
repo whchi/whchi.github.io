@@ -91,8 +91,7 @@
 <h2 id="設定">設定</h2>
 
 <p>在本地建立core folder, 結構圖如下</p>
-
-<pre><code class="language-sh">cores
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cores
 └── mycore
     ├── conf
     │   ├── _rest_managed.json
@@ -105,33 +104,27 @@
     │   ├── stopwords_en.txt
     │   └── synonyms.txt
     ├── core.properties
-    └── data/
-</code></pre>
-
+    └── data/</code></pre></div>
 <p>主要說明幾個檔案</p>
 
 <h3 id="core-properties">core.properties</h3>
 
 <p>告訴 solr 要讀取的 core 資訊, 範例參考</p>
-
-<pre><code class="language-properties">name=mycore
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">name=mycore
 config=solrconfig.xml
 schema=schema.xml
-dataDir=data
-</code></pre>
-
+dataDir=data</code></pre></div>
 <h3 id="solrconfig-xml">solrconfig.xml</h3>
 
-<p>增加 dataimport
+<p>增加 dataimport</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;requestHandler</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;/dataimport&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;org.apache.solr.handler.dataimport.DataImportHandler&#34;</span><span style="color:#f92672">&gt;</span>
     <span style="color:#f92672">&lt;lst</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;defaults&#34;</span><span style="color:#f92672">&gt;</span>
         <span style="color:#f92672">&lt;str</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;config&#34;</span><span style="color:#f92672">&gt;</span>db-data-config.xml<span style="color:#f92672">&lt;/str&gt;</span>
     <span style="color:#f92672">&lt;/lst&gt;</span>
-<span style="color:#f92672">&lt;/requestHandler&gt;</span></code></pre></div></p>
-
+<span style="color:#f92672">&lt;/requestHandler&gt;</span></code></pre></div>
 <h3 id="db-data-config-xml">db-data-config.xml</h3>
 
-<p>設定要 import 的 data 的 query, 範例參考
+<p>設定要 import 的 data 的 query, 範例參考</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dataConfig&gt;</span>
     <span style="color:#f92672">&lt;dataSource</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;JdbcDataSource&#34;</span> <span style="color:#a6e22e">driver=</span><span style="color:#e6db74">&#34;com.mysql.jdbc.Driver&#34;</span> <span style="color:#a6e22e">url=</span><span style="color:#e6db74">&#34;jdbc:mysql://localhost:3306/test&#34;</span> <span style="color:#a6e22e">user=</span><span style="color:#e6db74">&#34;myusername&#34;</span> <span style="color:#a6e22e">password=</span><span style="color:#e6db74">&#34;mypassword&#34;</span><span style="color:#f92672">/&gt;</span>
         <span style="color:#f92672">&lt;document</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;mydocument&#34;</span><span style="color:#f92672">&gt;</span>
@@ -142,10 +135,8 @@ dataDir=data
             <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;STYPE&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;type&#34;</span> <span style="color:#f92672">/&gt;</span>
         <span style="color:#f92672">&lt;/entity&gt;</span>
     <span style="color:#f92672">&lt;/document&gt;</span>
-<span style="color:#f92672">&lt;/dataConfig&gt;</span></code></pre></div></p>
-
+<span style="color:#f92672">&lt;/dataConfig&gt;</span></code></pre></div>
 <h3 id="schema-xml">schema.xml</h3>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;fields&gt;</span>
     <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;text_syn&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
     <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;type&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
@@ -160,16 +151,13 @@ dataDir=data
         <span style="color:#f92672">&lt;filter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.StopFilterFactory&#34;</span> <span style="color:#a6e22e">ignoreCase=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">words=</span><span style="color:#e6db74">&#34;stopwords.txt&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- token參考停用字, 不一定要 --&gt;</span>
     <span style="color:#f92672">&lt;/analyzer&gt;</span>
 <span style="color:#f92672">&lt;/fieldType&gt;</span></code></pre></div>
-
 <h3 id="synonym-txt">synonym.txt</h3>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"># , 表示同等意思
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt"># , 表示同等意思
 # =&gt; 表示用左側搜會用右側搜
 # 但因為會先跑 token, 所以有要做同意的字也要把他設進 words.dic 裡面
 台灣,臺灣
 流行性感冒 =&gt; 流感
 TV =&gt; Taiwan-Value</code></pre></div>
-
 <h2 id="使用-docker-compose-安裝">使用 docker-compose 安裝</h2>
 
 <p>上面的設定完成後跑下面的<code>docker-compose.yml</code>進行安裝, 附上相關 jar 的載點<br />
@@ -225,47 +213,46 @@ TV =&gt; Taiwan-Value</code></pre></div>
 <p>除了最後一項尚上述的字典都有開源載點</p>
 
 <ul>
-<li>docker-compose.yml</li>
-</ul>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">version: <span style="color:#e6db74">&#39;3&#39;</span>
+<li><p>docker-compose.yml</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">version: <span style="color:#e6db74">&#39;3&#39;</span>
 services:
-  solr:
-    image: geerlingguy/solr:<span style="color:#ae81ff">4.10.4</span>
-    container_name: local_solr4
-    ports:
-      - <span style="color:#e6db74">&#39;8983:8983&#39;</span>
-    restart: always
-    volumes: [
-        <span style="color:#e6db74">&#39;./cores/mycore:/var/solr/mycore:rw&#39;</span>, <span style="color:#75715e"># 保存core</span>
-        <span style="color:#e6db74">&#39;./jars/mmseg4j-core-1.10.0.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mmseg4j-core-1.10.0.jar&#39;</span>,
-        <span style="color:#e6db74">&#39;./jars/mmseg4j-solr-2.2.0.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mmseg4j-solr-2.2.0.jar&#39;</span>,
-        <span style="color:#e6db74">&#39;./jars/mysql-connector-java-5.1.47.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mysql-connector-java-5.1.47.jar&#39;</span>,
-        <span style="color:#e6db74">&#39;./jars/solr-dataimporthandler-4.10.4.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/solr-dataimporthandler-4.10.4.jar&#39;</span>,
-        <span style="color:#e6db74">&#39;./jars/solr-dataimporthandler-extras-4.10.4.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/solr-dataimporthandler-extras-4.10.4.jar&#39;</span>,
-        <span style="color:#e6db74">&#39;./dict:/opt/solr-multicore/dics/&#39;</span> <span style="color:#75715e"># 自定義字典檔, 可以去開源詞庫抓獲自行定義</span>
-    ]
-    command:
-      [
-        <span style="color:#e6db74">&#39;/opt/solr/bin/solr&#39;</span>,
-        <span style="color:#e6db74">&#39;start&#39;</span>,
-        <span style="color:#e6db74">&#39;-p&#39;</span>,
-        <span style="color:#e6db74">&#39;8983&#39;</span>,
-        <span style="color:#e6db74">&#39;-s&#39;</span>,
-        <span style="color:#e6db74">&#39;/var/solr&#39;</span>,
-        <span style="color:#e6db74">&#39;-m&#39;</span>,
-        <span style="color:#e6db74">&#39;1024m&#39;</span>,
-        <span style="color:#e6db74">&#39;-f&#39;</span>,
-      ]
-  mysql:
-    image: mysql:<span style="color:#ae81ff">5.7</span>
-    volumes:
-    - ./mysql/var/lib/mysql:/var/lib/mysql
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
-    ports:
-    - <span style="color:#e6db74">&#34;3306:3306&#34;</span>
-    privileged: <span style="color:#66d9ef">true</span></code></pre></div>
+solr:
+image: geerlingguy/solr:<span style="color:#ae81ff">4.10.4</span>
+container_name: local_solr4
+ports:
+  - <span style="color:#e6db74">&#39;8983:8983&#39;</span>
+restart: always
+volumes: [
+    <span style="color:#e6db74">&#39;./cores/mycore:/var/solr/mycore:rw&#39;</span>, <span style="color:#75715e"># 保存core</span>
+    <span style="color:#e6db74">&#39;./jars/mmseg4j-core-1.10.0.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mmseg4j-core-1.10.0.jar&#39;</span>,
+    <span style="color:#e6db74">&#39;./jars/mmseg4j-solr-2.2.0.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mmseg4j-solr-2.2.0.jar&#39;</span>,
+    <span style="color:#e6db74">&#39;./jars/mysql-connector-java-5.1.47.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mysql-connector-java-5.1.47.jar&#39;</span>,
+    <span style="color:#e6db74">&#39;./jars/solr-dataimporthandler-4.10.4.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/solr-dataimporthandler-4.10.4.jar&#39;</span>,
+    <span style="color:#e6db74">&#39;./jars/solr-dataimporthandler-extras-4.10.4.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/solr-dataimporthandler-extras-4.10.4.jar&#39;</span>,
+    <span style="color:#e6db74">&#39;./dict:/opt/solr-multicore/dics/&#39;</span> <span style="color:#75715e"># 自定義字典檔, 可以去開源詞庫抓獲自行定義</span>
+]
+command:
+  [
+    <span style="color:#e6db74">&#39;/opt/solr/bin/solr&#39;</span>,
+    <span style="color:#e6db74">&#39;start&#39;</span>,
+    <span style="color:#e6db74">&#39;-p&#39;</span>,
+    <span style="color:#e6db74">&#39;8983&#39;</span>,
+    <span style="color:#e6db74">&#39;-s&#39;</span>,
+    <span style="color:#e6db74">&#39;/var/solr&#39;</span>,
+    <span style="color:#e6db74">&#39;-m&#39;</span>,
+    <span style="color:#e6db74">&#39;1024m&#39;</span>,
+    <span style="color:#e6db74">&#39;-f&#39;</span>,
+  ]
+mysql:
+image: mysql:<span style="color:#ae81ff">5.7</span>
+volumes:
+- ./mysql/var/lib/mysql:/var/lib/mysql
+environment:
+  MYSQL_ALLOW_EMPTY_PASSWORD: yes
+ports:
+- <span style="color:#e6db74">&#34;3306:3306&#34;</span>
+privileged: <span style="color:#66d9ef">true</span></code></pre></div></li>
+</ul>
 
 <h2 id="測試">測試</h2>
 

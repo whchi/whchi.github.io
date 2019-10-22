@@ -104,14 +104,13 @@
 
 <h3 id="step1-建立專案">Step1. 建立專案</h3>
 
-<p><code>cd /path/to/your/package-develop-project &amp;&amp; composer create-project --prefer-dist laravel/laravel . &quot;5.5.*&quot;</code> 這裡以 5.5 為例</p>
-
+<p>這裡以 5.5 為例</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cd /path/to/your/package-develop-project <span style="color:#f92672">&amp;&amp;</span> composer create-project --prefer-dist laravel/laravel . <span style="color:#e6db74">&#34;5.5.*&#34;</span></code></pre></div>
 <h3 id="step2-建立-package-開發路徑">Step2. 建立 package 開發路徑</h3>
 
-<p>於 laravel documentroot 建立 packages folder<br />
-path如下<br />
-<code>packages/{vendor-name}/{package-name}/src</code><br />
-並於 src 層初始化 composer.json <code>composer init</code>，填入相關資料，以下是我的範例
+<p>於 laravel documentroot 建立 packages folder, path如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">packages/<span style="color:#f92672">{</span>vendor-name<span style="color:#f92672">}</span>/<span style="color:#f92672">{</span>package-name<span style="color:#f92672">}</span>/src</code></pre></div>
+<p>並於 src 層使用<code>composer init</code>填入相關資料，以下是我的範例</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;cw/kafkalogger&#34;</span>,
   <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;send log direct into kafka&#34;</span>,
@@ -136,7 +135,7 @@ path如下<br />
     }
   }
 }</code></pre></div>
-要注意的地方是
+<p>要注意的地方是</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;require&#34;</span>: {
     <span style="color:#960050;background-color:#1e0010">...</span>
@@ -150,11 +149,11 @@ path如下<br />
     }
   }
 }</code></pre></div>
-這兩個地方要填正確</p>
+<p>這兩個地方要填正確</p>
 
 <h3 id="step3-調整根目錄-composer-json-以利測試">Step3. 調整根目錄 composer.json，以利測試</h3>
 
-<p>回到你的 laravel app 根目錄，修改 composer.json如下
+<p>回到你的 laravel app 根目錄，修改 composer.json如下</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#960050;background-color:#1e0010">...</span>
   <span style="color:#f92672">&#34;psr-4&#34;</span>: {
@@ -162,12 +161,12 @@ path如下<br />
     <span style="color:#f92672">&#34;Cw\\KafkaLogger\\&#34;</span>: <span style="color:#e6db74">&#34;packages/cw/kafkalogger/src/&#34;</span>
   }
 }</code></pre></div>
-設定好後 <code>composer dump-autoload</code></p>
+<p>設定好後 <code>composer dump-autoload</code></p>
 
 <h3 id="step4-建立-serviceprovider">Step4. 建立 ServiceProvider</h3>
 
 <p><strong>用 ServiceProvider 是因為有 <code>register</code> 跟 <code>boot</code>，不需要的話可以用其他方式建立</strong><br />
-懶得打字的話直接用 <code>php artisan make:provider YourServiceProvider</code>，再把它 copy 到 src 底下，參考程式範例如下
+懶得打字的話直接用 <code>php artisan make:provider YourServiceProvider</code>，再把它 copy 到 src 底下，參考程式範例如下</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 <span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">Cw\KafkaLogger</span>;
 
@@ -195,13 +194,12 @@ path如下<br />
     }
 }
 </code></pre></div>
-並在 <code>config/app.php</code> 加入包含 namespace 的 provider
+<p>並在 <code>config/app.php</code> 加入包含 namespace 的 provider</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;providers&#39; =&gt; [
     ...
     Cw\KafkaLogger\KafkaLogServiceProvider::class,
     ...
-]</code></pre></div></p>
-
+]</code></pre></div>
 <h3 id="step5-進行測試">Step5. 進行測試</h3>
 
 <p>使用內建的 server 即可測試<code>php artisan serve</code>，進到首頁看到如圖結果表示成功
@@ -211,7 +209,7 @@ path如下<br />
 
 <h2 id="部署至-github">部署至 github</h2>
 
-<p>跟一般的部屬一樣，但假如是開 <a href="https://technews.tw/2019/01/08/github-unlimited-free-private-repositories/">private repo</a>的話要<a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line">申請 token</a></p>
+<p>跟一般的部屬一樣，但假如是開 <a href="https://technews.tw/2019/01/08/github-unlimited-free-private-repositories/">private repo</a> 的話要<a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line">申請 token</a></p>
 
 <h3 id="使用-git-tag-進行版本控管">使用 git-tag 進行版本控管</h3>
 
@@ -252,7 +250,7 @@ path如下<br />
 
 <h2 id="使用-composer-安裝">使用 composer 安裝</h2>
 
-<p>部署上去最的目的是使用 composer 安裝，composer 有指定 package 要去哪抓的<a href="https://getcomposer.org/doc/05-repositories.md#vcs">設定</a>，參考設定如下
+<p>部署上去最的目的是使用 composer 安裝，composer 有指定 package 要去哪抓的<a href="https://getcomposer.org/doc/05-repositories.md#vcs">設定</a>，參考設定如下</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;require-dev&#34;</span>: {
     <span style="color:#f92672">&#34;cw/kafkalogger&#34;</span>: <span style="color:#e6db74">&#34;1.0.*&#34;</span>,
@@ -272,7 +270,7 @@ path如下<br />
     }
   ]
 }</code></pre></div>
-記得把 autoload 改回原本的樣子</p>
+<p>記得把 autoload 改回原本的樣子</p>
 
 <hr />
 
