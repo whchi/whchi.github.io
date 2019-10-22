@@ -102,28 +102,10 @@
   
   
   
+
   
-  <div class="info" id="gdprInfo">
-    <div class="info-content">
-      我們使用您的 cookie 來瞭解您以便提供更佳的體驗．如繼續使用我們的網站，吉表示您接受我們使用您的 cookie
-    </div>
-    <div>
-      <a class="btn btn-default" onclick='document.cookie = "the-green-spot-gdpr-ok=true; path=/";document.getElementById("gdprInfo").style.display = "none";console.log("OK")'>
-        OK
-      </a>
-    </div>
-  </div>
-  <script type="text/javascript">
-    function getCookie(name) {
-      var value = "; " + document.cookie;
-      var parts = value.split("; " + name + "=");
-      if (parts.length == 2) return parts.pop().split(";").shift();
-    }
-    var gdprAlreadyShowed = getCookie("the-green-spot-gdpr-ok");
-    if (gdprAlreadyShowed) {
-      document.getElementById("gdprInfo").style.display = "none"
-    }
-  </script>
+  
+
   
 </body>
 </html>
