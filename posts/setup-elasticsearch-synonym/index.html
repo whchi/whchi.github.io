@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" 設定 elasticsearch 同義詞 &middot;  雜談與紀錄" />
+  
+  <meta property="og:site_name" content="雜談與紀錄" />
+  <meta property="og:url" content="https://whchi.github.io/posts/setup-elasticsearch-synonym/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2019-10-15T18:17:14&#43;08:00" />
+  
+  <meta property="og:article:tag" content="elasticsearch" />
+  
+  
+
+  <title>
+     設定 elasticsearch 同義詞 &middot;  雜談與紀錄
+  </title>
+
+  <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/github.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="https://whchi.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whchi.github.io/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="https://whchi.github.io/css/custom-hamburg.css">
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(https://whchi.github.io/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="https://whchi.github.io/">雜談與紀錄</a></h1>
+          
+          <h4 class="tag-line">
+            that/s all
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="https://whchi.github.io/pages/about">
+            About
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">設定 elasticsearch 同義詞</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    
+
+<p>同 solr 是基於 lucene 寫出來的開源搜尋引擎, 因此 filter, tokenizer, analyzer 的概念與 solr 是一致的
+&gt; 現在 elasticsearch 已經到 7.4
+* filter, tokenizer, analyzer簡介</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">名詞</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">tokenizer</td>
+<td align="left">把 input 拆分成 token 產出 token stream</td>
+</tr>
+
+<tr>
+<td align="left">filter</td>
+<td align="left">接收 token stream 並進行處理(case/replace/drop&hellip;)</td>
+</tr>
+
+<tr>
+<td align="left">analyzer</td>
+<td align="left">在建立/搜尋索引的時候要怎麼處理特定類型的字串, 比如說upperFirstCase, 去掉介詞, 同義詞處理&hellip;相當於tokenizer+filter</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="設定">設定</h2>
+
+<ul>
+<li><p>Dockerfile(包含 ik 安裝)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> docker.elastic.co/elasticsearch/elasticsearch:5.3.0</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir -p /usr/share/elasticsearch/plugins/ik530 <span style="color:#f92672">&amp;&amp;</span> cd /usr/share/elasticsearch/plugins/ik530 <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    wget <span style="color:#e6db74">&#34;https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v5.3.0/elasticsearch-analysis-ik-5.3.0.zip&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    unzip elasticsearch-analysis-ik-5.3.0.zip <span style="color:#f92672">&amp;&amp;</span> rm elasticsearch-analysis-ik-5.3.0.zip;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># 記得先放</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./synonym.txt /usr/share/elasticsearch/config/analysis/synonym.txt<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./stopwords.txt /usr/share/elasticsearch/config/analysis/stopwords.txt<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> elasticsearch</span></code></pre></div></p></li>
+
+<li><p>synonym.txt
+, 跟 =&gt; 的意義同 solr
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">攝氏 =&gt; 華氏
+台灣,臺灣,臺灣黑熊</code></pre></div></p></li>
+
+<li><p><a href="https://github.com/goto456/stopwords">stopwords.txt</a></p></li>
+
+<li><p>docker-compose.yml
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">version: <span style="color:#e6db74">&#39;3&#39;</span>
+services:
+  elasticsearch:
+    build: .
+    environment:
+      - <span style="color:#e6db74">&#39;http.host=0.0.0.0&#39;</span>
+      - <span style="color:#e6db74">&#39;transport.host=127.0.0.1&#39;</span>
+      - <span style="color:#e6db74">&#39;ES_JAVA_OPTS=-Xms512m -Xmx512m&#39;</span>
+      - <span style="color:#e6db74">&#39;xpack.security.enabled=false&#39;</span>
+      - <span style="color:#e6db74">&#39;ACCESS_TOKEN=e-D9WyQzxfRbpdFvFdhQ&#39;</span>
+    ports:
+      - <span style="color:#e6db74">&#39;9200:9200&#39;</span>
+      - <span style="color:#e6db74">&#39;9300:9300&#39;</span>
+    volumes:
+      - <span style="color:#e6db74">&#39;/path/to/local/index:/usr/share/elasticsearch/data&#39;</span>
+    container_name: local_es</code></pre></div></p></li>
+</ul>
+
+<h2 id="執行">執行</h2>
+
+<p>記得把 Dockerfile 放在與 docker-compose.yml 同層</p>
+
+<pre><code class="language-sh">docker-compose up -d
+</code></pre>
+
+<h2 id="測試">測試</h2>
+
+<p>順利跑起來的話輸入 <code>localhost:9200</code> 可以看到 json 如下</p>
+
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;imYjhHG&quot;,
+  &quot;cluster_name&quot;: &quot;docker-cluster&quot;,
+  &quot;cluster_uuid&quot;: &quot;Wq9XBSrlRN6371m4jggxUQ&quot;,
+  &quot;version&quot;: {
+    &quot;number&quot;: &quot;5.3.0&quot;,
+    &quot;build_hash&quot;: &quot;3adb13b&quot;,
+    &quot;build_date&quot;: &quot;2017-03-23T03:31:50.652Z&quot;,
+    &quot;build_snapshot&quot;: false,
+    &quot;lucene_version&quot;: &quot;6.4.1&quot;
+  },
+  &quot;tagline&quot;: &quot;You Know, for Search&quot;
+}
+</code></pre>
+
+<ul>
+<li>[PUT]新增 index</li>
+</ul>
+
+<p>直接打 <code>localhost:9200/{indexname}?pretty</code>
+* [PUT] 設定 mappings(token的欄位與型態) &amp; settings(如何處理token)</p>
+
+<pre><code class="language-json">{
+  &quot;index&quot;: &quot;{indexname}&quot;,
+  &quot;body&quot;: {
+    &quot;mappings&quot;: {
+      &quot;metafield1&quot;: {
+        &quot;properties&quot;: {
+          &quot;field1&quot;: {
+            &quot;type&quot;: &quot;text&quot;
+          },
+          &quot;field2&quot;: {
+            &quot;analyzer&quot;: &quot;ik_syno_max&quot;,
+            &quot;search_analyzer&quot;: &quot;ik_syno_smart&quot;,
+            &quot;type&quot;: &quot;text&quot;
+          },
+          &quot;field3&quot;: {
+            &quot;analyzer&quot;: &quot;ik_syno_max&quot;,
+            &quot;search_analyzer&quot;: &quot;ik_syno_smart&quot;,
+            &quot;type&quot;: &quot;text&quot;
+          },
+        }
+      },
+      &quot;metafield2&quot;: {
+        &quot;properties&quot;: {
+          &quot;field1&quot;: {
+            &quot;type&quot;: &quot;text&quot;
+          },
+          &quot;field2&quot;: {
+            &quot;type&quot;: &quot;long&quot;
+          },
+          &quot;location&quot;: {
+            &quot;type&quot;: &quot;geo_point&quot;
+          }
+        }
+      }
+    },
+    &quot;settings&quot;: {
+      &quot;analysis&quot;: {
+        &quot;analyzer&quot;: {
+          &quot;ik_syno_smart&quot;: {
+            &quot;type&quot;: &quot;custom&quot;,
+            &quot;tokenizer&quot;: &quot;ik_smart&quot;,
+            &quot;filter&quot;: [
+              &quot;filter_stop&quot;,
+              &quot;filter_syno&quot;
+            ]
+          },
+          &quot;ik_syno_max&quot;: {
+            &quot;type&quot;: &quot;custom&quot;,
+            &quot;tokenizer&quot;: &quot;ik_max_word&quot;,
+            &quot;filter&quot;: [
+              &quot;filter_stop&quot;,
+              &quot;filter_syno&quot;
+            ]
+          }
+        },
+        &quot;filter&quot;: {
+          &quot;my_synonym&quot;: {
+            &quot;type&quot;: &quot;synonym&quot;,
+            &quot;synonyms_path&quot;: &quot;analysis/synonym.txt&quot;
+          },
+          &quot;my_stopword&quot;: {
+            &quot;type&quot;: &quot;stop&quot;,
+            &quot;stopwords_path&quot;: &quot;analysis/stopwords.txt&quot;
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre>
+
+<ul>
+<li><p>[POST]查看同義詞是否成功</p>
+
+<pre><code class="language-json">// request
+{
+&quot;text&quot;: &quot;流行性感冒&quot;,
+&quot;analyzer&quot;: &quot;ik_syno_smart&quot;,
+&quot;filter&quot;: [&quot;filter_syno&quot;, &quot;filter_stop&quot;]
+}
+// response
+{
+&quot;tokens&quot;: [
+    {
+        &quot;token&quot;: &quot;流感&quot;,
+        &quot;start_offset&quot;: 0,
+        &quot;end_offset&quot;: 5,
+        &quot;type&quot;: &quot;SYNONYM&quot;, // 成功
+        &quot;position&quot;: 0
+    }
+]
+}
+</code></pre></li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="https://lucene.apache.org/solr/guide/7_4/understanding-analyzers-tokenizers-and-filters.html">filter, analyzer, tokenizer</a></li>
+<li><a href="https://www.elastic.co/guide/index.html">elasticsearch official document</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2019-10-15
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/elasticsearch/">#elasticsearch</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span> 已是最舊的文章
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="https://whchi.github.io/posts/setup-solr-synonym/">
+        <div>
+          下一篇 <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; whchi 2018
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  
+  
+  
+  
+</body>
+</html>
+
