@@ -85,8 +85,11 @@
   <section>
     
 
-<p>將說明從安裝到設定的過程
-&gt; 現在 solr 已經到 8.2 了, 但因為歷史包袱所以還是用 4.10</p>
+<p>將說明從安裝到設定的過程</p>
+
+<blockquote>
+<p>現在 solr 已經到 8.2 了, 但因為歷史包袱所以還是用 4.10</p>
+</blockquote>
 
 <h2 id="設定">設定</h2>
 
@@ -232,17 +235,7 @@ volumes: [
     <span style="color:#e6db74">&#39;./dict:/opt/solr-multicore/dics/&#39;</span> <span style="color:#75715e"># 自定義字典檔, 可以去開源詞庫抓獲自行定義</span>
 ]
 command:
-  [
-    <span style="color:#e6db74">&#39;/opt/solr/bin/solr&#39;</span>,
-    <span style="color:#e6db74">&#39;start&#39;</span>,
-    <span style="color:#e6db74">&#39;-p&#39;</span>,
-    <span style="color:#e6db74">&#39;8983&#39;</span>,
-    <span style="color:#e6db74">&#39;-s&#39;</span>,
-    <span style="color:#e6db74">&#39;/var/solr&#39;</span>,
-    <span style="color:#e6db74">&#39;-m&#39;</span>,
-    <span style="color:#e6db74">&#39;1024m&#39;</span>,
-    <span style="color:#e6db74">&#39;-f&#39;</span>,
-  ]
+- <span style="color:#e6db74">&#39;/opt/solr/bin/solr start -p 8983 -s /var/solr -m 1024m -f&#39;</span>
 mysql:
 image: mysql:<span style="color:#ae81ff">5.7</span>
 volumes:

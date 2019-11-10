@@ -187,78 +187,80 @@ container_name: local_es</code></pre></div></li>
 <li>[PUT]新增 index</li>
 </ul>
 
-<p>直接打 <code>localhost:9200/{indexname}?pretty</code>
-* [PUT] 設定 mappings(token的欄位與型態) &amp; settings(如何處理token)</p>
+<p>直接打 <code>localhost:9200/{indexname}?pretty</code></p>
+
+<ul>
+<li><p>[PUT] 設定 mappings(token的欄位與型態) &amp; settings(如何處理token)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;index&#34;</span>: <span style="color:#e6db74">&#34;{indexname}&#34;</span>,
-  <span style="color:#f92672">&#34;body&#34;</span>: {
-    <span style="color:#f92672">&#34;mappings&#34;</span>: {
-      <span style="color:#f92672">&#34;metafield1&#34;</span>: {
-        <span style="color:#f92672">&#34;properties&#34;</span>: {
-          <span style="color:#f92672">&#34;field1&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
-          },
-          <span style="color:#f92672">&#34;field2&#34;</span>: {
-            <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
-            <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
-          },
-          <span style="color:#f92672">&#34;field3&#34;</span>: {
-            <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
-            <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
-          },
-        }
+<span style="color:#f92672">&#34;index&#34;</span>: <span style="color:#e6db74">&#34;{indexname}&#34;</span>,
+<span style="color:#f92672">&#34;body&#34;</span>: {
+<span style="color:#f92672">&#34;mappings&#34;</span>: {
+  <span style="color:#f92672">&#34;metafield1&#34;</span>: {
+    <span style="color:#f92672">&#34;properties&#34;</span>: {
+      <span style="color:#f92672">&#34;field1&#34;</span>: {
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
       },
-      <span style="color:#f92672">&#34;metafield2&#34;</span>: {
-        <span style="color:#f92672">&#34;properties&#34;</span>: {
-          <span style="color:#f92672">&#34;field1&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
-          },
-          <span style="color:#f92672">&#34;field2&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;long&#34;</span>
-          },
-          <span style="color:#f92672">&#34;location&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;geo_point&#34;</span>
-          }
-        }
-      }
-    },
-    <span style="color:#f92672">&#34;settings&#34;</span>: {
-      <span style="color:#f92672">&#34;analysis&#34;</span>: {
-        <span style="color:#f92672">&#34;analyzer&#34;</span>: {
-          <span style="color:#f92672">&#34;ik_syno_smart&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
-            <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_smart&#34;</span>,
-            <span style="color:#f92672">&#34;filter&#34;</span>: [
-              <span style="color:#e6db74">&#34;filter_stop&#34;</span>,
-              <span style="color:#e6db74">&#34;filter_syno&#34;</span>
-            ]
-          },
-          <span style="color:#f92672">&#34;ik_syno_max&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
-            <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>,
-            <span style="color:#f92672">&#34;filter&#34;</span>: [
-              <span style="color:#e6db74">&#34;filter_stop&#34;</span>,
-              <span style="color:#e6db74">&#34;filter_syno&#34;</span>
-            ]
-          }
-        },
-        <span style="color:#f92672">&#34;filter&#34;</span>: {
-          <span style="color:#f92672">&#34;my_synonym&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;synonym&#34;</span>,
-            <span style="color:#f92672">&#34;synonyms_path&#34;</span>: <span style="color:#e6db74">&#34;analysis/synonym.txt&#34;</span>
-          },
-          <span style="color:#f92672">&#34;my_stopword&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;stop&#34;</span>,
-            <span style="color:#f92672">&#34;stopwords_path&#34;</span>: <span style="color:#e6db74">&#34;analysis/stopwords.txt&#34;</span>
-          }
-        }
+      <span style="color:#f92672">&#34;field2&#34;</span>: {
+        <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
+        <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
+      },
+      <span style="color:#f92672">&#34;field3&#34;</span>: {
+        <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
+        <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
+      },
+    }
+  },
+  <span style="color:#f92672">&#34;metafield2&#34;</span>: {
+    <span style="color:#f92672">&#34;properties&#34;</span>: {
+      <span style="color:#f92672">&#34;field1&#34;</span>: {
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
+      },
+      <span style="color:#f92672">&#34;field2&#34;</span>: {
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;long&#34;</span>
+      },
+      <span style="color:#f92672">&#34;location&#34;</span>: {
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;geo_point&#34;</span>
       }
     }
   }
-}</code></pre></div>
-<ul>
+},
+<span style="color:#f92672">&#34;settings&#34;</span>: {
+  <span style="color:#f92672">&#34;analysis&#34;</span>: {
+    <span style="color:#f92672">&#34;analyzer&#34;</span>: {
+      <span style="color:#f92672">&#34;ik_syno_smart&#34;</span>: {
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
+        <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_smart&#34;</span>,
+        <span style="color:#f92672">&#34;filter&#34;</span>: [
+          <span style="color:#e6db74">&#34;filter_stop&#34;</span>,
+          <span style="color:#e6db74">&#34;filter_syno&#34;</span>
+        ]
+      },
+      <span style="color:#f92672">&#34;ik_syno_max&#34;</span>: {
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
+        <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>,
+        <span style="color:#f92672">&#34;filter&#34;</span>: [
+          <span style="color:#e6db74">&#34;filter_stop&#34;</span>,
+          <span style="color:#e6db74">&#34;filter_syno&#34;</span>
+        ]
+      }
+    },
+    <span style="color:#f92672">&#34;filter&#34;</span>: {
+      <span style="color:#f92672">&#34;my_synonym&#34;</span>: {
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;synonym&#34;</span>,
+        <span style="color:#f92672">&#34;synonyms_path&#34;</span>: <span style="color:#e6db74">&#34;analysis/synonym.txt&#34;</span>
+      },
+      <span style="color:#f92672">&#34;my_stopword&#34;</span>: {
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;stop&#34;</span>,
+        <span style="color:#f92672">&#34;stopwords_path&#34;</span>: <span style="color:#e6db74">&#34;analysis/stopwords.txt&#34;</span>
+      }
+    }
+  }
+}
+}
+}</code></pre></div></li>
+
 <li><p>[POST]查看同義詞是否成功</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span>
 {
