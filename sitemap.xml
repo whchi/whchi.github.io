@@ -3,12 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://whchi.github.io/tags/elasticsearch/</loc>
-    <lastmod>2019-10-15T18:17:14+08:00</lastmod>
+    <loc>https://whchi.github.io/posts/intro-to-microsoft-application-insights/</loc>
+    <lastmod>2019-11-21T14:47:19+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2019-11-21T14:47:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/</loc>
+    <lastmod>2019-11-21T14:47:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/elasticsearch/</loc>
     <lastmod>2019-10-15T18:17:14+08:00</lastmod>
   </url>
   
@@ -19,11 +29,6 @@
   
   <url>
     <loc>https://whchi.github.io/posts/setup-elasticsearch-synonym/</loc>
-    <lastmod>2019-10-15T18:17:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/</loc>
     <lastmod>2019-10-15T18:17:14+08:00</lastmod>
   </url>
   
