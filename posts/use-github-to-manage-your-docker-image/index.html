@@ -85,14 +85,9 @@
   </header>
   <div class="delimiter"></div>
   <section>
-    
-
-<p>Docker hub 本身有提供 autobuild trigger，只需透過UI設定與github連動即可做到使用git branch進行docker file的管理，以下分別列出Github與Docker hub需要的設定</p>
-
+    <p>Docker hub 本身有提供 autobuild trigger，只需透過UI設定與github連動即可做到使用git branch進行docker file的管理，以下分別列出Github與Docker hub需要的設定</p>
 <h2 id="github">Github</h2>
-
 <p><strong>這裡的 branch 會對應到 Docker hub 的 tag</strong></p>
-
 <ol>
 <li>建立 github repo，命名為 dockerfile</li>
 <li>clone 到本地後建立新的分支，命名使用自己喜歡的方式命名，e.g: <code>centos7-autotagging</code></li>
@@ -100,24 +95,19 @@
 <li>寫好後<code>docker build . -t 'local-centos7-autotagging'</code> 測試 build (加上 -t 是讓 local 方便操作)</li>
 <li>build通過後<code>git push origin centos7-autotagging</code>建立並推送至遠端分支</li>
 </ol>
-
 <h2 id="docker-hub">Docker hub</h2>
-
 <p><strong>這裡的 tag 會對應到 github 的 branch</strong></p>
-
 <ol>
 <li>建立repo
-<img src="/images/dockerhub-create.png" alt="" /></li>
+<img src="/images/dockerhub-create.png" alt=""></li>
 <li>選擇剛剛建立好的 repository，如果沒連接 github 帳號會要求進行連接
-<img src="/images/dockerhub-choose-github-repo.png" alt="" /></li>
+<img src="/images/dockerhub-choose-github-repo.png" alt=""></li>
 <li>連接完畢並建立 repo 即可</li>
 </ol>
-
 <p>如有設定好連動即可自動推送並建置image，結果如圖)
-<img src="/images/dockerhub-automatic-building.png" alt="" /></p>
-
-<p>之後要拉自己的環境時只需要<code>docker pull {username}/{repo name}:{tagname}</code>即可<br />
-搭配 docker-compose 更方便，可參考我的<strong><a href="https://github.com/whchi/dockerfile/tree/pyml">範例</a></strong></p>
+<img src="/images/dockerhub-automatic-building.png" alt=""></p>
+<p>之後要拉自己的環境時只需要<code>docker pull {username}/{repo name}:{tagname}</code>即可<br>
+搭配 docker-compose 更方便，可參考我的**<a href="https://github.com/whchi/dockerfile/tree/pyml">範例</a>**</p>
 
   </section>
   <div class="clearfix">

@@ -83,34 +83,24 @@
   </header>
   <div class="delimiter"></div>
   <section>
-    
-
-<h2 id="注意事項">注意事項</h2>
-
+    <h2 id="注意事項">注意事項</h2>
 <ul>
 <li>路徑要符合 <a href="https://www.php-fig.org/psr/psr-4/">PSR-4</a> 規範，autoload 才找得到</li>
 <li>使用 <code>git-tag</code> 對 package 版號控管</li>
 <li>套件內的 <code>composer.json</code> 的 require 很重要，如果有相依於 laravel 版本的話要注意</li>
 </ul>
-
-<p>資料夾呈現結果如圖<br />
-<img src="/images/laravel-package-folder-structure.png" alt="" /></p>
-
+<p>資料夾呈現結果如圖<br>
+<img src="/images/laravel-package-folder-structure.png" alt=""></p>
 <p>接下來說明步驟</p>
-
-<hr />
-
+<hr>
 <h2 id="開發">開發</h2>
-
 <h3 id="step1-建立專案">Step1. 建立專案</h3>
-
 <p>這裡以 5.5 為例</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cd /path/to/your/package-develop-project <span style="color:#f92672">&amp;&amp;</span> composer create-project --prefer-dist laravel/laravel . <span style="color:#e6db74">&#34;5.5.*&#34;</span></code></pre></div>
-<h3 id="step2-建立-package-開發路徑">Step2. 建立 package 開發路徑</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cd /path/to/your/package-develop-project <span style="color:#f92672">&amp;&amp;</span> composer create-project --prefer-dist laravel/laravel . <span style="color:#e6db74">&#34;5.5.*&#34;</span>
+</code></pre></div><h3 id="step2-建立-package-開發路徑">Step2. 建立 package 開發路徑</h3>
 <p>於 laravel documentroot 建立 packages folder, path如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">packages/<span style="color:#f92672">{</span>vendor-name<span style="color:#f92672">}</span>/<span style="color:#f92672">{</span>package-name<span style="color:#f92672">}</span>/src</code></pre></div>
-<p>並於 src 層使用<code>composer init</code>填入相關資料，以下是我的範例</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">packages/<span style="color:#f92672">{</span>vendor-name<span style="color:#f92672">}</span>/<span style="color:#f92672">{</span>package-name<span style="color:#f92672">}</span>/src
+</code></pre></div><p>並於 src 層使用<code>composer init</code>填入相關資料，以下是我的範例</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;cw/kafkalogger&#34;</span>,
   <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;send log direct into kafka&#34;</span>,
@@ -134,38 +124,34 @@
       <span style="color:#f92672">&#34;Cw\\KafkaLogger\\&#34;</span>: <span style="color:#e6db74">&#34;src/&#34;</span>
     }
   }
-}</code></pre></div>
-<p>要注意的地方是</p>
+}
+</code></pre></div><p>要注意的地方是</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;require&#34;</span>: {
-    <span style="color:#960050;background-color:#1e0010">...</span>
+    <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span>
     <span style="color:#f92672">&#34;laravel/framework&#34;</span>: <span style="color:#e6db74">&#34;5.5.*&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">...</span>
+    <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span>
   },
-  <span style="color:#960050;background-color:#1e0010">...</span>
+  <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span>
   <span style="color:#f92672">&#34;autoload&#34;</span>: {
     <span style="color:#f92672">&#34;psr-4&#34;</span>: {
       <span style="color:#f92672">&#34;Cw\\KafkaLogger\\&#34;</span>: <span style="color:#e6db74">&#34;src/&#34;</span>
     }
   }
-}</code></pre></div>
-<p>這兩個地方要填正確</p>
-
-<h3 id="step3-調整根目錄-composer-json-以利測試">Step3. 調整根目錄 composer.json，以利測試</h3>
-
+}
+</code></pre></div><p>這兩個地方要填正確</p>
+<h3 id="step3-調整根目錄-composerjson以利測試">Step3. 調整根目錄 composer.json，以利測試</h3>
 <p>回到你的 laravel app 根目錄，修改 composer.json如下</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#960050;background-color:#1e0010">...</span>
+  <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span>
   <span style="color:#f92672">&#34;psr-4&#34;</span>: {
     <span style="color:#f92672">&#34;App\\&#34;</span>: <span style="color:#e6db74">&#34;app/&#34;</span>,
     <span style="color:#f92672">&#34;Cw\\KafkaLogger\\&#34;</span>: <span style="color:#e6db74">&#34;packages/cw/kafkalogger/src/&#34;</span>
   }
-}</code></pre></div>
-<p>設定好後 <code>composer dump-autoload</code></p>
-
+}
+</code></pre></div><p>設定好後 <code>composer dump-autoload</code></p>
 <h3 id="step4-建立-serviceprovider">Step4. 建立 ServiceProvider</h3>
-
-<p><strong>用 ServiceProvider 是因為有 <code>register</code> 跟 <code>boot</code>，不需要的話可以用其他方式建立</strong><br />
+<p><strong>用 ServiceProvider 是因為有 <code>register</code> 跟 <code>boot</code>，不需要的話可以用其他方式建立</strong><br>
 懶得打字的話直接用 <code>php artisan make:provider YourServiceProvider</code>，再把它 copy 到 src 底下，參考程式範例如下</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 <span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">Cw\KafkaLogger</span>;
@@ -193,28 +179,20 @@
         <span style="color:#a6e22e">var_dump</span>(<span style="color:#e6db74">&#39;hello my package&#39;</span>);
     }
 }
-</code></pre></div>
-<p>並在 <code>config/app.php</code> 加入包含 namespace 的 provider</p>
+</code></pre></div><p>並在 <code>config/app.php</code> 加入包含 namespace 的 provider</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;providers&#39; =&gt; [
     ...
     Cw\KafkaLogger\KafkaLogServiceProvider::class,
     ...
-]</code></pre></div>
-<h3 id="step5-進行測試">Step5. 進行測試</h3>
-
+]
+</code></pre></div><h3 id="step5-進行測試">Step5. 進行測試</h3>
 <p>使用內建的 server 即可測試<code>php artisan serve</code>，進到首頁看到如圖結果表示成功
-<img src="/images/package-testing-success.png" alt="" /></p>
-
-<hr />
-
+<img src="/images/package-testing-success.png" alt=""></p>
+<hr>
 <h2 id="部署至-github">部署至 github</h2>
-
 <p>跟一般的部屬一樣，但假如是開 <a href="https://technews.tw/2019/01/08/github-unlimited-free-private-repositories/">private repo</a> 的話要<a href="https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line">申請 token</a></p>
-
 <h3 id="使用-git-tag-進行版本控管">使用 git-tag 進行版本控管</h3>
-
 <p>composer 對於使用 git 進行版控的 package 的版本定義是使用 tag，原因參考<a href="https://getcomposer.org/doc/articles/versions.md#composer-versions-vs-vcs-versions">這裡</a>，因此在部署時記得要把 tag 一起推上去，操作如列表</p>
-
 <table>
 <thead>
 <tr>
@@ -222,60 +200,50 @@
 <th align="left">指令</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">add local tag</td>
 <td align="left"><code>git tag -a {版本號} -m '非必要的描述'</code></td>
 </tr>
-
 <tr>
 <td align="left">add remote tag</td>
 <td align="left"><code>git push --tags</code></td>
 </tr>
-
 <tr>
 <td align="left">remove local tag</td>
 <td align="left"><code>git tag -d {版本號}</code></td>
 </tr>
-
 <tr>
 <td align="left">add remote tag</td>
 <td align="left"><code>git push --delete [remotereponame] {版本號}</code>，不指定則為 origin</td>
 </tr>
 </tbody>
 </table>
-
-<hr />
-
+<hr>
 <h2 id="使用-composer-安裝">使用 composer 安裝</h2>
-
 <p>部署上去最的目的是使用 composer 安裝，composer 有指定 package 要去哪抓的<a href="https://getcomposer.org/doc/05-repositories.md#vcs">設定</a>，參考設定如下</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;require-dev&#34;</span>: {
     <span style="color:#f92672">&#34;cw/kafkalogger&#34;</span>: <span style="color:#e6db74">&#34;1.0.*&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">...</span>
+    <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span>
   },
   <span style="color:#f92672">&#34;autoload&#34;</span>: {
-    <span style="color:#960050;background-color:#1e0010">...</span>
+    <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span>
     <span style="color:#f92672">&#34;psr-4&#34;</span>: {
       <span style="color:#f92672">&#34;App\\&#34;</span>: <span style="color:#e6db74">&#34;app/&#34;</span>
     }
   },
-  <span style="color:#960050;background-color:#1e0010">...</span>
+  <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#960050;background-color:#1e0010">.</span>
   <span style="color:#f92672">&#34;repositories&#34;</span>: [
     {
       <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;vcs&#34;</span>,
       <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;git@ssh.dev.azure.com:v3/cwgroup/digital-products/kafkalogger&#34;</span>
     }
   ]
-}</code></pre></div>
-<p>記得把 autoload 改回原本的樣子</p>
-
-<hr />
-
+}
+</code></pre></div><p>記得把 autoload 改回原本的樣子</p>
+<hr>
 <h2 id="reference">Reference</h2>
-
 <ul>
 <li><a href="https://oomusou.io/laravel/laravel-package-hello-world/">如何開發自已的Package?</a></li>
 <li><a href="https://gitbook.tw/chapters/tag/tag-vs-branch.html">標籤跟分支有什麼不一樣?</a></li>

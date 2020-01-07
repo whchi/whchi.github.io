@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>serverless on 雜談與紀錄</title>
+    <link>https://whchi.github.io/tags/serverless/</link>
+    <description>Recent content in serverless on 雜談與紀錄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Tue, 07 Jan 2020 14:56:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://whchi.github.io/tags/serverless/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>把 gsheet 當作 json api 使用</title>
+      <link>https://whchi.github.io/posts/gsheet-as-json-api-using-google-app-script/</link>
+      <pubDate>Tue, 07 Jan 2020 14:56:44 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/gsheet-as-json-api-using-google-app-script/</guid>
+      <description>有些事情做了才知道，比如改 wording</description>
+    </item>
+    
+  </channel>
+</rss>

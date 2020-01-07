@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 21 Nov 2019 14:47:19 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2020 14:56:44 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>把 gsheet 當作 json api 使用</title>
+      <link>https://whchi.github.io/posts/gsheet-as-json-api-using-google-app-script/</link>
+      <pubDate>Tue, 07 Jan 2020 14:56:44 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/gsheet-as-json-api-using-google-app-script/</guid>
+      <description>有些事情做了才知道，比如改 wording</description>
+    </item>
     
     <item>
       <title>Intro to Microsoft Application Insights</title>
@@ -54,7 +63,7 @@
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/deploy-laravel-app-to-gke/</guid>
-      <description>這是一篇 quick guide about 建立三層&lt;del&gt;肉&lt;/del&gt;式架構</description>
+      <description>這是一篇 quick guide about 建立三層&lt;!-- raw HTML omitted --&gt;肉&lt;!-- raw HTML omitted --&gt;式架構</description>
     </item>
     
     <item>
@@ -108,7 +117,7 @@
       <pubDate>Thu, 20 Dec 2018 14:31:46 +0800</pubDate>
       
       <guid>https://whchi.github.io/pages/about/</guid>
-      <description> 慢慢把以前的筆記整理上來
+      <description>慢慢把以前的筆記整理上來
 skills  Backend development: php, node, python Frontend development: Vue, jQuery Development enviorment: docker, vagrant, GCP Linux(centos, ubuntu) Version control: git MySQL  contact  email: whccchi@gmail.com  </description>
     </item>
     

@@ -83,18 +83,13 @@
   </header>
   <div class="delimiter"></div>
   <section>
-    
-
-<p>同 solr 是基於 lucene 寫出來的開源搜尋引擎, 因此 filter, tokenizer, analyzer 的概念與 solr 是一致的</p>
-
+    <p>同 solr 是基於 lucene 寫出來的開源搜尋引擎, 因此 filter, tokenizer, analyzer 的概念與 solr 是一致的</p>
 <blockquote>
 <p>現在 elasticsearch 已經到 7.4</p>
 </blockquote>
-
 <ul>
 <li>filter, tokenizer, analyzer簡介</li>
 </ul>
-
 <table>
 <thead>
 <tr>
@@ -102,73 +97,70 @@
 <th align="left">說明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">tokenizer</td>
 <td align="left">把 input 拆分成 token 產出 token stream</td>
 </tr>
-
 <tr>
 <td align="left">filter</td>
 <td align="left">接收 token stream 並進行處理(case/replace/drop&hellip;)</td>
 </tr>
-
 <tr>
 <td align="left">analyzer</td>
 <td align="left">在建立/搜尋索引的時候要怎麼處理特定類型的字串, 比如說upperFirstCase, 去掉介詞, 同義詞處理&hellip;相當於tokenizer+filter</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="設定">設定</h2>
-
 <ul>
-<li><p>Dockerfile(包含 ik 安裝)</p>
+<li>Dockerfile(包含 ik 安裝)</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> docker.elastic.co/elasticsearch/elasticsearch:5.3.0</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir -p /usr/share/elasticsearch/plugins/ik530 <span style="color:#f92672">&amp;&amp;</span> cd /usr/share/elasticsearch/plugins/ik530 <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>wget <span style="color:#e6db74">&#34;https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v5.3.0/elasticsearch-analysis-ik-5.3.0.zip&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>unzip elasticsearch-analysis-ik-5.3.0.zip <span style="color:#f92672">&amp;&amp;</span> rm elasticsearch-analysis-ik-5.3.0.zip;<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#ae81ff"></span>    wget <span style="color:#e6db74">&#34;https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v5.3.0/elasticsearch-analysis-ik-5.3.0.zip&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    unzip elasticsearch-analysis-ik-5.3.0.zip <span style="color:#f92672">&amp;&amp;</span> rm elasticsearch-analysis-ik-5.3.0.zip;<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># 記得先放</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./synonym.txt /usr/share/elasticsearch/config/analysis/synonym.txt<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./stopwords.txt /usr/share/elasticsearch/config/analysis/stopwords.txt<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> elasticsearch</span></code></pre></div></li>
-
-<li><p>synonym.txt
-, 跟 =&gt; 的意義同 solr</p>
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> elasticsearch</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><ul>
+<li>synonym.txt
+, 跟 =&gt; 的意義同 solr</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">攝氏 =&gt; 華氏
-台灣,臺灣,臺灣黑熊</code></pre></div></li>
-
-<li><p><a href="https://github.com/goto456/stopwords">stopwords.txt</a></p></li>
-
-<li><p>docker-compose.yml</p>
+台灣,臺灣,臺灣黑熊
+</code></pre></div><ul>
+<li>
+<p><a href="https://github.com/goto456/stopwords">stopwords.txt</a></p>
+</li>
+<li>
+<p>docker-compose.yml</p>
+</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">version: <span style="color:#e6db74">&#39;3&#39;</span>
 services:
-elasticsearch:
-build: .
-environment:
-  - <span style="color:#e6db74">&#39;http.host=0.0.0.0&#39;</span>
-  - <span style="color:#e6db74">&#39;transport.host=127.0.0.1&#39;</span>
-  - <span style="color:#e6db74">&#39;ES_JAVA_OPTS=-Xms512m -Xmx512m&#39;</span>
-  - <span style="color:#e6db74">&#39;xpack.security.enabled=false&#39;</span>
-  - <span style="color:#e6db74">&#39;ACCESS_TOKEN=e-D9WyQzxfRbpdFvFdhQ&#39;</span>
-ports:
-  - <span style="color:#e6db74">&#39;9200:9200&#39;</span>
-  - <span style="color:#e6db74">&#39;9300:9300&#39;</span>
-volumes:
-  - <span style="color:#e6db74">&#39;/path/to/local/index:/usr/share/elasticsearch/data&#39;</span>
-container_name: local_es</code></pre></div></li>
-</ul>
-
-<h2 id="執行">執行</h2>
-
+  elasticsearch:
+    build: .
+    environment:
+      - <span style="color:#e6db74">&#39;http.host=0.0.0.0&#39;</span>
+      - <span style="color:#e6db74">&#39;transport.host=127.0.0.1&#39;</span>
+      - <span style="color:#e6db74">&#39;ES_JAVA_OPTS=-Xms512m -Xmx512m&#39;</span>
+      - <span style="color:#e6db74">&#39;xpack.security.enabled=false&#39;</span>
+      - <span style="color:#e6db74">&#39;ACCESS_TOKEN=e-D9WyQzxfRbpdFvFdhQ&#39;</span>
+    ports:
+      - <span style="color:#e6db74">&#39;9200:9200&#39;</span>
+      - <span style="color:#e6db74">&#39;9300:9300&#39;</span>
+    volumes:
+      - <span style="color:#e6db74">&#39;/path/to/local/index:/usr/share/elasticsearch/data&#39;</span>
+    container_name: local_es
+</code></pre></div><h2 id="執行">執行</h2>
 <p>記得把 Dockerfile 放在與 docker-compose.yml 同層</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker-compose up -d</code></pre></div>
-<h2 id="測試">測試</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker-compose up -d
+</code></pre></div><h2 id="測試">測試</h2>
 <p>順利跑起來的話輸入 <code>localhost:9200</code> 可以看到 json 如下</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;imYjhHG&#34;</span>,
@@ -182,108 +174,105 @@ container_name: local_es</code></pre></div></li>
     <span style="color:#f92672">&#34;lucene_version&#34;</span>: <span style="color:#e6db74">&#34;6.4.1&#34;</span>
   },
   <span style="color:#f92672">&#34;tagline&#34;</span>: <span style="color:#e6db74">&#34;You Know, for Search&#34;</span>
-}</code></pre></div>
-<ul>
+}
+</code></pre></div><ul>
 <li>[PUT]新增 index</li>
 </ul>
-
 <p>直接打 <code>localhost:9200/{indexname}?pretty</code></p>
-
 <ul>
-<li><p>[PUT] 設定 mappings(token的欄位與型態) &amp; settings(如何處理token)</p>
+<li>[PUT] 設定 mappings(token的欄位與型態) &amp; settings(如何處理token)</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-<span style="color:#f92672">&#34;index&#34;</span>: <span style="color:#e6db74">&#34;{indexname}&#34;</span>,
-<span style="color:#f92672">&#34;body&#34;</span>: {
-<span style="color:#f92672">&#34;mappings&#34;</span>: {
-  <span style="color:#f92672">&#34;metafield1&#34;</span>: {
-    <span style="color:#f92672">&#34;properties&#34;</span>: {
-      <span style="color:#f92672">&#34;field1&#34;</span>: {
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
+  <span style="color:#f92672">&#34;index&#34;</span>: <span style="color:#e6db74">&#34;{indexname}&#34;</span>,
+  <span style="color:#f92672">&#34;body&#34;</span>: {
+    <span style="color:#f92672">&#34;mappings&#34;</span>: {
+      <span style="color:#f92672">&#34;metafield1&#34;</span>: {
+        <span style="color:#f92672">&#34;properties&#34;</span>: {
+          <span style="color:#f92672">&#34;field1&#34;</span>: {
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
+          },
+          <span style="color:#f92672">&#34;field2&#34;</span>: {
+            <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
+            <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
+          },
+          <span style="color:#f92672">&#34;field3&#34;</span>: {
+            <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
+            <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
+          },
+        }
       },
-      <span style="color:#f92672">&#34;field2&#34;</span>: {
-        <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
-        <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
-      },
-      <span style="color:#f92672">&#34;field3&#34;</span>: {
-        <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
-        <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
-      },
-    }
-  },
-  <span style="color:#f92672">&#34;metafield2&#34;</span>: {
-    <span style="color:#f92672">&#34;properties&#34;</span>: {
-      <span style="color:#f92672">&#34;field1&#34;</span>: {
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
-      },
-      <span style="color:#f92672">&#34;field2&#34;</span>: {
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;long&#34;</span>
-      },
-      <span style="color:#f92672">&#34;location&#34;</span>: {
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;geo_point&#34;</span>
-      }
-    }
-  }
-},
-<span style="color:#f92672">&#34;settings&#34;</span>: {
-  <span style="color:#f92672">&#34;analysis&#34;</span>: {
-    <span style="color:#f92672">&#34;analyzer&#34;</span>: {
-      <span style="color:#f92672">&#34;ik_syno_smart&#34;</span>: {
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
-        <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_smart&#34;</span>,
-        <span style="color:#f92672">&#34;filter&#34;</span>: [
-          <span style="color:#e6db74">&#34;filter_stop&#34;</span>,
-          <span style="color:#e6db74">&#34;filter_syno&#34;</span>
-        ]
-      },
-      <span style="color:#f92672">&#34;ik_syno_max&#34;</span>: {
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
-        <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>,
-        <span style="color:#f92672">&#34;filter&#34;</span>: [
-          <span style="color:#e6db74">&#34;filter_stop&#34;</span>,
-          <span style="color:#e6db74">&#34;filter_syno&#34;</span>
-        ]
+      <span style="color:#f92672">&#34;metafield2&#34;</span>: {
+        <span style="color:#f92672">&#34;properties&#34;</span>: {
+          <span style="color:#f92672">&#34;field1&#34;</span>: {
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
+          },
+          <span style="color:#f92672">&#34;field2&#34;</span>: {
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;long&#34;</span>
+          },
+          <span style="color:#f92672">&#34;location&#34;</span>: {
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;geo_point&#34;</span>
+          }
+        }
       }
     },
-    <span style="color:#f92672">&#34;filter&#34;</span>: {
-      <span style="color:#f92672">&#34;my_synonym&#34;</span>: {
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;synonym&#34;</span>,
-        <span style="color:#f92672">&#34;synonyms_path&#34;</span>: <span style="color:#e6db74">&#34;analysis/synonym.txt&#34;</span>
-      },
-      <span style="color:#f92672">&#34;my_stopword&#34;</span>: {
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;stop&#34;</span>,
-        <span style="color:#f92672">&#34;stopwords_path&#34;</span>: <span style="color:#e6db74">&#34;analysis/stopwords.txt&#34;</span>
+    <span style="color:#f92672">&#34;settings&#34;</span>: {
+      <span style="color:#f92672">&#34;analysis&#34;</span>: {
+        <span style="color:#f92672">&#34;analyzer&#34;</span>: {
+          <span style="color:#f92672">&#34;ik_syno_smart&#34;</span>: {
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
+            <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_smart&#34;</span>,
+            <span style="color:#f92672">&#34;filter&#34;</span>: [
+              <span style="color:#e6db74">&#34;filter_stop&#34;</span>,
+              <span style="color:#e6db74">&#34;filter_syno&#34;</span>
+            ]
+          },
+          <span style="color:#f92672">&#34;ik_syno_max&#34;</span>: {
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
+            <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>,
+            <span style="color:#f92672">&#34;filter&#34;</span>: [
+              <span style="color:#e6db74">&#34;filter_stop&#34;</span>,
+              <span style="color:#e6db74">&#34;filter_syno&#34;</span>
+            ]
+          }
+        },
+        <span style="color:#f92672">&#34;filter&#34;</span>: {
+          <span style="color:#f92672">&#34;my_synonym&#34;</span>: {
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;synonym&#34;</span>,
+            <span style="color:#f92672">&#34;synonyms_path&#34;</span>: <span style="color:#e6db74">&#34;analysis/synonym.txt&#34;</span>
+          },
+          <span style="color:#f92672">&#34;my_stopword&#34;</span>: {
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;stop&#34;</span>,
+            <span style="color:#f92672">&#34;stopwords_path&#34;</span>: <span style="color:#e6db74">&#34;analysis/stopwords.txt&#34;</span>
+          }
+        }
       }
     }
   }
 }
-}
-}</code></pre></div></li>
-
-<li><p>[POST]查看同義詞是否成功</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span>
-{
-<span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;流行性感冒&#34;</span>,
-<span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
-<span style="color:#f92672">&#34;filter&#34;</span>: [<span style="color:#e6db74">&#34;filter_syno&#34;</span>, <span style="color:#e6db74">&#34;filter_stop&#34;</span>]
-}
-<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">response</span>
-{
-<span style="color:#f92672">&#34;tokens&#34;</span>: [
-    {
-        <span style="color:#f92672">&#34;token&#34;</span>: <span style="color:#e6db74">&#34;流感&#34;</span>,
-        <span style="color:#f92672">&#34;start_offset&#34;</span>: <span style="color:#ae81ff">0</span>,
-        <span style="color:#f92672">&#34;end_offset&#34;</span>: <span style="color:#ae81ff">5</span>,
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;SYNONYM&#34;</span>, <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">成功</span>
-        <span style="color:#f92672">&#34;position&#34;</span>: <span style="color:#ae81ff">0</span>
-    }
-]
-}</code></pre></div></li>
+</code></pre></div><ul>
+<li>[POST]查看同義詞是否成功</li>
 </ul>
-
-<h2 id="references">References</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">q</span><span style="color:#960050;background-color:#1e0010">u</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">t</span>
+{
+    <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;流行性感冒&#34;</span>,
+    <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
+    <span style="color:#f92672">&#34;filter&#34;</span>: [<span style="color:#e6db74">&#34;filter_syno&#34;</span>, <span style="color:#e6db74">&#34;filter_stop&#34;</span>]
+}
+<span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">e</span>
+{
+    <span style="color:#f92672">&#34;tokens&#34;</span>: [
+        {
+            <span style="color:#f92672">&#34;token&#34;</span>: <span style="color:#e6db74">&#34;流感&#34;</span>,
+            <span style="color:#f92672">&#34;start_offset&#34;</span>: <span style="color:#ae81ff">0</span>,
+            <span style="color:#f92672">&#34;end_offset&#34;</span>: <span style="color:#ae81ff">5</span>,
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;SYNONYM&#34;</span>, <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">成</span><span style="color:#960050;background-color:#1e0010">功</span>
+            <span style="color:#f92672">&#34;position&#34;</span>: <span style="color:#ae81ff">0</span>
+        }
+    ]
+}
+</code></pre></div><h2 id="references">References</h2>
 <ul>
 <li><a href="https://lucene.apache.org/solr/guide/7_4/understanding-analyzers-tokenizers-and-filters.html">filter, analyzer, tokenizer</a></li>
 <li><a href="https://www.elastic.co/guide/index.html">elasticsearch official document</a></li>

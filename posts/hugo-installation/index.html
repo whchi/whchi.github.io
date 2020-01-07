@@ -83,32 +83,17 @@
   </header>
   <div class="delimiter"></div>
   <section>
-    
-
-<h2 id="step1-install-hugo">Step1. install hugo</h2>
-
+    <h2 id="step1-install-hugo">Step1. install hugo</h2>
 <p>install <a href="https://brew.sh/index_zh-tw">homebrew</a></p>
-
 <pre><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-</code></pre>
-
-<p>then install hugo</p>
-
+</code></pre><p>then install hugo</p>
 <pre><code>brew install hugo
-</code></pre>
-
-<h2 id="step2-start-a-hugo-project">Step2. start a hugo project</h2>
-
+</code></pre><h2 id="step2-start-a-hugo-project">Step2. start a hugo project</h2>
 <p>make your project folder</p>
-
 <pre><code>hugo new site your_blog
 cd your_blog
-</code></pre>
-
-<h2 id="step3-add-theme">Step3. add theme</h2>
-
+</code></pre><h2 id="step3-add-theme">Step3. add theme</h2>
 <p>you can find more themes <a href="https://themes.gohugo.io">here</a></p>
-
 <pre><code>mkdir themes
 
 # use git clone
@@ -116,32 +101,27 @@ git clone https://github.com/josephhutch/aether.git themes/aether
 
 # use git submodule(recommend)
 git submodule add https://github.com/josephhutch/aether.git themes/aether
-</code></pre>
-
-<p>enable theme</p>
-
+</code></pre><p>enable theme</p>
 <pre><code>vim config.toml
 # add new line
 theme = &quot;aether&quot;
-</code></pre>
-
-<h2 id="step4-add-post">Step4. add post</h2>
-
+</code></pre><h2 id="step4-add-post">Step4. add post</h2>
 <p><code>hugo new posts/first-post.md</code>
 change <code>draft: true</code> then run <code>hugo server -w</code> for local test</p>
-
 <h2 id="step5-publish-to-github">Step5. publish to github</h2>
-
 <p>Because this is my personal website, so I use User/Organization Pages</p>
-
 <ol>
-<li>create <code>{your-project}</code> repo on your github</li>
-<li>create <code>{username}.github.io</code> repo on your github</li>
-
-<li><p>add github page to submodule <code>git submodule add -b master git@github.com:{username}/{username}.github.io.git public</code>(you can use https as git url too)</p></li>
-
-<li><p>add shell to project folder, named <code>deploy.sh</code></p>
-
+<li>
+<p>create <code>{your-project}</code> repo on your github</p>
+</li>
+<li>
+<p>create <code>{username}.github.io</code> repo on your github</p>
+</li>
+<li>
+<p>add github page to submodule <code>git submodule add -b master git@github.com:{username}/{username}.github.io.git public</code>(you can use https as git url too)</p>
+</li>
+<li>
+<p>add shell to project folder, named <code>deploy.sh</code></p>
 <pre><code>#!/bin/bash
 
 echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
@@ -175,17 +155,17 @@ git commit -m &quot;$msg&quot;
 git push origin master
 
 </code></pre></li>
-
-<li><p>run <code>git commit -am &quot;yout website-hugo commit message &quot;</code> then <code>git push origin master</code></p></li>
-
-<li><p>deploy to <code>{yourname}.github.io</code> with <code>./deploy.sh &quot;your commit message&quot;</code></p></li>
+<li>
+<p>run <code>git commit -am &quot;yout website-hugo commit message &quot;</code> then <code>git push origin master</code></p>
+</li>
+<li>
+<p>deploy to <code>{yourname}.github.io</code> with <code>./deploy.sh &quot;your commit message&quot;</code></p>
+</li>
 </ol>
-
 <h2 id="reference">Reference</h2>
-
 <ul>
 <li><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">hosting hugo on github</a></li>
-<li><a href="https://medium.com/@chs_wei/在-github-部署-hugo-靜態網站-9c40682dfe40">在github部署hugo靜態網站</a></li>
+<li><a href="https://medium.com/@chs_wei/%E5%9C%A8-github-%E9%83%A8%E7%BD%B2-hugo-%E9%9D%9C%E6%85%8B%E7%B6%B2%E7%AB%99-9c40682dfe40">在github部署hugo靜態網站</a></li>
 </ul>
 
   </section>

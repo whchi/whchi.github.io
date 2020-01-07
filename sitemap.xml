@@ -3,27 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://whchi.github.io/tags/google-app-script/</loc>
+    <lastmod>2020-01-07T14:56:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/google-sheet/</loc>
+    <lastmod>2020-01-07T14:56:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2020-01-07T14:56:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/serverless/</loc>
+    <lastmod>2020-01-07T14:56:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/</loc>
+    <lastmod>2020-01-07T14:56:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/gsheet-as-json-api-using-google-app-script/</loc>
+    <lastmod>2020-01-07T14:56:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/</loc>
+    <lastmod>2020-01-07T14:56:44+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/posts/intro-to-microsoft-application-insights/</loc>
     <lastmod>2019-11-21T14:47:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2019-11-21T14:47:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/</loc>
-    <lastmod>2019-11-21T14:47:19+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://whchi.github.io/tags/elasticsearch/</loc>
-    <lastmod>2019-10-15T18:17:14+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/</loc>
     <lastmod>2019-10-15T18:17:14+08:00</lastmod>
   </url>
   
