@@ -112,16 +112,6 @@
     </item>
     
     <item>
-      <title>About</title>
-      <link>https://whchi.github.io/pages/about/</link>
-      <pubDate>Thu, 20 Dec 2018 14:31:46 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/pages/about/</guid>
-      <description>慢慢把以前的筆記整理上來
-skills  Backend development: php, node, python Frontend development: Vue, jQuery Development enviorment: docker, vagrant, GCP Linux(centos, ubuntu) Version control: git MySQL  contact  email: whccchi@gmail.com  </description>
-    </item>
-    
-    <item>
       <title>使用 Github 管理 Docker image</title>
       <link>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</link>
       <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
@@ -137,6 +127,16 @@ skills  Backend development: php, node, python Frontend development: Vue, jQuery
       
       <guid>https://whchi.github.io/posts/hugo-installation/</guid>
       <description>簡單介紹安裝hugo的方法，mac only</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://whchi.github.io/pages/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://whchi.github.io/pages/about/</guid>
+      <description>慢慢把以前的筆記整理上來
+skills  Backend development: php, node, python Frontend development: Vue, jQuery Development enviorment: docker, vagrant, GCP Linux(centos, ubuntu) Version control: git MySQL  contact  email: whccchi@gmail.com  </description>
     </item>
     
   </channel>

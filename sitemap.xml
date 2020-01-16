@@ -168,16 +168,6 @@
   </url>
   
   <url>
-    <loc>https://whchi.github.io/pages/about/</loc>
-    <lastmod>2018-12-20T14:31:46+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/pages/</loc>
-    <lastmod>2018-12-20T14:31:46+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://whchi.github.io/tags/docker/</loc>
     <lastmod>2018-12-19T17:32:42+08:00</lastmod>
   </url>
@@ -198,7 +188,15 @@
   </url>
   
   <url>
+    <loc>https://whchi.github.io/pages/about/</loc>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/pages/</loc>
   </url>
   
 </urlset>
