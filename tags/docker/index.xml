@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 19 Dec 2018 17:32:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jan 2020 14:45:27 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>在 docker 上跑 laravel-dusk</title>
+      <link>https://whchi.github.io/posts/laravel-dusk-on-docker/</link>
+      <pubDate>Fri, 31 Jan 2020 14:45:27 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/laravel-dusk-on-docker/</guid>
+      <description>自己挖的洞自己填</description>
+    </item>
     
     <item>
       <title>使用 Github 管理 Docker image</title>

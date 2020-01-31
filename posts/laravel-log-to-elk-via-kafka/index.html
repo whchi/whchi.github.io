@@ -156,31 +156,31 @@
 <li>先把庫抓下來<code>git clone https://github.com/wurstmeister/kafka-docker.git</code></li>
 <li>修改<code>docker-compose-single-broker.yml</code>如下</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">version: <span style="color:#e6db74">&#39;3&#39;</span>
-services:
-  zookeeper:
-    image: wurstmeister/zookeeper
-    ports:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<span style="color:#66d9ef">services</span>:
+  <span style="color:#66d9ef">zookeeper</span>:
+    <span style="color:#66d9ef">image</span>: wurstmeister/zookeeper
+    <span style="color:#66d9ef">ports</span>:
       - <span style="color:#e6db74">&#34;2181:2181&#34;</span>
-    container_name: local_zp
-  kafka:
-    build: .
-    ports:
+    <span style="color:#66d9ef">container_name</span>: local_zp
+  <span style="color:#66d9ef">kafka</span>:
+    <span style="color:#66d9ef">build</span>: .
+    <span style="color:#66d9ef">ports</span>:
       - <span style="color:#e6db74">&#34;9092:9092&#34;</span>
-    environment:
-      KAFKA_ADVERTISED_HOST_NAME: local_kafka <span style="color:#75715e"># kafka command 啟動時的 hostname</span>
-      KAFKA_CREATE_TOPICS: <span style="color:#e6db74">&#34;localtest&#34;</span>
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:<span style="color:#ae81ff">2181</span>
-    volumes:
+    <span style="color:#66d9ef">environment</span>:
+      <span style="color:#66d9ef">KAFKA_ADVERTISED_HOST_NAME</span>: local_kafka <span style="color:#75715e"># kafka command 啟動時的 hostname</span>
+      <span style="color:#66d9ef">KAFKA_CREATE_TOPICS</span>: <span style="color:#e6db74">&#34;localtest&#34;</span>
+      <span style="color:#66d9ef">KAFKA_ZOOKEEPER_CONNECT</span>: zookeeper:<span style="color:#ae81ff">2181</span>
+    <span style="color:#66d9ef">volumes</span>:
       - /var/run/docker.sock:/var/run/docker.sock
-    container_name: local_kafka
-  elk:
-    image: sebp/elk
-    ports:
+    <span style="color:#66d9ef">container_name</span>: local_kafka
+  <span style="color:#66d9ef">elk</span>:
+    <span style="color:#66d9ef">image</span>: sebp/elk
+    <span style="color:#66d9ef">ports</span>:
      - <span style="color:#e6db74">&#39;5601:5601&#39;</span>
      - <span style="color:#e6db74">&#39;9200:9200&#39;</span>
      - <span style="color:#e6db74">&#39;5044:5044&#39;</span>
-    container_name: local_elk
+    <span style="color:#66d9ef">container_name</span>: local_elk
 </code></pre></div><ol>
 <li>啟動容器<code>docker-compose -f docker-compose-single-broker.yml up</code></li>
 </ol>

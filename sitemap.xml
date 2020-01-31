@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://whchi.github.io/tags/docker/</loc>
+    <lastmod>2020-01-31T14:45:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/laravel/</loc>
+    <lastmod>2020-01-31T14:45:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2020-01-31T14:45:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/</loc>
+    <lastmod>2020-01-31T14:45:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/laravel-dusk-on-docker/</loc>
+    <lastmod>2020-01-31T14:45:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/</loc>
+    <lastmod>2020-01-31T14:45:27+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/tags/google-app-script/</loc>
     <lastmod>2020-01-07T14:56:44+08:00</lastmod>
   </url>
@@ -13,27 +43,12 @@
   </url>
   
   <url>
-    <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2020-01-07T14:56:44+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://whchi.github.io/tags/serverless/</loc>
     <lastmod>2020-01-07T14:56:44+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://whchi.github.io/tags/</loc>
-    <lastmod>2020-01-07T14:56:44+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://whchi.github.io/posts/gsheet-as-json-api-using-google-app-script/</loc>
-    <lastmod>2020-01-07T14:56:44+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/</loc>
     <lastmod>2020-01-07T14:56:44+08:00</lastmod>
   </url>
   
@@ -94,11 +109,6 @@
   
   <url>
     <loc>https://whchi.github.io/tags/k8s/</loc>
-    <lastmod>2019-07-13T00:37:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/laravel/</loc>
     <lastmod>2019-07-13T00:37:23+08:00</lastmod>
   </url>
   
@@ -165,11 +175,6 @@
   <url>
     <loc>https://whchi.github.io/posts/difference-between-subtree-and-submodule/</loc>
     <lastmod>2018-12-21T09:35:24+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/docker/</loc>
-    <lastmod>2018-12-19T17:32:42+08:00</lastmod>
   </url>
   
   <url>

@@ -141,22 +141,22 @@
 <p>docker-compose.yml</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">version: <span style="color:#e6db74">&#39;3&#39;</span>
-services:
-  elasticsearch:
-    build: .
-    environment:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<span style="color:#66d9ef">services</span>:
+  <span style="color:#66d9ef">elasticsearch</span>:
+    <span style="color:#66d9ef">build</span>: .
+    <span style="color:#66d9ef">environment</span>:
       - <span style="color:#e6db74">&#39;http.host=0.0.0.0&#39;</span>
       - <span style="color:#e6db74">&#39;transport.host=127.0.0.1&#39;</span>
       - <span style="color:#e6db74">&#39;ES_JAVA_OPTS=-Xms512m -Xmx512m&#39;</span>
       - <span style="color:#e6db74">&#39;xpack.security.enabled=false&#39;</span>
       - <span style="color:#e6db74">&#39;ACCESS_TOKEN=e-D9WyQzxfRbpdFvFdhQ&#39;</span>
-    ports:
+    <span style="color:#66d9ef">ports</span>:
       - <span style="color:#e6db74">&#39;9200:9200&#39;</span>
       - <span style="color:#e6db74">&#39;9300:9300&#39;</span>
-    volumes:
+    <span style="color:#66d9ef">volumes</span>:
       - <span style="color:#e6db74">&#39;/path/to/local/index:/usr/share/elasticsearch/data&#39;</span>
-    container_name: local_es
+    <span style="color:#66d9ef">container_name</span>: local_es
 </code></pre></div><h2 id="執行">執行</h2>
 <p>記得把 Dockerfile 放在與 docker-compose.yml 同層</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker-compose up -d
