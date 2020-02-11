@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Laravel Model Incrementing Detail &middot;  雜談與紀錄" />
+  
+  <meta property="og:site_name" content="雜談與紀錄" />
+  <meta property="og:url" content="https://whchi.github.io/posts/laravel-model-incrementing-detail/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2020-02-11T21:56:10&#43;08:00" />
+  
+  <meta property="og:article:tag" content="laravel" />
+  
+  
+
+  <title>
+     Laravel Model Incrementing Detail &middot;  雜談與紀錄
+  </title>
+
+  <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/github.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="https://whchi.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whchi.github.io/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="https://whchi.github.io/css/custom-hamburg.css">
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(https://whchi.github.io/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="https://whchi.github.io/">雜談與紀錄</a></h1>
+          
+          <h4 class="tag-line">
+            that/s all
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="https://whchi.github.io/pages/about">
+            About
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">Laravel Model Incrementing Detail</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    <p>最近遇到一個怪問題，用 laravel 時如果指定 <code>$primaryKey</code> 為其他非 auto-increment 的值時必需同時指定<code>$keyType</code>跟<code>$incrementing</code>才能 model  在使用時正常</p>
+<p>比如說主鍵是 uuid 時要做以下設定才能正確執行，少一個都不能 work</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$primaryKey = &#39;uuid&#39;;
+$keyType = &#39;string&#39;;
+$incrementing = false;
+</code></pre></div><p>追了一下 source code 終於理解原因，下面說明存取 model 物件時到底這些欄位對它的影響</p>
+<h2 id="存值">存值</h2>
+<ul>
+<li>Model.php</li>
+</ul>
+<p>在這支約 <code>L682</code> 的地方有說明如果設定上有 <code>$incrementing</code> 的時候會使用<code>PDO::lastInsertId</code>來取的最後 insert 的 id</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// If the model has an incrementing key, we can use the &#34;insertGetId&#34; method on
+// the query builder, which will give us back the final inserted ID for this
+// table from the database. Not all tables have to be incrementing though.
+$attributes = $this-&gt;getAttributes();
+if ($this-&gt;getIncrementing()) {
+    $this-&gt;insertAndSetId($query, $attributes);
+}
+</code></pre></div><p>該函數在 mysql 時是使用<code>LAST_INSERT_ID</code>來做，根據<a href="https://dev.mysql.com/doc/refman/5.7/en/information-functions.html#function_last-insert-id">mysql官方文件對該函數的說明</a>可得知不管有無指定參數，回傳型別都會是 int，取回的欄位都是 auto_increment 的結果</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">With no argument, LAST_INSERT_ID() returns a BIGINT UNSIGNED (64-bit) value representing the first automatically generated value successfully inserted for an AUTO_INCREMENT column as a result of the most recently executed INSERT statement. The value of LAST_INSERT_ID() remains unchanged if no rows are successfully inserted.
+
+With an argument, LAST_INSERT_ID() returns an unsigned integer.
+</code></pre></div><p>因此只設定<code>$keyType</code>以及<code>$primaryKey</code>在 model 新增時取回的 id 就不會是預期的值，必須加上<code>$incrementing</code>才能正確取得回傳值</p>
+<h2 id="取值">取值</h2>
+<p>model 在回傳的時候會去查看<code>$casts</code>裡面的東西並把它mapping起來作為回傳的 attributes，而在使用到的 Traits 裡面的裡面有去特別檢查<code>$incrementing</code>的設定，程式碼如下</p>
+<ul>
+<li>HasAttributes.php</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">public function getCasts()
+{
+    if ($this-&gt;getIncrementing()) {
+        return array_merge([$this-&gt;getKeyName() =&gt; $this-&gt;getKeyType()], $this-&gt;casts);
+    }
+    return $this-&gt;casts;
+}
+</code></pre></div><p>因此在單純設定<code>$keyType</code>和<code>$primaryKey</code>時取值是不會有問題的</p>
+<h2 id="結論">結論</h2>
+<p>如果主 key 不是 laravel 預設型別，一定要同時設定上面提到的三個屬性才能確保 model 能正常 work</p>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2020-2-11
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/laravel/">#laravel</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="https://whchi.github.io/posts/laravel-dusk-on-docker/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; whchi 2018
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a href="https://linkedin.com/in/wei-han-chi-61500611" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+  </footer>
+
+  
+  
+  
+
+  
+  
+
+  
+</body>
+</html>
+
