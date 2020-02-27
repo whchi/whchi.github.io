@@ -119,7 +119,7 @@ dataDir=data
 <span style="color:#f92672">&lt;/requestHandler&gt;</span>
 </code></pre></div><h3 id="db-data-configxml">db-data-config.xml</h3>
 <p>設定要 import 的 data 的 query, 範例參考</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dataConfig</span><span style="color:#f92672">&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dataConfig&gt;</span>
     <span style="color:#f92672">&lt;dataSource</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;JdbcDataSource&#34;</span> <span style="color:#a6e22e">driver=</span><span style="color:#e6db74">&#34;com.mysql.jdbc.Driver&#34;</span> <span style="color:#a6e22e">url=</span><span style="color:#e6db74">&#34;jdbc:mysql://localhost:3306/test&#34;</span> <span style="color:#a6e22e">user=</span><span style="color:#e6db74">&#34;myusername&#34;</span> <span style="color:#a6e22e">password=</span><span style="color:#e6db74">&#34;mypassword&#34;</span><span style="color:#f92672">/&gt;</span>
         <span style="color:#f92672">&lt;document</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;mydocument&#34;</span><span style="color:#f92672">&gt;</span>
         <span style="color:#f92672">&lt;entity</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;item&#34;</span> <span style="color:#a6e22e">query=</span><span style="color:#e6db74">&#34;SELECT * FROM your_table&#34;</span><span style="color:#f92672">&gt;</span>
@@ -131,18 +131,18 @@ dataDir=data
     <span style="color:#f92672">&lt;/document&gt;</span>
 <span style="color:#f92672">&lt;/dataConfig&gt;</span>
 </code></pre></div><h3 id="schemaxml">schema.xml</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;fields</span><span style="color:#f92672">&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;fields&gt;</span>
     <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;text_syn&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
     <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;type&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
     <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;no&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
     <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
 <span style="color:#f92672">&lt;/fields&gt;</span>
 <span style="color:#f92672">&lt;fieldType</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;text_syn&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.TextField&#34;</span> <span style="color:#a6e22e">autoGeneratePhraseQueries=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;analyzer</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;tokenizer</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.chenlb.mmseg4j.solr.MMSegTokenizerFactory&#34;</span> <span style="color:#a6e22e">mode=</span><span style="color:#e6db74">&#34;complex&#34;</span> <span style="color:#a6e22e">dicPath=</span><span style="color:#e6db74">&#34;/opt/solr-multicore/dics&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!--</span><span style="color:#75715e"> 使用mmseg跑同義詞 tokenizer </span><span style="color:#75715e">--&gt;</span>
-        <span style="color:#f92672">&lt;charFilter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.HTMLStripCharFilterFactory&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!--</span><span style="color:#75715e"> 對token做html strip </span><span style="color:#75715e">--&gt;</span>
-        <span style="color:#f92672">&lt;filter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.LowerCaseFilterFactory&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!--</span><span style="color:#75715e"> 全部token轉小寫 </span><span style="color:#75715e">--&gt;</span>
-        <span style="color:#f92672">&lt;filter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.StopFilterFactory&#34;</span> <span style="color:#a6e22e">ignoreCase=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">words=</span><span style="color:#e6db74">&#34;stopwords.txt&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!--</span><span style="color:#75715e"> token參考停用字, 不一定要 </span><span style="color:#75715e">--&gt;</span>
+    <span style="color:#f92672">&lt;analyzer&gt;</span>
+        <span style="color:#f92672">&lt;tokenizer</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.chenlb.mmseg4j.solr.MMSegTokenizerFactory&#34;</span> <span style="color:#a6e22e">mode=</span><span style="color:#e6db74">&#34;complex&#34;</span> <span style="color:#a6e22e">dicPath=</span><span style="color:#e6db74">&#34;/opt/solr-multicore/dics&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- 使用mmseg跑同義詞 tokenizer --&gt;</span>
+        <span style="color:#f92672">&lt;charFilter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.HTMLStripCharFilterFactory&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- 對token做html strip --&gt;</span>
+        <span style="color:#f92672">&lt;filter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.LowerCaseFilterFactory&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- 全部token轉小寫 --&gt;</span>
+        <span style="color:#f92672">&lt;filter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.StopFilterFactory&#34;</span> <span style="color:#a6e22e">ignoreCase=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">words=</span><span style="color:#e6db74">&#34;stopwords.txt&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- token參考停用字, 不一定要 --&gt;</span>
     <span style="color:#f92672">&lt;/analyzer&gt;</span>
 <span style="color:#f92672">&lt;/fieldType&gt;</span>
 </code></pre></div><h3 id="synonymtxt">synonym.txt</h3>
@@ -200,7 +200,7 @@ TV =&gt; Taiwan-Value
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
 <span style="color:#66d9ef">services</span>:
   <span style="color:#66d9ef">solr</span>:
-    <span style="color:#66d9ef">image</span>: geerlingguy/solr:<span style="color:#ae81ff">4.10</span><span style="color:#ae81ff">.4</span>
+    <span style="color:#66d9ef">image</span>: geerlingguy/solr:<span style="color:#ae81ff">4.10.4</span>
     <span style="color:#66d9ef">container_name</span>: local_solr4
     <span style="color:#66d9ef">ports</span>:
       - <span style="color:#e6db74">&#39;8983:8983&#39;</span>
@@ -311,7 +311,7 @@ TV =&gt; Taiwan-Value
   
   
   
-    <a href="https://linkedin.com/in/wei-han-chi-61500611" target="_blank">
+    <a href="https://linkedin.com/in/wei-han-chi-61500610" target="_blank">
       <i class="fa fa-linkedin"></i>
     </a>
   

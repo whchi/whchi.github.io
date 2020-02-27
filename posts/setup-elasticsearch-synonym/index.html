@@ -117,15 +117,15 @@
 <li>Dockerfile(包含 ik 安裝)</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> docker.elastic.co/elasticsearch/elasticsearch:5.3.0</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir -p /usr/share/elasticsearch/plugins/ik530 <span style="color:#f92672">&amp;&amp;</span> cd /usr/share/elasticsearch/plugins/ik530 <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    wget <span style="color:#e6db74">&#34;https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v5.3.0/elasticsearch-analysis-ik-5.3.0.zip&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    unzip elasticsearch-analysis-ik-5.3.0.zip <span style="color:#f92672">&amp;&amp;</span> rm elasticsearch-analysis-ik-5.3.0.zip;<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># 記得先放</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./synonym.txt /usr/share/elasticsearch/config/analysis/synonym.txt<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./stopwords.txt /usr/share/elasticsearch/config/analysis/stopwords.txt<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> elasticsearch</span><span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><ul>
 <li>synonym.txt
@@ -254,20 +254,20 @@
 </code></pre></div><ul>
 <li>[POST]查看同義詞是否成功</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">q</span><span style="color:#960050;background-color:#1e0010">u</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">t</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span>
 {
     <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;流行性感冒&#34;</span>,
     <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
     <span style="color:#f92672">&#34;filter&#34;</span>: [<span style="color:#e6db74">&#34;filter_syno&#34;</span>, <span style="color:#e6db74">&#34;filter_stop&#34;</span>]
 }
-<span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">e</span>
+<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">response</span>
 {
     <span style="color:#f92672">&#34;tokens&#34;</span>: [
         {
             <span style="color:#f92672">&#34;token&#34;</span>: <span style="color:#e6db74">&#34;流感&#34;</span>,
             <span style="color:#f92672">&#34;start_offset&#34;</span>: <span style="color:#ae81ff">0</span>,
             <span style="color:#f92672">&#34;end_offset&#34;</span>: <span style="color:#ae81ff">5</span>,
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;SYNONYM&#34;</span>, <span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">成</span><span style="color:#960050;background-color:#1e0010">功</span>
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;SYNONYM&#34;</span>, <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">成功</span>
             <span style="color:#f92672">&#34;position&#34;</span>: <span style="color:#ae81ff">0</span>
         }
     ]
@@ -351,7 +351,7 @@
   
   
   
-    <a href="https://linkedin.com/in/wei-han-chi-61500611" target="_blank">
+    <a href="https://linkedin.com/in/wei-han-chi-61500610" target="_blank">
       <i class="fa fa-linkedin"></i>
     </a>
   
