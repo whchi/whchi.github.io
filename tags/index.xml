@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 12 Mar 2020 16:50:27 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 12 Mar 2020 17:28:18 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>docker</title>
+      <link>https://whchi.github.io/tags/docker/</link>
+      <pubDate>Thu, 12 Mar 2020 17:28:18 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>laravel</title>
@@ -18,15 +27,6 @@
       <pubDate>Thu, 12 Mar 2020 16:50:27 +0800</pubDate>
       
       <guid>https://whchi.github.io/tags/laravel/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://whchi.github.io/tags/docker/</link>
-      <pubDate>Fri, 31 Jan 2020 14:45:27 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/docker/</guid>
       <description></description>
     </item>
     
