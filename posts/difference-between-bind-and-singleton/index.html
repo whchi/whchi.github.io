@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Difference Between Bind and Singleton &middot;  雜談與紀錄" />
+  
+  <meta property="og:site_name" content="雜談與紀錄" />
+  <meta property="og:url" content="https://whchi.github.io/posts/difference-between-bind-and-singleton/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2020-03-12T16:50:27&#43;08:00" />
+  
+  <meta property="og:article:tag" content="laravel" />
+  
+  
+
+  <title>
+     Difference Between Bind and Singleton &middot;  雜談與紀錄
+  </title>
+
+  <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/github.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="https://whchi.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whchi.github.io/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="https://whchi.github.io/css/custom-hamburg.css">
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(https://whchi.github.io/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="https://whchi.github.io/">雜談與紀錄</a></h1>
+          
+          <h4 class="tag-line">
+            that/s all
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="https://whchi.github.io/pages/about">
+            About
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">Difference Between Bind and Singleton</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    <h3 id="bind-vs-singleton">bind vs singleton</h3>
+<ul>
+<li>bind
+for reuseable class or object</li>
+<li>singleton
+need only one instance through your application call</li>
+</ul>
+<p><strong>example</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">class TestClass
+{
+    protected $value = 0;
+
+    public function increase()
+    {
+        $this-&gt;value++;
+
+    return $this-&gt;value;
+    }
+}
+###
+$app-&gt;bind(&#39;klass1&#39;, TestClass::class);
+$app-&gt;singleton(&#39;klass2&#39;, TestClass::class);
+###
+app(&#39;klass1&#39;)-&gt;increase(); // 1
+app(&#39;klass1&#39;)-&gt;increase(); // 1
+app(&#39;klass1&#39;)-&gt;increase(); // 1
+---
+app(&#39;klass2&#39;)-&gt;increase(); // 1
+app(&#39;klass2&#39;)-&gt;increase(); // 2
+app(&#39;klass2&#39;)-&gt;increase(); // 3
+</code></pre></div><h3 id="extra-information">extra information</h3>
+<p><code>Facade</code> makes you easily use your service with <code>singleton</code> because of <code>resolveFacadeInstance</code>, if you want to use it with <code>bind</code> you can call <code>clearResolvedInstance</code> in your facade.</p>
+<p><strong>example</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">protected static function getFacadeAccessor()
+{
+    self::clearResolvedInstance(YourService::class);
+
+    return YourService::class;
+}
+</code></pre></div>
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2020-3-12
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/laravel/">#laravel</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="https://whchi.github.io/posts/laravel-model-incrementing-detail/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; whchi 2018
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+  </footer>
+
+  
+  
+  
+
+  
+  
+
+  
+</body>
+</html>
+

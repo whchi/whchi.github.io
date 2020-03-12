@@ -3,27 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://whchi.github.io/tags/laravel/</loc>
-    <lastmod>2020-02-11T21:56:10+08:00</lastmod>
+    <loc>https://whchi.github.io/posts/difference-between-bind-and-singleton/</loc>
+    <lastmod>2020-03-12T16:50:27+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://whchi.github.io/posts/laravel-model-incrementing-detail/</loc>
-    <lastmod>2020-02-11T21:56:10+08:00</lastmod>
+    <loc>https://whchi.github.io/tags/laravel/</loc>
+    <lastmod>2020-03-12T16:50:27+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2020-02-11T21:56:10+08:00</lastmod>
+    <lastmod>2020-03-12T16:50:27+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://whchi.github.io/tags/</loc>
-    <lastmod>2020-02-11T21:56:10+08:00</lastmod>
+    <lastmod>2020-03-12T16:50:27+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://whchi.github.io/</loc>
+    <lastmod>2020-03-12T16:50:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/laravel-model-incrementing-detail/</loc>
     <lastmod>2020-02-11T21:56:10+08:00</lastmod>
   </url>
   
