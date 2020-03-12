@@ -85,42 +85,46 @@
   <section>
     <h3 id="bind-vs-singleton">bind vs singleton</h3>
 <ul>
-<li>bind
-for reusable class or object</li>
-<li>singleton
-need only one instance through your application call</li>
+<li>bind</li>
 </ul>
+<p>for reusable class or object</p>
+<ul>
+<li>singleton</li>
+</ul>
+<p>need only one instance through your application call</p>
 <p><strong>example</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">class TestClass
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestClass</span>
 {
-    protected $value = 0;
+    <span style="color:#66d9ef">protected</span> $value <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-    public function increase()
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">increase</span>()
     {
-        $this-&gt;value++;
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">value</span><span style="color:#f92672">++</span>;
 
-    return $this-&gt;value;
+    <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">value</span>;
     }
 }
-###
-$app-&gt;bind(&#39;klass1&#39;, TestClass::class);
-$app-&gt;singleton(&#39;klass2&#39;, TestClass::class);
-###
-app(&#39;klass1&#39;)-&gt;increase(); // 1
-app(&#39;klass1&#39;)-&gt;increase(); // 1
-app(&#39;klass1&#39;)-&gt;increase(); // 1
----
-app(&#39;klass2&#39;)-&gt;increase(); // 1
-app(&#39;klass2&#39;)-&gt;increase(); // 2
-app(&#39;klass2&#39;)-&gt;increase(); // 3
-</code></pre></div><h3 id="extra-information">extra information</h3>
+<span style="color:#75715e">###
+</span><span style="color:#75715e"></span>$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bind</span>(<span style="color:#e6db74">&#39;klass1&#39;</span>, <span style="color:#a6e22e">TestClass</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>);
+$app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">singleton</span>(<span style="color:#e6db74">&#39;klass2&#39;</span>, <span style="color:#a6e22e">TestClass</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>);
+<span style="color:#75715e">###
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>(<span style="color:#e6db74">&#39;klass1&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">increase</span>(); <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>(<span style="color:#e6db74">&#39;klass1&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">increase</span>(); <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>(<span style="color:#e6db74">&#39;klass1&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">increase</span>(); <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span><span style="color:#f92672">---</span>
+<span style="color:#a6e22e">app</span>(<span style="color:#e6db74">&#39;klass2&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">increase</span>(); <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>(<span style="color:#e6db74">&#39;klass2&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">increase</span>(); <span style="color:#75715e">// 2
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>(<span style="color:#e6db74">&#39;klass2&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">increase</span>(); <span style="color:#75715e">// 3
+</span></code></pre></div><h3 id="extra-information">extra information</h3>
 <p><code>Facade</code> makes you easily use your service with <code>singleton</code> because of <code>resolveFacadeInstance</code>, if you want to use it with <code>bind</code> you can call <code>clearResolvedInstance</code> in your facade.</p>
 <p><strong>example</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">protected static function getFacadeAccessor()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFacadeAccessor</span>()
 {
-    self::clearResolvedInstance(YourService::class);
+    <span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">clearResolvedInstance</span>(<span style="color:#a6e22e">YourService</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>);
 
-    return YourService::class;
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">YourService</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>;
 }
 </code></pre></div>
   </section>
