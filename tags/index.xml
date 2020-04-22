@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 22 Apr 2020 17:36:40 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 23:48:03 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>gossiping</title>
+      <link>https://whchi.github.io/tags/gossiping/</link>
+      <pubDate>Wed, 22 Apr 2020 23:48:03 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/gossiping/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>elasticsearch</title>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 22 Apr 2020 17:36:40 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 23:48:03 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>雜談（1）</title>
+      <link>https://whchi.github.io/posts/gossiping-1/</link>
+      <pubDate>Wed, 22 Apr 2020 23:48:03 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/gossiping-1/</guid>
+      <description>關於學習</description>
+    </item>
     
     <item>
       <title>設定 Elasticsearch 自動完成</title>

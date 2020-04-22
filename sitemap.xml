@@ -3,27 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://whchi.github.io/tags/gossiping/</loc>
+    <lastmod>2020-04-22T23:48:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2020-04-22T23:48:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/</loc>
+    <lastmod>2020-04-22T23:48:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/</loc>
+    <lastmod>2020-04-22T23:48:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/gossiping-1/</loc>
+    <lastmod>2020-04-22T23:48:03+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/tags/elasticsearch/</loc>
     <lastmod>2020-04-22T17:36:40+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2020-04-22T17:36:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/</loc>
-    <lastmod>2020-04-22T17:36:40+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://whchi.github.io/posts/setup-elasticsearch-autocompletion/</loc>
-    <lastmod>2020-04-22T17:36:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/</loc>
     <lastmod>2020-04-22T17:36:40+08:00</lastmod>
   </url>
   
