@@ -88,8 +88,8 @@
 <blockquote>
 <p>這裡假設已經有安裝 ik 分詞器，還沒裝的可以餐考 <a href="/posts/setup-elasticsearch-synonym/">我之前的文章</a></p>
 </blockquote>
-<h1 id="設定方式">設定方式</h1>
-<h2 id="suggester">Suggester</h2>
+<h2 id="設定方式">設定方式</h2>
+<h3 id="suggester">Suggester</h3>
 <p>官方提到共有四種類型如下</p>
 <table>
 <thead>
@@ -178,9 +178,9 @@
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>可以直接拿 _source 裡面的東西或是 text 作為 api 回傳的資料</p>
-<h2 id="search_as_you_type">search_as_you_type</h2>
+<h3 id="search_as_you_type">search_as_you_type</h3>
 <p>這是 7.2 之後才推出的欄位，使用 ngram 為基礎並打造的自動完成 field type，因此<strong>可以做到 infix 自動完成</strong>。<br>
-搜尋 <code>edge_ngram auto completion elasticsearch</code>可以找到7.2之前的版本大概都是怎麼完成 infix 的</p>
+搜尋 <code>edge_ngram auto completion elasticsearch</code>或是參考我的 Reference 可以知道 7.2 之前的版本大概都是怎麼完成 infix 的</p>
 <ol>
 <li>set mapping</li>
 </ol>
@@ -262,7 +262,7 @@ PUT &lt;index&gt;/_doc/2?refresh
   }
 </style>
 </p>
-<h1 id="補充-analyzer-是什麼">補充： analyzer 是什麼</h1>
+<h2 id="補充-analyzer-是什麼">補充： analyzer 是什麼</h2>
 <blockquote>
 <p>Analyzer = Character Filter + Tokenizer + Token Filter</p>
 </blockquote>
