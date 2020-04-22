@@ -109,7 +109,7 @@
 </tr>
 <tr>
 <td align="left">Completion</td>
-<td align="left">針對 <strong>auto completion</strong> 的應用場景，其原理是將 token 編碼成 FST 後放在索引裡，由於是在 memory 因此回應速度很快，不過因其資料結構限制所以只能做 prefix 查詢</td>
+<td align="left">針對 <strong>auto completion</strong> 的應用場景，其原理是將 token 編碼成 FST 後放在索引裡，由於是在 memory 因此回應速度很快，<strong>不過因其資料結構限制所以只能做 prefix 查詢</strong></td>
 </tr>
 <tr>
 <td align="left">Context</td>
@@ -179,7 +179,7 @@
 <span style="color:#f92672">}</span>
 </code></pre></div><p>可以直接拿 _source 裡面的東西或是 text 作為 api 回傳的資料</p>
 <h2 id="search_as_you_type">search_as_you_type</h2>
-<p>這是 7.2 之後才推出的欄位，使用 ngram 為基礎並打造的自動完成 field type，因此可以做到 infix 自動完成。<br>
+<p>這是 7.2 之後才推出的欄位，使用 ngram 為基礎並打造的自動完成 field type，因此<strong>可以做到 infix 自動完成</strong>。<br>
 搜尋 <code>edge_ngram auto completion elasticsearch</code>可以找到以前大概都是怎麼完成的</p>
 <ol>
 <li>set mapping</li>
