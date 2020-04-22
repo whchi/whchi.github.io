@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" 設定 Elasticsearch 自動完成 &middot;  雜談與紀錄" />
+  
+  <meta property="og:site_name" content="雜談與紀錄" />
+  <meta property="og:url" content="https://whchi.github.io/posts/setup-elasticsearch-autocompletion/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2020-04-22T17:36:40&#43;08:00" />
+  
+  <meta property="og:article:tag" content="elasticsearch" />
+  
+  
+
+  <title>
+     設定 Elasticsearch 自動完成 &middot;  雜談與紀錄
+  </title>
+
+  <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/github.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="https://whchi.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whchi.github.io/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="https://whchi.github.io/css/custom-hamburg.css">
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(https://whchi.github.io/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="https://whchi.github.io/">雜談與紀錄</a></h1>
+          
+          <h4 class="tag-line">
+            that/s all
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="https://whchi.github.io/pages/about">
+            About
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">設定 Elasticsearch 自動完成</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    <p>最近幫公司的搜尋實現自動完成功能，筆記一下</p>
+<p>自動完成直覺想到的關聯是「建議」以及「打字即呈現」，在 Elasticsearch 官方文件找的話會有<code>Suggester</code>、<code>search as you type</code>等關鍵字，以下分別說明兩者設定方式與差異</p>
+<blockquote>
+<p>這裡假設已經有安裝 ik 分詞器，還沒裝的可以餐考 <a href="/posts/setup-elasticsearch-synonym/">我之前的文章</a></p>
+</blockquote>
+<h1 id="設定方式">設定方式</h1>
+<h2 id="suggester">Suggester</h2>
+<p>官方提到共有四種類型如下</p>
+<table>
+<thead>
+<tr>
+<th align="left">名稱</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Term</td>
+<td align="left">用 <a href="https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%BC%AF%E8%B7%9D%E9%9B%A2">edit distance</a> 為算法基礎（顧名思義，某個字詞改變多少字元就能轉變為另個字詞），基於 analyze 過的單一 term 給予建議，不考慮 term 之間的關係。</td>
+</tr>
+<tr>
+<td align="left">Phrase</td>
+<td align="left">基於前者的基礎上考慮其關係，通常能提供更符合語意的結果。</td>
+</tr>
+<tr>
+<td align="left">Completion</td>
+<td align="left">針對 <strong>auto completion</strong> 的應用場景，其原理是將 token 編碼成 FST 後放在索引裡，由於是在 memory 因此回應速度很快，不過因其資料結構限制所以只能做 prefix 查詢</td>
+</tr>
+<tr>
+<td align="left">Context</td>
+<td align="left">是前者的進階使用，由於自動完成有時需要考慮情境（比如輸入 star 跑出 coffee，因為 starbuck 的存在）而出現的類型</td>
+</tr>
+</tbody>
+</table>
+<p>這邊只介紹 Completion Suggester 的部分</p>
+<ol>
+<li>set mapping</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PUT &lt;index&gt;
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;mappings&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;properties&#34;</span> : <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;suggest&#34;</span> : <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;type&#34;</span> : <span style="color:#e6db74">&#34;completion&#34;</span>,
+                <span style="color:#e6db74">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>
+            <span style="color:#f92672">}</span>,
+            <span style="color:#e6db74">&#34;title&#34;</span> : <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;keyword&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ol start="2">
+<li>add data to suggest</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PUT &lt;index&gt;/_doc/1?refresh
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;suggest&#34;</span> : <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;input&#34;</span>: <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>, <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span> <span style="color:#f92672">]</span>,
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ol start="3">
+<li>get completion suggest</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">POST &lt;index&gt;/_search?pretty
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;suggest&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;_doc&#34;</span> : <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;prefix&#34;</span> : <span style="color:#e6db74">&#34;甲&#34;</span>,
+            <span style="color:#e6db74">&#34;completion&#34;</span> : <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;field&#34;</span> : <span style="color:#e6db74">&#34;suggest&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">##### response #####</span>
+<span style="color:#f92672">{</span>
+    ...
+  <span style="color:#e6db74">&#34;suggest&#34;</span>: <span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;_doc&#34;</span> : <span style="color:#f92672">[</span> <span style="color:#f92672">{</span>
+        ...
+      <span style="color:#e6db74">&#34;options&#34;</span> : <span style="color:#f92672">[</span> <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;text&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>,
+        <span style="color:#e6db74">&#34;_index&#34;</span>: <span style="color:#e6db74">&#34;music&#34;</span>,
+        <span style="color:#e6db74">&#34;_type&#34;</span>: <span style="color:#e6db74">&#34;_doc&#34;</span>,
+        <span style="color:#e6db74">&#34;_id&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+        <span style="color:#e6db74">&#34;_score&#34;</span>: 1.0,
+        <span style="color:#e6db74">&#34;_source&#34;</span>: <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#34;suggest&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>, <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span><span style="color:#f92672">]</span>
+        <span style="color:#f92672">}</span>
+      <span style="color:#f92672">}</span> <span style="color:#f92672">]</span>
+    <span style="color:#f92672">}</span> <span style="color:#f92672">]</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>可以直接拿 _source 裡面的東西或是 text 作為 api 回傳的資料</p>
+<h2 id="search_as_you_type">search_as_you_type</h2>
+<p>這是 7.2 之後才推出的欄位，使用 ngram 為基礎並打造的自動完成 field type，因此可以做到 infix 自動完成。<br>
+搜尋 <code>edge_ngram auto completion elasticsearch</code>可以找到以前大概都是怎麼完成的</p>
+<ol>
+<li>set mapping</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PUT &lt;index&gt;
+<span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;mappings&#34;</span>: <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;properties&#34;</span> : <span style="color:#f92672">{</span>
+            <span style="color:#e6db74">&#34;completion_field&#34;</span> : <span style="color:#f92672">{</span>
+                <span style="color:#e6db74">&#34;type&#34;</span> : <span style="color:#e6db74">&#34;search_as_you_type&#34;</span>,
+                <span style="color:#e6db74">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ol start="2">
+<li>update index</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PUT &lt;index&gt;/_doc/1?refresh
+<span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
+<span style="color:#f92672">}</span>
+PUT &lt;index&gt;/_doc/2?refresh
+<span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ol start="3">
+<li>get result</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">GET my_index/_search
+<span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;_source&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;completion_field&#34;</span><span style="color:#f92672">]</span>,
+  <span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#f92672">{</span>
+    <span style="color:#e6db74">&#34;multi_match&#34;</span>: <span style="color:#f92672">{</span>
+      <span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;甲狀&#34;</span>,
+      <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;best_fields&#34;</span>, <span style="color:#75715e"># 按照有對應到的順序計算</span>
+      <span style="color:#e6db74">&#34;fields&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#e6db74">&#34;completion_field&#34;</span>
+      <span style="color:#f92672">]</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">##### response #####</span>
+<span style="color:#f92672">{</span>
+    ...
+  <span style="color:#e6db74">&#34;hits&#34;</span> : <span style="color:#f92672">{</span>
+      ...
+    <span style="color:#e6db74">&#34;hits&#34;</span> : <span style="color:#f92672">[</span>
+      <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;_index&#34;</span> : <span style="color:#e6db74">&#34;completion_field&#34;</span>,
+        <span style="color:#e6db74">&#34;_type&#34;</span> : <span style="color:#e6db74">&#34;_doc&#34;</span>,
+        <span style="color:#e6db74">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span>,
+        <span style="color:#e6db74">&#34;_score&#34;</span> : 0.8630463,
+        <span style="color:#e6db74">&#34;_source&#34;</span> : <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#34;completion_field&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
+        <span style="color:#f92672">}</span>
+      <span style="color:#f92672">}</span>,
+      <span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;_index&#34;</span> : <span style="color:#e6db74">&#34;completion_field&#34;</span>,
+        <span style="color:#e6db74">&#34;_type&#34;</span> : <span style="color:#e6db74">&#34;_doc&#34;</span>,
+        <span style="color:#e6db74">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span>,
+        <span style="color:#e6db74">&#34;_score&#34;</span> : 0.8630463,
+        <span style="color:#e6db74">&#34;_source&#34;</span> : <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#34;completion_field&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
+        <span style="color:#f92672">}</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">]</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>_source 裡面的就是結果<br>
+ 
+
+<figure class="center">
+  <img src="/images/auto-completion-result.png" title="呈現結果示意圖" decoding="async" />
+  <figcaption>呈現結果示意圖</figcaption>
+</figure>
+<style lang="css">
+  .center {
+    text-align: center;
+  }
+</style>
+</p>
+<h1 id="補充-analyzer-是什麼">補充： analyzer 是什麼</h1>
+<blockquote>
+<p>Analyzer = Character Filter + Tokenizer + Token Filter</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">名稱</th>
+<th align="left">簡介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Character Filter</td>
+<td align="left">針對原始文件進行處理，例如：去除HTML tag，一個 analyzer 可設定多個 char_filter</td>
+</tr>
+<tr>
+<td align="left">Tokenizer</td>
+<td align="left">將前者的結果依據規則切分 token，比如以空白切分的 <code>whitespace</code>，必須要有一個 tokenizer</td>
+</tr>
+<tr>
+<td align="left">Token Filter</td>
+<td align="left">將前者個結果進行增修（stop、lowercase、synonym&hellip;），但不可移動其位置，可設定多個 filter</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-suggesters.html">elasticsearch suggesters</a></li>
+<li><a href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/">FST 深入剖析</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes-7.0.html#breaking_70_mappings_changes">elasticsearch 7.0 breaking changes</a></li>
+<li><a href="https://stackoverflow.com/questions/30666371/how-to-wisely-combine-shingles-and-edgengram-to-provide-flexible-full-text-search">how-to-wisely-combine-shingles-and-edgengram-to-provide-flexible-full-text-search</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.x/analyzer-anatomy.html">analyzer-anatomy</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2020-4-22
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/elasticsearch/">#elasticsearch</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="https://whchi.github.io/posts/connect-to-existing-network-in-docker/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      &copy; whchi 2018
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+  </footer>
+
+  
+  
+  
+
+  
+  
+
+  
+</body>
+</html>
+
