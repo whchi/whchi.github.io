@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 22 Apr 2020 23:48:03 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2020 23:00:12 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>轉存 gsheet 成 pdf 並存入 google drive</title>
+      <link>https://whchi.github.io/posts/save-gsheet-as-pdf-to-google-drive/</link>
+      <pubDate>Wed, 06 May 2020 23:00:12 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/save-gsheet-as-pdf-to-google-drive/</guid>
+      <description>感覺很有機會用就紀錄在這</description>
+    </item>
     
     <item>
       <title>雜談（1）</title>
