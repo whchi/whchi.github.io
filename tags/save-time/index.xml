@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>docker on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/docker/</link>
-    <description>Recent content in docker on 雜談與紀錄</description>
+    <title>save time on 雜談與紀錄</title>
+    <link>https://whchi.github.io/tags/save-time/</link>
+    <description>Recent content in save time on 雜談與紀錄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
     <lastBuildDate>Thu, 14 May 2020 15:17:19 +0800</lastBuildDate>
     
-	<atom:link href="https://whchi.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://whchi.github.io/tags/save-time/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -28,24 +28,6 @@
       
       <guid>https://whchi.github.io/posts/connect-to-existing-network-in-docker/</guid>
       <description>記在這不然每次都忘記</description>
-    </item>
-    
-    <item>
-      <title>在 docker 上跑 laravel-dusk</title>
-      <link>https://whchi.github.io/posts/laravel-dusk-on-docker/</link>
-      <pubDate>Fri, 31 Jan 2020 14:45:27 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/posts/laravel-dusk-on-docker/</guid>
-      <description>自己挖的洞自己填</description>
-    </item>
-    
-    <item>
-      <title>使用 Github 管理 Docker image</title>
-      <link>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</link>
-      <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</guid>
-      <description>列出使用 github 管理 dockerhub 時需要做的步驟</description>
     </item>
     
   </channel>

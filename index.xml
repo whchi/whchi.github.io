@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 06 May 2020 23:00:12 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 14 May 2020 15:17:19 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>在 vscode 中設定 docker xdebug</title>
+      <link>https://whchi.github.io/posts/docker-vscode-xdebug/</link>
+      <pubDate>Thu, 14 May 2020 15:17:19 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/docker-vscode-xdebug/</guid>
+      <description>記錄一下比較好 copy-paste</description>
+    </item>
     
     <item>
       <title>轉存 gsheet 成 pdf 並存入 google drive</title>
@@ -180,7 +189,7 @@
       <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
       
       <guid>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</guid>
-      <description>列出使用github管理dockerhub時需要做的步驟</description>
+      <description>列出使用 github 管理 dockerhub 時需要做的步驟</description>
     </item>
     
     <item>
