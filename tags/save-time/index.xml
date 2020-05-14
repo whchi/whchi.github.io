@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>轉存 gsheet 成 pdf 並存入 google drive</title>
+      <link>https://whchi.github.io/posts/save-gsheet-as-pdf-to-google-drive/</link>
+      <pubDate>Wed, 06 May 2020 23:00:12 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/save-gsheet-as-pdf-to-google-drive/</guid>
+      <description>感覺很有機會用就紀錄在這</description>
+    </item>
+    
+    <item>
       <title>Connect to Existing Network in Docker</title>
       <link>https://whchi.github.io/posts/connect-to-existing-network-in-docker/</link>
       <pubDate>Thu, 12 Mar 2020 17:28:18 +0800</pubDate>
