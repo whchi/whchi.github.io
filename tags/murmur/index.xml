@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>murmur on 雜談與紀錄</title>
+    <link>https://whchi.github.io/tags/murmur/</link>
+    <description>Recent content in murmur on 雜談與紀錄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Sun, 17 May 2020 22:25:20 +0800</lastBuildDate>
+    
+	<atom:link href="https://whchi.github.io/tags/murmur/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>雜談（2）</title>
+      <link>https://whchi.github.io/posts/murmur-2/</link>
+      <pubDate>Sun, 17 May 2020 22:25:20 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/murmur-2/</guid>
+      <description>關於同溫層</description>
+    </item>
+    
+    <item>
+      <title>雜談（1）</title>
+      <link>https://whchi.github.io/posts/murmur-1/</link>
+      <pubDate>Wed, 22 Apr 2020 23:48:03 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/murmur-1/</guid>
+      <description>關於學習</description>
+    </item>
+    
+  </channel>
+</rss>

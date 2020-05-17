@@ -3,12 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://whchi.github.io/tags/docker/</loc>
-    <lastmod>2020-05-14T15:17:19+08:00</lastmod>
+    <loc>https://whchi.github.io/tags/murmur/</loc>
+    <lastmod>2020-05-17T22:25:20+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2020-05-17T22:25:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/</loc>
+    <lastmod>2020-05-17T22:25:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/</loc>
+    <lastmod>2020-05-17T22:25:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/murmur-2/</loc>
+    <lastmod>2020-05-17T22:25:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/docker/</loc>
     <lastmod>2020-05-14T15:17:19+08:00</lastmod>
   </url>
   
@@ -18,17 +38,7 @@
   </url>
   
   <url>
-    <loc>https://whchi.github.io/tags/</loc>
-    <lastmod>2020-05-14T15:17:19+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://whchi.github.io/posts/docker-vscode-xdebug/</loc>
-    <lastmod>2020-05-14T15:17:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/</loc>
     <lastmod>2020-05-14T15:17:19+08:00</lastmod>
   </url>
   
@@ -43,12 +53,7 @@
   </url>
   
   <url>
-    <loc>https://whchi.github.io/tags/gossiping/</loc>
-    <lastmod>2020-04-22T23:48:03+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/posts/gossiping-1/</loc>
+    <loc>https://whchi.github.io/posts/murmur-1/</loc>
     <lastmod>2020-04-22T23:48:03+08:00</lastmod>
   </url>
   

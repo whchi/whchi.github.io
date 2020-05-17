@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 14 May 2020 15:17:19 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2020 22:25:20 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>murmur</title>
+      <link>https://whchi.github.io/tags/murmur/</link>
+      <pubDate>Sun, 17 May 2020 22:25:20 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/murmur/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>docker</title>
@@ -36,15 +45,6 @@
       <pubDate>Wed, 06 May 2020 23:00:12 +0800</pubDate>
       
       <guid>https://whchi.github.io/tags/google-app-script/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gossiping</title>
-      <link>https://whchi.github.io/tags/gossiping/</link>
-      <pubDate>Wed, 22 Apr 2020 23:48:03 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/gossiping/</guid>
       <description></description>
     </item>
     

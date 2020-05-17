@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 14 May 2020 15:17:19 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2020 22:25:20 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>雜談（2）</title>
+      <link>https://whchi.github.io/posts/murmur-2/</link>
+      <pubDate>Sun, 17 May 2020 22:25:20 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/murmur-2/</guid>
+      <description>關於同溫層</description>
+    </item>
     
     <item>
       <title>在 vscode 中設定 docker xdebug</title>
@@ -32,10 +41,10 @@
     
     <item>
       <title>雜談（1）</title>
-      <link>https://whchi.github.io/posts/gossiping-1/</link>
+      <link>https://whchi.github.io/posts/murmur-1/</link>
       <pubDate>Wed, 22 Apr 2020 23:48:03 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/gossiping-1/</guid>
+      <guid>https://whchi.github.io/posts/murmur-1/</guid>
       <description>關於學習</description>
     </item>
     
