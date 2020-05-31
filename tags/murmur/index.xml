@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sun, 17 May 2020 22:25:20 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 31 May 2020 21:35:16 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/tags/murmur/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>雜談（3）</title>
+      <link>https://whchi.github.io/posts/murmur-3/</link>
+      <pubDate>Sun, 31 May 2020 21:35:16 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/murmur-3/</guid>
+      <description>關於成長</description>
+    </item>
     
     <item>
       <title>雜談（2）</title>

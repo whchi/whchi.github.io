@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://whchi.github.io/tags/murmur/</loc>
+    <lastmod>2020-05-31T21:35:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2020-05-31T21:35:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/</loc>
+    <lastmod>2020-05-31T21:35:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/</loc>
+    <lastmod>2020-05-31T21:35:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/murmur-3/</loc>
+    <lastmod>2020-05-31T21:35:16+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/tags/hadoop/</loc>
     <lastmod>2020-05-25T14:46:39+08:00</lastmod>
   </url>
@@ -13,28 +38,8 @@
   </url>
   
   <url>
-    <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2020-05-25T14:46:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/</loc>
-    <lastmod>2020-05-25T14:46:39+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://whchi.github.io/posts/hbase-installation/</loc>
     <lastmod>2020-05-25T14:46:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/</loc>
-    <lastmod>2020-05-25T14:46:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/murmur/</loc>
-    <lastmod>2020-05-17T22:25:20+08:00</lastmod>
   </url>
   
   <url>
