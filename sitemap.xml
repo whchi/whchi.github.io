@@ -3,22 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://whchi.github.io/tags/murmur/</loc>
-    <lastmod>2020-05-31T21:35:16+08:00</lastmod>
+    <loc>https://whchi.github.io/tags/apache-beam/</loc>
+    <lastmod>2020-06-11T18:02:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/avro/</loc>
+    <lastmod>2020-06-11T18:02:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/avro-to-hbase-using-apache-beam/</loc>
+    <lastmod>2020-06-11T18:02:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/data-pipeline/</loc>
+    <lastmod>2020-06-11T18:02:56+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2020-05-31T21:35:16+08:00</lastmod>
+    <lastmod>2020-06-11T18:02:56+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://whchi.github.io/tags/</loc>
-    <lastmod>2020-05-31T21:35:16+08:00</lastmod>
+    <lastmod>2020-06-11T18:02:56+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://whchi.github.io/</loc>
+    <lastmod>2020-06-11T18:02:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/murmur/</loc>
     <lastmod>2020-05-31T21:35:16+08:00</lastmod>
   </url>
   
