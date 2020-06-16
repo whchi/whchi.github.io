@@ -92,78 +92,82 @@
 <ul>
 <li>config/auth.php</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">...
-&#39;providers&#39; =&gt; [
-    &#39;users&#39; =&gt; [
-        &#39;driver&#39; =&gt; &#39;custom-driver&#39;,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#f92672">...</span>
+<span style="color:#e6db74">&#39;providers&#39;</span> <span style="color:#f92672">=&gt;</span> [
+    <span style="color:#e6db74">&#39;users&#39;</span> <span style="color:#f92672">=&gt;</span> [
+        <span style="color:#e6db74">&#39;driver&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;custom-driver&#39;</span>,
     ]
 ]
-...
+<span style="color:#f92672">...</span>
 </code></pre></div><ul>
 <li>AuthServiceProvider.php</li>
 </ul>
 <p>you can use <code>php artisan</code> to create provider</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">public function boot() {
-    ...
-    Auth::provider(&#39;custom-driver&#39;, function ($app, array $config) {
-        return new YourCustomAuthProvider();
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">boot</span>() {
+    <span style="color:#f92672">...</span>
+    <span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">provider</span>(<span style="color:#e6db74">&#39;custom-driver&#39;</span>, <span style="color:#66d9ef">function</span> ($app, <span style="color:#66d9ef">array</span> $config) {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">YourCustomAuthProvider</span>();
     });
 }
 </code></pre></div><ul>
 <li>YourCustomAuthProvider.php</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Auth\GenericUser;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Contracts\Auth\Authenticatable</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Auth\GenericUser</span>;
 
-class YourCustomAuthProvider implements \Illuminate\Contracts\Auth\UserProvider
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">YourCustomAuthProvider</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">\Illuminate\Contracts\Auth\UserProvider</span>
 {
-    // implement all contrat
-    // below is sample
-    public function retrieveById($identifier)
+    <span style="color:#75715e">// implement all contrat
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// below is sample
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">retrieveById</span>($identifier)
     {
-        return $this-&gt;getUser($identifier);
+        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUser</span>($identifier);
     }
 
-    public function retrieveByToken($identifier, $token)
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">retrieveByToken</span>($identifier, $token)
     {
-        $user = $this-&gt;getUser($identifier);
-        return isset($user[&#39;remember_token&#39;]) <span style="color:#960050;background-color:#1e0010">&amp;&amp;</span> $user[&#39;remember_token&#39;] == $token ? $user : null;
+        $user <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUser</span>($identifier);
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">isset</span>($user[<span style="color:#e6db74">&#39;remember_token&#39;</span>]) <span style="color:#f92672">&amp;&amp;</span> $user[<span style="color:#e6db74">&#39;remember_token&#39;</span>] <span style="color:#f92672">==</span> $token <span style="color:#f92672">?</span> $user <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
     }
 
-    public function updateRememberToken(Authenticatable $user, $token)
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateRememberToken</span>(<span style="color:#a6e22e">Authenticatable</span> $user, $token)
     {
-        Session::put(&#39;remember_token&#39;, $token);
+        <span style="color:#a6e22e">Session</span><span style="color:#f92672">::</span><span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#39;remember_token&#39;</span>, $token);
     }
 
-    public function retrieveByCredentials(array $credentials)
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">retrieveByCredentials</span>(<span style="color:#66d9ef">array</span> $credentials)
     {
-        $token = $this-&gt;getAccessToken();
-        if(!$token) {
-            // invalid token actions here
-        }
-        $data = $this-&gt;getUserData($token);
-        return new GenericUser($data);
+        $token <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getAccessToken</span>();
+        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>$token) {
+            <span style="color:#75715e">// invalid token actions here
+</span><span style="color:#75715e"></span>        }
+        $data <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUserData</span>($token);
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">GenericUser</span>($data);
     }
 
-    public function validateCredentials(Authenticatable $user, array $credentials)
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">validateCredentials</span>(<span style="color:#a6e22e">Authenticatable</span> $user, <span style="color:#66d9ef">array</span> $credentials)
     {
-        return yourCredentialsIsValidate() ? true: false;
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">yourCredentialsIsValidate</span>() <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>;
     }
 }
 </code></pre></div><ul>
 <li>YourLoginController.php</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">...
-use Illuminate\Auth\GenericUser;
-...
-public function login(Request $request)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#f92672">...</span>
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Auth\GenericUser</span>;
+<span style="color:#f92672">...</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">Request</span> $request)
 {
-    $data = getTokenAndUserDataFromThirdParty();
+    $data <span style="color:#f92672">=</span> <span style="color:#a6e22e">getTokenAndUserDataFromThirdParty</span>();
 
-    // the key-point is here
-    Auth::guard(&#39;web&#39;)-&gt;login(new GenericUser([&#39;id&#39; =&gt; $data[&#39;email&#39;]]))
-    // then you can run your code with Auth Facade easily
-}
+    <span style="color:#75715e">// the key-point is here
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">guard</span>(<span style="color:#e6db74">&#39;web&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">login</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">GenericUser</span>([<span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=&gt;</span> $data[<span style="color:#e6db74">&#39;email&#39;</span>]]))
+    <span style="color:#75715e">// then you keep your facade works as usual
+</span><span style="color:#75715e"></span>}
 </code></pre></div><ul>
 <li></li>
 </ul>
