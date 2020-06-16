@@ -87,7 +87,8 @@
   </header>
   <div class="delimiter"></div>
   <section>
-    <p>在 laravel 中修改驗證時有幾個地方要改，以下分別列出</p>
+    <p>在 legency 專案上要變換登入要考量的事很多，其中一個情況就是 blade 大量使用 Auth Facade 做 UI 的呈現變化，這邊提出在這種情況下比較無痛轉移的方法</p>
+<p>在 laravel 中修改驗證時有幾個地方要改，以下分別列出並提供範例</p>
 <ul>
 <li>config/auth.php</li>
 </ul>
@@ -159,7 +160,7 @@ public function login(Request $request)
 {
     $data = getTokenAndUserDataFromThirdParty();
 
-    // the point is here
+    // the key-point is here
     Auth::guard(&#39;web&#39;)-&gt;login(new GenericUser([&#39;id&#39; =&gt; $data[&#39;email&#39;]]))
     // then you can run your code with Auth Facade easily
 }
