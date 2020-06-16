@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 11 Jun 2020 18:02:56 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 23:16:10 +0800</lastBuildDate>
     
 	<atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>laravel</title>
+      <link>https://whchi.github.io/tags/laravel/</link>
+      <pubDate>Tue, 16 Jun 2020 23:16:10 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/laravel/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>apache beam</title>
@@ -99,15 +108,6 @@
       <pubDate>Wed, 22 Apr 2020 17:36:40 +0800</pubDate>
       
       <guid>https://whchi.github.io/tags/elasticsearch/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>laravel</title>
-      <link>https://whchi.github.io/tags/laravel/</link>
-      <pubDate>Thu, 12 Mar 2020 16:50:27 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/laravel/</guid>
       <description></description>
     </item>
     
