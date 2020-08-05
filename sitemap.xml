@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://whchi.github.io/tags/murmur/</loc>
+    <lastmod>2020-08-06T00:03:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2020-08-06T00:03:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/</loc>
+    <lastmod>2020-08-06T00:03:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/</loc>
+    <lastmod>2020-08-06T00:03:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/murmur-4/</loc>
+    <lastmod>2020-08-06T00:03:58+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/tags/docker/</loc>
     <lastmod>2020-07-27T15:21:29+08:00</lastmod>
   </url>
@@ -14,21 +39,6 @@
   
   <url>
     <loc>https://whchi.github.io/posts/docker-compose-mongo-replica/</loc>
-    <lastmod>2020-07-27T15:21:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2020-07-27T15:21:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/</loc>
-    <lastmod>2020-07-27T15:21:29+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/</loc>
     <lastmod>2020-07-27T15:21:29+08:00</lastmod>
   </url>
   
@@ -60,11 +70,6 @@
   <url>
     <loc>https://whchi.github.io/tags/data-pipeline/</loc>
     <lastmod>2020-06-11T18:02:56+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/murmur/</loc>
-    <lastmod>2020-05-31T21:35:16+08:00</lastmod>
   </url>
   
   <url>
