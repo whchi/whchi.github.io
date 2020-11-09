@@ -103,26 +103,26 @@
 <table class="table table-bordered">
 <thead>
 <tr>
-<th align="left">名稱</th>
-<th align="left">描述</th>
+<th style="text-align:left">名稱</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Term</td>
-<td align="left">用 <a href="https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%BC%AF%E8%B7%9D%E9%9B%A2">edit distance</a> 為算法基礎（顧名思義，某個字詞改變多少字元就能轉變為另個字詞），基於 analyze 過的單一 term 給予建議，不考慮 term 之間的關係。</td>
+<td style="text-align:left">Term</td>
+<td style="text-align:left">用 <a href="https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%BC%AF%E8%B7%9D%E9%9B%A2">edit distance</a> 為算法基礎（顧名思義，某個字詞改變多少字元就能轉變為另個字詞），基於 analyze 過的單一 term 給予建議，不考慮 term 之間的關係。</td>
 </tr>
 <tr>
-<td align="left">Phrase</td>
-<td align="left">基於前者的基礎上考慮其關係，通常能提供更符合語意的結果。</td>
+<td style="text-align:left">Phrase</td>
+<td style="text-align:left">基於前者的基礎上考慮其關係，通常能提供更符合語意的結果。</td>
 </tr>
 <tr>
-<td align="left">Completion</td>
-<td align="left">針對 <strong>auto completion</strong> 的應用場景，其原理是將 token 編碼成 FST 後放在索引裡，由於是在 memory 因此回應速度很快，<strong>不過因其資料結構限制所以只能做 prefix 查詢</strong></td>
+<td style="text-align:left">Completion</td>
+<td style="text-align:left">針對 <strong>auto completion</strong> 的應用場景，其原理是將 token 編碼成 FST 後放在索引裡，由於是在 memory 因此回應速度很快，<strong>不過因其資料結構限制所以只能做 prefix 查詢</strong></td>
 </tr>
 <tr>
-<td align="left">Context</td>
-<td align="left">是前者的進階使用，由於自動完成有時需要考慮情境（比如輸入 star 跑出 coffee，因為 starbuck 的存在）而出現的類型</td>
+<td style="text-align:left">Context</td>
+<td style="text-align:left">是前者的進階使用，由於自動完成有時需要考慮情境（比如輸入 star 跑出 coffee，因為 starbuck 的存在）而出現的類型</td>
 </tr>
 </tbody>
 </table>
@@ -285,22 +285,22 @@ PUT &lt;index&gt;/_doc/2?refresh
 <table class="table table-bordered">
 <thead>
 <tr>
-<th align="left">名稱</th>
-<th align="left">簡介</th>
+<th style="text-align:left">名稱</th>
+<th style="text-align:left">簡介</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Character Filter</td>
-<td align="left">針對原始文件進行處理，例如：去除HTML tag，一個 analyzer 可設定多個 char_filter</td>
+<td style="text-align:left">Character Filter</td>
+<td style="text-align:left">針對原始文件進行處理，例如：去除HTML tag，一個 analyzer 可設定多個 char_filter</td>
 </tr>
 <tr>
-<td align="left">Tokenizer</td>
-<td align="left">將前者的結果依據規則切分 token，比如以空白切分的 <code>whitespace</code>，必須要有一個 tokenizer</td>
+<td style="text-align:left">Tokenizer</td>
+<td style="text-align:left">將前者的結果依據規則切分 token，比如以空白切分的 <code>whitespace</code>，必須要有一個 tokenizer</td>
 </tr>
 <tr>
-<td align="left">Token Filter</td>
-<td align="left">將前者個結果進行增修（stop、lowercase、synonym&hellip;），但不可移動其位置，可設定多個 filter</td>
+<td style="text-align:left">Token Filter</td>
+<td style="text-align:left">將前者個結果進行增修（stop、lowercase、synonym&hellip;），但不可移動其位置，可設定多個 filter</td>
 </tr>
 </tbody>
 </table>

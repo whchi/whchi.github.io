@@ -179,26 +179,26 @@ TV =&gt; Taiwan-Value
 <table class="table table-bordered">
 <thead>
 <tr>
-<th align="left">檔案</th>
-<th align="left">說明</th>
+<th style="text-align:left">檔案</th>
+<th style="text-align:left">說明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">units.dic</td>
-<td align="left">單位詞(年月日時分秒&hellip;)</td>
+<td style="text-align:left">units.dic</td>
+<td style="text-align:left">單位詞(年月日時分秒&hellip;)</td>
 </tr>
 <tr>
-<td align="left">chars.dic</td>
-<td align="left">單一串字典</td>
+<td style="text-align:left">chars.dic</td>
+<td style="text-align:left">單一串字典</td>
 </tr>
 <tr>
-<td align="left">words.dic</td>
-<td align="left">想要被切出來的詞庫, 比如說「三生有幸」原本可能是「三」「生」「有」「幸」, 加入後就會直接被切成「三生有幸」</td>
+<td style="text-align:left">words.dic</td>
+<td style="text-align:left">想要被切出來的詞庫, 比如說「三生有幸」原本可能是「三」「生」「有」「幸」, 加入後就會直接被切成「三生有幸」</td>
 </tr>
 <tr>
-<td align="left">wordsXXXX.dic</td>
-<td align="left">XXXX自定義, 主要是切開管理字典檔</td>
+<td style="text-align:left">wordsXXXX.dic</td>
+<td style="text-align:left">XXXX自定義, 主要是切開管理字典檔</td>
 </tr>
 </tbody>
 </table>
@@ -208,15 +208,15 @@ TV =&gt; Taiwan-Value
 <ul>
 <li>docker-compose.yml</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">solr</span>:
-    <span style="color:#66d9ef">image</span>: geerlingguy/solr:<span style="color:#ae81ff">4.10.4</span>
-    <span style="color:#66d9ef">container_name</span>: local_solr4
-    <span style="color:#66d9ef">ports</span>:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">solr</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">geerlingguy/solr:4.10.4</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_solr4</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#39;8983:8983&#39;</span>
-    <span style="color:#66d9ef">restart</span>: always
-    <span style="color:#66d9ef">volumes</span>: [
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">volumes</span>: [
         <span style="color:#e6db74">&#39;./cores/mycore:/var/solr/mycore:rw&#39;</span>, <span style="color:#75715e"># 保存core</span>
         <span style="color:#e6db74">&#39;./jars/mmseg4j-core-1.10.0.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mmseg4j-core-1.10.0.jar&#39;</span>,
         <span style="color:#e6db74">&#39;./jars/mmseg4j-solr-2.2.0.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mmseg4j-solr-2.2.0.jar&#39;</span>,
@@ -225,17 +225,17 @@ TV =&gt; Taiwan-Value
         <span style="color:#e6db74">&#39;./jars/solr-dataimporthandler-extras-4.10.4.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/solr-dataimporthandler-extras-4.10.4.jar&#39;</span>,
         <span style="color:#e6db74">&#39;./dict:/opt/solr-multicore/dics/&#39;</span> <span style="color:#75715e"># 自定義字典檔, 可以去開源詞庫抓獲自行定義</span>
     ]
-    <span style="color:#66d9ef">command</span>:
+    <span style="color:#f92672">command</span>:
     - <span style="color:#e6db74">&#39;/opt/solr/bin/solr start -p 8983 -s /var/solr -m 1024m -f&#39;</span>
-  <span style="color:#66d9ef">mysql</span>:
-    <span style="color:#66d9ef">image</span>: mysql:<span style="color:#ae81ff">5.7</span>
-    <span style="color:#66d9ef">volumes</span>:
-    - ./mysql/var/lib/mysql:/var/lib/mysql
-    <span style="color:#66d9ef">environment</span>:
-      <span style="color:#66d9ef">MYSQL_ALLOW_EMPTY_PASSWORD</span>: yes
-    <span style="color:#66d9ef">ports</span>:
+  <span style="color:#f92672">mysql</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mysql:5.7</span>
+    <span style="color:#f92672">volumes</span>:
+    - <span style="color:#ae81ff">./mysql/var/lib/mysql:/var/lib/mysql</span>
+    <span style="color:#f92672">environment</span>:
+      <span style="color:#f92672">MYSQL_ALLOW_EMPTY_PASSWORD</span>: <span style="color:#66d9ef">yes</span>
+    <span style="color:#f92672">ports</span>:
     - <span style="color:#e6db74">&#34;3306:3306&#34;</span>
-    <span style="color:#66d9ef">privileged</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">privileged</span>: <span style="color:#66d9ef">true</span>
 </code></pre></div><h2 id="測試">測試</h2>
 <p>安裝成功後開啟瀏覽器輸入<code>localhost:8983</code> 會看到 solr 的 UI, 選擇<code>mycore</code>跑完<code>full-import</code>後點擊<code>Analysis</code>頁籤<br>
 於選擇建立的欄位進行測試如圖

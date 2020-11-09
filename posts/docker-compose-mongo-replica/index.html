@@ -137,30 +137,30 @@ replication:
 <table class="table table-bordered">
 <thead>
 <tr>
-<th align="center">名稱</th>
-<th align="left">說明</th>
+<th style="text-align:center">名稱</th>
+<th style="text-align:left">說明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">primary</td>
-<td align="left">預設，所有讀操作都只會從 primary 進行，如果該 node 死掉則出現 error</td>
+<td style="text-align:center">primary</td>
+<td style="text-align:left">預設，所有讀操作都只會從 primary 進行，如果該 node 死掉則出現 error</td>
 </tr>
 <tr>
-<td align="center">primaryPreferred</td>
-<td align="left">primary 死掉時會從 secondary 找，如有設定 tag 的話會從符合的 tag 中找最近的</td>
+<td style="text-align:center">primaryPreferred</td>
+<td style="text-align:left">primary 死掉時會從 secondary 找，如有設定 tag 的話會從符合的 tag 中找最近的</td>
 </tr>
 <tr>
-<td align="center">secondary</td>
-<td align="left">只從 secondary 讀，secondary 全死就出錯</td>
+<td style="text-align:center">secondary</td>
+<td style="text-align:left">只從 secondary 讀，secondary 全死就出錯</td>
 </tr>
 <tr>
-<td align="center">secondaryPreferred</td>
-<td align="left">如果只有兩個 node，且其中一個是 primary 的話就從 primary 讀</td>
+<td style="text-align:center">secondaryPreferred</td>
+<td style="text-align:left">如果只有兩個 node，且其中一個是 primary 的話就從 primary 讀</td>
 </tr>
 <tr>
-<td align="center">nearest</td>
-<td align="left">依 latency 選擇回應最快的節點接收讀操作</td>
+<td style="text-align:center">nearest</td>
+<td style="text-align:left">依 latency 選擇回應最快的節點接收讀操作</td>
 </tr>
 </tbody>
 </table>
@@ -170,34 +170,34 @@ replication:
 <ol>
 <li>docker-compose.yml</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3.7&#39;</span>
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">mongo_primary</span>:
-    <span style="color:#66d9ef">restart</span>: always
-    <span style="color:#66d9ef">image</span>: mongo:<span style="color:#ae81ff">4</span>
-    <span style="color:#66d9ef">volumes</span>:
-      - ./data:/data/db
-    <span style="color:#66d9ef">ports</span>:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.7&#39;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">mongo_primary</span>:
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mongo:4</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">./data:/data/db</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#39;27017:27017&#39;</span>
-    <span style="color:#66d9ef">entrypoint</span>:
+    <span style="color:#f92672">entrypoint</span>:
       [<span style="color:#e6db74">&#39;mongod&#39;</span>, <span style="color:#e6db74">&#39;--port&#39;</span>, <span style="color:#e6db74">&#39;27017&#39;</span>, <span style="color:#e6db74">&#39;--bind_ip_all&#39;</span>, <span style="color:#e6db74">&#39;--replSet&#39;</span>, <span style="color:#e6db74">&#39;rs0&#39;</span>]
-    <span style="color:#66d9ef">container_name</span>: local_persona_mongo_primary
-  <span style="color:#66d9ef">mongo_rep1</span>:
-    <span style="color:#66d9ef">image</span>: mongo:<span style="color:#ae81ff">4</span>
-    <span style="color:#66d9ef">restart</span>: always
-    <span style="color:#66d9ef">ports</span>:
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_persona_mongo_primary</span>
+  <span style="color:#f92672">mongo_rep1</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mongo:4</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#39;27027:27027&#39;</span>
-    <span style="color:#66d9ef">entrypoint</span>:
+    <span style="color:#f92672">entrypoint</span>:
       [<span style="color:#e6db74">&#39;mongod&#39;</span>, <span style="color:#e6db74">&#39;--port&#39;</span>, <span style="color:#e6db74">&#39;27027&#39;</span>, <span style="color:#e6db74">&#39;--bind_ip_all&#39;</span>, <span style="color:#e6db74">&#39;--replSet&#39;</span>, <span style="color:#e6db74">&#39;rs0&#39;</span>]
-    <span style="color:#66d9ef">container_name</span>: local_persona_mongo_rep1
-  <span style="color:#66d9ef">mongo_rep2</span>:
-    <span style="color:#66d9ef">image</span>: mongo:<span style="color:#ae81ff">4</span>
-    <span style="color:#66d9ef">restart</span>: always
-    <span style="color:#66d9ef">ports</span>:
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_persona_mongo_rep1</span>
+  <span style="color:#f92672">mongo_rep2</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mongo:4</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#39;27037:27037&#39;</span>
-    <span style="color:#66d9ef">entrypoint</span>:
+    <span style="color:#f92672">entrypoint</span>:
       [<span style="color:#e6db74">&#39;mongod&#39;</span>, <span style="color:#e6db74">&#39;--port&#39;</span>, <span style="color:#e6db74">&#39;27037&#39;</span>, <span style="color:#e6db74">&#39;--bind_ip_all&#39;</span>, <span style="color:#e6db74">&#39;--replSet&#39;</span>, <span style="color:#e6db74">&#39;rs0&#39;</span>]
-    <span style="color:#66d9ef">container_name</span>: local_persona_mongo_rep2
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_persona_mongo_rep2</span>
 </code></pre></div><ol start="2">
 <li>進去啟動 replica</li>
 </ol>

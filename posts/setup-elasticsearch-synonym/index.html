@@ -101,22 +101,22 @@
 <table class="table table-bordered">
 <thead>
 <tr>
-<th align="left">名詞</th>
-<th align="left">說明</th>
+<th style="text-align:left">名詞</th>
+<th style="text-align:left">說明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">tokenizer</td>
-<td align="left">把 input 拆分成 token 產出 token stream</td>
+<td style="text-align:left">tokenizer</td>
+<td style="text-align:left">把 input 拆分成 token 產出 token stream</td>
 </tr>
 <tr>
-<td align="left">filter</td>
-<td align="left">接收 token stream 並進行處理(case/replace/drop&hellip;)</td>
+<td style="text-align:left">filter</td>
+<td style="text-align:left">接收 token stream 並進行處理(case/replace/drop&hellip;)</td>
 </tr>
 <tr>
-<td align="left">analyzer</td>
-<td align="left">在建立/搜尋索引的時候要怎麼處理特定類型的字串, 比如說upperFirstCase, 去掉介詞, 同義詞處理&hellip;相當於tokenizer+filter</td>
+<td style="text-align:left">analyzer</td>
+<td style="text-align:left">在建立/搜尋索引的時候要怎麼處理特定類型的字串, 比如說upperFirstCase, 去掉介詞, 同義詞處理&hellip;相當於tokenizer+filter</td>
 </tr>
 </tbody>
 </table>
@@ -150,22 +150,22 @@
 <p>docker-compose.yml</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">elasticsearch</span>:
-    <span style="color:#66d9ef">build</span>: .
-    <span style="color:#66d9ef">environment</span>:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">elasticsearch</span>:
+    <span style="color:#f92672">build</span>: <span style="color:#ae81ff">.</span>
+    <span style="color:#f92672">environment</span>:
       - <span style="color:#e6db74">&#39;http.host=0.0.0.0&#39;</span>
       - <span style="color:#e6db74">&#39;transport.host=127.0.0.1&#39;</span>
       - <span style="color:#e6db74">&#39;ES_JAVA_OPTS=-Xms512m -Xmx512m&#39;</span>
       - <span style="color:#e6db74">&#39;xpack.security.enabled=false&#39;</span>
       - <span style="color:#e6db74">&#39;ACCESS_TOKEN=e-D9WyQzxfRbpdFvFdhQ&#39;</span>
-    <span style="color:#66d9ef">ports</span>:
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#39;9200:9200&#39;</span>
       - <span style="color:#e6db74">&#39;9300:9300&#39;</span>
-    <span style="color:#66d9ef">volumes</span>:
+    <span style="color:#f92672">volumes</span>:
       - <span style="color:#e6db74">&#39;/path/to/local/index:/usr/share/elasticsearch/data&#39;</span>
-    <span style="color:#66d9ef">container_name</span>: local_es
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_es</span>
 </code></pre></div><h2 id="執行">執行</h2>
 <p>記得把 Dockerfile 放在與 docker-compose.yml 同層</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker-compose up -d

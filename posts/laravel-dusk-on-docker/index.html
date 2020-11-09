@@ -100,45 +100,45 @@
 <ul>
 <li>develop-env.yml</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">container_name</span>: local_dev
-  <span style="color:#66d9ef">image</span>: your-dev-image:version
-  <span style="color:#66d9ef">command</span>: [<span style="color:#e6db74">&#34;/usr/sbin/init&#34;</span>]
-  <span style="color:#66d9ef">ports</span>:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_dev</span>
+  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">your-dev-image:version</span>
+  <span style="color:#f92672">command</span>: [<span style="color:#e6db74">&#34;/usr/sbin/init&#34;</span>]
+  <span style="color:#f92672">ports</span>:
     - <span style="color:#e6db74">&#34;80:80&#34;</span>
     - <span style="color:#e6db74">&#34;443:443&#34;</span>
-  <span style="color:#66d9ef">privileged</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">networks</span>:
-    <span style="color:#66d9ef">mynetwork</span>:
+  <span style="color:#f92672">privileged</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">networks</span>:
+    <span style="color:#f92672">mynetwork</span>:
       <span style="color:#75715e"># 要給固定 ip</span>
-      <span style="color:#66d9ef">ipv4_address</span>: <span style="color:#ae81ff">172.28.0.2</span>
+      <span style="color:#f92672">ipv4_address</span>: <span style="color:#ae81ff">172.28.0.2</span>
 </code></pre></div><ul>
 <li>standalone-chrome.yml</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">chrome</span>:
-    <span style="color:#66d9ef">container_name</span>: local_selenium-chrome
-    <span style="color:#66d9ef">image</span>: selenium/standalone-chrome:<span style="color:#ae81ff">3.141.59</span>
-    <span style="color:#66d9ef">ports</span>:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">chrome</span>:
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_selenium-chrome</span>
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">selenium/standalone-chrome:3.141.59</span>
+    <span style="color:#f92672">ports</span>:
       - <span style="color:#e6db74">&#34;4444:4444&#34;</span>
-    <span style="color:#66d9ef">volumes</span>:
-      - /dev/shm:/dev/shm
-    <span style="color:#66d9ef">extra_hosts</span>:
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">/dev/shm:/dev/shm</span>
+    <span style="color:#f92672">extra_hosts</span>:
         <span style="color:#75715e"># 這裡要指定這個 container 應該要看到的 hostname，看你的 nginx 設定</span>
         - <span style="color:#e6db74">&#34;local-project.dev:172.28.0.2&#34;</span>
-<span style="color:#66d9ef">networks</span>:
-  <span style="color:#66d9ef">default</span>:
-    <span style="color:#66d9ef">external</span>:
-      <span style="color:#66d9ef">name</span>: mynetwork
+<span style="color:#f92672">networks</span>:
+  <span style="color:#f92672">default</span>:
+    <span style="color:#f92672">external</span>:
+      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mynetwork</span>
 </code></pre></div><p>下面列出 laravel-dusk 要做的事</p>
 <h3 id="laravel-dusk">laravel-dusk</h3>
 <p>這邊是說開發環境</p>
 <ul>
 <li>DuskTestCase.php</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#e6db74">/**
 </span><span style="color:#e6db74"> * Create the RemoteWebDriver instance.
 </span><span style="color:#e6db74"> *

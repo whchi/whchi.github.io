@@ -124,34 +124,34 @@
 <table class="table table-bordered">
 <thead>
 <tr>
-<th align="left">name</th>
-<th align="left">describe</th>
+<th style="text-align:left">name</th>
+<th style="text-align:left">describe</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">ParDo</td>
-<td align="left">Use for general parallel processing, 需搭配<code>DoFn</code>使用</td>
+<td style="text-align:left">ParDo</td>
+<td style="text-align:left">Use for general parallel processing, 需搭配<code>DoFn</code>使用</td>
 </tr>
 <tr>
-<td align="left">GroupByKey</td>
-<td align="left">Processing collections of key-value pairs</td>
+<td style="text-align:left">GroupByKey</td>
+<td style="text-align:left">Processing collections of key-value pairs</td>
 </tr>
 <tr>
-<td align="left">CoGroupByKey</td>
-<td align="left">Join two or more key-value PCollections that have same key type, 用再多來源在描述同一件事情時</td>
+<td style="text-align:left">CoGroupByKey</td>
+<td style="text-align:left">Join two or more key-value PCollections that have same key type, 用再多來源在描述同一件事情時</td>
 </tr>
 <tr>
-<td align="left">Combine</td>
-<td align="left">Combining collections of elements or values in your data, 使用時必須要提供 combine function</td>
+<td style="text-align:left">Combine</td>
+<td style="text-align:left">Combining collections of elements or values in your data, 使用時必須要提供 combine function</td>
 </tr>
 <tr>
-<td align="left">Flatten</td>
-<td align="left">Merges multiple PCollection objects into a single logical PCollection, 用在相同 data type 的 PCollections</td>
+<td style="text-align:left">Flatten</td>
+<td style="text-align:left">Merges multiple PCollection objects into a single logical PCollection, 用在相同 data type 的 PCollections</td>
 </tr>
 <tr>
-<td align="left">Partition</td>
-<td align="left">Splits a single PCollection into a fixed number of smaller collections, 用在相同 data type 的 PCollections</td>
+<td style="text-align:left">Partition</td>
+<td style="text-align:left">Splits a single PCollection into a fixed number of smaller collections, 用在相同 data type 的 PCollections</td>
 </tr>
 </tbody>
 </table>
@@ -176,30 +176,30 @@
 <table class="table table-bordered table-hover">
 <thead>
 <tr>
-<th align="left">HBase</th>
-<th align="left">RDBMS</th>
+<th style="text-align:left">HBase</th>
+<th style="text-align:left">RDBMS</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">HBase is schema-less, it doesn&rsquo;t have the concept of fixed columns schema; defines only column families.</td>
-<td align="left">An RDBMS is governed by its schema, which describes the whole structure of tables.</td>
+<td style="text-align:left">HBase is schema-less, it doesn&rsquo;t have the concept of fixed columns schema; defines only column families.</td>
+<td style="text-align:left">An RDBMS is governed by its schema, which describes the whole structure of tables.</td>
 </tr>
 <tr>
-<td align="left">It is built for wide tables. HBase is horizontally scalable.</td>
-<td align="left">It is thin and built for small tables. Hard to scale.</td>
+<td style="text-align:left">It is built for wide tables. HBase is horizontally scalable.</td>
+<td style="text-align:left">It is thin and built for small tables. Hard to scale.</td>
 </tr>
 <tr>
-<td align="left">No transactions are there in HBase.</td>
-<td align="left">RDBMS is transactional.</td>
+<td style="text-align:left">No transactions are there in HBase.</td>
+<td style="text-align:left">RDBMS is transactional.</td>
 </tr>
 <tr>
-<td align="left">It has de-normalized data.</td>
-<td align="left">It will have normalized data.</td>
+<td style="text-align:left">It has de-normalized data.</td>
+<td style="text-align:left">It will have normalized data.</td>
 </tr>
 <tr>
-<td align="left">It is good for semi-structured as well as structured data.</td>
-<td align="left">It is good for structured data.</td>
+<td style="text-align:left">It is good for semi-structured as well as structured data.</td>
+<td style="text-align:left">It is good for structured data.</td>
 </tr>
 </tbody>
 </table>
@@ -214,26 +214,26 @@
 <table class="table table-bordered table-hover">
 <thead>
 <tr>
-<th align="left">HDFS</th>
-<th align="left">HBase</th>
+<th style="text-align:left">HDFS</th>
+<th style="text-align:left">HBase</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">HDFS is a distributed file system suitable for storing large files.</td>
-<td align="left">HBase is a database built on top of the HDFS.</td>
+<td style="text-align:left">HDFS is a distributed file system suitable for storing large files.</td>
+<td style="text-align:left">HBase is a database built on top of the HDFS.</td>
 </tr>
 <tr>
-<td align="left">HDFS does not support fast individual record lookups.</td>
-<td align="left">HBase provides fast lookups for larger tables.</td>
+<td style="text-align:left">HDFS does not support fast individual record lookups.</td>
+<td style="text-align:left">HBase provides fast lookups for larger tables.</td>
 </tr>
 <tr>
-<td align="left">It provides high latency batch processing; no concept of batch processing.</td>
-<td align="left">It provides low latency access to single rows from billions of records (Random access).</td>
+<td style="text-align:left">It provides high latency batch processing; no concept of batch processing.</td>
+<td style="text-align:left">It provides low latency access to single rows from billions of records (Random access).</td>
 </tr>
 <tr>
-<td align="left">It provides only sequential access of data.</td>
-<td align="left">HBase internally uses Hash tables and provides random access, and it stores the data in indexed HDFS files for faster lookups.</td>
+<td style="text-align:left">It provides only sequential access of data.</td>
+<td style="text-align:left">HBase internally uses Hash tables and provides random access, and it stores the data in indexed HDFS files for faster lookups.</td>
 </tr>
 </tbody>
 </table>
@@ -249,38 +249,38 @@
 <table class="table table-bordered table-hover">
 <thead>
 <tr>
-<th align="left">term</th>
-<th align="left">description</th>
+<th style="text-align:left">term</th>
+<th style="text-align:left">description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">table</td>
-<td align="left">由多個 row 組成</td>
+<td style="text-align:left">table</td>
+<td style="text-align:left">由多個 row 組成</td>
 </tr>
 <tr>
-<td align="left">row</td>
-<td align="left">由row key + column family 組成，依照字母排序，設計row key應盡量讓相似的 pattern 放一起</td>
+<td style="text-align:left">row</td>
+<td style="text-align:left">由row key + column family 組成，依照字母排序，設計row key應盡量讓相似的 pattern 放一起</td>
 </tr>
 <tr>
-<td align="left">column</td>
-<td align="left">由 column qualifier 與 column family 組成, 使用 colon character 做定界符號</td>
+<td style="text-align:left">column</td>
+<td style="text-align:left">由 column qualifier 與 column family 組成, 使用 colon character 做定界符號</td>
 </tr>
 <tr>
-<td align="left">column family</td>
-<td align="left">物理上將 column 分群，因此在create table時須先設定且不易修改，每個 row 都有相同的 column family，但不一定每個 column 都會有資料（sparse）</td>
+<td style="text-align:left">column family</td>
+<td style="text-align:left">物理上將 column 分群，因此在create table時須先設定且不易修改，每個 row 都有相同的 column family，但不一定每個 column 都會有資料（sparse）</td>
 </tr>
 <tr>
-<td align="left">column qualifier</td>
-<td align="left">提供 column family index 的基礎，可以後設但不能輕易修改</td>
+<td style="text-align:left">column qualifier</td>
+<td style="text-align:left">提供 column family index 的基礎，可以後設但不能輕易修改</td>
 </tr>
 <tr>
-<td align="left">cell</td>
-<td align="left">一個資料源的最小單位（atom），預設保留 3 個版本，column family + column qualifier + row + value + timestamp</td>
+<td style="text-align:left">cell</td>
+<td style="text-align:left">一個資料源的最小單位（atom），預設保留 3 個版本，column family + column qualifier + row + value + timestamp</td>
 </tr>
 <tr>
-<td align="left">timestamp</td>
-<td align="left">作為版本識別使用，不指定的話使用當下時間，讀取時預設抓取最新版本</td>
+<td style="text-align:left">timestamp</td>
+<td style="text-align:left">作為版本識別使用，不指定的話使用當下時間，讀取時預設抓取最新版本</td>
 </tr>
 </tbody>
 </table>

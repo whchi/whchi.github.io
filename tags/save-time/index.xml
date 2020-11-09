@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 14 May 2020 15:17:19 +0800</lastBuildDate>
-    
-	<atom:link href="https://whchi.github.io/tags/save-time/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 14 May 2020 15:17:19 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/save-time/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在 vscode 中設定 docker xdebug</title>
       <link>https://whchi.github.io/posts/docker-vscode-xdebug/</link>

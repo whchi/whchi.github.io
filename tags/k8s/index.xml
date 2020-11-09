@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 13 Jul 2019 00:37:23 +0800</lastBuildDate>
-    
-	<atom:link href="https://whchi.github.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 13 Jul 2019 00:37:23 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>部署laravel應用程式到GKE上</title>
       <link>https://whchi.github.io/posts/deploy-laravel-app-to-gke/</link>

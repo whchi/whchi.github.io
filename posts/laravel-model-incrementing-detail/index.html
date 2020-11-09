@@ -89,7 +89,7 @@
   <section>
     <p>最近遇到一個怪問題，用 laravel 時如果指定 <code>$primaryKey</code> 為其他非 auto-increment 的值時必需同時指定<code>$keyType</code>跟<code>$incrementing</code>才能 model  在使用時正常</p>
 <p>比如說主鍵是 uuid 時要做以下設定才能正確執行，少一個都不能 work</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 $primaryKey <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uuid&#39;</span>;
 $keyType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;string&#39;</span>;
 $incrementing <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
@@ -99,7 +99,7 @@ $incrementing <span style="color:#f92672">=</span> <span style="color:#66d9ef">f
 <li>Model.php</li>
 </ul>
 <p>在這支約 <code>L682</code> 的地方有說明如果設定上有 <code>$incrementing</code> 的時候會使用<code>PDO::lastInsertId</code>來取的最後 insert 的 id</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#75715e">// If the model has an incrementing key, we can use the &#34;insertGetId&#34; method on
 </span><span style="color:#75715e">// the query builder, which will give us back the final inserted ID for this
 </span><span style="color:#75715e">// table from the database. Not all tables have to be incrementing though.
@@ -117,7 +117,7 @@ With an argument, LAST_INSERT_ID() returns an unsigned integer.
 <ul>
 <li>HasAttributes.php</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getCasts</span>()
 {
     <span style="color:#66d9ef">if</span> ($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getIncrementing</span>()) {

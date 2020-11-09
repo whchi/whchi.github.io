@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 11 Jun 2020 18:02:56 +0800</lastBuildDate>
-    
-	<atom:link href="https://whchi.github.io/tags/data-pipeline/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 11 Jun 2020 18:02:56 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/data-pipeline/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Avro to Hbase using Apache Beam</title>
       <link>https://whchi.github.io/posts/avro-to-hbase-using-apache-beam/</link>

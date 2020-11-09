@@ -157,7 +157,7 @@
 <h3 id="step4-建立-serviceprovider">Step4. 建立 ServiceProvider</h3>
 <p><strong>用 ServiceProvider 是因為有 <code>register</code> 跟 <code>boot</code>，不需要的話可以用其他方式建立</strong><br>
 懶得打字的話直接用 <code>php artisan make:provider YourServiceProvider</code>，再把它 copy 到 src 底下，參考程式範例如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">Cw\KafkaLogger</span>;
 
 <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\ServiceProvider</span>;
@@ -184,10 +184,10 @@
     }
 }
 </code></pre></div><p>並在 <code>config/app.php</code> 加入包含 namespace 的 provider</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&#39;providers&#39; =&gt; [
-    ...
-    Cw\KafkaLogger\KafkaLogServiceProvider::class,
-    ...
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#e6db74">&#39;providers&#39;</span> <span style="color:#f92672">=&gt;</span> [
+    <span style="color:#f92672">...</span>
+    <span style="color:#a6e22e">Cw\KafkaLogger\KafkaLogServiceProvider</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
+    <span style="color:#f92672">...</span>
 ]
 </code></pre></div><h3 id="step5-進行測試">Step5. 進行測試</h3>
 <p>使用內建的 server 即可測試<code>php artisan serve</code>，進到首頁看到如圖結果表示成功
@@ -205,26 +205,26 @@
 <table class="table table-bordered">
 <thead>
 <tr>
-<th align="left">說明</th>
-<th align="left">指令</th>
+<th style="text-align:left">說明</th>
+<th style="text-align:left">指令</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">add local tag</td>
-<td align="left"><code>git tag -a {版本號} -m '非必要的描述'</code></td>
+<td style="text-align:left">add local tag</td>
+<td style="text-align:left"><code>git tag -a {版本號} -m '非必要的描述'</code></td>
 </tr>
 <tr>
-<td align="left">add remote tag</td>
-<td align="left"><code>git push --tags</code></td>
+<td style="text-align:left">add remote tag</td>
+<td style="text-align:left"><code>git push --tags</code></td>
 </tr>
 <tr>
-<td align="left">remove local tag</td>
-<td align="left"><code>git tag -d {版本號}</code></td>
+<td style="text-align:left">remove local tag</td>
+<td style="text-align:left"><code>git tag -d {版本號}</code></td>
 </tr>
 <tr>
-<td align="left">add remote tag</td>
-<td align="left"><code>git push --delete [remotereponame] {版本號}</code>，不指定則為 origin</td>
+<td style="text-align:left">add remote tag</td>
+<td style="text-align:left"><code>git push --delete [remotereponame] {版本號}</code>，不指定則為 origin</td>
 </tr>
 </tbody>
 </table>

@@ -92,30 +92,30 @@
     <ul>
 <li>docker-compose-1.yml</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3.7&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.7&#39;</span>
 ...
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">svc1</span>:
-    <span style="color:#66d9ef">networks</span>:
-      - custom_name
-<span style="color:#66d9ef">networks</span>:
-  <span style="color:#66d9ef">custom_name</span>: <span style="color:#75715e"># 這邊是類似 namespace 的概念</span>
-    <span style="color:#66d9ef">driver</span>: bridge
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">svc1</span>:
+    <span style="color:#f92672">networks</span>:
+      - <span style="color:#ae81ff">custom_name</span>
+<span style="color:#f92672">networks</span>:
+  <span style="color:#f92672">custom_name</span>: <span style="color:#75715e"># 這邊是類似 namespace 的概念</span>
+    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">bridge</span>
 </code></pre></div><p>上面的寫法會建立一個 folder_custom_name 的 network, folder 是前綴，位置不同會變化</p>
 <ul>
 <li>docker-compose-2.yml</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#39;3.7&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.7&#39;</span>
 ...
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">svc1</span>:
-    <span style="color:#66d9ef">networks</span>:
-      - mynet
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">svc1</span>:
+    <span style="color:#f92672">networks</span>:
+      - <span style="color:#ae81ff">mynet</span>
 ...
-<span style="color:#66d9ef">networks</span>:
-  <span style="color:#66d9ef">mynet</span>:
-    <span style="color:#66d9ef">external</span>:
-      <span style="color:#66d9ef">name</span>: folder_custom_name
+<span style="color:#f92672">networks</span>:
+  <span style="color:#f92672">mynet</span>:
+    <span style="color:#f92672">external</span>:
+      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">folder_custom_name</span>
 </code></pre></div>
   </section>
   <div class="clearfix">
