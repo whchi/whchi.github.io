@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>redis on 雜談與紀錄</title>
+    <link>https://whchi.github.io/tags/redis/</link>
+    <description>Recent content in redis on 雜談與紀錄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Thu, 10 Dec 2020 10:21:46 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker Create Redis Sentinel</title>
+      <link>https://whchi.github.io/posts/docker-create-redis-sentinel/</link>
+      <pubDate>Thu, 10 Dec 2020 10:21:46 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/docker-create-redis-sentinel/</guid>
+      <description>redis sentinel 是 redis 自帶的 ha 解決方案（failover only）可以搭配 cluster 做到更 ha 的架構
+這裡提供開發時自架的方式  Reference  https://redis.io/topics/sentinel  </description>
+    </item>
+    
+  </channel>
+</rss>

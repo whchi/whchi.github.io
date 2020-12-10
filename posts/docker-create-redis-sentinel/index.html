@@ -4,22 +4,22 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content=" 滑板（1） &middot;  雜談與紀錄" />
+  <meta property="og:title" content=" Docker Create Redis Sentinel &middot;  雜談與紀錄" />
   
   <meta property="og:site_name" content="雜談與紀錄" />
-  <meta property="og:url" content="https://whchi.github.io/posts/skateboard-categories/" />
+  <meta property="og:url" content="https://whchi.github.io/posts/docker-create-redis-sentinel/" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2020-11-15T22:44:53&#43;08:00" />
+  <meta property="og:article:published_time" content="2020-12-10T10:21:46&#43;08:00" />
   
-  <meta property="og:article:tag" content="skateboard" />
+  <meta property="og:article:tag" content="redis" />
   
   
 
   <title>
-     滑板（1） &middot;  雜談與紀錄
+     Docker Create Redis Sentinel &middot;  雜談與紀錄
   </title>
 
   <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
@@ -83,29 +83,18 @@
 
 <article>
   <header class="article-title">
-    <h1 class="text-primary">滑板（1）</h1>
+    <h1 class="text-primary">Docker Create Redis Sentinel</h1>
   </header>
   <div class="delimiter"></div>
   <section>
-    <p>最近開始學滑板，突然想到學程式時都會筆記，怎麼運動就不會了？趕緊筆記一下</p>
-<p>這邊紀錄滑板的分類</p>
-<h2 id="長板long-board">長板（Long board）</h2>
-<p><img src="https://cdn.shopify.com/s/files/1/0092/1085/5524/products/BhangraV2-Complete_Blue_web_3169b090-c178-4e39-86f9-448548743424_1024x.jpg?v=1557301466" alt="">
-具長（33~59）且寬（9~10）堅硬的板身，因腳可移動範圍較廣所以可以玩 Dancing</p>
-<h2 id="交通板cruiser">交通板（Cruiser）</h2>
-<p><img src="https://cdn.shopify.com/s/files/1/0062/4915/2581/products/PNY20_Staple_22_Mint_comp_1024x1024.jpg?v=1580791869" alt="penny skateboard">
-又稱巡航版，華語圈則稱魚板，因為外型很像一條魚。</p>
-<p>代步為主的一種滑板，板身窄且方便攜帶，輪子比技術版有彈性且大，常見尺寸為 22 ~ 27 不等，比較知名的品牌是 Penny</p>
-<h2 id="技術板skateboard">技術板（Skateboard）</h2>
-<p><img src="https://old.spokey.pl/wp-content/uploads/2017/03/839426_13-1024x1024.jpg" alt="">
-又稱雙翹板，是最常見的滑板，到 youtube 搜尋 &ldquo;epic skate fail&rdquo; 出現的基本上都是這種東西</p>
-<p>輪子較小且為硬輪，路面不平的話會震到爽死</p>
-<h2 id="衝浪滑板surf-skate">衝浪滑板（Surf skate）</h2>
-<p><img src="https://therideside.com/wp-content/uploads/2020/09/yow_jbay_33__surfskate_skateboard_2020-1024x1024.jpg" alt="">
-以模擬衝浪感為主軸的滑板，輪架較高且富彈性，可以做到相當大角度的轉彎，跟衝浪行為很像。</p>
-<p>可輕易地做出 carving 與 pumping，不用特別 push 也可以加速到很快，知名品牌為 Carver、Yow、Smooth star</p>
-<h2 id="電動滑板electric-skateboard">電動滑板（Electric skateboard）</h2>
-<p>以馬達驅動的滑板，較常用於代步（個人不建議，太重了）或影片拍攝</p>
+    <p>redis sentinel 是 redis 自帶的 ha 解決方案（failover only）可以搭配 cluster 做到更 ha 的架構</p>
+<p>這裡提供開發時自架的方式
+<script type="text/javascript" src="https://gist.github.com/048d5861b4eae9623317edc27521e2b0.js"></script>
+</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://redis.io/topics/sentinel">https://redis.io/topics/sentinel</a></li>
+</ul>
 
   </section>
   <div class="clearfix">
@@ -113,14 +102,14 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2020-11-15
+        2020-12-10
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag small"><a href="https://whchi.github.io/tags/skateboard/">#skateboard</a></span>
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/redis/">#redis</a></span>
       
       
     </div>
@@ -140,16 +129,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="https://whchi.github.io/posts/murmur-4/">
+      <a class="btn btn-primary btn-older-posts" href="https://whchi.github.io/posts/skateboard-categories/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="https://whchi.github.io/posts/docker-create-redis-sentinel/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       
