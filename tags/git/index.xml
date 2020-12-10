@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Fri, 21 Dec 2018 09:35:24 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Dec 2020 11:28:30 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 github 上多帳號與多組 ssh key 使用</title>
+      <link>https://whchi.github.io/posts/multi-git-ssh-key/</link>
+      <pubDate>Thu, 10 Dec 2020 11:28:30 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/multi-git-ssh-key/</guid>
+      <description>因公司使用 github 作為代管平台，發現在 github 上同一組 ssh key 不能直接被加到另一個 github 帳號裡面，於是有了這篇文章</description>
+    </item>
+    
     <item>
       <title>git 管理子庫的兩種方式</title>
       <link>https://whchi.github.io/posts/difference-between-subtree-and-submodule/</link>

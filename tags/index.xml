@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 10 Dec 2020 10:21:46 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Dec 2020 11:28:30 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git</title>
+      <link>https://whchi.github.io/tags/git/</link>
+      <pubDate>Thu, 10 Dec 2020 11:28:30 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>redis</title>
       <link>https://whchi.github.io/tags/redis/</link>
@@ -239,15 +248,6 @@
       <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
       
       <guid>https://whchi.github.io/tags/kafka/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>git</title>
-      <link>https://whchi.github.io/tags/git/</link>
-      <pubDate>Fri, 21 Dec 2018 09:35:24 +0800</pubDate>
-      
-      <guid>https://whchi.github.io/tags/git/</guid>
       <description></description>
     </item>
     
