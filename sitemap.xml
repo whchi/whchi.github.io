@@ -3,27 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://whchi.github.io/tags/hugo/</loc>
+    <lastmod>2020-12-16T19:21:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2020-12-16T19:21:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/</loc>
+    <lastmod>2020-12-16T19:21:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/add-js-support-on-hugo/</loc>
+    <lastmod>2020-12-16T19:21:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/</loc>
+    <lastmod>2020-12-16T19:21:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/python/</loc>
+    <lastmod>2020-12-16T18:27:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/tags/python-tips/</loc>
+    <lastmod>2020-12-16T18:27:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://whchi.github.io/posts/use-lru-cache-for-setting/</loc>
+    <lastmod>2020-12-16T18:27:35+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://whchi.github.io/tags/git/</loc>
     <lastmod>2020-12-10T11:28:30+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2020-12-10T11:28:30+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/</loc>
-    <lastmod>2020-12-10T11:28:30+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://whchi.github.io/posts/multi-git-ssh-key/</loc>
-    <lastmod>2020-12-10T11:28:30+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/</loc>
     <lastmod>2020-12-10T11:28:30+08:00</lastmod>
   </url>
   
@@ -223,11 +248,6 @@
   </url>
   
   <url>
-    <loc>https://whchi.github.io/tags/python/</loc>
-    <lastmod>2019-09-05T11:30:49+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://whchi.github.io/tags/sqlserver/</loc>
     <lastmod>2019-09-05T11:30:49+08:00</lastmod>
   </url>
@@ -265,11 +285,6 @@
   <url>
     <loc>https://whchi.github.io/posts/laravel-package/</loc>
     <lastmod>2019-03-18T16:38:36+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/hugo/</loc>
-    <lastmod>2018-12-29T18:24:20+08:00</lastmod>
   </url>
   
   <url>

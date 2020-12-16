@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 05 Sep 2019 11:30:49 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Dec 2020 18:27:35 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>善用 lru_cache 對設定檔進行 cache</title>
+      <link>https://whchi.github.io/posts/use-lru-cache-for-setting/</link>
+      <pubDate>Wed, 16 Dec 2020 18:27:35 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/posts/use-lru-cache-for-setting/</guid>
+      <description>蟒蛇小技巧</description>
+    </item>
+    
     <item>
       <title>Mac Connect to SQL Server</title>
       <link>https://whchi.github.io/posts/mac-connect-to-sql-server/</link>

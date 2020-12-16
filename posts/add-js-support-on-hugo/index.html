@@ -4,24 +4,22 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content=" 使用 Github 管理 Docker image &middot;  雜談與紀錄" />
+  <meta property="og:title" content=" 在 Hugo 中加入 js library &middot;  雜談與紀錄" />
   
   <meta property="og:site_name" content="雜談與紀錄" />
-  <meta property="og:url" content="https://whchi.github.io/posts/use-github-to-manage-your-docker-image/" />
+  <meta property="og:url" content="https://whchi.github.io/posts/add-js-support-on-hugo/" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2018-12-19T17:32:42&#43;08:00" />
+  <meta property="og:article:published_time" content="2020-12-16T19:21:15&#43;08:00" />
   
-  <meta property="og:article:tag" content="github" />
-  
-  <meta property="og:article:tag" content="docker" />
+  <meta property="og:article:tag" content="hugo" />
   
   
 
   <title>
-     使用 Github 管理 Docker image &middot;  雜談與紀錄
+     在 Hugo 中加入 js library &middot;  雜談與紀錄
   </title>
 
   <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
@@ -85,33 +83,34 @@
 
 <article>
   <header class="article-title">
-    <h1 class="text-primary">使用 Github 管理 Docker image</h1>
+    <h1 class="text-primary">在 Hugo 中加入 js library</h1>
   </header>
   <div class="delimiter"></div>
   <section>
-    <p>Docker hub 本身有提供 autobuild trigger，只需透過UI設定與github連動即可做到使用git branch進行docker file的管理，以下分別列出Github與Docker hub需要的設定</p>
-<h2 id="github">Github</h2>
-<p><strong>這裡的 branch 會對應到 Docker hub 的 tag</strong></p>
-<ol>
-<li>建立 github repo，命名為 dockerfile</li>
-<li>clone 到本地後建立新的分支，命名使用自己喜歡的方式命名，e.g: <code>centos7-autotagging</code></li>
-<li>於分支底下建立<code>Dockerfile</code>並撰寫內容</li>
-<li>寫好後<code>docker build . -t 'local-centos7-autotagging'</code> 測試 build (加上 -t 是讓 local 方便操作)</li>
-<li>build通過後<code>git push origin centos7-autotagging</code>建立並推送至遠端分支</li>
-</ol>
-<h2 id="docker-hub">Docker hub</h2>
-<p><strong>這裡的 tag 會對應到 github 的 branch</strong></p>
-<ol>
-<li>建立repo
-<img src="/images/dockerhub-create.png" alt=""></li>
-<li>選擇剛剛建立好的 repository，如果沒連接 github 帳號會要求進行連接
-<img src="/images/dockerhub-choose-github-repo.png" alt=""></li>
-<li>連接完畢並建立 repo 即可</li>
-</ol>
-<p>如有設定好連動即可自動推送並建置image，結果如圖)
-<img src="/images/dockerhub-automatic-building.png" alt=""></p>
-<p>之後要拉自己的環境時只需要<code>docker pull {username}/{repo name}:{tagname}</code>即可<br>
-搭配 docker-compose 更方便，可參考我的**<a href="https://github.com/whchi/dockerfile/tree/pyml">範例</a>**</p>
+    <p>善用 <a href="https://gohugo.io/content-management/shortcodes/">shortcode</a> 以及 <a href="https://bwaycer.github.io/hugo_tutorial.hugo/themes/customizing/">override theme</a> 的觀念即可</p>
+<p>這裡用 <a href="https://github.com/mermaid-js/mermaid">mermaid-js</a> 當範例</p>
+<h2 id="step1-add-short-code">step1. add short code</h2>
+<p><code>layouts/shortcodes/mermaid.html</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mermaid&#34;</span>&gt;{{ .Inner }}&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><h2 id="step2-add-custom-theme">step2. add custom theme</h2>
+<p><code>layouts/partials/footer.html</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">...
+{{ if (.Params.mermaid) }}
+&lt;<span style="color:#f92672">script</span>
+  <span style="color:#a6e22e">async</span>
+  <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js&#34;</span>
+&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+{{ end }}
+</code></pre></div><h2 id="step3-add-post-parameter">step3. add post parameter</h2>
+<p><code>content/posts/xxxxx.md</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">mermaid: true
+</code></pre></div><h2 id="done">done</h2>
+<div class="mermaid">
+sequenceDiagram
+    A->>B: hello
+    B->>A: world
+</div>
+
 
   </section>
   <div class="clearfix">
@@ -119,18 +118,14 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2018-12-19
+        2020-12-16
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag small"><a href="https://whchi.github.io/tags/github/">#github</a></span>
-      
-      
-      
-      <span class="post-tag small"><a href="https://whchi.github.io/tags/docker/">#docker</a></span>
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/hugo/">#hugo</a></span>
       
       
     </div>
@@ -150,16 +145,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="https://whchi.github.io/posts/hugo-installation/">
+      <a class="btn btn-primary btn-older-posts" href="https://whchi.github.io/posts/use-lru-cache-for-setting/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="https://whchi.github.io/posts/difference-between-subtree-and-submodule/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       
@@ -207,6 +202,11 @@
 
 
 
+
+<script
+  async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js"
+></script>
 
 </body>
 </html>
