@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Tue, 22 Dec 2020 16:26:41 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Jan 2021 10:07:07 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>blockchain</title>
+      <link>https://whchi.github.io/tags/blockchain/</link>
+      <pubDate>Tue, 26 Jan 2021 10:07:07 +0800</pubDate>
+      
+      <guid>https://whchi.github.io/tags/blockchain/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>docker</title>
       <link>https://whchi.github.io/tags/docker/</link>
