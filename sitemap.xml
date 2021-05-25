@@ -1,357 +1,224 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://whchi.github.io/tags/chives/</loc>
+    <lastmod>2021-05-25T16:01:16+08:00</lastmod>
+  </url><url>
+    <loc>https://whchi.github.io/posts/</loc>
+    <lastmod>2021-05-25T16:01:16+08:00</lastmod>
+  </url><url>
+    <loc>https://whchi.github.io/tags/stock/</loc>
+    <lastmod>2021-05-25T16:01:16+08:00</lastmod>
+  </url><url>
+    <loc>https://whchi.github.io/tags/</loc>
+    <lastmod>2021-05-25T16:01:16+08:00</lastmod>
+  </url><url>
+    <loc>https://whchi.github.io/</loc>
+    <lastmod>2021-05-25T16:01:16+08:00</lastmod>
+  </url><url>
+    <loc>https://whchi.github.io/posts/about-stock/</loc>
+    <lastmod>2021-05-25T16:01:16+08:00</lastmod>
+  </url><url>
     <loc>https://whchi.github.io/tags/blockchain/</loc>
     <lastmod>2021-01-26T10:07:07+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/ethereum-poa/</loc>
     <lastmod>2021-01-26T10:07:07+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/posts/</loc>
-    <lastmod>2021-01-26T10:07:07+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/tags/</loc>
-    <lastmod>2021-01-26T10:07:07+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://whchi.github.io/</loc>
-    <lastmod>2021-01-26T10:07:07+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/docker/</loc>
     <lastmod>2020-12-22T16:26:41+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/docker-compose-yml-tips/</loc>
     <lastmod>2020-12-22T16:26:41+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/save-time/</loc>
     <lastmod>2020-12-22T16:26:41+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/skateboard/</loc>
     <lastmod>2020-12-16T22:41:38+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/skateboard-kickturn/</loc>
     <lastmod>2020-12-16T22:41:38+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/hugo/</loc>
     <lastmod>2020-12-16T19:21:15+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/add-js-support-on-hugo/</loc>
     <lastmod>2020-12-16T19:21:15+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/python/</loc>
     <lastmod>2020-12-16T18:27:35+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/use-lru-cache-for-setting/</loc>
     <lastmod>2020-12-16T18:27:35+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/git/</loc>
     <lastmod>2020-12-10T11:28:30+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/multi-git-ssh-key/</loc>
     <lastmod>2020-12-10T11:28:30+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/docker-create-redis-sentinel/</loc>
     <lastmod>2020-12-10T10:21:46+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/redis/</loc>
     <lastmod>2020-12-10T10:21:46+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/skateboard-categories/</loc>
     <lastmod>2020-11-15T22:44:53+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/murmur/</loc>
     <lastmod>2020-08-06T00:03:58+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/murmur-4/</loc>
     <lastmod>2020-08-06T00:03:58+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/mongo/</loc>
     <lastmod>2020-07-27T15:21:29+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/docker-compose-mongo-replica/</loc>
     <lastmod>2020-07-27T15:21:29+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/laravel/</loc>
     <lastmod>2020-06-16T23:16:10+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/laravel-third-party-login-auth/</loc>
     <lastmod>2020-06-16T23:16:10+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/apache-beam/</loc>
     <lastmod>2020-06-11T18:02:56+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/avro/</loc>
     <lastmod>2020-06-11T18:02:56+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/avro-to-hbase-using-apache-beam/</loc>
     <lastmod>2020-06-11T18:02:56+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/data-pipeline/</loc>
     <lastmod>2020-06-11T18:02:56+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/murmur-3/</loc>
     <lastmod>2020-05-31T21:35:16+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/hadoop/</loc>
     <lastmod>2020-05-25T14:46:39+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/hbase/</loc>
     <lastmod>2020-05-25T14:46:39+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/hbase-installation/</loc>
     <lastmod>2020-05-25T14:46:39+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/murmur-2/</loc>
     <lastmod>2020-05-17T22:25:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/docker-vscode-xdebug/</loc>
     <lastmod>2020-05-14T15:17:19+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/google-app-script/</loc>
     <lastmod>2020-05-06T23:00:12+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/save-gsheet-as-pdf-to-google-drive/</loc>
     <lastmod>2020-05-06T23:00:12+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/murmur-1/</loc>
     <lastmod>2020-04-22T23:48:03+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/elasticsearch/</loc>
     <lastmod>2020-04-22T17:36:40+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/setup-elasticsearch-autocompletion/</loc>
     <lastmod>2020-04-22T17:36:40+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/connect-to-existing-network-in-docker/</loc>
     <lastmod>2020-03-12T17:28:18+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/difference-between-bind-and-singleton/</loc>
     <lastmod>2020-03-12T16:50:27+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/laravel-model-incrementing-detail/</loc>
     <lastmod>2020-02-11T21:56:10+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/laravel-dusk-on-docker/</loc>
     <lastmod>2020-01-31T14:45:27+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/gsheet-as-json-api-using-google-app-script/</loc>
     <lastmod>2020-01-07T14:56:44+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/intro-to-microsoft-application-insights/</loc>
     <lastmod>2019-11-21T14:47:19+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/ppt/</loc>
     <lastmod>2019-11-21T14:47:19+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/setup-elasticsearch-synonym/</loc>
     <lastmod>2019-10-15T18:17:14+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/solr/</loc>
     <lastmod>2019-09-05T11:55:11+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/setup-solr-synonym/</loc>
     <lastmod>2019-09-05T11:55:11+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/mac/</loc>
     <lastmod>2019-09-05T11:30:49+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/mac-connect-to-sql-server/</loc>
     <lastmod>2019-09-05T11:30:49+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/sqlserver/</loc>
     <lastmod>2019-09-05T11:30:49+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/devops/</loc>
     <lastmod>2019-07-13T00:37:23+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/k8s/</loc>
     <lastmod>2019-07-13T00:37:23+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/deploy-laravel-app-to-gke/</loc>
     <lastmod>2019-07-13T00:37:23+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/composer/</loc>
     <lastmod>2019-06-02T20:16:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/php/</loc>
     <lastmod>2019-06-02T20:16:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/install-custom-composer-package/</loc>
     <lastmod>2019-06-02T20:16:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/laravel-package/</loc>
     <lastmod>2019-03-18T16:38:36+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/hugo-shortcodes-with-gist/</loc>
     <lastmod>2018-12-29T18:24:20+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/elk/</loc>
     <lastmod>2018-12-29T17:30:24+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/kafka/</loc>
     <lastmod>2018-12-29T17:30:24+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/laravel-log-to-elk-via-kafka/</loc>
     <lastmod>2018-12-29T17:30:24+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/difference-between-subtree-and-submodule/</loc>
     <lastmod>2018-12-21T09:35:24+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/tags/github/</loc>
     <lastmod>2018-12-19T17:32:42+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</loc>
     <lastmod>2018-12-19T17:32:42+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/posts/hugo-installation/</loc>
     <lastmod>2018-12-19T15:48:17+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/pages/about/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://whchi.github.io/pages/</loc>
   </url>
-  
 </urlset>
