@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" [翻譯]Best practices for writing Dockerfiles &middot;  雜談與紀錄" />
+  
+  <meta property="og:site_name" content="雜談與紀錄" />
+  <meta property="og:url" content="https://whchi.github.io/posts/dockerfile-best-practices/" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2021-06-07T17:12:05&#43;08:00" />
+  
+  <meta property="og:article:tag" content="dockerfile" />
+  
+  <meta property="og:article:tag" content="translate" />
+  
+  
+
+  <title>
+     [翻譯]Best practices for writing Dockerfiles &middot;  雜談與紀錄
+  </title>
+
+  <link rel="alternative stylesheet" href="https://whchi.github.io/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/github.css" />
+  <link rel="stylesheet" href="https://whchi.github.io/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="https://whchi.github.io/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whchi.github.io/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="https://whchi.github.io/css/custom-hamburg.css">
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(https://whchi.github.io/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="https://whchi.github.io/">雜談與紀錄</a></h1>
+          
+          <h4 class="tag-line">
+            that/s all
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="https://whchi.github.io/pages/about">
+            About
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="https://whchi.github.io/tags">
+            所有標籤
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">[翻譯]Best practices for writing Dockerfiles</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+     
+
+<div class="center">
+  <img src="/images/docker-logo.png" alt="docker logo" decoding="async" />
+</div>
+
+<style>
+  .center {
+    text-align: center;
+  }
+</style>
+
+<blockquote>
+<p>原文位置 <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</a></p>
+</blockquote>
+<p>本文範圍涵蓋建立有效率的 images 的最佳實踐方法</p>
+<p>docker 透過讀取 Dockerfile 建立 image．其有自訂的規範與指示, 可參考 <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference</a> 找到更多解釋</p>
+<p>一個 Docker image 由 多個指令所建構出的 read-only layer 所組成．這些 layer 彼此堆疊，且各 layer 為前一層的 delta of changes．圖為一範例 Dockerfile</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ubuntu:18.04</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . /app<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> make /app<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> python /app/app.py<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>每個指令都建立了一個 layer：</p>
+<ul>
+<li><code>FROM</code> creates a layer from the <code>ubuntu:18.04</code> Docker image.</li>
+<li><code>COPY</code> adds files from your Docker client’s current directory.</li>
+<li><code>RUN</code> builds your application with <code>make</code>.</li>
+<li><code>CMD</code> specifies what command to run within the container.</li>
+</ul>
+<p>當你 run 一個 container，等同於是在底層的 layer 之上增加了新的 &ldquo;writable layer(container layer)&rdquo;, 所有對 container 的操作，例如檔案異動、新增檔案等都會被寫入這個 layer</p>
+<p>更多關於  image layer 以及 docker 是如何建置與儲存 image 的資訊可參考 <a href="https://docs.docker.com/storage/storagedriver/">storage driver</a></p>
+<h1 id="一般性指導原則與建議">一般性指導原則與建議</h1>
+<h2 id="建立-ephemeral-container">建立 ephemeral container</h2>
+<p>在 Dockerfile 的定義所建立的 container 應盡量 &ldquo;ephemeral&rdquo; —可以很容易的被停止、刪除並重建以使用最小設定取代，原因參考 <em>The Twelve-factor App</em> methodology 的 <a href="https://12factor.net/processes">process</a></p>
+<h2 id="理解-build-context">理解 build context</h2>
+<p>當觸發 <code>docker build</code> 時當下的工作目錄就是所謂的 build context．在預設的情況下會假設當前目錄存在一份 Dockerfile，但也可以透過<code>-f</code> 指令決定要 build 的 Dockefile．不管 Dockerfile 在哪裏，所有在工作目錄底下的檔案與目錄都會作為 build context 送到 docker daemon 裡面，參考範例如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Build context example</span>
+
+Create a directory <span style="color:#66d9ef">for</span> the build context and cd into it. Write “hello” into a text file named hello and create a Dockerfile that runs cat on it. Build the image from within the build context <span style="color:#f92672">(</span>.<span style="color:#f92672">)</span>:
+
+mkdir myproject <span style="color:#f92672">&amp;&amp;</span> cd myproject
+echo <span style="color:#e6db74">&#34;hello&#34;</span> &gt; hello
+echo -e <span style="color:#e6db74">&#34;FROM busybox\nCOPY /hello /\nRUN cat /hello&#34;</span> &gt; Dockerfile
+docker build -t helloapp:v1 .
+<span style="color:#75715e"># Move Dockerfile and hello into separate directories and build a second version of</span>
+<span style="color:#75715e"># the image (without relying on cache from the last build).</span>
+<span style="color:#75715e"># Use -f to point to the Dockerfile and specify the directory of the build context:</span>
+
+mkdir -p dockerfiles context
+mv Dockerfile dockerfiles <span style="color:#f92672">&amp;&amp;</span> mv hello context
+docker build --no-cache -t helloapp:v2 -f dockerfiles/Dockerfile context
+</code></pre></div><p>沒有需要進入 build context 的 file 就不要放在 context 中，避免花費額外資源建立 image 寫進去．在建立context的過程會看到如下圖的資訊</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Sending build context to Docker daemon  187.8MB
+</code></pre></div><h2 id="pipe-dockerfile-through-stdin">Pipe Dockerfile through stdin</h2>
+<p>善用<code>stdin</code> 建立一次性的 docker build</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># The examples in this section use here documents for convenience,</span>
+<span style="color:#75715e"># but any method to provide the Dockerfile on stdin can be used.</span>
+
+<span style="color:#75715e"># For example, the following commands are equivalent:</span>
+
+echo -e <span style="color:#e6db74">&#39;FROM busybox\nRUN echo &#34;hello world&#34;&#39;</span> | docker build -
+<span style="color:#75715e"># or</span>
+docker build -<span style="color:#e6db74">&lt;&lt;EOF
+</span><span style="color:#e6db74">FROM busybox
+</span><span style="color:#e6db74">RUN echo &#34;hello world&#34;
+</span><span style="color:#e6db74">EOF</span>
+</code></pre></div><h3 id="使用-stdin-實現不發送-build-context-的-dockerfile-建立">使用 stdin 實現不發送 build context 的 dockerfile 建立</h3>
+<p>使用下面的語法把 Dockerfile 發送到 stdin 中建立 image 並不發送 build context</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># The hyphen (-) takes the position of the PATH,</span>
+<span style="color:#75715e"># and instructs Docker to read the build context (which only contains a Dockerfile) from stdin instead of a directory</span>
+docker build <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> -
+</code></pre></div><p>下面的語法展示了如何傳入一個 Dockerfile 到 stdin 中</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker build -t myimage:latest -<span style="color:#e6db74">&lt;&lt;EOF
+</span><span style="color:#e6db74">FROM busybox
+</span><span style="color:#e6db74">RUN echo &#34;hello world&#34;
+</span><span style="color:#e6db74">EOF</span>
+</code></pre></div><p>忽略 build context  在當你不需要任何檔案複製到 image 時特別有用，可以用更快的速度建立 image</p>
+<p>另一個方法是使用 <code>.dockerignore</code> 來縮減 build context，語法同 <code>.gitignore</code>，更多相關內容參考 <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#exclude-with-dockerignore">exclude with .dockerignore</a></p>
+<p>上述內容參考範例</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Note: Attempting to build a Dockerfile that uses COPY or ADD will fail if this syntax is used.</span>
+<span style="color:#75715e"># The following example illustrates this:</span>
+
+<span style="color:#75715e"># create a directory to work in</span>
+mkdir example
+cd example
+
+<span style="color:#75715e"># create an example file</span>
+touch somefile.txt
+
+docker build -t myimage:latest -<span style="color:#e6db74">&lt;&lt;EOF
+</span><span style="color:#e6db74">FROM busybox
+</span><span style="color:#e6db74">COPY somefile.txt .
+</span><span style="color:#e6db74">RUN cat /somefile.txt
+</span><span style="color:#e6db74">EOF</span>
+
+<span style="color:#75715e"># observe that the build fails</span>
+...
+Step 2/3 : COPY somefile.txt .
+COPY failed: stat /var/lib/docker/tmp/docker-builder249218248/somefile.txt: no such file or directory
+</code></pre></div><h3 id="使用-stdin-在本地建立-local-build-context">使用 stdin 在本地建立 local build context</h3>
+<p>使用下面的語法把 Dockerfile 發送到 stdin 中建立 image 並發送 build context</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># using a hyphen (-) as filename to instruct Docker to read the Dockerfile from stdin</span>
+docker build <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> -f- PATH
+</code></pre></div><p>下面的範例把 <code>.</code> 當作 build context 發送</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># create a directory to work in</span>
+mkdir example
+cd example
+
+<span style="color:#75715e"># create an example file</span>
+touch somefile.txt
+
+<span style="color:#75715e"># build an image using the current directory as context, and a Dockerfile passed through stdin</span>
+docker build -t myimage:latest -f- . <span style="color:#e6db74">&lt;&lt;EOF
+</span><span style="color:#e6db74">FROM busybox
+</span><span style="color:#e6db74">COPY somefile.txt .
+</span><span style="color:#e6db74">RUN cat /somefile.txt
+</span><span style="color:#e6db74">EOF</span>
+</code></pre></div><h3 id="build-from-a-remote-build-context-using-a-dockerfile-from-stdin">BUILD FROM A REMOTE BUILD CONTEXT, USING A DOCKERFILE FROM STDIN</h3>
+<p>使用以下的語法接收遠端的 build context 以建立 image</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker build <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> -f- PATH
+</code></pre></div><p>同上面的語法，不過把 path 的部分換成遠端的 build context即可</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker build -t myimage:latest -f- https://github.com/docker-library/hello-world.git <span style="color:#e6db74">&lt;&lt;EOF
+</span><span style="color:#e6db74">FROM busybox
+</span><span style="color:#e6db74">COPY hello.c .
+</span><span style="color:#e6db74">EOF</span>
+</code></pre></div><p>這個方法在想要 build 的 image 沒有 Dockerfile 或是不想要 clone repo 下來管理時特別好用</p>
+<blockquote>
+<p>注意事項
+當使用遠端的 repo 作為 build context 的時候，docker 會進行 git clone並把repo的東西發送給 docker daemon，因此本機需要有裝 git</p>
+</blockquote>
+<h2 id="exclude-with-dockerignore">Exclude with .dockerignore</h2>
+<p>用法同 <code>.gitignore</code> 更多說明參考 <a href="https://docs.docker.com/engine/reference/builder/#dockerignore-file">.dockerignore  file</a></p>
+<h2 id="進行多階段-builds">進行多階段 builds</h2>
+<p>多階段建置讓你能夠再不用糾結於縮減層數的情況下大幅地減少最終 image 的大小</p>
+<p>因為 image 在建立最終階段的過程中已經被 build 過了，可以使用 <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache">leveraging build cache</a> 的技巧減少 layers</p>
+<p>舉例來說，你可以調整順序讓改變頻率較低的 layer 拉到改變頻率較高的 layer 中以確保 build cache 可以被重複使用，參考以下順序</p>
+<ul>
+<li>Install tools you need to build your application</li>
+<li>Install or update library dependencies</li>
+<li>Generate your application</li>
+</ul>
+<p>以下舉個 go 的例子</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> golang:1.11-alpine AS build</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Install tools required for project</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Run `docker build --no-cache .` to update dependencies</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apk add --no-cache git<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> go get github.com/golang/dep/cmd/dep<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># List project dependencies with Gopkg.toml and Gopkg.lock</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># These layers are only re-built when Gopkg files are updated</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> Gopkg.lock Gopkg.toml /go/src/project/<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /go/src/project/</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Install library dependencies</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> dep ensure -vendor-only<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Copy the entire project and build it</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># This layer is rebuilt when a file changes in the project directory</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . /go/src/project/<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> go build -o /bin/project<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># This results in a single layer image</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> scratch</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build /bin/project /bin/project<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;/bin/project&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;--help&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h2 id="不要安裝不必要的-package">不要安裝不必要的 package</h2>
+<h2 id="解耦應用程式">解耦應用程式</h2>
+<p>每個 container 應該只考慮一件事，這樣才能保持 container 的可規模化與重用性</p>
+<p>另外，限制每個 container 只能使用一個 process 雖然是個好的經驗法則 ，但不是個硬性規定，比如說 apache 預設 worker  本身會對每個 request 開啟一個 process</p>
+<p>盡量在不同的情況下保留 container 的簡單與模組性，如果彼此有相依性則可使用 <a href="https://docs.docker.com/network/">networks</a> 的設定確保彼此可以溝通</p>
+<h2 id="最小化-layers-數量">最小化 layers 數量</h2>
+<p>在早期的 docker 版本中，最小化 layers 的數量是很重要的，為此 docker 有進行過一系列優化如下</p>
+<ul>
+<li>只有 <code>RUN</code>、 <code>COPY</code>、 <code>ADD</code>會建立  layers，其餘的建立暫存的中介 image，這些 image 不會增加 build 的大小</li>
+<li>在可能的時候使用 <a href="https://docs.docker.com/develop/develop-images/multistage-build/">multi-stage builds</a>，並指把必要的東西放到最終的 image  中．這樣可以讓你在不增加  image 大小的情況下取得更多 debug 的資訊</li>
+</ul>
+<h2 id="sort-multi-line-arguments">Sort multi-line arguments</h2>
+<p>在可能的時候把改變的順序依照字母進行排序，這樣可以讓後續使用者更好維護，參考如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  bzr <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  cvs <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  git <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  mercurial <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  subversion<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h2 id="leverage-build-cache">Leverage build cache</h2>
+<p>docker 在 build image 的時候是依照 Dockerfile 的指令順序執行．當每個指令被執行的時候 docker 會去尋找是否有被 cache 的 image</p>
+<p>如果不想使用 cache 的話加入<code>--no-cache=true</code> 即可．以下為 docker 找尋 cache 的基本大綱</p>
+<ul>
+<li>Starting with a parent image that is already in the cache, the next instruction is compared against all child images derived from that base image to see if one of them was built using the exact same instruction. If not, the cache is invalidated.</li>
+<li>In most cases, simply comparing the instruction in the <code>Dockerfile</code> with one of the child images is sufficient. However, certain instructions require more examination and explanation.</li>
+<li>For the <code>ADD</code> and <code>COPY</code> instructions, the contents of the file(s) in the image are examined and a checksum is calculated for each file. The last-modified and last-accessed times of the file(s) are not considered in these checksums. During the cache lookup, the checksum is compared against the checksum in the existing images. If anything has changed in the file(s), such as the contents and metadata, then the cache is invalidated.</li>
+<li>Aside from the <code>ADD</code> and <code>COPY</code> commands, cache checking does not look at the files in the container to determine a cache match. For example, when processing a <code>RUN apt-get -y update</code> command the files updated in the container are not examined to determine if a cache hit exists. In that case just the command string itself is used to find a match.</li>
+</ul>
+<p>當 cache 失效的時候所有後續的指令會建立新的 image</p>
+<p><a href="https://www.notion.so/3ed6b42404974f89a2344c6aa7683c7c">Dockerfile instructions</a></p>
+<ul>
+<li>entrypoint 範例</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>set -e
+
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;postgres&#39;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+    chown -R postgres <span style="color:#e6db74">&#34;</span>$PGDATA<span style="color:#e6db74">&#34;</span>
+
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>ls -A <span style="color:#e6db74">&#34;</span>$PGDATA<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        gosu postgres initdb
+    <span style="color:#66d9ef">fi</span>
+
+    exec gosu postgres <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">fi</span>
+
+exec <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+<span style="color:#75715e"># Configure app as PID 1</span>
+<span style="color:#75715e"># This script uses the exec Bash command so that the final running application becomes the container’s PID 1.</span>
+<span style="color:#75715e"># This allows the application to receive any Unix signals sent to the container.</span>
+<span style="color:#75715e"># For more, see the ENTRYPOINT reference.</span>
+<span style="color:#75715e"># https://stackoverflow.com/questions/39082768/what-does-set-e-and-exec-do-for-docker-entrypoint-scripts</span>
+<span style="color:#75715e"># set -e .... exec &#34;$@&#34; basically takes all the extra command line arguments and execs them as a command.</span>
+</code></pre></div><h2 id="其他官方範例">其他官方範例</h2>
+<ul>
+<li><a href="https://hub.docker.com/_/golang/">Go</a></li>
+<li><a href="https://hub.docker.com/_/perl/">Perl</a></li>
+<li><a href="https://hub.docker.com/_/hylang/">Hy</a></li>
+<li><a href="https://hub.docker.com/_/ruby/">Ruby</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2021-6-7
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/dockerfile/">#dockerfile</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="https://whchi.github.io/tags/translate/">#translate</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="https://whchi.github.io/posts/about-stock/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
