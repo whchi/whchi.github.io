@@ -132,7 +132,7 @@ account <span style="color:#f92672">=</span> YOUR_ACCOUNT
 password <span style="color:#f92672">=</span> YOUR_PASSWORD
 DSN <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;TEST_DB&#39;</span>
 engine <span style="color:#f92672">=</span> create_engine(
-    f<span style="color:#e6db74">&#39;mssql+pyodbc://{namespace}</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">{account}:{password}@{DSN}&#39;</span>)
+    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;mssql+pyodbc://</span><span style="color:#e6db74">{</span>namespace<span style="color:#e6db74">}</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">{</span>account<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">{</span>password<span style="color:#e6db74">}</span><span style="color:#e6db74">@</span><span style="color:#e6db74">{</span>DSN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
 con <span style="color:#f92672">=</span> engine<span style="color:#f92672">.</span>connect()
 <span style="color:#75715e"># more sample @see https://kite.com/python/docs/sqlalchemy.dialects.mssql.pyodbc</span>
 </code></pre></div><h2 id="reference">Reference</h2>
