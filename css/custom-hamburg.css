@@ -1,24 +1,23 @@
 .tag-container {
   text-transform: lowercase;
-  width: auto;
-  min-height: 34px;
-  padding: 2px 2px;
-  margin-bottom: 2px;
-  margin-right: 2px;
-  line-height: 1.6;
+  padding: 0 7px;
   background-color: transparent;
   color: #558b2f;
-  border-radius: 1px;
   overflow: hidden;
   word-wrap: break-word;
 }
 .tag-container:hover {
+    background-color: #f7e9c4;
+    font-weight: bold;
+    text-decoration: none;
+}
+/* .tag-container:hover {
   animation-name: bonuce;
   animation-timing-function: ease;
   animation-duration: 300ms;
   animation-iteration-count: 2;
   background-color: #ffffff;
-}
+} */
 @keyframes bonuce {
   0% {
     transform: scale(1.5, 1.5);
@@ -60,26 +59,49 @@
   justify-content: flex-start;
   align-items: center;
 }
-.tags>.post-tag:first-child {
-    margin-left: 0px;
+.post-tag:first-child {
+  margin-left: 0px;
 }
 .post-tag {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 .post-tag a {
-    border: none;
-    color: #757575;
-    text-decoration: none;
-    font-size: 2rem;
-    margin-left: 0px;
-    padding: 0;
-    border-radius: 0px;
+  text-decoration: none;
+  margin-left: 0px;
+  border-radius: 12px;
+  color: rgb(250, 159, 159);
+  border-color: rgb(250, 159, 159);
+}
+.post-tag a:hover {
+  color: #fff;
+  background-color: rgb(250, 159, 159);
+}
+.read-more-container {
+  display: flex;
+  flex-direction: column;
+}
+.read-more-container > a {
+  font-size: 1.5rem;
 }
 
-.read-more-container {
-    display: flex;
-    flex-direction: column;
+/* rwd for mobile devices */
+@media (min-width: 320px) and (max-width: 736px) {
+  article.list .summary {
+    display: none;
+  }
 }
-.read-more-container>a {
-    font-size: 1.5rem;
+figure.preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+figure.preview > img {
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  color: rgba(117, 117, 117, 1);
 }

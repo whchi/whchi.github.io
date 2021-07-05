@@ -98,6 +98,7 @@
   </header>
   <div class="delimiter"></div>
   
+  
   <section>
     <p>最近幫公司的搜尋實現自動完成功能，筆記一下</p>
 <p>自動完成直覺想到的關聯是「建議」以及「打字即呈現」，在 Elasticsearch 官方文件找的話會有<code>Suggester</code>、<code>search as you type</code>等關鍵字，以下分別說明兩者設定方式與差異</p>
@@ -280,7 +281,7 @@ PUT &lt;index&gt;/_doc/2?refresh
   <figcaption>呈現結果示意圖</figcaption>
 </figure>
 <style lang="css">
-  .center {
+  figure.center {
     text-align: center;
   }
 </style>
@@ -340,7 +341,7 @@ PUT &lt;index&gt;/_doc/2?refresh
     <div class="pull-right">
       
       
-      <span class="post-tag small"><a href="http://shachiku.life/tags/elasticsearch/">#elasticsearch</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/elasticsearch/">#elasticsearch</a></span>
       
       
     </div>
