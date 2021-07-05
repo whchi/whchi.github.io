@@ -61,11 +61,16 @@
   align-items: center;
 }
 .post-tag a {
-  border: 1px solid #558b2f;
-  color: #558b2f;
+    border: none;
+    color: #757575;
+    text-decoration: none;
+    font-size: 2rem;
 }
 
 .read-more-container {
     display: flex;
     flex-direction: column;
+}
+.read-more-container>a {
+    font-size: 1.5rem;
 }
