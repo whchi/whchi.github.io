@@ -2,22 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://shachiku.life/tags/github/</loc>
+    <lastmod>2021-07-05T15:39:25+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/godaddy/</loc>
+    <lastmod>2021-07-05T15:39:25+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2021-07-05T15:39:25+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2021-07-05T15:39:25+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2021-07-05T15:39:25+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2021/07/%E7%B6%81%E5%AE%9A-domain-%E7%B5%A6-github-page/</loc>
+    <lastmod>2021-07-05T15:39:25+08:00</lastmod>
+  </url><url>
     <loc>http://shachiku.life/2021/06/%E7%BF%BB%E8%AD%AFbest-practices-for-writing-dockerfiles/</loc>
     <lastmod>2021-06-07T17:12:05+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/dockerfile/</loc>
     <lastmod>2021-06-07T17:12:05+08:00</lastmod>
   </url><url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2021-06-07T17:12:05+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2021-06-07T17:12:05+08:00</lastmod>
-  </url><url>
     <loc>http://shachiku.life/tags/translate/</loc>
-    <lastmod>2021-06-07T17:12:05+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
     <lastmod>2021-06-07T17:12:05+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/chives/</loc>
@@ -211,9 +220,6 @@
   </url><url>
     <loc>http://shachiku.life/2018/12/git-%E7%AE%A1%E7%90%86%E5%AD%90%E5%BA%AB%E7%9A%84%E5%85%A9%E7%A8%AE%E6%96%B9%E5%BC%8F/</loc>
     <lastmod>2018-12-21T09:35:24+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/github/</loc>
-    <lastmod>2018-12-19T17:32:42+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2018/12/%E4%BD%BF%E7%94%A8-github-%E7%AE%A1%E7%90%86-docker-image/</loc>
     <lastmod>2018-12-19T17:32:42+08:00</lastmod>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>godaddy on 社畜人生</title>
+    <link>http://shachiku.life/tags/godaddy/</link>
+    <description>Recent content in godaddy on 社畜人生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Mon, 05 Jul 2021 15:39:25 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/godaddy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>綁定 domain 給 github page</title>
+      <link>http://shachiku.life/2021/07/%E7%B6%81%E5%AE%9A-domain-%E7%B5%A6-github-page/</link>
+      <pubDate>Mon, 05 Jul 2021 15:39:25 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2021/07/%E7%B6%81%E5%AE%9A-domain-%E7%B5%A6-github-page/</guid>
+      <description>買了 domain 就是要用</description>
+    </item>
+    
+  </channel>
+</rss>
