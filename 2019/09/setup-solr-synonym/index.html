@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" 設定 solr 同義詞 &middot;  社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2019/09/setup-solr-synonym/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2019-09-05T11:55:11&#43;08:00" />
+  
+  <meta property="og:article:tag" content="solr" />
+  
+  
+
+  <title>
+     設定 solr 同義詞 &middot;  社畜人生
+  </title>
+
+  <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/github.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://shachiku.life/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://shachiku.life/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h2 class="tag-line">
+            雜談與紀錄
+          </h2>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/archives">
+            archives
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  
+  <header class="article-title">
+    <h1 class="text-primary">設定 solr 同義詞</h1>
+  </header>
+  <div class="delimiter"></div>
+  
+  
+  <section>
+    <p>將說明從安裝到設定的過程</p>
+<blockquote>
+<p>現在 solr 已經到 8.2 了, 但因為歷史包袱所以還是用 4.10</p>
+</blockquote>
+<h2 id="設定">設定</h2>
+<p>在本地建立core folder, 結構圖如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cores
+└── mycore
+    ├── conf
+    │   ├── _rest_managed.json
+    │   ├── dataimport.properties
+    │   ├── db-data-config.xml
+    │   ├── protwords.txt
+    │   ├── schema.xml
+    │   ├── solrconfig.xml
+    │   ├── stopwords.txt
+    │   ├── stopwords_en.txt
+    │   └── synonyms.txt
+    ├── core.properties
+    └── data/
+</code></pre></div><p>主要說明幾個檔案</p>
+<h3 id="coreproperties">core.properties</h3>
+<p>告訴 solr 要讀取的 core 資訊, 範例參考</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">name=mycore
+config=solrconfig.xml
+schema=schema.xml
+dataDir=data
+</code></pre></div><h3 id="solrconfigxml">solrconfig.xml</h3>
+<p>增加 dataimport</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;requestHandler</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;/dataimport&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;org.apache.solr.handler.dataimport.DataImportHandler&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;lst</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;defaults&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;str</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;config&#34;</span><span style="color:#f92672">&gt;</span>db-data-config.xml<span style="color:#f92672">&lt;/str&gt;</span>
+    <span style="color:#f92672">&lt;/lst&gt;</span>
+<span style="color:#f92672">&lt;/requestHandler&gt;</span>
+</code></pre></div><h3 id="db-data-configxml">db-data-config.xml</h3>
+<p>設定要 import 的 data 的 query, 範例參考</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dataConfig&gt;</span>
+    <span style="color:#f92672">&lt;dataSource</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;JdbcDataSource&#34;</span> <span style="color:#a6e22e">driver=</span><span style="color:#e6db74">&#34;com.mysql.jdbc.Driver&#34;</span> <span style="color:#a6e22e">url=</span><span style="color:#e6db74">&#34;jdbc:mysql://localhost:3306/test&#34;</span> <span style="color:#a6e22e">user=</span><span style="color:#e6db74">&#34;myusername&#34;</span> <span style="color:#a6e22e">password=</span><span style="color:#e6db74">&#34;mypassword&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;document</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;mydocument&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;entity</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;item&#34;</span> <span style="color:#a6e22e">query=</span><span style="color:#e6db74">&#34;SELECT * FROM your_table&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;ID&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;SNO&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;no&#34;</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;SNAME&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;STYPE&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;type&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/entity&gt;</span>
+    <span style="color:#f92672">&lt;/document&gt;</span>
+<span style="color:#f92672">&lt;/dataConfig&gt;</span>
+</code></pre></div><h3 id="schemaxml">schema.xml</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;fields&gt;</span>
+    <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;text_syn&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;type&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;no&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/fields&gt;</span>
+<span style="color:#f92672">&lt;fieldType</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;text_syn&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.TextField&#34;</span> <span style="color:#a6e22e">autoGeneratePhraseQueries=</span><span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;analyzer&gt;</span>
+        <span style="color:#f92672">&lt;tokenizer</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.chenlb.mmseg4j.solr.MMSegTokenizerFactory&#34;</span> <span style="color:#a6e22e">mode=</span><span style="color:#e6db74">&#34;complex&#34;</span> <span style="color:#a6e22e">dicPath=</span><span style="color:#e6db74">&#34;/opt/solr-multicore/dics&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- 使用mmseg跑同義詞 tokenizer --&gt;</span>
+        <span style="color:#f92672">&lt;charFilter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.HTMLStripCharFilterFactory&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- 對token做html strip --&gt;</span>
+        <span style="color:#f92672">&lt;filter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.LowerCaseFilterFactory&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- 全部token轉小寫 --&gt;</span>
+        <span style="color:#f92672">&lt;filter</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;solr.StopFilterFactory&#34;</span> <span style="color:#a6e22e">ignoreCase=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">words=</span><span style="color:#e6db74">&#34;stopwords.txt&#34;</span><span style="color:#f92672">/&gt;</span> <span style="color:#75715e">&lt;!-- token參考停用字, 不一定要 --&gt;</span>
+    <span style="color:#f92672">&lt;/analyzer&gt;</span>
+<span style="color:#f92672">&lt;/fieldType&gt;</span>
+</code></pre></div><h3 id="synonymtxt">synonym.txt</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt"># , 表示同等意思
+# =&gt; 表示用左側搜會用右側搜
+# 但因為會先跑 token, 所以有要做同意的字也要把他設進 words.dic 裡面
+台灣,臺灣
+流行性感冒 =&gt; 流感
+TV =&gt; Taiwan-Value
+</code></pre></div><h2 id="使用-docker-compose-安裝">使用 docker-compose 安裝</h2>
+<p>上面的設定完成後跑下面的<code>docker-compose.yml</code>進行安裝, 附上相關 jar 的載點<br>
+<a href="https://mvnrepository.com/artifact/com.chenlb.mmseg4j/mmseg4j-core/1.10.0">mmseg4j-core-1.10.0.jar</a>、
+<a href="https://mvnrepository.com/artifact/com.chenlb.mmseg4j/mmseg4j-solr/2.2.0">mmseg4j-solr-2.2.0.jar</a>、
+<a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java/5.1.47">mysql-connector-java-5.1.47.jar</a>、
+<a href="https://mvnrepository.com/artifact/org.apache.solr/solr-dataimporthandler/4.10.4">solr-dataimporthandler-4.10.4.jar</a>、
+<a href="https://mvnrepository.com/artifact/org.apache.solr/solr-dataimporthandler-extras/4.10.4">solr-dataimporthandler-extras-4.10.4.jar</a></p>
+<ul>
+<li>關於 mysql 設定</li>
+</ul>
+<p>參考 <a href="https://hub.docker.com/_/mysql">docker mysql</a></p>
+<ul>
+<li>關於字典檔</li>
+</ul>
+<p>以 <code>.dic</code> 結尾</p>
+<p>
+
+
+
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th style="text-align:left">檔案</th>
+<th style="text-align:left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">units.dic</td>
+<td style="text-align:left">單位詞(年月日時分秒&hellip;)</td>
+</tr>
+<tr>
+<td style="text-align:left">chars.dic</td>
+<td style="text-align:left">單一串字典</td>
+</tr>
+<tr>
+<td style="text-align:left">words.dic</td>
+<td style="text-align:left">想要被切出來的詞庫, 比如說「三生有幸」原本可能是「三」「生」「有」「幸」, 加入後就會直接被切成「三生有幸」</td>
+</tr>
+<tr>
+<td style="text-align:left">wordsXXXX.dic</td>
+<td style="text-align:left">XXXX自定義, 主要是切開管理字典檔</td>
+</tr>
+</tbody>
+</table>
+
+
+除了最後一項尚上述的字典都有開源載點</p>
+<ul>
+<li>docker-compose.yml</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">solr</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">geerlingguy/solr:4.10.4</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_solr4</span>
+    <span style="color:#f92672">ports</span>:
+      - <span style="color:#e6db74">&#39;8983:8983&#39;</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+    <span style="color:#f92672">volumes</span>: [
+        <span style="color:#e6db74">&#39;./cores/mycore:/var/solr/mycore:rw&#39;</span>, <span style="color:#75715e"># 保存core</span>
+        <span style="color:#e6db74">&#39;./jars/mmseg4j-core-1.10.0.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mmseg4j-core-1.10.0.jar&#39;</span>,
+        <span style="color:#e6db74">&#39;./jars/mmseg4j-solr-2.2.0.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mmseg4j-solr-2.2.0.jar&#39;</span>,
+        <span style="color:#e6db74">&#39;./jars/mysql-connector-java-5.1.47.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/mysql-connector-java-5.1.47.jar&#39;</span>,
+        <span style="color:#e6db74">&#39;./jars/solr-dataimporthandler-4.10.4.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/solr-dataimporthandler-4.10.4.jar&#39;</span>,
+        <span style="color:#e6db74">&#39;./jars/solr-dataimporthandler-extras-4.10.4.jar:/opt/solr/example/solr-webapp/webapp/WEB-INF/lib/solr-dataimporthandler-extras-4.10.4.jar&#39;</span>,
+        <span style="color:#e6db74">&#39;./dict:/opt/solr-multicore/dics/&#39;</span> <span style="color:#75715e"># 自定義字典檔, 可以去開源詞庫抓獲自行定義</span>
+    ]
+    <span style="color:#f92672">command</span>:
+    - <span style="color:#e6db74">&#39;/opt/solr/bin/solr start -p 8983 -s /var/solr -m 1024m -f&#39;</span>
+  <span style="color:#f92672">mysql</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mysql:5.7</span>
+    <span style="color:#f92672">volumes</span>:
+    - <span style="color:#ae81ff">./mysql/var/lib/mysql:/var/lib/mysql</span>
+    <span style="color:#f92672">environment</span>:
+      <span style="color:#f92672">MYSQL_ALLOW_EMPTY_PASSWORD</span>: <span style="color:#66d9ef">yes</span>
+    <span style="color:#f92672">ports</span>:
+    - <span style="color:#e6db74">&#34;3306:3306&#34;</span>
+    <span style="color:#f92672">privileged</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><h2 id="測試">測試</h2>
+<p>安裝成功後開啟瀏覽器輸入<code>localhost:8983</code> 會看到 solr 的 UI, 選擇<code>mycore</code>跑完<code>full-import</code>後點擊<code>Analysis</code>頁籤<br>
+於選擇建立的欄位進行測試如圖
+<img src="/images/solr-analysis-field.png" alt="">
+輸入有寫在 synonym.txt 裡面的字串進行分析, 有看到如下圖結果表示成功
+<img src="/images/solr-synonym-setup-success.png" alt=""></p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://function1122.blogspot.com/2010/10/mmseg4j-java-55.html">碼上會！ mmseg4j 中文斷詞java 實作 (55行)</a></li>
+<li><a href="https://lucene.apache.org/solr/guide/6_6/about-filters.html">solr filter</a></li>
+<li><a href="https://lucene.apache.org/solr/guide/6_6/tokenizers.html#tokenizers">solr tokenizer</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2019-9-5
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/solr/">#solr</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2019/09/mac-connect-to-sql-server/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2019/10/setup-elasticsearch-synonym/">
+        <div>
+          <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+</footer>
+
+
+
+
+</body>
+</html>
+

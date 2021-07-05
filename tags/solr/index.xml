@@ -10,10 +10,10 @@
     <lastBuildDate>Thu, 05 Sep 2019 11:55:11 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/solr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>設定 solr 同義詞</title>
-      <link>http://shachiku.life/2019/09/%E8%A8%AD%E5%AE%9A-solr-%E5%90%8C%E7%BE%A9%E8%A9%9E/</link>
+      <link>http://shachiku.life/2019/09/setup-solr-synonym/</link>
       <pubDate>Thu, 05 Sep 2019 11:55:11 +0800</pubDate>
       
-      <guid>http://shachiku.life/2019/09/%E8%A8%AD%E5%AE%9A-solr-%E5%90%8C%E7%BE%A9%E8%A9%9E/</guid>
+      <guid>http://shachiku.life/2019/09/setup-solr-synonym/</guid>
       <description>使用 docker 建立 solr 4.10 並用 mmseg 切字</description>
     </item>
     

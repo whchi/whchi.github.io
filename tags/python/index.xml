@@ -10,10 +10,10 @@
     <lastBuildDate>Wed, 16 Dec 2020 18:27:35 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>善用 lru_cache 對設定檔進行 cache</title>
-      <link>http://shachiku.life/2020/12/%E5%96%84%E7%94%A8-lru_cache-%E5%B0%8D%E8%A8%AD%E5%AE%9A%E6%AA%94%E9%80%B2%E8%A1%8C-cache/</link>
+      <link>http://shachiku.life/2020/12/use-lru-cache-for-setting/</link>
       <pubDate>Wed, 16 Dec 2020 18:27:35 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/12/%E5%96%84%E7%94%A8-lru_cache-%E5%B0%8D%E8%A8%AD%E5%AE%9A%E6%AA%94%E9%80%B2%E8%A1%8C-cache/</guid>
+      <guid>http://shachiku.life/2020/12/use-lru-cache-for-setting/</guid>
       <description>蟒蛇小技巧</description>
     </item>
     

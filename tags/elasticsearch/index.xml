@@ -10,19 +10,19 @@
     <lastBuildDate>Wed, 22 Apr 2020 17:36:40 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>設定 Elasticsearch 自動完成</title>
-      <link>http://shachiku.life/2020/04/%E8%A8%AD%E5%AE%9A-elasticsearch-%E8%87%AA%E5%8B%95%E5%AE%8C%E6%88%90/</link>
+      <link>http://shachiku.life/2020/04/setup-elasticsearch-autocompletion/</link>
       <pubDate>Wed, 22 Apr 2020 17:36:40 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/04/%E8%A8%AD%E5%AE%9A-elasticsearch-%E8%87%AA%E5%8B%95%E5%AE%8C%E6%88%90/</guid>
+      <guid>http://shachiku.life/2020/04/setup-elasticsearch-autocompletion/</guid>
       <description>使用 elasticsearch 7.6.2</description>
     </item>
     
     <item>
       <title>設定 elasticsearch 同義詞</title>
-      <link>http://shachiku.life/2019/10/%E8%A8%AD%E5%AE%9A-elasticsearch-%E5%90%8C%E7%BE%A9%E8%A9%9E/</link>
+      <link>http://shachiku.life/2019/10/setup-elasticsearch-synonym/</link>
       <pubDate>Tue, 15 Oct 2019 18:17:14 +0800</pubDate>
       
-      <guid>http://shachiku.life/2019/10/%E8%A8%AD%E5%AE%9A-elasticsearch-%E5%90%8C%E7%BE%A9%E8%A9%9E/</guid>
+      <guid>http://shachiku.life/2019/10/setup-elasticsearch-synonym/</guid>
       <description>使用 docker 建立 elasticsearch 5.3 和 ik 分詞器</description>
     </item>
     

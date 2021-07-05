@@ -10,10 +10,10 @@
     <lastBuildDate>Mon, 07 Jun 2021 17:12:05 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/dockerfile/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[翻譯]Best practices for writing Dockerfiles</title>
-      <link>http://shachiku.life/2021/06/%E7%BF%BB%E8%AD%AFbest-practices-for-writing-dockerfiles/</link>
+      <link>http://shachiku.life/2021/06/dockerfile-best-practices/</link>
       <pubDate>Mon, 07 Jun 2021 17:12:05 +0800</pubDate>
       
-      <guid>http://shachiku.life/2021/06/%E7%BF%BB%E8%AD%AFbest-practices-for-writing-dockerfiles/</guid>
+      <guid>http://shachiku.life/2021/06/dockerfile-best-practices/</guid>
       <description>很難翻出原始意義的就不翻</description>
     </item>
     

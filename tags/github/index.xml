@@ -10,19 +10,19 @@
     <lastBuildDate>Mon, 05 Jul 2021 15:39:25 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>綁定 domain 給 github page</title>
-      <link>http://shachiku.life/2021/07/%E7%B6%81%E5%AE%9A-domain-%E7%B5%A6-github-page/</link>
+      <link>http://shachiku.life/2021/07/setup-domain-to-your-github-page/</link>
       <pubDate>Mon, 05 Jul 2021 15:39:25 +0800</pubDate>
       
-      <guid>http://shachiku.life/2021/07/%E7%B6%81%E5%AE%9A-domain-%E7%B5%A6-github-page/</guid>
+      <guid>http://shachiku.life/2021/07/setup-domain-to-your-github-page/</guid>
       <description>買了 domain 就是要用</description>
     </item>
     
     <item>
       <title>使用 Github 管理 Docker image</title>
-      <link>http://shachiku.life/2018/12/%E4%BD%BF%E7%94%A8-github-%E7%AE%A1%E7%90%86-docker-image/</link>
+      <link>http://shachiku.life/2018/12/use-github-to-manage-your-docker-image/</link>
       <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
       
-      <guid>http://shachiku.life/2018/12/%E4%BD%BF%E7%94%A8-github-%E7%AE%A1%E7%90%86-docker-image/</guid>
+      <guid>http://shachiku.life/2018/12/use-github-to-manage-your-docker-image/</guid>
       <description>列出使用 github 管理 dockerhub 時需要做的步驟</description>
     </item>
     

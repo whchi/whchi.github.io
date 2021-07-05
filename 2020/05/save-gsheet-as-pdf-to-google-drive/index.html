@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" 轉存 gsheet 成 pdf 並存入 google drive &middot;  社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2020/05/save-gsheet-as-pdf-to-google-drive/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2020-05-06T23:00:12&#43;08:00" />
+  
+  <meta property="og:article:tag" content="google app script" />
+  
+  <meta property="og:article:tag" content="time-saving" />
+  
+  
+
+  <title>
+     轉存 gsheet 成 pdf 並存入 google drive &middot;  社畜人生
+  </title>
+
+  <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/github.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://shachiku.life/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://shachiku.life/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h2 class="tag-line">
+            雜談與紀錄
+          </h2>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/archives">
+            archives
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  
+  <header class="article-title">
+    <h1 class="text-primary">轉存 gsheet 成 pdf 並存入 google drive</h1>
+  </header>
+  <div class="delimiter"></div>
+  
+  
+  <section>
+    <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doGet</span>() {
+    <span style="color:#a6e22e">exportAsPDF</span>(<span style="color:#a6e22e">pdfName</span>);
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">exportBlob</span>(<span style="color:#a6e22e">blob</span>, <span style="color:#a6e22e">fileName</span>) {
+  <span style="color:#a6e22e">blob</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blob</span>.<span style="color:#a6e22e">setName</span>(<span style="color:#a6e22e">fileName</span>)
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">folderId</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;your-google-drive-folder-id&#39;</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pdfFile</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">DriveApp</span>.<span style="color:#a6e22e">getFolderById</span>(<span style="color:#a6e22e">folderId</span>).<span style="color:#a6e22e">createFile</span>(<span style="color:#a6e22e">blob</span>)
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">exportAsPDF</span>(<span style="color:#a6e22e">name</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">SpreadSheet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SpreadsheetApp</span>.<span style="color:#a6e22e">openById</span>(<span style="color:#e6db74">&#39;your-id&#39;</span>)
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Sheet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SpreadSheet</span>.<span style="color:#a6e22e">getSheetByName</span>(<span style="color:#a6e22e">name</span>)
+
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">lastDataRowNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Sheet</span>.<span style="color:#a6e22e">getLastRow</span>();
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">range</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Sheet</span>.<span style="color:#a6e22e">getRange</span>(<span style="color:#e6db74">&#34;A1:F&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">lastDataRowNumber</span>);
+
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">blob</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getAsBlob</span>(<span style="color:#a6e22e">SpreadSheet</span>.<span style="color:#a6e22e">getUrl</span>(), <span style="color:#a6e22e">Sheet</span>, <span style="color:#a6e22e">range</span>)
+  <span style="color:#a6e22e">exportBlob</span>(<span style="color:#a6e22e">blob</span>, <span style="color:#a6e22e">name</span>)
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAsBlob</span>(<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">sheet</span>, <span style="color:#a6e22e">range</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">rangeParam</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sheetParam</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">range</span>){
+    <span style="color:#75715e">// data row-col
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">rangeParam</span> <span style="color:#f92672">=</span>
+      <span style="color:#e6db74">&#39;&amp;r1=&#39;</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getRow</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;r2=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getLastRow</span>()
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;c1=&#39;</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getColumn</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;c2=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getLastColumn</span>()
+  }
+
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sheet</span>) {
+    <span style="color:#75715e">// specific tab
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">sheetParam</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&amp;gid=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sheet</span>.<span style="color:#a6e22e">getSheetId</span>()
+  }
+
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">exportUrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/\/edit.*$/</span>, <span style="color:#e6db74">&#39;&#39;</span>)
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/export?exportFormat=pdf&amp;format=pdf&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;size=LETTER&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;portrait=true&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;fitw=true&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;top_margin=0.75&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;bottom_margin=0.75&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;left_margin=0.7&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;right_margin=0.7&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;sheetnames=false&amp;printtitle=false&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;pagenum=false&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;gridlines=true&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;fzr=FALSE&#39;</span>
+      <span style="color:#f92672">+</span> <span style="color:#a6e22e">sheetParam</span>
+      <span style="color:#f92672">+</span> <span style="color:#a6e22e">rangeParam</span>
+
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">UrlFetchApp</span>.<span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">exportUrl</span>, {
+    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">Authorization</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bearer &#39;</span> <span style="color:#f92672">+</span>  <span style="color:#a6e22e">ScriptApp</span>.<span style="color:#a6e22e">getOAuthToken</span>(),
+    },
+  })
+
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">getBlob</span>()
+}
+</code></pre></div>
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2020-5-6
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/google-app-script/">#google app script</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/time-saving/">#time-saving</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2020/04/murmur-1/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2020/05/docker-vscode-xdebug/">
+        <div>
+          <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+</footer>
+
+
+
+
+</body>
+</html>
+

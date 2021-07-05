@@ -10,19 +10,19 @@
     <lastBuildDate>Wed, 06 May 2020 23:00:12 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/google-app-script/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>轉存 gsheet 成 pdf 並存入 google drive</title>
-      <link>http://shachiku.life/2020/05/%E8%BD%89%E5%AD%98-gsheet-%E6%88%90-pdf-%E4%B8%A6%E5%AD%98%E5%85%A5-google-drive/</link>
+      <link>http://shachiku.life/2020/05/save-gsheet-as-pdf-to-google-drive/</link>
       <pubDate>Wed, 06 May 2020 23:00:12 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/05/%E8%BD%89%E5%AD%98-gsheet-%E6%88%90-pdf-%E4%B8%A6%E5%AD%98%E5%85%A5-google-drive/</guid>
+      <guid>http://shachiku.life/2020/05/save-gsheet-as-pdf-to-google-drive/</guid>
       <description>感覺很有機會用就紀錄在這</description>
     </item>
     
     <item>
       <title>把 gsheet 當作 json api 使用</title>
-      <link>http://shachiku.life/2020/01/%E6%8A%8A-gsheet-%E7%95%B6%E4%BD%9C-json-api-%E4%BD%BF%E7%94%A8/</link>
+      <link>http://shachiku.life/2020/01/gsheet-as-json-api-using-google-app-script/</link>
       <pubDate>Tue, 07 Jan 2020 14:56:44 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/01/%E6%8A%8A-gsheet-%E7%95%B6%E4%BD%9C-json-api-%E4%BD%BF%E7%94%A8/</guid>
+      <guid>http://shachiku.life/2020/01/gsheet-as-json-api-using-google-app-script/</guid>
       <description>有些事情做了才知道，比如改 wording</description>
     </item>
     

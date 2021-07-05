@@ -10,46 +10,46 @@
     <lastBuildDate>Mon, 05 Jul 2021 15:39:25 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>綁定 domain 給 github page</title>
-      <link>http://shachiku.life/2021/07/%E7%B6%81%E5%AE%9A-domain-%E7%B5%A6-github-page/</link>
+      <link>http://shachiku.life/2021/07/setup-domain-to-your-github-page/</link>
       <pubDate>Mon, 05 Jul 2021 15:39:25 +0800</pubDate>
       
-      <guid>http://shachiku.life/2021/07/%E7%B6%81%E5%AE%9A-domain-%E7%B5%A6-github-page/</guid>
+      <guid>http://shachiku.life/2021/07/setup-domain-to-your-github-page/</guid>
       <description>買了 domain 就是要用</description>
     </item>
     
     <item>
       <title>[翻譯]Best practices for writing Dockerfiles</title>
-      <link>http://shachiku.life/2021/06/%E7%BF%BB%E8%AD%AFbest-practices-for-writing-dockerfiles/</link>
+      <link>http://shachiku.life/2021/06/dockerfile-best-practices/</link>
       <pubDate>Mon, 07 Jun 2021 17:12:05 +0800</pubDate>
       
-      <guid>http://shachiku.life/2021/06/%E7%BF%BB%E8%AD%AFbest-practices-for-writing-dockerfiles/</guid>
+      <guid>http://shachiku.life/2021/06/dockerfile-best-practices/</guid>
       <description>很難翻出原始意義的就不翻</description>
     </item>
     
     <item>
       <title>韭菜成長心得（1）</title>
-      <link>http://shachiku.life/2021/05/%E9%9F%AD%E8%8F%9C%E6%88%90%E9%95%B7%E5%BF%83%E5%BE%971/</link>
+      <link>http://shachiku.life/2021/05/about-stock/</link>
       <pubDate>Tue, 25 May 2021 16:01:16 +0800</pubDate>
       
-      <guid>http://shachiku.life/2021/05/%E9%9F%AD%E8%8F%9C%E6%88%90%E9%95%B7%E5%BF%83%E5%BE%971/</guid>
+      <guid>http://shachiku.life/2021/05/about-stock/</guid>
       <description>對韭當割，等我賠光大概就有（2）了</description>
     </item>
     
     <item>
       <title>Ethereum POA 架設</title>
-      <link>http://shachiku.life/2021/01/ethereum-poa-%E6%9E%B6%E8%A8%AD/</link>
+      <link>http://shachiku.life/2021/01/ethereum-poa/</link>
       <pubDate>Tue, 26 Jan 2021 10:07:07 +0800</pubDate>
       
-      <guid>http://shachiku.life/2021/01/ethereum-poa-%E6%9E%B6%E8%A8%AD/</guid>
+      <guid>http://shachiku.life/2021/01/ethereum-poa/</guid>
       <description>使用 ubuntu 20.04</description>
     </item>
     
     <item>
       <title>Docker Compose yml 小技巧</title>
-      <link>http://shachiku.life/2020/12/docker-compose-yml-%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
+      <link>http://shachiku.life/2020/12/docker-compose-yml-tips/</link>
       <pubDate>Tue, 22 Dec 2020 16:26:41 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/12/docker-compose-yml-%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
+      <guid>http://shachiku.life/2020/12/docker-compose-yml-tips/</guid>
       <description> 設定多個 hosts  version: &amp;#39;3.8&amp;#39; x-hosts: &amp;amp;x-hosts - &amp;#39;mysql:172.29.0.3&amp;#39; - &amp;#39;app:172.29.0.4&amp;#39; - &amp;#39;influxdb:172.29.0.5&amp;#39; ... app: extra_hosts: *x-hosts build with context  ... app: build: context: . dockerfile: ./.docker/Dockerfile.xxx-xx </description>
     </item>
     
@@ -64,28 +64,28 @@
     
     <item>
       <title>在 Hugo 中加入 js library</title>
-      <link>http://shachiku.life/2020/12/%E5%9C%A8-hugo-%E4%B8%AD%E5%8A%A0%E5%85%A5-js-library/</link>
+      <link>http://shachiku.life/2020/12/add-js-support-on-hugo/</link>
       <pubDate>Wed, 16 Dec 2020 19:21:15 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/12/%E5%9C%A8-hugo-%E4%B8%AD%E5%8A%A0%E5%85%A5-js-library/</guid>
+      <guid>http://shachiku.life/2020/12/add-js-support-on-hugo/</guid>
       <description>以美人魚為例</description>
     </item>
     
     <item>
       <title>善用 lru_cache 對設定檔進行 cache</title>
-      <link>http://shachiku.life/2020/12/%E5%96%84%E7%94%A8-lru_cache-%E5%B0%8D%E8%A8%AD%E5%AE%9A%E6%AA%94%E9%80%B2%E8%A1%8C-cache/</link>
+      <link>http://shachiku.life/2020/12/use-lru-cache-for-setting/</link>
       <pubDate>Wed, 16 Dec 2020 18:27:35 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/12/%E5%96%84%E7%94%A8-lru_cache-%E5%B0%8D%E8%A8%AD%E5%AE%9A%E6%AA%94%E9%80%B2%E8%A1%8C-cache/</guid>
+      <guid>http://shachiku.life/2020/12/use-lru-cache-for-setting/</guid>
       <description>蟒蛇小技巧</description>
     </item>
     
     <item>
       <title>在 github 上多帳號與多組 ssh key 使用</title>
-      <link>http://shachiku.life/2020/12/%E5%9C%A8-github-%E4%B8%8A%E5%A4%9A%E5%B8%B3%E8%99%9F%E8%88%87%E5%A4%9A%E7%B5%84-ssh-key-%E4%BD%BF%E7%94%A8/</link>
+      <link>http://shachiku.life/2020/12/multi-git-ssh-key/</link>
       <pubDate>Thu, 10 Dec 2020 11:28:30 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/12/%E5%9C%A8-github-%E4%B8%8A%E5%A4%9A%E5%B8%B3%E8%99%9F%E8%88%87%E5%A4%9A%E7%B5%84-ssh-key-%E4%BD%BF%E7%94%A8/</guid>
+      <guid>http://shachiku.life/2020/12/multi-git-ssh-key/</guid>
       <description>因公司使用 github 作為代管平台，發現在 github 上同一組 ssh key 不能直接被加到另一個 github 帳號裡面，於是有了這篇文章</description>
     </item>
     
@@ -101,37 +101,37 @@
     
     <item>
       <title>Skateboard Category</title>
-      <link>http://shachiku.life/2020/11/skateboard-category/</link>
+      <link>http://shachiku.life/2020/11/skateboard-categories/</link>
       <pubDate>Sun, 15 Nov 2020 22:44:53 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/11/skateboard-category/</guid>
+      <guid>http://shachiku.life/2020/11/skateboard-categories/</guid>
       <description>滑板的分類</description>
     </item>
     
     <item>
       <title>雜談（4）</title>
-      <link>http://shachiku.life/2020/08/%E9%9B%9C%E8%AB%874/</link>
+      <link>http://shachiku.life/2020/08/murmur-4/</link>
       <pubDate>Thu, 06 Aug 2020 00:03:58 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/08/%E9%9B%9C%E8%AB%874/</guid>
+      <guid>http://shachiku.life/2020/08/murmur-4/</guid>
       <description>顧問是自然界演化過程的物種</description>
     </item>
     
     <item>
       <title>Mongodb 讀寫分離</title>
-      <link>http://shachiku.life/2020/07/mongodb-%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/</link>
+      <link>http://shachiku.life/2020/07/docker-compose-mongo-replica/</link>
       <pubDate>Mon, 27 Jul 2020 15:21:29 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/07/mongodb-%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/</guid>
+      <guid>http://shachiku.life/2020/07/docker-compose-mongo-replica/</guid>
       <description>小學時學到怎麼切八段，出社會後終於有學以致用的一天</description>
     </item>
     
     <item>
       <title>在 laravel 中使用第三方登入並整合 Auth Facade</title>
-      <link>http://shachiku.life/2020/06/%E5%9C%A8-laravel-%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5%E4%B8%A6%E6%95%B4%E5%90%88-auth-facade/</link>
+      <link>http://shachiku.life/2020/06/laravel-third-party-login-auth/</link>
       <pubDate>Tue, 16 Jun 2020 23:16:10 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/06/%E5%9C%A8-laravel-%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5%E4%B8%A6%E6%95%B4%E5%90%88-auth-facade/</guid>
+      <guid>http://shachiku.life/2020/06/laravel-third-party-login-auth/</guid>
       <description>覺得是很常見的需求</description>
     </item>
     
@@ -146,64 +146,64 @@
     
     <item>
       <title>雜談（3）</title>
-      <link>http://shachiku.life/2020/05/%E9%9B%9C%E8%AB%873/</link>
+      <link>http://shachiku.life/2020/05/murmur-3/</link>
       <pubDate>Sun, 31 May 2020 21:35:16 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/05/%E9%9B%9C%E8%AB%873/</guid>
+      <guid>http://shachiku.life/2020/05/murmur-3/</guid>
       <description>無題</description>
     </item>
     
     <item>
       <title>安裝 Hbase</title>
-      <link>http://shachiku.life/2020/05/%E5%AE%89%E8%A3%9D-hbase/</link>
+      <link>http://shachiku.life/2020/05/hbase-installation/</link>
       <pubDate>Mon, 25 May 2020 14:46:39 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/05/%E5%AE%89%E8%A3%9D-hbase/</guid>
+      <guid>http://shachiku.life/2020/05/hbase-installation/</guid>
       <description>hbase only</description>
     </item>
     
     <item>
       <title>雜談（2）</title>
-      <link>http://shachiku.life/2020/05/%E9%9B%9C%E8%AB%872/</link>
+      <link>http://shachiku.life/2020/05/murmur-2/</link>
       <pubDate>Sun, 17 May 2020 22:25:20 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/05/%E9%9B%9C%E8%AB%872/</guid>
+      <guid>http://shachiku.life/2020/05/murmur-2/</guid>
       <description>關於同溫層</description>
     </item>
     
     <item>
       <title>在 vscode 中設定 docker xdebug</title>
-      <link>http://shachiku.life/2020/05/%E5%9C%A8-vscode-%E4%B8%AD%E8%A8%AD%E5%AE%9A-docker-xdebug/</link>
+      <link>http://shachiku.life/2020/05/docker-vscode-xdebug/</link>
       <pubDate>Thu, 14 May 2020 15:17:19 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/05/%E5%9C%A8-vscode-%E4%B8%AD%E8%A8%AD%E5%AE%9A-docker-xdebug/</guid>
+      <guid>http://shachiku.life/2020/05/docker-vscode-xdebug/</guid>
       <description>記錄一下比較好 copy-paste</description>
     </item>
     
     <item>
       <title>轉存 gsheet 成 pdf 並存入 google drive</title>
-      <link>http://shachiku.life/2020/05/%E8%BD%89%E5%AD%98-gsheet-%E6%88%90-pdf-%E4%B8%A6%E5%AD%98%E5%85%A5-google-drive/</link>
+      <link>http://shachiku.life/2020/05/save-gsheet-as-pdf-to-google-drive/</link>
       <pubDate>Wed, 06 May 2020 23:00:12 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/05/%E8%BD%89%E5%AD%98-gsheet-%E6%88%90-pdf-%E4%B8%A6%E5%AD%98%E5%85%A5-google-drive/</guid>
+      <guid>http://shachiku.life/2020/05/save-gsheet-as-pdf-to-google-drive/</guid>
       <description>感覺很有機會用就紀錄在這</description>
     </item>
     
     <item>
       <title>雜談（1）</title>
-      <link>http://shachiku.life/2020/04/%E9%9B%9C%E8%AB%871/</link>
+      <link>http://shachiku.life/2020/04/murmur-1/</link>
       <pubDate>Wed, 22 Apr 2020 23:48:03 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/04/%E9%9B%9C%E8%AB%871/</guid>
+      <guid>http://shachiku.life/2020/04/murmur-1/</guid>
       <description>關於學習</description>
     </item>
     
     <item>
       <title>設定 Elasticsearch 自動完成</title>
-      <link>http://shachiku.life/2020/04/%E8%A8%AD%E5%AE%9A-elasticsearch-%E8%87%AA%E5%8B%95%E5%AE%8C%E6%88%90/</link>
+      <link>http://shachiku.life/2020/04/setup-elasticsearch-autocompletion/</link>
       <pubDate>Wed, 22 Apr 2020 17:36:40 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/04/%E8%A8%AD%E5%AE%9A-elasticsearch-%E8%87%AA%E5%8B%95%E5%AE%8C%E6%88%90/</guid>
+      <guid>http://shachiku.life/2020/04/setup-elasticsearch-autocompletion/</guid>
       <description>使用 elasticsearch 7.6.2</description>
     </item>
     
@@ -227,28 +227,28 @@
     
     <item>
       <title>Laravel Model 使用非預設主鍵</title>
-      <link>http://shachiku.life/2020/02/laravel-model-%E4%BD%BF%E7%94%A8%E9%9D%9E%E9%A0%90%E8%A8%AD%E4%B8%BB%E9%8D%B5/</link>
+      <link>http://shachiku.life/2020/02/laravel-model-incrementing-detail/</link>
       <pubDate>Tue, 11 Feb 2020 21:56:10 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/02/laravel-model-%E4%BD%BF%E7%94%A8%E9%9D%9E%E9%A0%90%E8%A8%AD%E4%B8%BB%E9%8D%B5/</guid>
+      <guid>http://shachiku.life/2020/02/laravel-model-incrementing-detail/</guid>
       <description>trace code 筆記</description>
     </item>
     
     <item>
       <title>在 docker 上跑 laravel-dusk</title>
-      <link>http://shachiku.life/2020/01/%E5%9C%A8-docker-%E4%B8%8A%E8%B7%91-laravel-dusk/</link>
+      <link>http://shachiku.life/2020/01/laravel-dusk-on-docker/</link>
       <pubDate>Fri, 31 Jan 2020 14:45:27 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/01/%E5%9C%A8-docker-%E4%B8%8A%E8%B7%91-laravel-dusk/</guid>
+      <guid>http://shachiku.life/2020/01/laravel-dusk-on-docker/</guid>
       <description>自己挖的洞自己填</description>
     </item>
     
     <item>
       <title>把 gsheet 當作 json api 使用</title>
-      <link>http://shachiku.life/2020/01/%E6%8A%8A-gsheet-%E7%95%B6%E4%BD%9C-json-api-%E4%BD%BF%E7%94%A8/</link>
+      <link>http://shachiku.life/2020/01/gsheet-as-json-api-using-google-app-script/</link>
       <pubDate>Tue, 07 Jan 2020 14:56:44 +0800</pubDate>
       
-      <guid>http://shachiku.life/2020/01/%E6%8A%8A-gsheet-%E7%95%B6%E4%BD%9C-json-api-%E4%BD%BF%E7%94%A8/</guid>
+      <guid>http://shachiku.life/2020/01/gsheet-as-json-api-using-google-app-script/</guid>
       <description>有些事情做了才知道，比如改 wording</description>
     </item>
     
@@ -263,19 +263,19 @@
     
     <item>
       <title>設定 elasticsearch 同義詞</title>
-      <link>http://shachiku.life/2019/10/%E8%A8%AD%E5%AE%9A-elasticsearch-%E5%90%8C%E7%BE%A9%E8%A9%9E/</link>
+      <link>http://shachiku.life/2019/10/setup-elasticsearch-synonym/</link>
       <pubDate>Tue, 15 Oct 2019 18:17:14 +0800</pubDate>
       
-      <guid>http://shachiku.life/2019/10/%E8%A8%AD%E5%AE%9A-elasticsearch-%E5%90%8C%E7%BE%A9%E8%A9%9E/</guid>
+      <guid>http://shachiku.life/2019/10/setup-elasticsearch-synonym/</guid>
       <description>使用 docker 建立 elasticsearch 5.3 和 ik 分詞器</description>
     </item>
     
     <item>
       <title>設定 solr 同義詞</title>
-      <link>http://shachiku.life/2019/09/%E8%A8%AD%E5%AE%9A-solr-%E5%90%8C%E7%BE%A9%E8%A9%9E/</link>
+      <link>http://shachiku.life/2019/09/setup-solr-synonym/</link>
       <pubDate>Thu, 05 Sep 2019 11:55:11 +0800</pubDate>
       
-      <guid>http://shachiku.life/2019/09/%E8%A8%AD%E5%AE%9A-solr-%E5%90%8C%E7%BE%A9%E8%A9%9E/</guid>
+      <guid>http://shachiku.life/2019/09/setup-solr-synonym/</guid>
       <description>使用 docker 建立 solr 4.10 並用 mmseg 切字</description>
     </item>
     
@@ -290,73 +290,73 @@
     
     <item>
       <title>部署laravel應用程式到GKE上</title>
-      <link>http://shachiku.life/2019/07/%E9%83%A8%E7%BD%B2laravel%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E5%88%B0gke%E4%B8%8A/</link>
+      <link>http://shachiku.life/2019/07/deploy-laravel-app-to-gke/</link>
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
-      <guid>http://shachiku.life/2019/07/%E9%83%A8%E7%BD%B2laravel%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E5%88%B0gke%E4%B8%8A/</guid>
+      <guid>http://shachiku.life/2019/07/deploy-laravel-app-to-gke/</guid>
       <description>這是一篇 quick guide about 建立三層&lt;!-- raw HTML omitted --&gt;肉&lt;!-- raw HTML omitted --&gt;式架構</description>
     </item>
     
     <item>
       <title>安裝 fork 過來的 composer 套件</title>
-      <link>http://shachiku.life/2019/06/%E5%AE%89%E8%A3%9D-fork-%E9%81%8E%E4%BE%86%E7%9A%84-composer-%E5%A5%97%E4%BB%B6/</link>
+      <link>http://shachiku.life/2019/06/install-custom-composer-package/</link>
       <pubDate>Sun, 02 Jun 2019 20:16:20 +0800</pubDate>
       
-      <guid>http://shachiku.life/2019/06/%E5%AE%89%E8%A3%9D-fork-%E9%81%8E%E4%BE%86%E7%9A%84-composer-%E5%A5%97%E4%BB%B6/</guid>
+      <guid>http://shachiku.life/2019/06/install-custom-composer-package/</guid>
       <description>人在做，天沒在看</description>
     </item>
     
     <item>
       <title>開發並部署 laravel package 到 github 上</title>
-      <link>http://shachiku.life/2019/03/%E9%96%8B%E7%99%BC%E4%B8%A6%E9%83%A8%E7%BD%B2-laravel-package-%E5%88%B0-github-%E4%B8%8A/</link>
+      <link>http://shachiku.life/2019/03/laravel-package/</link>
       <pubDate>Mon, 18 Mar 2019 16:38:36 +0800</pubDate>
       
-      <guid>http://shachiku.life/2019/03/%E9%96%8B%E7%99%BC%E4%B8%A6%E9%83%A8%E7%BD%B2-laravel-package-%E5%88%B0-github-%E4%B8%8A/</guid>
+      <guid>http://shachiku.life/2019/03/laravel-package/</guid>
       <description>最近花了點時間把以前寫的東西改成laravel package，留個筆記</description>
     </item>
     
     <item>
       <title>Hugo shortcodes With embed gist</title>
-      <link>http://shachiku.life/2018/12/hugo-shortcodes-with-embed-gist/</link>
+      <link>http://shachiku.life/2018/12/hugo-shortcodes-with-gist/</link>
       <pubDate>Sat, 29 Dec 2018 18:24:20 +0800</pubDate>
       
-      <guid>http://shachiku.life/2018/12/hugo-shortcodes-with-embed-gist/</guid>
+      <guid>http://shachiku.life/2018/12/hugo-shortcodes-with-gist/</guid>
       <description>embed gist</description>
     </item>
     
     <item>
       <title>將 laravel log 透過 kafka 送入 ELK</title>
-      <link>http://shachiku.life/2018/12/%E5%B0%87-laravel-log-%E9%80%8F%E9%81%8E-kafka-%E9%80%81%E5%85%A5-elk/</link>
+      <link>http://shachiku.life/2018/12/laravel-log-to-elk-via-kafka/</link>
       <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
       
-      <guid>http://shachiku.life/2018/12/%E5%B0%87-laravel-log-%E9%80%8F%E9%81%8E-kafka-%E9%80%81%E5%85%A5-elk/</guid>
+      <guid>http://shachiku.life/2018/12/laravel-log-to-elk-via-kafka/</guid>
       <description>就像在烤肉時，把雞肉、青椒以及杏苞姑串再一起的概念</description>
     </item>
     
     <item>
       <title>git 管理子庫的兩種方式</title>
-      <link>http://shachiku.life/2018/12/git-%E7%AE%A1%E7%90%86%E5%AD%90%E5%BA%AB%E7%9A%84%E5%85%A9%E7%A8%AE%E6%96%B9%E5%BC%8F/</link>
+      <link>http://shachiku.life/2018/12/difference-between-subtree-and-submodule/</link>
       <pubDate>Fri, 21 Dec 2018 09:35:24 +0800</pubDate>
       
-      <guid>http://shachiku.life/2018/12/git-%E7%AE%A1%E7%90%86%E5%AD%90%E5%BA%AB%E7%9A%84%E5%85%A9%E7%A8%AE%E6%96%B9%E5%BC%8F/</guid>
+      <guid>http://shachiku.life/2018/12/difference-between-subtree-and-submodule/</guid>
       <description>subtree or submodule? that is a question.</description>
     </item>
     
     <item>
       <title>使用 Github 管理 Docker image</title>
-      <link>http://shachiku.life/2018/12/%E4%BD%BF%E7%94%A8-github-%E7%AE%A1%E7%90%86-docker-image/</link>
+      <link>http://shachiku.life/2018/12/use-github-to-manage-your-docker-image/</link>
       <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
       
-      <guid>http://shachiku.life/2018/12/%E4%BD%BF%E7%94%A8-github-%E7%AE%A1%E7%90%86-docker-image/</guid>
+      <guid>http://shachiku.life/2018/12/use-github-to-manage-your-docker-image/</guid>
       <description>列出使用 github 管理 dockerhub 時需要做的步驟</description>
     </item>
     
     <item>
       <title>Hugo安裝</title>
-      <link>http://shachiku.life/2018/12/hugo%E5%AE%89%E8%A3%9D/</link>
+      <link>http://shachiku.life/2018/12/hugo-installation/</link>
       <pubDate>Wed, 19 Dec 2018 15:48:17 +0800</pubDate>
       
-      <guid>http://shachiku.life/2018/12/hugo%E5%AE%89%E8%A3%9D/</guid>
+      <guid>http://shachiku.life/2018/12/hugo-installation/</guid>
       <description>簡單介紹安裝hugo的方法，mac only</description>
     </item>
     

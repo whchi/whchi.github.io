@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" git 管理子庫的兩種方式 &middot;  社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2018/12/difference-between-subtree-and-submodule/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2018-12-21T09:35:24&#43;08:00" />
+  
+  <meta property="og:article:tag" content="git" />
+  
+  <meta property="og:article:tag" content="hugo" />
+  
+  
+
+  <title>
+     git 管理子庫的兩種方式 &middot;  社畜人生
+  </title>
+
+  <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/github.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://shachiku.life/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://shachiku.life/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h2 class="tag-line">
+            雜談與紀錄
+          </h2>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/archives">
+            archives
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  
+  <header class="article-title">
+    <h1 class="text-primary">git 管理子庫的兩種方式</h1>
+  </header>
+  <div class="delimiter"></div>
+  
+  
+  <section>
+    <p>最近架設 hugo 時查詢的資料發現有使用<code>git subtree</code>跟<code>git submodule</code>兩種抓 theme 的方法，研究後把差別記錄在這</p>
+<h2 id="主要差異">主要差異</h2>
+<p>submodule: 適合不需對 sub repo 進行 push 的動作時使用<br>
+subtree: 適合需要把 master repo 的某些 feature 獨立成一個 git branch 時使用</p>
+<h2 id="subtree">subtree</h2>
+<ul>
+<li>concept<br>
+把整個外部 repo 以及 commit log 拷貝到新的 repo 中，如同名稱一樣，就是「子樹」的概念，可把它視為完全獨立於 master repo 底下的 repo</li>
+<li>init
+<ul>
+<li>remote as subtree: <code>git remote add {remote-name} {remote repo}</code> + <code>git subtree add -P {localModulePath} {remote-name} {ref branch}</code></li>
+<li>local as subtree: <code>git subtree split -P {localModulePath} -b {ref branch}</code></li>
+</ul>
+</li>
+<li>delete<br>
+只需刪除新增的 branch 即可</li>
+<li>push / pull<br>
+用法就跟一般的push / pull一樣，差別在於多了 subtree，e.g: <code>git subtree push -P {localModulePath} {repository} {ref branch}</code></li>
+</ul>
+<h2 id="submodule">submodule</h2>
+<ul>
+<li>
+<p>concept<br>
+建立與外部 repo 的 HEAD commit 連結，但由於僅是連結，要進行 push 的話會比較複雜，因此較適合使用的 repo 本身僅需維持在某特定版本的情境</p>
+</li>
+<li>
+<p>init<br>
+完成後會出現<code>.gitmodules</code>檔案，內容紀錄 submodule 相關的 ref，記得先 commit</p>
+<ul>
+<li>不指定 branch: <code>git submodule add {remote repo} {localpath}</code></li>
+<li>指定 branch: <code>git submodule add -b {branch} {remote repo} {localpath}</code></li>
+</ul>
+</li>
+<li>
+<p>delete<br>
+有兩種方法</p>
+<ul>
+<li><code>git rm --cached {localpath}</code> + <code>.git/config</code> + <code>.gitmodules</code></li>
+<li><code>git submodule deinit {localpath}</code> + <code>git rm {localpath}</code></li>
+</ul>
+</li>
+<li>
+<p>push</p>
+<pre><code>cd /path/to/submodule
+git checkout master
+git commit -am 'commit msg'
+git push origin master
+
+# push 完 submodule 之後 root 層會多一個 unstaged 的 change
+# 內容是 submodule 的 hash 改變
+# 因此要回到 root 多進行一次 push 才能確保專案正常
+
+cd /path/to/root
+git commit -am 'commit msg'
+git push origin master
+</code></pre></li>
+<li>
+<p>pull<br>
+<code>git submodule update --init</code> or <code>git submodule init</code> + <code>git submodule update</code></p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/31769820/differences-between-git-submodule-and-subtree">https://stackoverflow.com/questions/31769820/differences-between-git-submodule-and-subtree</a></li>
+<li><a href="https://hexo.crboy.net/2016/09/amazing-git-subtree/">https://hexo.crboy.net/2016/09/amazing-git-subtree/</a></li>
+<li><a href="http://yutin.logdown.com/posts/188306-git-subtree-total-addendum-library">http://yutin.logdown.com/posts/188306-git-subtree-total-addendum-library</a></li>
+<li><a href="https://stackoverflow.com/questions/5814319/git-submodule-push">https://stackoverflow.com/questions/5814319/git-submodule-push</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2018-12-21
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/git/">#git</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/hugo/">#hugo</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2018/12/use-github-to-manage-your-docker-image/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2018/12/laravel-log-to-elk-via-kafka/">
+        <div>
+          <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+</footer>
+
+
+
+
+</body>
+</html>
+

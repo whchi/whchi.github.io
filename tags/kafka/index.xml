@@ -10,10 +10,10 @@
     <lastBuildDate>Sat, 29 Dec 2018 17:30:24 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/kafka/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>將 laravel log 透過 kafka 送入 ELK</title>
-      <link>http://shachiku.life/2018/12/%E5%B0%87-laravel-log-%E9%80%8F%E9%81%8E-kafka-%E9%80%81%E5%85%A5-elk/</link>
+      <link>http://shachiku.life/2018/12/laravel-log-to-elk-via-kafka/</link>
       <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
       
-      <guid>http://shachiku.life/2018/12/%E5%B0%87-laravel-log-%E9%80%8F%E9%81%8E-kafka-%E9%80%81%E5%85%A5-elk/</guid>
+      <guid>http://shachiku.life/2018/12/laravel-log-to-elk-via-kafka/</guid>
       <description>就像在烤肉時，把雞肉、青椒以及杏苞姑串再一起的概念</description>
     </item>
     

@@ -10,19 +10,19 @@
     <lastBuildDate>Sun, 02 Jun 2019 20:16:20 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/php/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>安裝 fork 過來的 composer 套件</title>
-      <link>http://shachiku.life/2019/06/%E5%AE%89%E8%A3%9D-fork-%E9%81%8E%E4%BE%86%E7%9A%84-composer-%E5%A5%97%E4%BB%B6/</link>
+      <link>http://shachiku.life/2019/06/install-custom-composer-package/</link>
       <pubDate>Sun, 02 Jun 2019 20:16:20 +0800</pubDate>
       
-      <guid>http://shachiku.life/2019/06/%E5%AE%89%E8%A3%9D-fork-%E9%81%8E%E4%BE%86%E7%9A%84-composer-%E5%A5%97%E4%BB%B6/</guid>
+      <guid>http://shachiku.life/2019/06/install-custom-composer-package/</guid>
       <description>人在做，天沒在看</description>
     </item>
     
     <item>
       <title>將 laravel log 透過 kafka 送入 ELK</title>
-      <link>http://shachiku.life/2018/12/%E5%B0%87-laravel-log-%E9%80%8F%E9%81%8E-kafka-%E9%80%81%E5%85%A5-elk/</link>
+      <link>http://shachiku.life/2018/12/laravel-log-to-elk-via-kafka/</link>
       <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
       
-      <guid>http://shachiku.life/2018/12/%E5%B0%87-laravel-log-%E9%80%8F%E9%81%8E-kafka-%E9%80%81%E5%85%A5-elk/</guid>
+      <guid>http://shachiku.life/2018/12/laravel-log-to-elk-via-kafka/</guid>
       <description>就像在烤肉時，把雞肉、青椒以及杏苞姑串再一起的概念</description>
     </item>
     
