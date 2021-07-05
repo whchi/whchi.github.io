@@ -357,8 +357,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/about/</guid>
-      <description>慢慢把以前的筆記整理上來
-skills  Backend development: php, node, python Frontend development: Vue, jQuery Development enviorment: docker, vagrant, GCP, k8s Linux(centos, ubuntu) Version control: git MySQL  contact  email: whccchi@gmail.com  </description>
+      <description>skills  Backend development: php, node, python Frontend development: Vue, jQuery Devops: docker, GCP, k8s Linux: centos, ubuntu Version control: git Database: MySQL, PostgreSQL, redis  contact whccchi@gmail.com
+🛹 🌊 ⛰ ✈️ 📈</description>
     </item>
     
   </channel>

@@ -92,10 +92,12 @@
 
 
 <article>
+  
   <header class="article-title">
     <h1 class="text-primary">Laravel Model 使用非預設主鍵</h1>
   </header>
   <div class="delimiter"></div>
+  
   <section>
     <p>最近遇到一個怪問題，用 laravel 時如果指定 <code>$primaryKey</code> 為其他非 auto-increment 的值時必需同時指定<code>$keyType</code>跟<code>$incrementing</code>才能 model  在使用時正常</p>
 <p>比如說主鍵是 uuid 時要做以下設定才能正確執行，少一個都不能 work</p>
