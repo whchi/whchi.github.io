@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Avro to Hbase using Apache Beam &middot;  社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2020/06/avro-to-hbase-using-apache-beam/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2020-06-11T18:02:56&#43;08:00" />
+  
+  <meta property="og:article:tag" content="apache beam" />
+  
+  <meta property="og:article:tag" content="avro" />
+  
+  <meta property="og:article:tag" content="data pipeline" />
+  
+  
+
+  <title>
+     Avro to Hbase using Apache Beam &middot;  社畜人生
+  </title>
+
+  <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/github.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://shachiku.life/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://shachiku.life/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h4 class="tag-line">
+            雜談與紀錄
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">Avro to Hbase using Apache Beam</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    <p>這邊使用 python sdk 串 Google DataFlow，下面介紹相關概念</p>
+<h1 id="概念介紹">概念介紹</h1>
+<h2 id="apache-beam">Apache Beam</h2>
+<p>前身是 Google DataFlow，是一套用來執行batch/streaming data-parallel processing 的 pipeline，在 <a href="https://en.wikipedia.org/wiki/Embarrassingly_parallel">Embarrassingly Parallel</a> (資料可以良好的被拆分成多個組合)的資料處理任務很好用。</p>
+<p>目前提供分散式的後端支援：</p>
+<ul>
+<li>Apache Apex</li>
+<li>Apache Flink</li>
+<li>Apache Samza</li>
+<li>Apache Spark</li>
+<li>Google Cloud Dataflow</li>
+<li>Hazelcast Jet</li>
+</ul>
+<p>以及三種 sdk：Java、Python、GO</p>
+<h3 id="programing-concept">Programing concept</h3>
+<ul>
+<li>Pipeline：單一 task 的稱呼，包含 reading =&gt; transforming =&gt; writing 的一系列動作</li>
+<li>PCollection：每個 job 處理的 data set的稱呼，有 <code>bounded</code>（batch） 跟 <code>unbounded</code>（streaming） 的分別</li>
+<li>PTransform: 表示 pipeline 中一個 job 的處理流程（步驟），包含1~n個 PCollection 作為 input，0~n 個 PCollection 作為 output</li>
+</ul>
+<p>一個最單純的 pipeline 用圖形表示如下
+<img src="/images/pipeline.png" alt=""></p>
+<ul>
+<li>Transforms
+有幾種類型如下
+
+
+
+
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th style="text-align:left">name</th>
+<th style="text-align:left">describe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ParDo</td>
+<td style="text-align:left">Use for general parallel processing, 需搭配<code>DoFn</code>使用</td>
+</tr>
+<tr>
+<td style="text-align:left">GroupByKey</td>
+<td style="text-align:left">Processing collections of key-value pairs</td>
+</tr>
+<tr>
+<td style="text-align:left">CoGroupByKey</td>
+<td style="text-align:left">Join two or more key-value PCollections that have same key type, 用再多來源在描述同一件事情時</td>
+</tr>
+<tr>
+<td style="text-align:left">Combine</td>
+<td style="text-align:left">Combining collections of elements or values in your data, 使用時必須要提供 combine function</td>
+</tr>
+<tr>
+<td style="text-align:left">Flatten</td>
+<td style="text-align:left">Merges multiple PCollection objects into a single logical PCollection, 用在相同 data type 的 PCollections</td>
+</tr>
+<tr>
+<td style="text-align:left">Partition</td>
+<td style="text-align:left">Splits a single PCollection into a fixed number of smaller collections, 用在相同 data type 的 PCollections</td>
+</tr>
+</tbody>
+</table>
+
+</li>
+<li>Basic requirements</li>
+</ul>
+<ol>
+<li>Your function object must be serializable.</li>
+<li>Your function object must be thread-compatible, and be aware that the Beam SDKs are not <a href="https://en.wikipedia.org/wiki/Thread_safety">thread-safe</a>.</li>
+</ol>
+<p>這邊簡單寫到這，官方文件寫的蠻好懂的，有空可以去細讀</p>
+<h2 id="hbase">Hbase</h2>
+<p>一個開源版的分散式資料庫，理論基礎為 BigTable 又可稱為開源版的 BigTable，在 Hadoop ecosystem 裡面擔任 data storage 的角色，使用 HDFS 實現 fault tolerance</p>
+<ul>
+<li>與 RDBMS 的比較
+
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:left">HBase</th>
+<th style="text-align:left">RDBMS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">HBase is schema-less, it doesn&rsquo;t have the concept of fixed columns schema; defines only column families.</td>
+<td style="text-align:left">An RDBMS is governed by its schema, which describes the whole structure of tables.</td>
+</tr>
+<tr>
+<td style="text-align:left">It is built for wide tables. HBase is horizontally scalable.</td>
+<td style="text-align:left">It is thin and built for small tables. Hard to scale.</td>
+</tr>
+<tr>
+<td style="text-align:left">No transactions are there in HBase.</td>
+<td style="text-align:left">RDBMS is transactional.</td>
+</tr>
+<tr>
+<td style="text-align:left">It has de-normalized data.</td>
+<td style="text-align:left">It will have normalized data.</td>
+</tr>
+<tr>
+<td style="text-align:left">It is good for semi-structured as well as structured data.</td>
+<td style="text-align:left">It is good for structured data.</td>
+</tr>
+</tbody>
+</table>
+
+</li>
+<li>與 HDFS 的關係
+
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:left">HDFS</th>
+<th style="text-align:left">HBase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">HDFS is a distributed file system suitable for storing large files.</td>
+<td style="text-align:left">HBase is a database built on top of the HDFS.</td>
+</tr>
+<tr>
+<td style="text-align:left">HDFS does not support fast individual record lookups.</td>
+<td style="text-align:left">HBase provides fast lookups for larger tables.</td>
+</tr>
+<tr>
+<td style="text-align:left">It provides high latency batch processing; no concept of batch processing.</td>
+<td style="text-align:left">It provides low latency access to single rows from billions of records (Random access).</td>
+</tr>
+<tr>
+<td style="text-align:left">It provides only sequential access of data.</td>
+<td style="text-align:left">HBase internally uses Hash tables and provides random access, and it stores the data in indexed HDFS files for faster lookups.</td>
+</tr>
+</tbody>
+</table>
+
+</li>
+</ul>
+<h3 id="data-model-terminology">Data model terminology</h3>
+<p>
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:left">term</th>
+<th style="text-align:left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">table</td>
+<td style="text-align:left">由多個 row 組成</td>
+</tr>
+<tr>
+<td style="text-align:left">row</td>
+<td style="text-align:left">由row key + column family 組成，依照字母排序，設計row key應盡量讓相似的 pattern 放一起</td>
+</tr>
+<tr>
+<td style="text-align:left">column</td>
+<td style="text-align:left">由 column qualifier 與 column family 組成, 使用 colon character 做定界符號</td>
+</tr>
+<tr>
+<td style="text-align:left">column family</td>
+<td style="text-align:left">物理上將 column 分群，因此在create table時須先設定且不易修改，每個 row 都有相同的 column family，但不一定每個 column 都會有資料（sparse）</td>
+</tr>
+<tr>
+<td style="text-align:left">column qualifier</td>
+<td style="text-align:left">提供 column family index 的基礎，可以後設但不能輕易修改</td>
+</tr>
+<tr>
+<td style="text-align:left">cell</td>
+<td style="text-align:left">一個資料源的最小單位（atom），預設保留 3 個版本，column family + column qualifier + row + value + timestamp</td>
+</tr>
+<tr>
+<td style="text-align:left">timestamp</td>
+<td style="text-align:left">作為版本識別使用，不指定的話使用當下時間，讀取時預設抓取最新版本</td>
+</tr>
+</tbody>
+</table>
+
+
+以圖片呈現他們的關係如下
+<img src="/images/hbase-table.png" alt=""></p>
+<h3 id="running-mode">Running mode</h3>
+<ul>
+<li>standalone
+<ul>
+<li>default mode</li>
+<li>run on local filesystem</li>
+<li>No HDFS</li>
+<li>HMaster daemon only</li>
+<li><strong>Never use on production</strong></li>
+<li>Single node Single process</li>
+</ul>
+</li>
+<li>pseudo distributed
+<ul>
+<li>Use HDFS or local filesystem</li>
+<li>Single node Multi process</li>
+<li>Recommend to use on production</li>
+</ul>
+</li>
+<li>fully distributed
+<ul>
+<li>Use only HDFS</li>
+<li>cluster</li>
+<li>Best way to use on production</li>
+</ul>
+</li>
+</ul>
+<p>安裝可參考我之前的<a href="/posts/hbase-installation">記錄</a></p>
+<h2 id="avro">Avro</h2>
+<p>由 hadoop 之父創造的一種檔案格式，由於是 language-neutral 因此可以被多種語言處理，廣泛被用於 hadoop 體系，是一種效率很高的檔案格式</p>
+<hr>
+<h1 id="code">Code</h1>
+<script type="text/javascript" src="https://gist.github.com/c2298beb74b56a4937c19cbeacffa83b.js"></script>
+
+<hr>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://beam.apache.org/get-started/beam-overview/">beam overview</a></li>
+<li><a href="https://beam.apache.org/documentation/programming-guide/">beam programing guide</a></li>
+<li><a href="https://www.tutorialspoint.com/avro/avro_overview.htm">avro overview</a></li>
+<li><a href="https://www.tutorialspoint.com/hbase/hbase_overview.htm">hbase overview</a></li>
+<li><a href="https://hbase.apache.org/book.html">hbase book</a></li>
+<li><a href="http://0b4af6cdc2f0c5998459-c0245c5c937c5dedcca3f1764ecc9b2f.r43.cf2.rackcdn.com/9353-login1210_khurana.pdf">Introduction to HBase Scheme Design.pdf</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2020-6-11
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="http://shachiku.life/tags/apache-beam/">#apache beam</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="http://shachiku.life/tags/avro/">#avro</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="http://shachiku.life/tags/data-pipeline/">#data pipeline</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2020/05/%E9%9B%9C%E8%AB%873/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2020/06/%E5%9C%A8-laravel-%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%85%A5%E4%B8%A6%E6%95%B4%E5%90%88-auth-facade/">
+        <div>
+          <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+</footer>
+
+
+
+
+</body>
+</html>
+

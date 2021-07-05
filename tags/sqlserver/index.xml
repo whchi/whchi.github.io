@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>sqlserver on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/sqlserver/</link>
-    <description>Recent content in sqlserver on 雜談與紀錄</description>
+    <title>sqlserver on 社畜人生</title>
+    <link>http://shachiku.life/tags/sqlserver/</link>
+    <description>Recent content in sqlserver on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 05 Sep 2019 11:30:49 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/sqlserver/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Sep 2019 11:30:49 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/sqlserver/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mac Connect to SQL Server</title>
-      <link>https://whchi.github.io/posts/mac-connect-to-sql-server/</link>
+      <link>http://shachiku.life/2019/09/mac-connect-to-sql-server/</link>
       <pubDate>Thu, 05 Sep 2019 11:30:49 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/mac-connect-to-sql-server/</guid>
+      <guid>http://shachiku.life/2019/09/mac-connect-to-sql-server/</guid>
       <description>以 python 為例</description>
     </item>
     

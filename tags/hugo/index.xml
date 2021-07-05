@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hugo on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/hugo/</link>
-    <description>Recent content in hugo on 雜談與紀錄</description>
+    <title>hugo on 社畜人生</title>
+    <link>http://shachiku.life/tags/hugo/</link>
+    <description>Recent content in hugo on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 16 Dec 2020 19:21:15 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Dec 2020 19:21:15 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在 Hugo 中加入 js library</title>
-      <link>https://whchi.github.io/posts/add-js-support-on-hugo/</link>
+      <link>http://shachiku.life/2020/12/%E5%9C%A8-hugo-%E4%B8%AD%E5%8A%A0%E5%85%A5-js-library/</link>
       <pubDate>Wed, 16 Dec 2020 19:21:15 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/add-js-support-on-hugo/</guid>
+      <guid>http://shachiku.life/2020/12/%E5%9C%A8-hugo-%E4%B8%AD%E5%8A%A0%E5%85%A5-js-library/</guid>
       <description>以美人魚為例</description>
     </item>
     
     <item>
       <title>Hugo shortcodes With embed gist</title>
-      <link>https://whchi.github.io/posts/hugo-shortcodes-with-gist/</link>
+      <link>http://shachiku.life/2018/12/hugo-shortcodes-with-embed-gist/</link>
       <pubDate>Sat, 29 Dec 2018 18:24:20 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/hugo-shortcodes-with-gist/</guid>
+      <guid>http://shachiku.life/2018/12/hugo-shortcodes-with-embed-gist/</guid>
       <description>embed gist</description>
     </item>
     
     <item>
       <title>git 管理子庫的兩種方式</title>
-      <link>https://whchi.github.io/posts/difference-between-subtree-and-submodule/</link>
+      <link>http://shachiku.life/2018/12/git-%E7%AE%A1%E7%90%86%E5%AD%90%E5%BA%AB%E7%9A%84%E5%85%A9%E7%A8%AE%E6%96%B9%E5%BC%8F/</link>
       <pubDate>Fri, 21 Dec 2018 09:35:24 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/difference-between-subtree-and-submodule/</guid>
+      <guid>http://shachiku.life/2018/12/git-%E7%AE%A1%E7%90%86%E5%AD%90%E5%BA%AB%E7%9A%84%E5%85%A9%E7%A8%AE%E6%96%B9%E5%BC%8F/</guid>
       <description>subtree or submodule? that is a question.</description>
     </item>
     
     <item>
       <title>Hugo安裝</title>
-      <link>https://whchi.github.io/posts/hugo-installation/</link>
+      <link>http://shachiku.life/2018/12/hugo%E5%AE%89%E8%A3%9D/</link>
       <pubDate>Wed, 19 Dec 2018 15:48:17 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/hugo-installation/</guid>
+      <guid>http://shachiku.life/2018/12/hugo%E5%AE%89%E8%A3%9D/</guid>
       <description>簡單介紹安裝hugo的方法，mac only</description>
     </item>
     

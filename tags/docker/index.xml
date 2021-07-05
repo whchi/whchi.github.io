@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>docker on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/docker/</link>
-    <description>Recent content in docker on 雜談與紀錄</description>
+    <title>docker on 社畜人生</title>
+    <link>http://shachiku.life/tags/docker/</link>
+    <description>Recent content in docker on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Tue, 22 Dec 2020 16:26:41 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Dec 2020 16:26:41 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker Compose yml 小技巧</title>
-      <link>https://whchi.github.io/posts/docker-compose-yml-tips/</link>
+      <link>http://shachiku.life/2020/12/docker-compose-yml-%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
       <pubDate>Tue, 22 Dec 2020 16:26:41 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/docker-compose-yml-tips/</guid>
+      <guid>http://shachiku.life/2020/12/docker-compose-yml-%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
       <description> 設定多個 hosts  version: &amp;#39;3.8&amp;#39; x-hosts: &amp;amp;x-hosts - &amp;#39;mysql:172.29.0.3&amp;#39; - &amp;#39;app:172.29.0.4&amp;#39; - &amp;#39;influxdb:172.29.0.5&amp;#39; ... app: extra_hosts: *x-hosts build with context  ... app: build: context: . dockerfile: ./.docker/Dockerfile.xxx-xx </description>
     </item>
     
     <item>
       <title>Mongodb 讀寫分離</title>
-      <link>https://whchi.github.io/posts/docker-compose-mongo-replica/</link>
+      <link>http://shachiku.life/2020/07/mongodb-%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/</link>
       <pubDate>Mon, 27 Jul 2020 15:21:29 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/docker-compose-mongo-replica/</guid>
+      <guid>http://shachiku.life/2020/07/mongodb-%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/</guid>
       <description>小學時學到怎麼切八段，出社會後終於有學以致用的一天</description>
     </item>
     
     <item>
       <title>在 vscode 中設定 docker xdebug</title>
-      <link>https://whchi.github.io/posts/docker-vscode-xdebug/</link>
+      <link>http://shachiku.life/2020/05/%E5%9C%A8-vscode-%E4%B8%AD%E8%A8%AD%E5%AE%9A-docker-xdebug/</link>
       <pubDate>Thu, 14 May 2020 15:17:19 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/docker-vscode-xdebug/</guid>
+      <guid>http://shachiku.life/2020/05/%E5%9C%A8-vscode-%E4%B8%AD%E8%A8%AD%E5%AE%9A-docker-xdebug/</guid>
       <description>記錄一下比較好 copy-paste</description>
     </item>
     
     <item>
       <title>Connect to Existing Network in Docker</title>
-      <link>https://whchi.github.io/posts/connect-to-existing-network-in-docker/</link>
+      <link>http://shachiku.life/2020/03/connect-to-existing-network-in-docker/</link>
       <pubDate>Thu, 12 Mar 2020 17:28:18 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/connect-to-existing-network-in-docker/</guid>
+      <guid>http://shachiku.life/2020/03/connect-to-existing-network-in-docker/</guid>
       <description>記在這不然每次都忘記</description>
     </item>
     
     <item>
       <title>在 docker 上跑 laravel-dusk</title>
-      <link>https://whchi.github.io/posts/laravel-dusk-on-docker/</link>
+      <link>http://shachiku.life/2020/01/%E5%9C%A8-docker-%E4%B8%8A%E8%B7%91-laravel-dusk/</link>
       <pubDate>Fri, 31 Jan 2020 14:45:27 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/laravel-dusk-on-docker/</guid>
+      <guid>http://shachiku.life/2020/01/%E5%9C%A8-docker-%E4%B8%8A%E8%B7%91-laravel-dusk/</guid>
       <description>自己挖的洞自己填</description>
     </item>
     
     <item>
       <title>使用 Github 管理 Docker image</title>
-      <link>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</link>
+      <link>http://shachiku.life/2018/12/%E4%BD%BF%E7%94%A8-github-%E7%AE%A1%E7%90%86-docker-image/</link>
       <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</guid>
+      <guid>http://shachiku.life/2018/12/%E4%BD%BF%E7%94%A8-github-%E7%AE%A1%E7%90%86-docker-image/</guid>
       <description>列出使用 github 管理 dockerhub 時需要做的步驟</description>
     </item>
     

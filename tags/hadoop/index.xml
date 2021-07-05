@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hadoop on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/hadoop/</link>
-    <description>Recent content in hadoop on 雜談與紀錄</description>
+    <title>hadoop on 社畜人生</title>
+    <link>http://shachiku.life/tags/hadoop/</link>
+    <description>Recent content in hadoop on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Mon, 25 May 2020 14:46:39 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 May 2020 14:46:39 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>安裝 Hbase</title>
-      <link>https://whchi.github.io/posts/hbase-installation/</link>
+      <link>http://shachiku.life/2020/05/%E5%AE%89%E8%A3%9D-hbase/</link>
       <pubDate>Mon, 25 May 2020 14:46:39 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/hbase-installation/</guid>
+      <guid>http://shachiku.life/2020/05/%E5%AE%89%E8%A3%9D-hbase/</guid>
       <description>hbase only</description>
     </item>
     

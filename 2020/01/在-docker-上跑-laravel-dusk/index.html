@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" 在 docker 上跑 laravel-dusk &middot;  社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2020/01/%E5%9C%A8-docker-%E4%B8%8A%E8%B7%91-laravel-dusk/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2020-01-31T14:45:27&#43;08:00" />
+  
+  <meta property="og:article:tag" content="laravel" />
+  
+  <meta property="og:article:tag" content="docker" />
+  
+  
+
+  <title>
+     在 docker 上跑 laravel-dusk &middot;  社畜人生
+  </title>
+
+  <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/github.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://shachiku.life/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://shachiku.life/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h4 class="tag-line">
+            雜談與紀錄
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">在 docker 上跑 laravel-dusk</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    <p>最近因為要還債<del>不得不寫測試</del>，所以有了這篇文章</p>
+<p><a href="https://laravel.com/docs/5.8/dusk">laravel-dusk</a>是 laravel 官方推出的瀏覽器測試框架，整合了 <a href="https://selenium.dev/">selenium</a> 以利進行各種奇形怪狀的測試</p>
+<h2 id="進入主題">進入主題</h2>
+<p>我們的開發環境是一個 nginx + php 的 image 作為 base container，nginx 設定不同的 server_name 把 request 導到不同的專案</p>
+<p>這邊使用的是 standalone 的架設方式，因為原本的 docker 上沒有跑瀏覽器測試的需求</p>
+<p><strong>關鍵是要讓 selenium 可以連到專案</strong></p>
+<h3 id="docker-composeyml">docker-compose.yml</h3>
+<p>下面列的都是 <code>docker-compose.yml</code> 使用時記得加上 <code>-f</code> 或改名</p>
+<ul>
+<li>develop-env.yml</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_dev</span>
+  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">your-dev-image:version</span>
+  <span style="color:#f92672">command</span>: [<span style="color:#e6db74">&#34;/usr/sbin/init&#34;</span>]
+  <span style="color:#f92672">ports</span>:
+    - <span style="color:#e6db74">&#34;80:80&#34;</span>
+    - <span style="color:#e6db74">&#34;443:443&#34;</span>
+  <span style="color:#f92672">privileged</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">networks</span>:
+    <span style="color:#f92672">mynetwork</span>:
+      <span style="color:#75715e"># 要給固定 ip</span>
+      <span style="color:#f92672">ipv4_address</span>: <span style="color:#ae81ff">172.28.0.2</span>
+</code></pre></div><ul>
+<li>standalone-chrome.yml</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">chrome</span>:
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_selenium-chrome</span>
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">selenium/standalone-chrome:3.141.59</span>
+    <span style="color:#f92672">ports</span>:
+      - <span style="color:#e6db74">&#34;4444:4444&#34;</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">/dev/shm:/dev/shm</span>
+    <span style="color:#f92672">extra_hosts</span>:
+        <span style="color:#75715e"># 這裡要指定這個 container 應該要看到的 hostname，看你的 nginx 設定</span>
+        - <span style="color:#e6db74">&#34;local-project.dev:172.28.0.2&#34;</span>
+<span style="color:#f92672">networks</span>:
+  <span style="color:#f92672">default</span>:
+    <span style="color:#f92672">external</span>:
+      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mynetwork</span>
+</code></pre></div><p>下面列出 laravel-dusk 要做的事</p>
+<h3 id="laravel-dusk">laravel-dusk</h3>
+<p>這邊是說開發環境</p>
+<ul>
+<li>DuskTestCase.php</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<span style="color:#e6db74">/**
+</span><span style="color:#e6db74"> * Create the RemoteWebDriver instance.
+</span><span style="color:#e6db74"> *
+</span><span style="color:#e6db74"> * @return \Facebook\WebDriver\Remote\RemoteWebDriver
+</span><span style="color:#e6db74"> */</span>
+<span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">driver</span>()
+{
+    $options <span style="color:#f92672">=</span> (<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ChromeOptions</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addArguments</span>([
+        <span style="color:#e6db74">&#39;--disable-gpu&#39;</span>,
+        <span style="color:#e6db74">&#39;--headless&#39;</span>,
+    ]);
+    <span style="color:#75715e">// 這邊要能讓 dusk 連的到 standalone-chrome
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RemoteWebDriver</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(
+        <span style="color:#e6db74">&#39;http://chrome:4444/wd/hub&#39;</span>, <span style="color:#a6e22e">DesiredCapabilities</span><span style="color:#f92672">::</span><span style="color:#a6e22e">chrome</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setCapability</span>(
+            <span style="color:#a6e22e">ChromeOptions</span><span style="color:#f92672">::</span><span style="color:#a6e22e">CAPABILITY</span>, $options
+        )
+    );
+}
+</code></pre></div><ul>
+<li>.env.dusk.local</li>
+</ul>
+<p>獨立一個環境給 dusk 跑的時候吃，要注意的是 APP_URL</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-env" data-lang="env"><span style="color:#75715e"># 這邊是讓 standalone-chrome 可以連的到的專案 host</span>
+APP_URL<span style="color:#f92672">=</span>http://local-project.dev
+</code></pre></div><h3 id="成果">成果</h3>
+<p>都設定成功的話直接下 <code>php artisan dusk</code> 應該會看到畫面如下
+<img src="/images/laravel-dusk-testing.png" alt=""></p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://laravel.com/docs/5.6/dusk#using-other-browsers">laravel-dusk official doc</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2020-1-31
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="http://shachiku.life/tags/laravel/">#laravel</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="http://shachiku.life/tags/docker/">#docker</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2020/01/%E6%8A%8A-gsheet-%E7%95%B6%E4%BD%9C-json-api-%E4%BD%BF%E7%94%A8/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2020/02/laravel-model-%E4%BD%BF%E7%94%A8%E9%9D%9E%E9%A0%90%E8%A8%AD%E4%B8%BB%E9%8D%B5/">
+        <div>
+          <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+</footer>
+
+
+
+
+</body>
+</html>
+

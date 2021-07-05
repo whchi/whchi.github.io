@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>k8s on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/k8s/</link>
-    <description>Recent content in k8s on 雜談與紀錄</description>
+    <title>k8s on 社畜人生</title>
+    <link>http://shachiku.life/tags/k8s/</link>
+    <description>Recent content in k8s on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 13 Jul 2019 00:37:23 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 13 Jul 2019 00:37:23 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>部署laravel應用程式到GKE上</title>
-      <link>https://whchi.github.io/posts/deploy-laravel-app-to-gke/</link>
+      <link>http://shachiku.life/2019/07/%E9%83%A8%E7%BD%B2laravel%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E5%88%B0gke%E4%B8%8A/</link>
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/deploy-laravel-app-to-gke/</guid>
+      <guid>http://shachiku.life/2019/07/%E9%83%A8%E7%BD%B2laravel%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E5%88%B0gke%E4%B8%8A/</guid>
       <description>這是一篇 quick guide about 建立三層&lt;!-- raw HTML omitted --&gt;肉&lt;!-- raw HTML omitted --&gt;式架構</description>
     </item>
     

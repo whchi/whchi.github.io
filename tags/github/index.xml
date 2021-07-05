@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>github on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/github/</link>
-    <description>Recent content in github on 雜談與紀錄</description>
+    <title>github on 社畜人生</title>
+    <link>http://shachiku.life/tags/github/</link>
+    <description>Recent content in github on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 19 Dec 2018 17:32:42 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Dec 2018 17:32:42 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 Github 管理 Docker image</title>
-      <link>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</link>
+      <link>http://shachiku.life/2018/12/%E4%BD%BF%E7%94%A8-github-%E7%AE%A1%E7%90%86-docker-image/</link>
       <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/use-github-to-manage-your-docker-image/</guid>
+      <guid>http://shachiku.life/2018/12/%E4%BD%BF%E7%94%A8-github-%E7%AE%A1%E7%90%86-docker-image/</guid>
       <description>列出使用 github 管理 dockerhub 時需要做的步驟</description>
     </item>
     

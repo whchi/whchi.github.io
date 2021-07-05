@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" 安裝 fork 過來的 composer 套件 &middot;  社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2019/06/%E5%AE%89%E8%A3%9D-fork-%E9%81%8E%E4%BE%86%E7%9A%84-composer-%E5%A5%97%E4%BB%B6/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2019-06-02T20:16:20&#43;08:00" />
+  
+  <meta property="og:article:tag" content="composer" />
+  
+  <meta property="og:article:tag" content="php" />
+  
+  
+
+  <title>
+     安裝 fork 過來的 composer 套件 &middot;  社畜人生
+  </title>
+
+  <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/github.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://shachiku.life/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://shachiku.life/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h4 class="tag-line">
+            雜談與紀錄
+          </h4>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  <header class="article-title">
+    <h1 class="text-primary">安裝 fork 過來的 composer 套件</h1>
+  </header>
+  <div class="delimiter"></div>
+  <section>
+    <p>前陣子遇到使用的套件有相依套件的衝突，發 PR 套件原作者發現上次更新時間是 500 年前，所以就研究了一下怎麼只裝自己 fork 的版本</p>
+<p>設定如下</p>
+<ul>
+<li>composer.json</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#960050;background-color:#1e0010">...</span>
+    <span style="color:#f92672">&#34;repositories&#34;</span>: [
+        {
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;vcs&#34;</span>,
+            <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/{yourname}/package&#34;</span>
+        }
+    ],
+    <span style="color:#f92672">&#34;require&#34;</span>: {
+        <span style="color:#f92672">&#34;vendor/package&#34;</span>: <span style="color:#e6db74">&#34;dev-{your fork branch name}&#34;</span>
+    }
+}
+</code></pre></div><blockquote>
+<p>建議 branch name 切開，不要用 master</p>
+</blockquote>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://getcomposer.org/doc/05-repositories.md#vcs">https://getcomposer.org/doc/05-repositories.md#vcs</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2019-6-2
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag small"><a href="http://shachiku.life/tags/composer/">#composer</a></span>
+      
+      
+      
+      <span class="post-tag small"><a href="http://shachiku.life/tags/php/">#php</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2019/03/%E9%96%8B%E7%99%BC%E4%B8%A6%E9%83%A8%E7%BD%B2-laravel-package-%E5%88%B0-github-%E4%B8%8A/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2019/07/%E9%83%A8%E7%BD%B2laravel%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E5%88%B0gke%E4%B8%8A/">
+        <div>
+          <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+</footer>
+
+
+
+
+</body>
+</html>
+

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>elk on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/elk/</link>
-    <description>Recent content in elk on 雜談與紀錄</description>
+    <title>elk on 社畜人生</title>
+    <link>http://shachiku.life/tags/elk/</link>
+    <description>Recent content in elk on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 29 Dec 2018 17:30:24 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/elk/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Dec 2018 17:30:24 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/elk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>將 laravel log 透過 kafka 送入 ELK</title>
-      <link>https://whchi.github.io/posts/laravel-log-to-elk-via-kafka/</link>
+      <link>http://shachiku.life/2018/12/%E5%B0%87-laravel-log-%E9%80%8F%E9%81%8E-kafka-%E9%80%81%E5%85%A5-elk/</link>
       <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/laravel-log-to-elk-via-kafka/</guid>
+      <guid>http://shachiku.life/2018/12/%E5%B0%87-laravel-log-%E9%80%8F%E9%81%8E-kafka-%E9%80%81%E5%85%A5-elk/</guid>
       <description>就像在烤肉時，把雞肉、青椒以及杏苞姑串再一起的概念</description>
     </item>
     

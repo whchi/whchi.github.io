@@ -7,8 +7,7 @@
   margin-right: 2px;
   line-height: 1.6;
   background-color: transparent;
-  border: 1px solid #ccc;
-  color: #0000004d;
+  color: #558b2f;
   border-radius: 1px;
   overflow: hidden;
   word-wrap: break-word;
@@ -17,7 +16,7 @@
   animation-name: bonuce;
   animation-timing-function: ease;
   animation-duration: 300ms;
-  animation-iteration-count: 3;
+  animation-iteration-count: 2;
   background-color: #ffffff;
 }
 @keyframes bonuce {
@@ -60,4 +59,13 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
+}
+.post-tag a {
+  border: 1px solid #558b2f;
+  color: #558b2f;
+}
+
+.read-more-container {
+    display: flex;
+    flex-direction: column;
 }

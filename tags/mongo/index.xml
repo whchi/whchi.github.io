@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>mongo on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/mongo/</link>
-    <description>Recent content in mongo on 雜談與紀錄</description>
+    <title>mongo on 社畜人生</title>
+    <link>http://shachiku.life/tags/mongo/</link>
+    <description>Recent content in mongo on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Mon, 27 Jul 2020 15:21:29 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/mongo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Jul 2020 15:21:29 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/mongo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mongodb 讀寫分離</title>
-      <link>https://whchi.github.io/posts/docker-compose-mongo-replica/</link>
+      <link>http://shachiku.life/2020/07/mongodb-%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/</link>
       <pubDate>Mon, 27 Jul 2020 15:21:29 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/docker-compose-mongo-replica/</guid>
+      <guid>http://shachiku.life/2020/07/mongodb-%E8%AE%80%E5%AF%AB%E5%88%86%E9%9B%A2/</guid>
       <description>小學時學到怎麼切八段，出社會後終於有學以致用的一天</description>
     </item>
     

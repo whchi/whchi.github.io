@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>murmur on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/murmur/</link>
-    <description>Recent content in murmur on 雜談與紀錄</description>
+    <title>murmur on 社畜人生</title>
+    <link>http://shachiku.life/tags/murmur/</link>
+    <description>Recent content in murmur on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 06 Aug 2020 00:03:58 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/murmur/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Aug 2020 00:03:58 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/murmur/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>雜談（4）</title>
-      <link>https://whchi.github.io/posts/murmur-4/</link>
+      <link>http://shachiku.life/2020/08/%E9%9B%9C%E8%AB%874/</link>
       <pubDate>Thu, 06 Aug 2020 00:03:58 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/murmur-4/</guid>
+      <guid>http://shachiku.life/2020/08/%E9%9B%9C%E8%AB%874/</guid>
       <description>顧問是自然界演化過程的物種</description>
     </item>
     
     <item>
       <title>雜談（3）</title>
-      <link>https://whchi.github.io/posts/murmur-3/</link>
+      <link>http://shachiku.life/2020/05/%E9%9B%9C%E8%AB%873/</link>
       <pubDate>Sun, 31 May 2020 21:35:16 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/murmur-3/</guid>
+      <guid>http://shachiku.life/2020/05/%E9%9B%9C%E8%AB%873/</guid>
       <description>無題</description>
     </item>
     
     <item>
       <title>雜談（2）</title>
-      <link>https://whchi.github.io/posts/murmur-2/</link>
+      <link>http://shachiku.life/2020/05/%E9%9B%9C%E8%AB%872/</link>
       <pubDate>Sun, 17 May 2020 22:25:20 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/murmur-2/</guid>
+      <guid>http://shachiku.life/2020/05/%E9%9B%9C%E8%AB%872/</guid>
       <description>關於同溫層</description>
     </item>
     
     <item>
       <title>雜談（1）</title>
-      <link>https://whchi.github.io/posts/murmur-1/</link>
+      <link>http://shachiku.life/2020/04/%E9%9B%9C%E8%AB%871/</link>
       <pubDate>Wed, 22 Apr 2020 23:48:03 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/murmur-1/</guid>
+      <guid>http://shachiku.life/2020/04/%E9%9B%9C%E8%AB%871/</guid>
       <description>關於學習</description>
     </item>
     

@@ -1,307 +1,307 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/</link>
-    <description>Recent content in Tags on 雜談與紀錄</description>
+    <title>Tags on 社畜人生</title>
+    <link>http://shachiku.life/tags/</link>
+    <description>Recent content in Tags on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Mon, 07 Jun 2021 17:12:05 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Jun 2021 17:12:05 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>dockerfile</title>
-      <link>https://whchi.github.io/tags/dockerfile/</link>
+      <link>http://shachiku.life/tags/dockerfile/</link>
       <pubDate>Mon, 07 Jun 2021 17:12:05 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/dockerfile/</guid>
+      <guid>http://shachiku.life/tags/dockerfile/</guid>
       <description></description>
     </item>
     
     <item>
       <title>translate</title>
-      <link>https://whchi.github.io/tags/translate/</link>
+      <link>http://shachiku.life/tags/translate/</link>
       <pubDate>Mon, 07 Jun 2021 17:12:05 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/translate/</guid>
+      <guid>http://shachiku.life/tags/translate/</guid>
       <description></description>
     </item>
     
     <item>
       <title>chives</title>
-      <link>https://whchi.github.io/tags/chives/</link>
+      <link>http://shachiku.life/tags/chives/</link>
       <pubDate>Tue, 25 May 2021 16:01:16 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/chives/</guid>
+      <guid>http://shachiku.life/tags/chives/</guid>
       <description></description>
     </item>
     
     <item>
       <title>stock</title>
-      <link>https://whchi.github.io/tags/stock/</link>
+      <link>http://shachiku.life/tags/stock/</link>
       <pubDate>Tue, 25 May 2021 16:01:16 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/stock/</guid>
+      <guid>http://shachiku.life/tags/stock/</guid>
       <description></description>
     </item>
     
     <item>
       <title>blockchain</title>
-      <link>https://whchi.github.io/tags/blockchain/</link>
+      <link>http://shachiku.life/tags/blockchain/</link>
       <pubDate>Tue, 26 Jan 2021 10:07:07 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/blockchain/</guid>
+      <guid>http://shachiku.life/tags/blockchain/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker</title>
-      <link>https://whchi.github.io/tags/docker/</link>
+      <link>http://shachiku.life/tags/docker/</link>
       <pubDate>Tue, 22 Dec 2020 16:26:41 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/docker/</guid>
+      <guid>http://shachiku.life/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>save time</title>
-      <link>https://whchi.github.io/tags/save-time/</link>
+      <title>time-saving</title>
+      <link>http://shachiku.life/tags/time-saving/</link>
       <pubDate>Tue, 22 Dec 2020 16:26:41 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/save-time/</guid>
+      <guid>http://shachiku.life/tags/time-saving/</guid>
       <description></description>
     </item>
     
     <item>
       <title>skateboard</title>
-      <link>https://whchi.github.io/tags/skateboard/</link>
+      <link>http://shachiku.life/tags/skateboard/</link>
       <pubDate>Wed, 16 Dec 2020 22:41:38 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/skateboard/</guid>
+      <guid>http://shachiku.life/tags/skateboard/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
-      <link>https://whchi.github.io/tags/hugo/</link>
+      <link>http://shachiku.life/tags/hugo/</link>
       <pubDate>Wed, 16 Dec 2020 19:21:15 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/hugo/</guid>
+      <guid>http://shachiku.life/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>python</title>
-      <link>https://whchi.github.io/tags/python/</link>
+      <link>http://shachiku.life/tags/python/</link>
       <pubDate>Wed, 16 Dec 2020 18:27:35 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/python/</guid>
+      <guid>http://shachiku.life/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git</title>
-      <link>https://whchi.github.io/tags/git/</link>
+      <link>http://shachiku.life/tags/git/</link>
       <pubDate>Thu, 10 Dec 2020 11:28:30 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/git/</guid>
+      <guid>http://shachiku.life/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>redis</title>
-      <link>https://whchi.github.io/tags/redis/</link>
+      <link>http://shachiku.life/tags/redis/</link>
       <pubDate>Thu, 10 Dec 2020 10:21:46 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/redis/</guid>
+      <guid>http://shachiku.life/tags/redis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>murmur</title>
-      <link>https://whchi.github.io/tags/murmur/</link>
+      <link>http://shachiku.life/tags/murmur/</link>
       <pubDate>Thu, 06 Aug 2020 00:03:58 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/murmur/</guid>
+      <guid>http://shachiku.life/tags/murmur/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mongo</title>
-      <link>https://whchi.github.io/tags/mongo/</link>
+      <link>http://shachiku.life/tags/mongo/</link>
       <pubDate>Mon, 27 Jul 2020 15:21:29 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/mongo/</guid>
+      <guid>http://shachiku.life/tags/mongo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>laravel</title>
-      <link>https://whchi.github.io/tags/laravel/</link>
+      <link>http://shachiku.life/tags/laravel/</link>
       <pubDate>Tue, 16 Jun 2020 23:16:10 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/laravel/</guid>
+      <guid>http://shachiku.life/tags/laravel/</guid>
       <description></description>
     </item>
     
     <item>
       <title>apache beam</title>
-      <link>https://whchi.github.io/tags/apache-beam/</link>
+      <link>http://shachiku.life/tags/apache-beam/</link>
       <pubDate>Thu, 11 Jun 2020 18:02:56 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/apache-beam/</guid>
+      <guid>http://shachiku.life/tags/apache-beam/</guid>
       <description></description>
     </item>
     
     <item>
       <title>avro</title>
-      <link>https://whchi.github.io/tags/avro/</link>
+      <link>http://shachiku.life/tags/avro/</link>
       <pubDate>Thu, 11 Jun 2020 18:02:56 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/avro/</guid>
+      <guid>http://shachiku.life/tags/avro/</guid>
       <description></description>
     </item>
     
     <item>
       <title>data pipeline</title>
-      <link>https://whchi.github.io/tags/data-pipeline/</link>
+      <link>http://shachiku.life/tags/data-pipeline/</link>
       <pubDate>Thu, 11 Jun 2020 18:02:56 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/data-pipeline/</guid>
+      <guid>http://shachiku.life/tags/data-pipeline/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hadoop</title>
-      <link>https://whchi.github.io/tags/hadoop/</link>
+      <link>http://shachiku.life/tags/hadoop/</link>
       <pubDate>Mon, 25 May 2020 14:46:39 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/hadoop/</guid>
+      <guid>http://shachiku.life/tags/hadoop/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hbase</title>
-      <link>https://whchi.github.io/tags/hbase/</link>
+      <link>http://shachiku.life/tags/hbase/</link>
       <pubDate>Mon, 25 May 2020 14:46:39 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/hbase/</guid>
+      <guid>http://shachiku.life/tags/hbase/</guid>
       <description></description>
     </item>
     
     <item>
       <title>google app script</title>
-      <link>https://whchi.github.io/tags/google-app-script/</link>
+      <link>http://shachiku.life/tags/google-app-script/</link>
       <pubDate>Wed, 06 May 2020 23:00:12 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/google-app-script/</guid>
+      <guid>http://shachiku.life/tags/google-app-script/</guid>
       <description></description>
     </item>
     
     <item>
       <title>elasticsearch</title>
-      <link>https://whchi.github.io/tags/elasticsearch/</link>
+      <link>http://shachiku.life/tags/elasticsearch/</link>
       <pubDate>Wed, 22 Apr 2020 17:36:40 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/elasticsearch/</guid>
+      <guid>http://shachiku.life/tags/elasticsearch/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ppt</title>
-      <link>https://whchi.github.io/tags/ppt/</link>
+      <link>http://shachiku.life/tags/ppt/</link>
       <pubDate>Thu, 21 Nov 2019 14:47:19 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/ppt/</guid>
+      <guid>http://shachiku.life/tags/ppt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>solr</title>
-      <link>https://whchi.github.io/tags/solr/</link>
+      <link>http://shachiku.life/tags/solr/</link>
       <pubDate>Thu, 05 Sep 2019 11:55:11 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/solr/</guid>
+      <guid>http://shachiku.life/tags/solr/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mac</title>
-      <link>https://whchi.github.io/tags/mac/</link>
+      <link>http://shachiku.life/tags/mac/</link>
       <pubDate>Thu, 05 Sep 2019 11:30:49 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/mac/</guid>
+      <guid>http://shachiku.life/tags/mac/</guid>
       <description></description>
     </item>
     
     <item>
       <title>sqlserver</title>
-      <link>https://whchi.github.io/tags/sqlserver/</link>
+      <link>http://shachiku.life/tags/sqlserver/</link>
       <pubDate>Thu, 05 Sep 2019 11:30:49 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/sqlserver/</guid>
+      <guid>http://shachiku.life/tags/sqlserver/</guid>
       <description></description>
     </item>
     
     <item>
       <title>devops</title>
-      <link>https://whchi.github.io/tags/devops/</link>
+      <link>http://shachiku.life/tags/devops/</link>
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/devops/</guid>
+      <guid>http://shachiku.life/tags/devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>k8s</title>
-      <link>https://whchi.github.io/tags/k8s/</link>
+      <link>http://shachiku.life/tags/k8s/</link>
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/k8s/</guid>
+      <guid>http://shachiku.life/tags/k8s/</guid>
       <description></description>
     </item>
     
     <item>
       <title>composer</title>
-      <link>https://whchi.github.io/tags/composer/</link>
+      <link>http://shachiku.life/tags/composer/</link>
       <pubDate>Sun, 02 Jun 2019 20:16:20 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/composer/</guid>
+      <guid>http://shachiku.life/tags/composer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>php</title>
-      <link>https://whchi.github.io/tags/php/</link>
+      <link>http://shachiku.life/tags/php/</link>
       <pubDate>Sun, 02 Jun 2019 20:16:20 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/php/</guid>
+      <guid>http://shachiku.life/tags/php/</guid>
       <description></description>
     </item>
     
     <item>
       <title>elk</title>
-      <link>https://whchi.github.io/tags/elk/</link>
+      <link>http://shachiku.life/tags/elk/</link>
       <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/elk/</guid>
+      <guid>http://shachiku.life/tags/elk/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kafka</title>
-      <link>https://whchi.github.io/tags/kafka/</link>
+      <link>http://shachiku.life/tags/kafka/</link>
       <pubDate>Sat, 29 Dec 2018 17:30:24 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/kafka/</guid>
+      <guid>http://shachiku.life/tags/kafka/</guid>
       <description></description>
     </item>
     
     <item>
       <title>github</title>
-      <link>https://whchi.github.io/tags/github/</link>
+      <link>http://shachiku.life/tags/github/</link>
       <pubDate>Wed, 19 Dec 2018 17:32:42 +0800</pubDate>
       
-      <guid>https://whchi.github.io/tags/github/</guid>
+      <guid>http://shachiku.life/tags/github/</guid>
       <description></description>
     </item>
     

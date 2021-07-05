@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>python on 雜談與紀錄</title>
-    <link>https://whchi.github.io/tags/python/</link>
-    <description>Recent content in python on 雜談與紀錄</description>
+    <title>python on 社畜人生</title>
+    <link>http://shachiku.life/tags/python/</link>
+    <description>Recent content in python on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 16 Dec 2020 18:27:35 +0800</lastBuildDate><atom:link href="https://whchi.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Dec 2020 18:27:35 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>善用 lru_cache 對設定檔進行 cache</title>
-      <link>https://whchi.github.io/posts/use-lru-cache-for-setting/</link>
+      <link>http://shachiku.life/2020/12/%E5%96%84%E7%94%A8-lru_cache-%E5%B0%8D%E8%A8%AD%E5%AE%9A%E6%AA%94%E9%80%B2%E8%A1%8C-cache/</link>
       <pubDate>Wed, 16 Dec 2020 18:27:35 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/use-lru-cache-for-setting/</guid>
+      <guid>http://shachiku.life/2020/12/%E5%96%84%E7%94%A8-lru_cache-%E5%B0%8D%E8%A8%AD%E5%AE%9A%E6%AA%94%E9%80%B2%E8%A1%8C-cache/</guid>
       <description>蟒蛇小技巧</description>
     </item>
     
     <item>
       <title>Mac Connect to SQL Server</title>
-      <link>https://whchi.github.io/posts/mac-connect-to-sql-server/</link>
+      <link>http://shachiku.life/2019/09/mac-connect-to-sql-server/</link>
       <pubDate>Thu, 05 Sep 2019 11:30:49 +0800</pubDate>
       
-      <guid>https://whchi.github.io/posts/mac-connect-to-sql-server/</guid>
+      <guid>http://shachiku.life/2019/09/mac-connect-to-sql-server/</guid>
       <description>以 python 為例</description>
     </item>
     
