@@ -108,19 +108,24 @@
   <section>
      
 
-<div class="center">
-  <img src="/images/docker-logo.png" alt="docker logo" decoding="async" />
-</div>
-
-<style>
-  .center {
-    text-align: center;
+<figure class="center">
+  <img src="/images/docker-logo.png" title="docker logo" decoding="async" />
+  <figcaption>原文位置 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
   }
 </style>
 
-<blockquote>
-<p>原文位置 <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</a></p>
-</blockquote>
 <p>本文範圍涵蓋建立有效率的 images 的最佳實踐方法</p>
 <p>docker 透過讀取 Dockerfile 建立 image．其有自訂的規範與指示, 可參考 <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference</a> 找到更多解釋</p>
 <p>一個 Docker image 由 多個指令所建構出的 read-only layer 所組成．這些 layer 彼此堆疊，且各 layer 為前一層的 delta of changes．圖為一範例 Dockerfile</p>
