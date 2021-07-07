@@ -389,7 +389,7 @@ admin.peers <span style="color:#75715e"># check</span>
     visibility: hidden;
     position: fixed;
     z-index: 2;
-    top: 5%;
+    top: 15%;
     left: 50%;
     display: inline-block;
     width: 100%;
@@ -449,7 +449,7 @@ admin.peers <span style="color:#75715e"># check</span>
     border-bottom: 0.5px dotted #258ad0;
   }
   #tips {
-    visibility: visible;
+    visibility: hidden;
     position: fixed;
     top: 15%;
     left: 50%;
@@ -468,6 +468,22 @@ admin.peers <span style="color:#75715e"># check</span>
   <section id="search-results"></section>
 </div>
 <script src="/js/fuse.js"></script>
+<script>
+  const url = new URL(location.href);
+  const key = 'uknowhow2srh@' + url.host;
+
+  if (!sessionStorage.getItem(key)) {
+    document.getElementById('tips').style.visibility = 'visible';
+  }
+
+  function uknowhow2srh() {
+    if (sessionStorage.getItem(key)) {
+      document.getElementById('tips').style.visibility = 'hidden';
+    } else {
+      sessionStorage.setItem(key, 1);
+    }
+  }
+</script>
 <script src="/js/fastsearch.js"></script>
 
 </body>

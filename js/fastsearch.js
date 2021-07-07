@@ -8,8 +8,8 @@ var maininput = document.getElementById('search-input');
 var resultsAvailable = false;
 document.addEventListener('keydown', function (event) {
   if (event.metaKey && event.which === 191) {
+    uknowhow2srh();
     if (firstRun) {
-      document.getElementById('tips').style.visibility = 'hidden';
       loadSearch();
       firstRun = false;
     }

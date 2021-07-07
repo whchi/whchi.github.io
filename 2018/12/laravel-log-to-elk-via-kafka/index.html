@@ -407,7 +407,7 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">configur
     visibility: hidden;
     position: fixed;
     z-index: 2;
-    top: 5%;
+    top: 15%;
     left: 50%;
     display: inline-block;
     width: 100%;
@@ -467,7 +467,7 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">configur
     border-bottom: 0.5px dotted #258ad0;
   }
   #tips {
-    visibility: visible;
+    visibility: hidden;
     position: fixed;
     top: 15%;
     left: 50%;
@@ -486,6 +486,22 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">configur
   <section id="search-results"></section>
 </div>
 <script src="/js/fuse.js"></script>
+<script>
+  const url = new URL(location.href);
+  const key = 'uknowhow2srh@' + url.host;
+
+  if (!sessionStorage.getItem(key)) {
+    document.getElementById('tips').style.visibility = 'visible';
+  }
+
+  function uknowhow2srh() {
+    if (sessionStorage.getItem(key)) {
+      document.getElementById('tips').style.visibility = 'hidden';
+    } else {
+      sessionStorage.setItem(key, 1);
+    }
+  }
+</script>
 <script src="/js/fastsearch.js"></script>
 
 </body>
