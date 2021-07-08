@@ -53,8 +53,8 @@
 
 <body>
   
-    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
-      
+  <header class="global-header" style="background-image:url(/images/docker-logo.png)">
+    
       <section class="header-text">
         <div class="header-desc">
           <h1><a href="http://shachiku.life/">社畜人生</a></h1>
@@ -105,28 +105,15 @@
   <div class="delimiter"></div>
   
   
+  <figure class="preview">
+      <img src="/images/docker-logo.png">
+      
+      <figcaption>原文位置 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</figcaption>
+      
+  </figure>
+  
   <section>
-     
-
-<figure class="center">
-  <img src="/images/docker-logo.png" title="docker logo" decoding="async" />
-  <figcaption>原文位置 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/</figcaption>
-</figure>
-<style lang="css">
-  figure.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  figure.center > img {
-    max-width: 100%;
-    height: auto;
-  }
-</style>
-
-<p>本文範圍涵蓋建立有效率的 images 的最佳實踐方法</p>
+    <p>本文範圍涵蓋建立有效率的 images 的最佳實踐方法</p>
 <p>docker 透過讀取 Dockerfile 建立 image．其有自訂的規範與指示, 可參考 <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference</a> 找到更多解釋</p>
 <p>一個 Docker image 由 多個指令所建構出的 read-only layer 所組成．這些 layer 彼此堆疊，且各 layer 為前一層的 delta of changes．圖為一範例 Dockerfile</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ubuntu:18.04</span><span style="color:#960050;background-color:#1e0010">
@@ -501,7 +488,7 @@ exec <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;
   }
   @media (min-width: 320px) and (max-width: 736px) {
     #tips {
-      visibility: hidden;
+      display: none;
     }
   }
 </style>
