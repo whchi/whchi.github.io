@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="設定 GA4 與 GTM &middot; 社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2021/07/setup-ga4-with-gtm/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2021-07-08T17:35:21&#43;08:00" />
+  
+  <meta property="og:article:tag" content="seo" />
+  
+  
+
+  <title>
+     設定 GA4 與 GTM &middot;  社畜人生
+  </title>
+
+  <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/github.css" />
+  <link rel="stylesheet" href="http://shachiku.life/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://shachiku.life/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://shachiku.life/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h2 class="tag-line">
+            雜談與紀錄
+          </h2>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/archives">
+            archives
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  
+  <header class="article-title">
+    <h1 class="text-primary">設定 GA4 與 GTM</h1>
+  </header>
+  <div class="delimiter"></div>
+  
+  
+  <figure class="preview">
+      <img src="/images/preview/docking.jpeg">
+      
+      <figcaption>每個搞網站的工程師都要會一點 ga &#43; gtm</figcaption>
+      
+  </figure>
+  
+  <section>
+    <h1 id="google-analyticsga">Google Analytics(GA)</h1>
+<h2 id="1-建立-account-與-property">1. 建立 account 與 property</h2>
+<p>property 建議設定成 hostname</p>
+<h2 id="2-建立-data-stream">2. 建立 data stream</h2>
+<p>照表填寫
+ 
+
+<figure class="center">
+  <img src="/images/ga-data-stream.png" title="" decoding="async" />
+  <figcaption>data stream 設定</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</p>
+<h2 id="3-copy-measurement-id">3. copy measurement id</h2>
+ 
+
+<figure class="center">
+  <img src="/images/ga-copy-measurement-id.png" title="" decoding="async" />
+  <figcaption>copy measurement id</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+<h1 id="google-tag-managergtm">Google Tag Manager(GTM)</h1>
+<h2 id="1-建立-account-與-container">1. 建立 account 與 container</h2>
+<p>container 建議設定成 hostname</p>
+<h2 id="2-建立-tag">2. 建立 tag</h2>
+ 
+
+<figure class="center">
+  <img src="/images/gtm-setup-ga4-tag.png" title="" decoding="async" />
+  <figcaption>選擇 GA4 configuration，貼上剛剛複製的 measurement id</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+<h2 id="3-貼代碼到你的-site">3. 貼代碼到你的 site</h2>
+ 
+
+<figure class="center">
+  <img src="/images/gtm-code.png" title="" decoding="async" />
+  <figcaption>代碼示意圖</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+<h2 id="4-驗證結果">4. 驗證結果</h2>
+<p> 
+
+<figure class="center">
+  <img src="/images/gtm-preview-tag-1.png" title="" decoding="async" />
+  <figcaption>點選 preview 前往驗證</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+ 
+
+<figure class="center">
+  <img src="/images/gtm-preview-tag-2.png" title="" decoding="async" />
+  <figcaption>設定網站位置進行驗證</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+ 
+
+<figure class="center">
+  <img src="/images/gtm-preview-tag-site.png" title="" decoding="async" />
+  <figcaption>驗證結果-site（需裝套件）</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+ 
+
+<figure class="center">
+  <img src="/images/gtm-preview-tag-dashboard.png" title="" decoding="async" />
+  <figcaption>驗證結果-dashboard</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</p>
+<p>然後你就可以跟一般 GA 一樣在後台看到 GA 結果拉～</p>
+<h1 id="補充">補充</h1>
+<h2 id="gtm-vs-ga">GTM vs GA</h2>
+<ol>
+<li>GTM 不是拿來取代 GA 的，他是讓建立 GA tracking code （tag）設定規則、獨立 trigger 更加方便</li>
+<li>GTM 是個介於你的網站與 tracking code management 的 middle man，不同的網站需要埋的 event 都可以透過它進行管理</li>
+<li>同上，GTM 獨立於 GA 之外，GA 只是眾多 tag 的其中一種，此外你也可以透過 GTM 對 GA 增修進行管理而不需要透過工程師做處理（太過客製化除外）</li>
+<li>GTM 可以在特殊情況下觸發特定 event，GA 僅是一個全站分析的 tag，比如說：註冊表單送出事件、使用者收藏某篇文章..等</li>
+<li>GTM 不能設定 GA goal/conversions</li>
+</ol>
+<h2 id="ga4-vs-old-gauniversal-analytics">GA4 vs old GA(universal analytics)</h2>
+<ol>
+<li>measuring model：GA4 based on events and params, old GA based on sessions and pageviews</li>
+<li>免費版取消每月點擊限制：old GA 10m/month, GA4 unlimited</li>
+<li>GA4 可以免費與 BigQuery 進行串接</li>
+</ol>
+<h2 id="放到-hugo-裡面">放到 hugo 裡面</h2>
+<p>善用 <a href="https://gohugo.io/content-management/shortcodes/">shortcode</a> 功能，建立一個 <code>tracking.html</code> 埋 GTM</p>
+<p>於放置的地方加入判斷</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{ <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">fileExists</span> <span style="color:#e6db74">&#34;layouts/partials/tracking.html&#34;</span>) }}
+{{ <span style="color:#a6e22e">partial</span> <span style="color:#e6db74">&#34;tracking.html&#34;</span> . }}
+{{ <span style="color:#a6e22e">end</span> }}
+</code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.analyticsmania.com/post/google-tag-manager-vs-google-analytics/">https://www.analyticsmania.com/post/google-tag-manager-vs-google-analytics/</a></li>
+<li><a href="https://www.adaptworldwide.com/insights/2021/google-analytics-4-vs-universal-analytics-whats-the-difference">https://www.adaptworldwide.com/insights/2021/google-analytics-4-vs-universal-analytics-whats-the-difference</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2021-7-8
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/seo/">#seo</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2021/07/setup-domain-to-your-github-page/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+</div>
+
+</footer>
+
+
+
+
+<style lang="css">
+  #fast-search {
+    visibility: hidden;
+    position: fixed;
+    z-index: 2;
+    top: 15%;
+    left: 50%;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    height: 45px;
+    background-color: #eee7d4;
+    transform: translate(-50%, -50%);
+    border: 3px solid #eee7d4;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 5px;
+  }
+
+  #fast-search input {
+    width: 100%;
+    height: 31px;
+    font-size: 1.6em;
+    color: #5e7579;
+    font-weight: bold;
+    background-color: #eee7d4;
+    border-radius: 3px 3px 0px 0px;
+    border: none;
+    outline: none;
+    text-align: left;
+    display: inline-block;
+  }
+
+  #search-results {
+    width: 100%;
+    list-style-type: none;
+    visibility: inherit;
+    display: inline-block;
+    background-color: #002733;
+  }
+  #search-results a {
+    width: 100%;
+    text-decoration: none !important;
+    padding: 10px;
+    display: inline-block;
+  }
+  #search-results a:hover,
+  #search-results a:focus {
+    outline: 0;
+    background-color: #9c9c9c;
+    color: #fff;
+  }
+  span.title {
+    font-size: 1.1em;
+    color: #bf4918;
+    font-weight: bold;
+  }
+  span.summary {
+    font-size: 0.9em;
+    color: #576e73;
+    font-weight: bold;
+  }
+  .list-item {
+    border-bottom: 0.5px dotted #258ad0;
+  }
+  #tips {
+    visibility: hidden;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #eee7d4;
+  }
+  @media (min-width: 320px) and (max-width: 736px) {
+    #tips {
+      visibility: hidden;
+    }
+  }
+</style>
+<div id="tips">cmd + /</div>
+<div id="fast-search">
+  <input id="search-input" autocomplete="off" tabindex="0" />
+  <section id="search-results"></section>
+</div>
+<script src="/js/fuse.js"></script>
+<script>
+  const url = new URL(location.href);
+  const key = 'uknowhow2srh@' + url.host;
+
+  if (!sessionStorage.getItem(key)) {
+    document.getElementById('tips').style.visibility = 'visible';
+  }
+
+  function uknowhow2srh() {
+    if (sessionStorage.getItem(key)) {
+      document.getElementById('tips').style.visibility = 'hidden';
+    } else {
+      sessionStorage.setItem(key, 1);
+    }
+  }
+</script>
+<script src="/js/fastsearch.js"></script>
+
+</body>
+</html>
+

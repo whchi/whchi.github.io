@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2021-07-08T17:35:21+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/seo/</loc>
+    <lastmod>2021-07-08T17:35:21+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2021-07-08T17:35:21+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2021-07-08T17:35:21+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2021/07/setup-ga4-with-gtm/</loc>
+    <lastmod>2021-07-08T17:35:21+08:00</lastmod>
+  </url><url>
     <loc>http://shachiku.life/tags/github/</loc>
     <lastmod>2021-07-05T15:39:25+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/godaddy/</loc>
-    <lastmod>2021-07-05T15:39:25+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2021-07-05T15:39:25+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2021-07-05T15:39:25+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
     <lastmod>2021-07-05T15:39:25+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2021/07/setup-domain-to-your-github-page/</loc>
