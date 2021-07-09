@@ -2,16 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2021-07-08T17:35:21+08:00</lastmod>
+    <loc>http://shachiku.life/2021/07/2020-taiwan-presidential-election-campaign-site-tech-note/</loc>
+    <lastmod>2021-07-09T19:03:44+08:00</lastmod>
   </url><url>
-    <loc>http://shachiku.life/tags/seo/</loc>
-    <lastmod>2021-07-08T17:35:21+08:00</lastmod>
+    <loc>http://shachiku.life/tags/medium/</loc>
+    <lastmod>2021-07-09T19:03:44+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2021-07-09T19:03:44+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2021-07-08T17:35:21+08:00</lastmod>
+    <lastmod>2021-07-09T19:03:44+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/</loc>
+    <lastmod>2021-07-09T19:03:44+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2021/07/elasticsearch-synonym-and-autocomplete-in-chinese/</loc>
+    <lastmod>2021-07-09T18:27:31+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/elasticsearch/</loc>
+    <lastmod>2021-07-09T18:27:31+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/seo/</loc>
     <lastmod>2021-07-08T17:35:21+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2021/07/setup-ga4-with-gtm/</loc>
@@ -145,9 +157,6 @@
   </url><url>
     <loc>http://shachiku.life/2020/04/murmur-1/</loc>
     <lastmod>2020-04-22T23:48:03+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/elasticsearch/</loc>
-    <lastmod>2020-04-22T17:36:40+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2020/04/setup-elasticsearch-autocompletion/</loc>
     <lastmod>2020-04-22T17:36:40+08:00</lastmod>
