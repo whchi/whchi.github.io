@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>drone on 社畜人生</title>
+    <link>http://shachiku.life/tags/drone/</link>
+    <description>Recent content in drone on 社畜人生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Thu, 22 Jul 2021 10:23:18 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/drone/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>玩玩 Drone CI</title>
+      <link>http://shachiku.life/2021/07/drone-ci-installation/</link>
+      <pubDate>Thu, 22 Jul 2021 10:23:18 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2021/07/drone-ci-installation/</guid>
+      <description>（偽）無人機體驗心得</description>
+    </item>
+    
+  </channel>
+</rss>

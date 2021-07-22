@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Fri, 09 Jul 2021 19:03:44 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Jul 2021 10:23:18 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>玩玩 Drone CI</title>
+      <link>http://shachiku.life/2021/07/drone-ci-installation/</link>
+      <pubDate>Thu, 22 Jul 2021 10:23:18 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2021/07/drone-ci-installation/</guid>
+      <description>（偽）無人機體驗心得</description>
+    </item>
+    
     <item>
       <title>[From medium]天下雜誌 2020 總統大選專題-技術紀錄</title>
       <link>http://shachiku.life/2021/07/2020-taiwan-presidential-election-campaign-site-tech-note/</link>
