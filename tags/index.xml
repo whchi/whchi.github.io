@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 22 Jul 2021 10:23:18 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Aug 2021 18:15:54 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>composer</title>
+      <link>http://shachiku.life/tags/composer/</link>
+      <pubDate>Thu, 05 Aug 2021 18:15:54 +0800</pubDate>
+      
+      <guid>http://shachiku.life/tags/composer/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>devops</title>
       <link>http://shachiku.life/tags/devops/</link>
@@ -293,15 +302,6 @@
       <pubDate>Sat, 13 Jul 2019 00:37:23 +0800</pubDate>
       
       <guid>http://shachiku.life/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>composer</title>
-      <link>http://shachiku.life/tags/composer/</link>
-      <pubDate>Sun, 02 Jun 2019 20:16:20 +0800</pubDate>
-      
-      <guid>http://shachiku.life/tags/composer/</guid>
       <description></description>
     </item>
     

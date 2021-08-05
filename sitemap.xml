@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://shachiku.life/tags/composer/</loc>
+    <lastmod>2021-08-05T18:15:54+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2021-08-05T18:15:54+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2021-08-05T18:15:54+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2021/08/tilde-vs-caret-in-composer/</loc>
+    <lastmod>2021-08-05T18:15:54+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2021-08-05T18:15:54+08:00</lastmod>
+  </url><url>
     <loc>http://shachiku.life/tags/devops/</loc>
     <lastmod>2021-07-22T10:23:18+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/drone/</loc>
     <lastmod>2021-07-22T10:23:18+08:00</lastmod>
   </url><url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2021-07-22T10:23:18+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2021-07-22T10:23:18+08:00</lastmod>
-  </url><url>
     <loc>http://shachiku.life/2021/07/drone-ci-installation/</loc>
-    <lastmod>2021-07-22T10:23:18+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
     <lastmod>2021-07-22T10:23:18+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2021/07/2020-taiwan-presidential-election-campaign-site-tech-note/</loc>
@@ -214,9 +220,6 @@
   </url><url>
     <loc>http://shachiku.life/2019/07/deploy-laravel-app-to-gke/</loc>
     <lastmod>2019-07-13T00:37:23+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/composer/</loc>
-    <lastmod>2019-06-02T20:16:20+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/php/</loc>
     <lastmod>2019-06-02T20:16:20+08:00</lastmod>
