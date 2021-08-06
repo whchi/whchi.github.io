@@ -256,5 +256,13 @@
     <loc>http://shachiku.life/archives/</loc>
   </url><url>
     <loc>http://shachiku.life/categories/</loc>
+  </url><url>
+    <loc>http://shachiku.life/tools/search-html-ascii/</loc>
+  </url><url>
+    <loc>http://shachiku.life/tags/tool/</loc>
+  </url><url>
+    <loc>http://shachiku.life/tools/</loc>
+  </url><url>
+    <loc>http://shachiku.life/tools/</loc>
   </url>
 </urlset>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tool on 社畜人生</title>
+    <link>http://shachiku.life/tags/tool/</link>
+    <description>Recent content in tool on 社畜人生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright><atom:link href="http://shachiku.life/tags/tool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTML ascii 速查</title>
+      <link>http://shachiku.life/tools/search-html-ascii/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://shachiku.life/tools/search-html-ascii/</guid>
+      <description>#ascii-search { width: 100%; font-size: 1.6em; color: #5e7579; font-weight: bold; background-color: #eee7d4; border: none; outline: none; padding: 0.1rem 0.5rem; } .result { display: flex; flex-direction: column; align-items: center; justify-content: center; } .card { margin-top: 1rem; width: 100%; text-align: center; display: flex; border-radius: 5px; background-color: #6d6d6d91; color: #fff; } .card .content { display: flex; flex-direction: column; justify-content: space-around; align-items: flex-start; } .card .content span { }   char ascii unicode desc      let asciiData = null; const resultTemplate = ` {CHAR} {ASCII} {UNICODE} {DESC}   `; let search = document.</description>
+    </item>
+    
+  </channel>
+</rss>
