@@ -77,6 +77,10 @@
             tags
           </a>
           
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
         </div>
         
         
@@ -110,7 +114,7 @@
 </blockquote>
 <h2 id="設定">設定</h2>
 <p>在本地建立core folder, 結構圖如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cores
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cores
 └── mycore
     ├── conf
     │   ├── _rest_managed.json
@@ -127,20 +131,20 @@
 </code></pre></div><p>主要說明幾個檔案</p>
 <h3 id="coreproperties">core.properties</h3>
 <p>告訴 solr 要讀取的 core 資訊, 範例參考</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">name=mycore
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">name=mycore
 config=solrconfig.xml
 schema=schema.xml
 dataDir=data
 </code></pre></div><h3 id="solrconfigxml">solrconfig.xml</h3>
 <p>增加 dataimport</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;requestHandler</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;/dataimport&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;org.apache.solr.handler.dataimport.DataImportHandler&#34;</span><span style="color:#f92672">&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;requestHandler</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;/dataimport&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;org.apache.solr.handler.dataimport.DataImportHandler&#34;</span><span style="color:#f92672">&gt;</span>
     <span style="color:#f92672">&lt;lst</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;defaults&#34;</span><span style="color:#f92672">&gt;</span>
         <span style="color:#f92672">&lt;str</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;config&#34;</span><span style="color:#f92672">&gt;</span>db-data-config.xml<span style="color:#f92672">&lt;/str&gt;</span>
     <span style="color:#f92672">&lt;/lst&gt;</span>
 <span style="color:#f92672">&lt;/requestHandler&gt;</span>
 </code></pre></div><h3 id="db-data-configxml">db-data-config.xml</h3>
 <p>設定要 import 的 data 的 query, 範例參考</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dataConfig&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dataConfig&gt;</span>
     <span style="color:#f92672">&lt;dataSource</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;JdbcDataSource&#34;</span> <span style="color:#a6e22e">driver=</span><span style="color:#e6db74">&#34;com.mysql.jdbc.Driver&#34;</span> <span style="color:#a6e22e">url=</span><span style="color:#e6db74">&#34;jdbc:mysql://localhost:3306/test&#34;</span> <span style="color:#a6e22e">user=</span><span style="color:#e6db74">&#34;myusername&#34;</span> <span style="color:#a6e22e">password=</span><span style="color:#e6db74">&#34;mypassword&#34;</span><span style="color:#f92672">/&gt;</span>
         <span style="color:#f92672">&lt;document</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;mydocument&#34;</span><span style="color:#f92672">&gt;</span>
         <span style="color:#f92672">&lt;entity</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;item&#34;</span> <span style="color:#a6e22e">query=</span><span style="color:#e6db74">&#34;SELECT * FROM your_table&#34;</span><span style="color:#f92672">&gt;</span>
@@ -152,7 +156,7 @@ dataDir=data
     <span style="color:#f92672">&lt;/document&gt;</span>
 <span style="color:#f92672">&lt;/dataConfig&gt;</span>
 </code></pre></div><h3 id="schemaxml">schema.xml</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;fields&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;fields&gt;</span>
     <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;text_syn&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
     <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;type&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;string&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
     <span style="color:#f92672">&lt;field</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;no&#34;</span> <span style="color:#a6e22e">indexed=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;int&#34;</span> <span style="color:#a6e22e">stored=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">required=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">multiValued=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#f92672">/&gt;</span>
@@ -167,7 +171,7 @@ dataDir=data
     <span style="color:#f92672">&lt;/analyzer&gt;</span>
 <span style="color:#f92672">&lt;/fieldType&gt;</span>
 </code></pre></div><h3 id="synonymtxt">synonym.txt</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt"># , 表示同等意思
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt"># , 表示同等意思
 # =&gt; 表示用左側搜會用右側搜
 # 但因為會先跑 token, 所以有要做同意的字也要把他設進 words.dic 裡面
 台灣,臺灣
@@ -225,7 +229,7 @@ TV =&gt; Taiwan-Value
 <ul>
 <li>docker-compose.yml</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
 <span style="color:#f92672">services</span>:
   <span style="color:#f92672">solr</span>:
     <span style="color:#f92672">image</span>: <span style="color:#ae81ff">geerlingguy/solr:4.10.4</span>

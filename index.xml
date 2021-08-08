@@ -440,7 +440,8 @@ Dec 16 &amp;ndash; Skateboard Kickturn</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/tools/search-html-ascii/</guid>
-      <description>#ascii-search { width: 100%; font-size: 1.6em; color: #5e7579; font-weight: bold; background-color: #eee7d4; border: none; outline: none; padding: 0.1rem 0.5rem; } .result { display: flex; flex-direction: column; align-items: center; justify-content: center; } .card { margin-top: 1rem; width: 100%; text-align: center; display: flex; border-radius: 5px; background-color: #6d6d6d91; color: #fff; } .card .content { display: flex; flex-direction: column; justify-content: space-around; align-items: flex-start; } .card .content span { }   char ascii unicode desc      let asciiData = null; const resultTemplate = ` {CHAR} {ASCII} {UNICODE} {DESC}   `; let search = document.</description>
+      <description>資料來源：https://dev.w3.org/html5/html-author/charref
+#ascii-search { width: 100%; font-size: 1.6em; color: #5e7579; font-weight: bold; background-color: #eee7d4; border: none; outline: none; padding: 0.1rem 0.5rem; } .result { display: flex; flex-direction: column; align-items: center; justify-content: center; } .card { margin-top: 1rem; width: 100%; text-align: center; display: flex; border-radius: 5px; background-color: #bfbbbb45; color: #000; } .card h1 { width: 110px; height: 85px; border-radius: 5px 0 0 5px; margin: 0.75rem; padding: 2rem; background-color: #fff; font-weight: bold; } .</description>
     </item>
     
     <item>

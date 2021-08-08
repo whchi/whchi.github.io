@@ -77,6 +77,10 @@
             tags
           </a>
           
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
         </div>
         
         
@@ -106,9 +110,9 @@
   <section>
     <h1 id="steps">Steps</h1>
 <h2 id="1-create-new-ssh-pair">1. create new ssh pair</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ssh-keygen -t rsa -C <span style="color:#e6db74">&#39;myemail@example.com&#39;</span> -f id_rsa_mygit
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ssh-keygen -t rsa -C <span style="color:#e6db74">&#39;myemail@example.com&#39;</span> -f id_rsa_mygit
 </code></pre></div><h2 id="2-edit-sshconfig">2. edit <code>~/.ssh/config</code></h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt"># company github account
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt"># company github account
 Host github.com
    HostName github.com
    IdentityFile ~/.ssh/id_rsa
@@ -120,7 +124,7 @@ Host github-mygit
    IdentityFile ~/.ssh/id_rsa_mygit
    IdentitiesOnly yes
 </code></pre></div><h2 id="3-add-into-ssh-agent">3. add into ssh-agent</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ssh-add -D <span style="color:#f92672">&amp;&amp;</span> ssh-add -L <span style="color:#75715e"># reset all ssh keys, optional</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ssh-add -D <span style="color:#f92672">&amp;&amp;</span> ssh-add -L <span style="color:#75715e"># reset all ssh keys, optional</span>
 <span style="color:#75715e"># add them into ssh-agent</span>
 ssh-add ~/.ssh/id_rsa
 ssh-add ~/.ssh/id_rsa_mygit
@@ -129,10 +133,10 @@ ssh-add ~/.ssh/id_rsa_mygit
 ssh -T git@github.com
 ssh -T git@github-mygit
 </code></pre></div><h2 id="4-clone-your-git-project">4. clone your git project</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git clone git@github-mygit:xxxxx/xxxxx.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git clone git@github-mygit:xxxxx/xxxxx.git
 </code></pre></div><h2 id="about-submodule">About submodule</h2>
 <p>修改其於 <code>.git/modules/&lt;folder&gt;/config</code> 裡的設定</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">...
 [remote &#34;origin&#34;]
     url = git@github.com-mygit:xxxxx/xxxxx.git
     fetch = +refs/heads/*:refs/remotes/origin/*

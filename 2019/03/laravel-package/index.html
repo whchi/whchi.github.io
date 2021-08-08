@@ -77,6 +77,10 @@
             tags
           </a>
           
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
         </div>
         
         
@@ -117,12 +121,12 @@
 <h2 id="開發">開發</h2>
 <h3 id="step1-建立專案">Step1. 建立專案</h3>
 <p>這裡以 5.5 為例</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cd /path/to/your/package-develop-project <span style="color:#f92672">&amp;&amp;</span> composer create-project --prefer-dist laravel/laravel . <span style="color:#e6db74">&#34;5.5.*&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cd /path/to/your/package-develop-project <span style="color:#f92672">&amp;&amp;</span> composer create-project --prefer-dist laravel/laravel . <span style="color:#e6db74">&#34;5.5.*&#34;</span>
 </code></pre></div><h3 id="step2-建立-package-開發路徑">Step2. 建立 package 開發路徑</h3>
 <p>於 laravel documentroot 建立 packages folder, path如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">packages/<span style="color:#f92672">{</span>vendor-name<span style="color:#f92672">}</span>/<span style="color:#f92672">{</span>package-name<span style="color:#f92672">}</span>/src
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">packages/<span style="color:#f92672">{</span>vendor-name<span style="color:#f92672">}</span>/<span style="color:#f92672">{</span>package-name<span style="color:#f92672">}</span>/src
 </code></pre></div><p>並於 src 層使用<code>composer init</code>填入相關資料，以下是我的範例</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;cw/kafkalogger&#34;</span>,
   <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;send log direct into kafka&#34;</span>,
   <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;library&#34;</span>,
@@ -147,7 +151,7 @@
   }
 }
 </code></pre></div><p>要注意的地方是</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;require&#34;</span>: {
     <span style="color:#960050;background-color:#1e0010">...</span>
     <span style="color:#f92672">&#34;laravel/framework&#34;</span>: <span style="color:#e6db74">&#34;5.5.*&#34;</span>,
@@ -163,7 +167,7 @@
 </code></pre></div><p>這兩個地方要填正確</p>
 <h3 id="step3-調整根目錄-composerjson以利測試">Step3. 調整根目錄 composer.json，以利測試</h3>
 <p>回到你的 laravel app 根目錄，修改 composer.json如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#960050;background-color:#1e0010">...</span>
   <span style="color:#f92672">&#34;psr-4&#34;</span>: {
     <span style="color:#f92672">&#34;App\\&#34;</span>: <span style="color:#e6db74">&#34;app/&#34;</span>,
@@ -174,7 +178,7 @@
 <h3 id="step4-建立-serviceprovider">Step4. 建立 ServiceProvider</h3>
 <p><strong>用 ServiceProvider 是因為有 <code>register</code> 跟 <code>boot</code>，不需要的話可以用其他方式建立</strong><br>
 懶得打字的話直接用 <code>php artisan make:provider YourServiceProvider</code>，再把它 copy 到 src 底下，參考程式範例如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">Cw\KafkaLogger</span>;
 
 <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\ServiceProvider</span>;
@@ -201,7 +205,7 @@
     }
 }
 </code></pre></div><p>並在 <code>config/app.php</code> 加入包含 namespace 的 provider</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#e6db74">&#39;providers&#39;</span> <span style="color:#f92672">=&gt;</span> [
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#e6db74">&#39;providers&#39;</span> <span style="color:#f92672">=&gt;</span> [
     <span style="color:#f92672">...</span>
     <span style="color:#a6e22e">Cw\KafkaLogger\KafkaLogServiceProvider</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
     <span style="color:#f92672">...</span>
@@ -250,7 +254,7 @@
 <hr>
 <h2 id="使用-composer-安裝">使用 composer 安裝</h2>
 <p>部署上去最的目的是使用 composer 安裝，composer 有指定 package 要去哪抓的<a href="https://getcomposer.org/doc/05-repositories.md#vcs">設定</a>，參考設定如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;require-dev&#34;</span>: {
     <span style="color:#f92672">&#34;cw/kafkalogger&#34;</span>: <span style="color:#e6db74">&#34;1.0.*&#34;</span>,
     <span style="color:#960050;background-color:#1e0010">...</span>

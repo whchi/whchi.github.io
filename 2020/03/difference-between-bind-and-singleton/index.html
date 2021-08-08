@@ -77,6 +77,10 @@
             tags
           </a>
           
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
         </div>
         
         
@@ -114,7 +118,7 @@
 </ul>
 <p>need only one instance through your application call</p>
 <p><strong>example</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestClass</span>
 {
     <span style="color:#66d9ef">protected</span> $value <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
@@ -140,7 +144,7 @@ $app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">singleto
 </span></code></pre></div><h3 id="extra-information">extra information</h3>
 <p><code>Facade</code> makes you easily use your service with <code>singleton</code> because of <code>resolveFacadeInstance</code>, if you want to use it with <code>bind</code> you can call <code>clearResolvedInstance</code> in your facade.</p>
 <p><strong>example</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFacadeAccessor</span>()
 {
     <span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">clearResolvedInstance</span>(<span style="color:#a6e22e">YourService</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>);

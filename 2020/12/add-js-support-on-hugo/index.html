@@ -77,6 +77,10 @@
             tags
           </a>
           
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
         </div>
         
         
@@ -108,10 +112,10 @@
 <p>這裡用 <a href="https://github.com/mermaid-js/mermaid">mermaid-js</a> 當範例</p>
 <h2 id="step1-add-short-code">step1. add short code</h2>
 <p><code>layouts/shortcodes/mermaid.html</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mermaid&#34;</span>&gt;{{ .Inner }}&lt;/<span style="color:#f92672">div</span>&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mermaid&#34;</span>&gt;{{ .Inner }}&lt;/<span style="color:#f92672">div</span>&gt;
 </code></pre></div><h2 id="step2-add-custom-theme">step2. add custom theme</h2>
 <p><code>layouts/partials/footer.html</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">...
 {{ if (.Params.mermaid) }}
 &lt;<span style="color:#f92672">script</span>
   <span style="color:#a6e22e">async</span>
@@ -120,7 +124,7 @@
 {{ end }}
 </code></pre></div><h2 id="step3-add-post-parameter">step3. add post parameter</h2>
 <p><code>content/posts/xxxxx.md</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">mermaid: true
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">mermaid: true
 </code></pre></div><h2 id="done">done</h2>
 <div class="mermaid">
 sequenceDiagram

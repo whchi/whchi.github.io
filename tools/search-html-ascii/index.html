@@ -77,6 +77,10 @@
             tags
           </a>
           
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
         </div>
         
         
@@ -104,7 +108,8 @@
   
   
   <section>
-    <style lang="css">
+    <p>資料來源：<a href="https://dev.w3.org/html5/html-author/charref">https://dev.w3.org/html5/html-author/charref</a></p>
+<style lang="css">
   #ascii-search {
     width: 100%;
     font-size: 1.6em;
@@ -127,8 +132,17 @@
     text-align: center;
     display: flex;
     border-radius: 5px;
-    background-color: #6d6d6d91;
-    color: #fff;
+    background-color: #bfbbbb45;
+    color: #000;
+  }
+  .card h1 {
+    width: 110px;
+    height: 85px;
+    border-radius: 5px 0 0 5px;
+    margin: 0.75rem;
+    padding: 2rem;
+    background-color: #fff;
+    font-weight: bold;
   }
   .card .content {
     display: flex;
@@ -136,46 +150,69 @@
     justify-content: space-around;
     align-items: flex-start;
   }
-  .card .content span {
-     
+  span.desc {
+    flex-grow: 2;
+    font-weight: 800;
+  }
+  span.ascii {
+    font-weight: 500;
+    color: rgb(250, 159, 159);
+  }
+  span.unicode {
+    font-weight: 500;
+    color: #558b2f;
+  }
+  #watermark__example {
+    border-radius: 0 0 5px 5px;
+    border: 1px dotted #bfbbbb45;
+    width: 100%;
+    text-align: center;
+    box-shadow: 2px 2px 10px 5px #bfbbbb21;
+  }
+  .example-card {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
   }
 </style>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
-  integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-></script>
 <div style="margin-bottom: 1rem">
-  <input id="ascii-search" />
+  <input id="ascii-search" placeholder="search char you want" />
   <section class="result">
-    <div class="card">
+    <div class="card example-card">
       <h1>char</h1>
       <div class="content">
-        <span>ascii</span>
-        <span>unicode</span>
-        <span>desc</span>
+        <span class="desc">desc</span>
+        <span class="ascii">ascii</span>
+        <span class="unicode">unicode</span>
       </div>
     </div>
+    <div id="watermark__example">example</div>
   </section>
 </div>
 <script>
   let asciiData = null;
-  const resultTemplate = `
-    <div class="card">
-      <h3>{CHAR}</h3>
-      <div class="content">
-        <span>{ASCII}</span>
-        <span>{UNICODE}</span>
-        <span>{DESC}</span>
-      </div>
-    </div>
-  `;
   let search = document.getElementById('ascii-search');
   let rst = null;
+  const exampleTemplate = `
+  <div class="card example-card">
+      <h1>char</h1>
+      <div class="content">
+        <span class="desc">desc</span>
+        <span class="ascii">ascii</span>
+        <span class="unicode">unicode</span>
+      </div>
+    </div>
+    <div id="watermark__example">example</div>
+  `;
+  const resultSection = document.querySelector('section.result');
+
   const filter = debounce((e) => {
     rst = null;
+    resetResult();
     let kw = e.target.value.toLowerCase();
+    if (!kw) {
+      resultSection.innerHTML = exampleTemplate;
+      return;
+    }
     if (!kw.trim()) {
       rst = asciiData.filter((e) => e.char === ' \t' || e.char === ' \n');
     } else {
@@ -183,34 +220,67 @@
         (e) => e.char.indexOf(kw) > -1 || e.desc.indexOf(kw) > -1
       );
     }
-    console.log(rst);
-  }, 250);
+    appendResult(rst);
+  }, 500);
   search.addEventListener('input', filter);
-  
-  
-  
-  
-  axios
-    .get(
-      'https://gist.githubusercontent.com/whchi/45463b3e89178d662c2d0c20d6b8d342/raw/8c9b7137e2f2384d57117cf7e2e749057fc425b7/html_ascii_unicode_map.json'
-    )
-    .then((r) => {
-      asciiData = r.data;
-    });
+  fetch(
+    'https://gist.githubusercontent.com/whchi/45463b3e89178d662c2d0c20d6b8d342/raw/8c9b7137e2f2384d57117cf7e2e749057fc425b7/html_ascii_unicode_map.json'
+  ).then(async (r) => {
+    asciiData = await r.json();
+  });
   function debounce(func, wait, immediate) {
-    var timeout;
+    let timeout;
     return function () {
-      var context = this,
+      let context = this,
         args = arguments;
-      var later = function () {
+      let later = function () {
         timeout = null;
         if (!immediate) func.apply(context, args);
       };
-      var callNow = immediate && !timeout;
+      let callNow = immediate && !timeout;
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
       if (callNow) func.apply(context, args);
     };
+  }
+  function appendResult(filtered) {
+    filtered.forEach((ele) => {
+      let card = document.createElement('div');
+      card.className = 'card';
+      let content = document.createElement('div');
+      content.className = 'content';
+
+      let char = document.createElement('h1');
+      if (ele.ascii === '&Tab;') {
+        char.textContent = '\\t';
+      } else if (ele.ascii === '&NewLine;') {
+        char.textContent = '\\n';
+      } else {
+        char.textContent = ele.char;
+      }
+      card.appendChild(char);
+
+      let desc = document.createElement('span');
+      desc.textContent = ele.desc;
+      desc.className = 'desc';
+
+      let ascii = document.createElement('span');
+      ascii.textContent = ele.ascii;
+      ascii.className = 'ascii';
+
+      let unicode = document.createElement('span');
+      unicode.textContent = ele.unicode;
+      unicode.className = 'unicode';
+
+      content.appendChild(desc);
+      content.appendChild(ascii);
+      content.appendChild(unicode);
+      card.appendChild(content);
+      resultSection.appendChild(card);
+    });
+  }
+  function resetResult() {
+    resultSection.innerHTML = null;
   }
 </script>
 

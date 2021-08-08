@@ -79,6 +79,10 @@
             tags
           </a>
           
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
         </div>
         
         
@@ -109,7 +113,7 @@
     <ol>
 <li>設定多個 hosts</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
 <span style="color:#f92672">x-hosts</span>: <span style="color:#75715e">&amp;x-hosts</span>
   - <span style="color:#e6db74">&#39;mysql:172.29.0.3&#39;</span>
   - <span style="color:#e6db74">&#39;app:172.29.0.4&#39;</span>
@@ -120,7 +124,7 @@
 </code></pre></div><ol start="2">
 <li>build with context</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">...
 <span style="color:#f92672">app</span>:
     <span style="color:#f92672">build</span>:
         <span style="color:#f92672">context</span>: <span style="color:#ae81ff">.</span>

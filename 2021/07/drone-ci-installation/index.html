@@ -79,6 +79,10 @@
             tags
           </a>
           
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
         </div>
         
         
@@ -211,7 +215,7 @@
 <p>於 repo 根目錄放 <code>.drone.yml</code></p>
 </li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">---
 <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">pipeline</span>
 <span style="color:#f92672">type</span>: <span style="color:#ae81ff">docker</span>
 <span style="color:#f92672">name</span>: <span style="color:#ae81ff">default</span>
@@ -259,7 +263,7 @@
 <ul>
 <li>.env</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">DRONE_GITHUB_CLIENT_ID</span><span style="color:#f92672">=</span><span style="color:#e6db74">your_github_oauth_app_client_id</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">DRONE_GITHUB_CLIENT_ID</span><span style="color:#f92672">=</span><span style="color:#e6db74">your_github_oauth_app_client_id</span>
 <span style="color:#a6e22e">DRONE_GITHUB_CLIENT_SECRET</span><span style="color:#f92672">=</span><span style="color:#e6db74">your_github_oauth_app_client_secret</span>
 <span style="color:#a6e22e">DRONE_RPC_SECRET</span><span style="color:#f92672">=</span><span style="color:#e6db74">random_string</span>
 <span style="color:#a6e22e">DRONE_RPC_HOST</span><span style="color:#f92672">=</span><span style="color:#e6db74">drone-server</span>
@@ -269,7 +273,7 @@
 <ul>
 <li>docker-compose.yml</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#ae81ff">3.9</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#ae81ff">3.9</span>
 <span style="color:#f92672">services</span>:
   <span style="color:#f92672">drone-server</span>:
     <span style="color:#f92672">image</span>: <span style="color:#ae81ff">drone/drone</span>

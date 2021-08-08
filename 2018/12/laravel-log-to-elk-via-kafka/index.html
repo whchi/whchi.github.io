@@ -85,6 +85,10 @@
             tags
           </a>
           
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
         </div>
         
         
@@ -177,7 +181,7 @@
 <li>先把庫抓下來<code>git clone https://github.com/wurstmeister/kafka-docker.git</code></li>
 <li>修改<code>docker-compose-single-broker.yml</code>如下</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
 <span style="color:#f92672">services</span>:
   <span style="color:#f92672">zookeeper</span>:
     <span style="color:#f92672">image</span>: <span style="color:#ae81ff">wurstmeister/zookeeper</span>
@@ -228,7 +232,7 @@ output {
 <li>安裝套件<code>composer require nmred/kafka-php</code></li>
 <li>繼承 laravel logger</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 <span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Hubs</span>;
 
@@ -271,7 +275,7 @@ output {
 </code></pre></div><ol>
 <li>修改預設的 logger 為 KafkaLogHubber</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#75715e">// in bootstrap/app.php
 </span><span style="color:#75715e"></span>
 <span style="color:#f92672">...</span>
