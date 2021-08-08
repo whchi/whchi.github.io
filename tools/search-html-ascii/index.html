@@ -129,7 +129,6 @@
   .card {
     margin-top: 1rem;
     width: 100%;
-    text-align: center;
     display: flex;
     border-radius: 5px;
     background-color: #bfbbbb45;
@@ -220,7 +219,7 @@
         (e) => e.char.indexOf(kw) > -1 || e.desc.indexOf(kw) > -1
       );
     }
-    appendResult(rst);
+    appendResult(rst.slice(0, 10));
   }, 500);
   search.addEventListener('input', filter);
   fetch(
