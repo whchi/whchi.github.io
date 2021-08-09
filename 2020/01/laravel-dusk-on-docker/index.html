@@ -121,7 +121,7 @@
 <ul>
 <li>develop-env.yml</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
 <span style="color:#f92672">services</span>:
   <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_dev</span>
   <span style="color:#f92672">image</span>: <span style="color:#ae81ff">your-dev-image:version</span>
@@ -137,7 +137,7 @@
 </code></pre></div><ul>
 <li>standalone-chrome.yml</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
 <span style="color:#f92672">services</span>:
   <span style="color:#f92672">chrome</span>:
     <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_selenium-chrome</span>
@@ -159,7 +159,7 @@
 <ul>
 <li>DuskTestCase.php</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#e6db74">/**
 </span><span style="color:#e6db74"> * Create the RemoteWebDriver instance.
 </span><span style="color:#e6db74"> *
@@ -182,7 +182,7 @@
 <li>.env.dusk.local</li>
 </ul>
 <p>獨立一個環境給 dusk 跑的時候吃，要注意的是 APP_URL</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-env" data-lang="env"><span style="color:#75715e"># 這邊是讓 standalone-chrome 可以連的到的專案 host</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-env" data-lang="env"><span style="color:#75715e"># 這邊是讓 standalone-chrome 可以連的到的專案 host</span>
 APP_URL<span style="color:#f92672">=</span>http://local-project.dev
 </code></pre></div><h3 id="成果">成果</h3>
 <p>都設定成功的話直接下 <code>php artisan dusk</code> 應該會看到畫面如下

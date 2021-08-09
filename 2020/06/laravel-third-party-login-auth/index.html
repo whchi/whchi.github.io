@@ -114,7 +114,7 @@
 <ul>
 <li>config/auth.php</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#f92672">...</span>
 <span style="color:#e6db74">&#39;providers&#39;</span> <span style="color:#f92672">=&gt;</span> [
     <span style="color:#e6db74">&#39;users&#39;</span> <span style="color:#f92672">=&gt;</span> [
@@ -126,7 +126,7 @@
 <li>AuthServiceProvider.php</li>
 </ul>
 <p>you can use <code>php artisan</code> to create provider</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">boot</span>() {
     <span style="color:#f92672">...</span>
     <span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">provider</span>(<span style="color:#e6db74">&#39;custom-driver&#39;</span>, <span style="color:#66d9ef">function</span> ($app, <span style="color:#66d9ef">array</span> $config) {
@@ -136,7 +136,7 @@
 </code></pre></div><ul>
 <li>YourCustomAuthProvider.php</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Contracts\Auth\Authenticatable</span>;
 <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Auth\GenericUser</span>;
 
@@ -178,7 +178,7 @@
 </code></pre></div><ul>
 <li>YourLoginController.php</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#f92672">...</span>
 <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Auth\GenericUser</span>;
 <span style="color:#f92672">...</span>
@@ -194,7 +194,7 @@
 <ul>
 <li>redis retrive session</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#f92672">...</span>
 <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Redis</span>;
 <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Auth</span>;

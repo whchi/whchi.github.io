@@ -116,17 +116,17 @@
 這裡用<a href="http://mirlab.org/jang/books/asp/odbc&amp;dsn.asp?title=18-1%20ODBC%20%BBP%20DSN%20%C2%B2%A4%B6">DSN</a>連線</p>
 <h2 id="step1-安裝driver">Step1 安裝driver</h2>
 <p>使用 brew</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew update
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew update
 brew install unixodbc freetds
 </code></pre></div><h2 id="step2-修改-odbc-設定">Step2 修改 odbc 設定</h2>
 <p>in <code>/usr/local/etc/odbcinst.ini</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[FreeTDS]</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[FreeTDS]</span>
 <span style="color:#a6e22e">Description</span><span style="color:#f92672">=</span><span style="color:#e6db74">FreeTDS Driver for Mac &amp; MSSQL</span>
 <span style="color:#a6e22e">Driver</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/lib/libtdsodbc.so # 這兩個 .so 在下 brew install unixodbc 的時候會自己裝到這</span>
 <span style="color:#a6e22e">Setup</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/lib/libtdsodbc.so</span>
 <span style="color:#a6e22e">UsageCount</span><span style="color:#f92672">=</span><span style="color:#e6db74">1</span>
 </code></pre></div><p>in <code>/usr/local/etc/odbc.ini</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">[TEST_DB] # DSN名稱, 要跟 freetds.conf 的 name mapping</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">[TEST_DB] # DSN名稱, 要跟 freetds.conf 的 name mapping</span>
 <span style="color:#a6e22e">Description</span>         <span style="color:#f92672">=</span> <span style="color:#e6db74">test_db # 隨便</span>
 <span style="color:#a6e22e">Driver</span>              <span style="color:#f92672">=</span> <span style="color:#e6db74">FreeTDS # 要跟 odbcinst.ini 的 name mapping</span>
 <span style="color:#a6e22e">Servername</span>          <span style="color:#f92672">=</span> <span style="color:#e6db74">TEST_DB # 隨便</span>
@@ -137,17 +137,17 @@ brew install unixodbc freetds
     tds version = 7.3 # version 說明參考 https://www.freetds.org/userguide/choosingtdsprotocol.htm
 </code></pre><h2 id="step3-測試連線">Step3 測試連線</h2>
 <p>設定完成後用command測試能否連上</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tsql -S TEST_DB -U username -P password
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tsql -S TEST_DB -U username -P password
 </code></pre></div><p>下完有看到類似下面的畫面表示成功</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">locale is <span style="color:#e6db74">&#34;zh_TW.UTF-8&#34;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">locale is <span style="color:#e6db74">&#34;zh_TW.UTF-8&#34;</span>
 locale charset is <span style="color:#e6db74">&#34;UTF-8&#34;</span>
 using default charset <span style="color:#e6db74">&#34;UTF-8&#34;</span>
 1&gt;
 </code></pre></div><h2 id="python-連線範例">python 連線範例</h2>
 <p>安裝必要套件</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pip install sqlalchemy pyodbc
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pip install sqlalchemy pyodbc
 </code></pre></div><p>範例如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
 namespace <span style="color:#f92672">=</span> YOUR_NAME_SPACE
 account <span style="color:#f92672">=</span> YOUR_ACCOUNT
 password <span style="color:#f92672">=</span> YOUR_PASSWORD

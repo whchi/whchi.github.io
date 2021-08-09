@@ -191,7 +191,7 @@ replication:
 <ol>
 <li>docker-compose.yml</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.7&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.7&#39;</span>
 <span style="color:#f92672">services</span>:
   <span style="color:#f92672">mongo_primary</span>:
     <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
@@ -222,15 +222,15 @@ replication:
 </code></pre></div><ol start="2">
 <li>進去啟動 replica</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker exec -ti local_persona_mongo_primary sh
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker exec -ti local_persona_mongo_primary sh
 <span style="color:#75715e"># in container</span>
 mongo --eval <span style="color:#e6db74">&#39;rs.initiate( { _id : &#34;rs0&#34;,members: [{ _id: 0, host: &#34;mongo_primary:27017&#34; },{ _id: 1, host: &#34;mongo_rep1:27027&#34; },{ _id: 2, host: &#34;mongo_rep2:27037&#34; }]})&#39;</span>
 </code></pre></div><ol start="3">
 <li>設定本地 hosts 讓本地的 request 可以連到機器（也可以把開發環境掛在跟docker-compose一起就不用這步）</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo echo <span style="color:#e6db74">&#39;127.0.0.1 mongo_primary mongo_rep1 mongo_rep2&#39;</span> &gt;&gt; /etc/hosts
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo echo <span style="color:#e6db74">&#39;127.0.0.1 mongo_primary mongo_rep1 mongo_rep2&#39;</span> &gt;&gt; /etc/hosts
 </code></pre></div><p>接著就可以看你用的lib決定怎麼設定偏好，以 node 的 mongoose 舉例如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">model</span>.<span style="color:#a6e22e">aggregate</span>().<span style="color:#a6e22e">read</span>(<span style="color:#e6db74">&#39;sp&#39;</span>) <span style="color:#75715e">// secondaryPreferced
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">model</span>.<span style="color:#a6e22e">aggregate</span>().<span style="color:#a6e22e">read</span>(<span style="color:#e6db74">&#39;sp&#39;</span>) <span style="color:#75715e">// secondaryPreferced
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">model</span>.<span style="color:#a6e22e">findOne</span>({<span style="color:#a6e22e">cond</span>},{ <span style="color:#a6e22e">readPreference</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;secondaryPreferred&#39;</span> })
 </code></pre></div><h2 id="reference">Reference</h2>
 <ul>

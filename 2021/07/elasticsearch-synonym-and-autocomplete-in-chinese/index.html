@@ -210,17 +210,17 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
 <ul>
 <li>字典檔（custom-dict.txt）：讓進去的字不要被切斷，能夠正確被同義字字庫比對。</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">胃食道逆流
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">胃食道逆流
 流行性感冒
 </code></pre></div><ul>
 <li>同義字字庫（synonym.txt）</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">流感,流行性感冒
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">流感,流行性感冒
 胃食道逆流=&gt;胃病
 </code></pre></div><ul>
 <li>Dockerfile</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> elasticsearch:7.6.2</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> elasticsearch:7.6.2</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> ./bin/elasticsearch-plugin install -b <span style="color:#f92672">[</span>https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.6.2/elasticsearch-analysis-ik-7.6.2.zip<span style="color:#f92672">](</span>https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.6.2/elasticsearch-analysis-ik-7.6.2.zip<span style="color:#f92672">)</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir -p /usr/share/elasticsearch/config/analysis-ik/custom<span style="color:#960050;background-color:#1e0010">
@@ -230,7 +230,7 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> elasticsearch</span><span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><p>利用上面這些範例可快速在本地建立一個具有 ik 分詞功能的 elasticsearch，接著在設定 mapping 與 setting</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">PUT</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">PUT</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;</span>
 {
   <span style="color:#f92672">&#34;mappings&#34;</span>: {
     <span style="color:#f92672">&#34;properties&#34;</span>: {
@@ -270,7 +270,7 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
   }
 }
 </code></pre></div><p>設定成功的話測試結果如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">POST</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;/_analyze</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">POST</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;/_analyze</span>
 
 <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span>
 {
@@ -301,7 +301,7 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
 <p>使用 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-shingle-tokenfilter.html">shingle token filter</a> 當作 base，因此可以做到 infix completion，舊的版本可以用 ngram token filter 達到類似效果。</p>
 <p>我最後使用 search-as-you-type，因為這個效果比較符合使用情境，設定步驟如下：</p>
 <p>建立 mapping</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">PUT</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">PUT</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;</span>
 {
     <span style="color:#f92672">&#34;mappings&#34;</span>: {
         <span style="color:#f92672">&#34;properties&#34;</span> : {
@@ -313,7 +313,7 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
     }
 }
 </code></pre></div><p>建立 data</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">PUT</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;/&lt;id&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">PUT</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;/&lt;id&gt;</span>
 
 <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span> <span style="color:#ae81ff">1</span>
 {
@@ -325,7 +325,7 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
 }
 <span style="color:#960050;background-color:#1e0010">...</span>
 </code></pre></div><p>測試結果</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">GET</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;/_search</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">GET</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;/_search</span>
 
 <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span>
 {
