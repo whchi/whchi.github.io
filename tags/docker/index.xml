@@ -14,7 +14,7 @@
       <pubDate>Tue, 22 Dec 2020 16:26:41 +0800</pubDate>
       
       <guid>http://shachiku.life/2020/12/docker-compose-yml-tips/</guid>
-      <description> 設定多個 hosts  version: &amp;#39;3.8&amp;#39; x-hosts: &amp;amp;x-hosts - &amp;#39;mysql:172.29.0.3&amp;#39; - &amp;#39;app:172.29.0.4&amp;#39; - &amp;#39;influxdb:172.29.0.5&amp;#39; ... app: extra_hosts: *x-hosts build with context  ... app: build: context: . dockerfile: ./.docker/Dockerfile.xxx-xx </description>
+      <description>設定多個 hosts  version: &amp;#39;3.8&amp;#39; x-hosts: &amp;amp;x-hosts - &amp;#39;mysql:172.29.0.3&amp;#39; - &amp;#39;app:172.29.0.4&amp;#39; - &amp;#39;influxdb:172.29.0.5&amp;#39; ... app: extra_hosts: *x-hosts build with context  ... app: build: context: . dockerfile: ./.docker/Dockerfile.xxx-xx connect other network   bridge  # docker-compose-1.yml version: &amp;#39;3.7&amp;#39; ... services: svc1: networks: - custom_name networks: custom_name: # 這邊是類似 namespace 的概念 driver: bridge # docker-compose-2.yml version: &amp;#39;3.7&amp;#39; ... services: svc1: networks: - mynet ... networks: mynet: external: name: folder_custom_name  pre-existing  version: &amp;#39;3.</description>
     </item>
     
     <item>
@@ -33,15 +33,6 @@
       
       <guid>http://shachiku.life/2020/05/docker-vscode-xdebug/</guid>
       <description>記錄一下比較好 copy-paste</description>
-    </item>
-    
-    <item>
-      <title>Connect to Existing Network in Docker</title>
-      <link>http://shachiku.life/2020/03/connect-to-existing-network-in-docker/</link>
-      <pubDate>Thu, 12 Mar 2020 17:28:18 +0800</pubDate>
-      
-      <guid>http://shachiku.life/2020/03/connect-to-existing-network-in-docker/</guid>
-      <description>記在這不然每次都忘記</description>
     </item>
     
     <item>

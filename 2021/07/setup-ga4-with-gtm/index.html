@@ -306,7 +306,7 @@
 <h2 id="放到-hugo-裡面">放到 hugo 裡面</h2>
 <p>善用 <a href="https://gohugo.io/content-management/shortcodes/">shortcode</a> 功能，建立一個 <code>tracking.html</code> 埋 GTM</p>
 <p>於放置的地方加入判斷</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{ <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">fileExists</span> <span style="color:#e6db74">&#34;layouts/partials/tracking.html&#34;</span>) }}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{ <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">fileExists</span> <span style="color:#e6db74">&#34;layouts/partials/tracking.html&#34;</span>) }}
 {{ <span style="color:#a6e22e">partial</span> <span style="color:#e6db74">&#34;tracking.html&#34;</span> . }}
 {{ <span style="color:#a6e22e">end</span> }}
 </code></pre></div><h2 id="references">References</h2>

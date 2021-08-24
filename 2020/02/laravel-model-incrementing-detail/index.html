@@ -110,7 +110,7 @@
   <section>
     <p>最近遇到一個怪問題，用 laravel 時如果指定 <code>$primaryKey</code> 為其他非 auto-increment 的值時必需同時指定<code>$keyType</code>跟<code>$incrementing</code>才能 model  在使用時正常</p>
 <p>比如說主鍵是 uuid 時要做以下設定才能正確執行，少一個都不能 work</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 $primaryKey <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uuid&#39;</span>;
 $keyType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;string&#39;</span>;
 $incrementing <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
@@ -120,7 +120,7 @@ $incrementing <span style="color:#f92672">=</span> <span style="color:#66d9ef">f
 <li>Model.php</li>
 </ul>
 <p>在這支約 <code>L682</code> 的地方有說明如果設定上有 <code>$incrementing</code> 的時候會使用<code>PDO::lastInsertId</code>來取的最後 insert 的 id</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#75715e">// If the model has an incrementing key, we can use the &#34;insertGetId&#34; method on
 </span><span style="color:#75715e">// the query builder, which will give us back the final inserted ID for this
 </span><span style="color:#75715e">// table from the database. Not all tables have to be incrementing though.
@@ -129,7 +129,7 @@ $incrementing <span style="color:#f92672">=</span> <span style="color:#66d9ef">f
     $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">insertAndSetId</span>($query, $attributes);
 }
 </code></pre></div><p>該函數在 mysql 時是使用<code>LAST_INSERT_ID</code>來做，根據<a href="https://dev.mysql.com/doc/refman/5.7/en/information-functions.html#function_last-insert-id">mysql官方文件對該函數的說明</a>可得知不管有無指定參數，回傳型別都會是 int，取回的欄位都是 auto_increment 的結果</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">With no argument, LAST_INSERT_ID() returns a BIGINT UNSIGNED (64-bit) value representing the first automatically generated value successfully inserted for an AUTO_INCREMENT column as a result of the most recently executed INSERT statement. The value of LAST_INSERT_ID() remains unchanged if no rows are successfully inserted.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">With no argument, LAST_INSERT_ID() returns a BIGINT UNSIGNED (64-bit) value representing the first automatically generated value successfully inserted for an AUTO_INCREMENT column as a result of the most recently executed INSERT statement. The value of LAST_INSERT_ID() remains unchanged if no rows are successfully inserted.
 
 With an argument, LAST_INSERT_ID() returns an unsigned integer.
 </code></pre></div><p>因此只設定<code>$keyType</code>以及<code>$primaryKey</code>在 model 新增時取回的 id 就不會是預期的值，必須加上<code>$incrementing</code>才能正確取得回傳值</p>
@@ -138,7 +138,7 @@ With an argument, LAST_INSERT_ID() returns an unsigned integer.
 <ul>
 <li>HasAttributes.php</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getCasts</span>()
 {
     <span style="color:#66d9ef">if</span> ($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getIncrementing</span>()) {

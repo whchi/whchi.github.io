@@ -148,7 +148,7 @@
 <ul>
 <li>Dockerfile(包含 ik 安裝)</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> elasticsearch:5.3.0</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> elasticsearch:5.3.0</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> ./bin/elasticsearch-plugin install -b https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v5.3.0/elasticsearch-analysis-ik-5.3.0.zip<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
@@ -161,7 +161,7 @@
 <li>synonym.txt
 , 跟 =&gt; 的意義同 solr</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">攝氏 =&gt; 華氏
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">攝氏 =&gt; 華氏
 台灣,臺灣,臺灣黑熊
 </code></pre></div><ul>
 <li>
@@ -171,7 +171,7 @@
 <p>docker-compose.yml</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
 <span style="color:#f92672">services</span>:
   <span style="color:#f92672">elasticsearch</span>:
     <span style="color:#f92672">build</span>: <span style="color:#ae81ff">.</span>
@@ -189,10 +189,10 @@
     <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_es</span>
 </code></pre></div><h2 id="執行">執行</h2>
 <p>記得把 Dockerfile 放在與 docker-compose.yml 同層</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker-compose up -d
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker-compose up -d
 </code></pre></div><h2 id="測試">測試</h2>
 <p>順利跑起來的話輸入 <code>localhost:9200</code> 可以看到 json 如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;imYjhHG&#34;</span>,
   <span style="color:#f92672">&#34;cluster_name&#34;</span>: <span style="color:#e6db74">&#34;docker-cluster&#34;</span>,
   <span style="color:#f92672">&#34;cluster_uuid&#34;</span>: <span style="color:#e6db74">&#34;Wq9XBSrlRN6371m4jggxUQ&#34;</span>,
@@ -212,7 +212,7 @@
 <ul>
 <li>[PUT] 設定 mappings(token的欄位與型態) &amp; settings(如何處理token)</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;index&#34;</span>: <span style="color:#e6db74">&#34;{indexname}&#34;</span>,
   <span style="color:#f92672">&#34;body&#34;</span>: {
     <span style="color:#f92672">&#34;mappings&#34;</span>: {
@@ -284,7 +284,7 @@
 </code></pre></div><ul>
 <li>[POST]查看同義詞是否成功</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span>
 {
     <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;流行性感冒&#34;</span>,
     <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,

@@ -110,7 +110,7 @@
   <section>
     <p>python 3 原生提供了一個簡易的 cache decorator 叫 <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache">lru_cache</a>，可以把耗時的函數執行結果儲存起來，一段時間就刪掉</p>
 <p>舉例來說下面這段 code</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#a6e22e">@lru_cache</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#a6e22e">@lru_cache</span>()
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">say_hi</span>(name: str):
     <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Hello </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
 </code></pre></div><p>的循序圖大概長這樣
