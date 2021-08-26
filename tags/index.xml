@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 05 Aug 2021 18:15:54 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Aug 2021 12:41:03 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>information security</title>
+      <link>http://shachiku.life/tags/information-security/</link>
+      <pubDate>Thu, 26 Aug 2021 12:41:03 +0800</pubDate>
+      
+      <guid>http://shachiku.life/tags/information-security/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>composer</title>
       <link>http://shachiku.life/tags/composer/</link>

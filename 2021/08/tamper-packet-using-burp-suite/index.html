@@ -4,23 +4,23 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="Tilde(~) vs Caret(^) in composer &middot; 社畜人生" />
+  <meta property="og:title" content="使用 Burp Suite 進行封包竄改 &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2021/08/tilde-vs-caret-in-composer/" />
+  <meta property="og:url" content="http://shachiku.life/2021/08/tamper-packet-using-burp-suite/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2021-08-05T18:15:54&#43;08:00" />
+  <meta property="og:article:published_time" content="2021-08-26T12:41:03&#43;08:00" />
   
-  <meta property="og:article:tag" content="composer" />
+  <meta property="og:article:tag" content="information security" />
   
   
 
   <title>
-     Tilde(~) vs Caret(^) in composer &middot;  社畜人生
+     使用 Burp Suite 進行封包竄改 &middot;  社畜人生
   </title>
 
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
@@ -51,8 +51,8 @@
 
 <body>
   
-    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
-      
+  <header class="global-header" style="background-image:url(/images/preview/what-are-you-looking-at.jpg)">
+    
       <section class="header-text">
         <div class="header-desc">
           <h1><a href="http://shachiku.life/">社畜人生</a></h1>
@@ -102,49 +102,195 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">Tilde(~) vs Caret(^) in composer</h1>
+    <h1 class="text-primary">使用 Burp Suite 進行封包竄改</h1>
   </header>
   <div class="delimiter"></div>
   
   
   <figure class="preview">
-      <img src="">
+      <img src="/images/preview/what-are-you-looking-at.jpg">
       
-      <figcaption></figcaption>
+      <figcaption>I&#39;m watching you</figcaption>
       
   </figure>
   
   <section>
-    <p>在 <code>composer.json</code> 經常看到 caret(^) 跟 tilde(~) 開頭的套件版號，雖然很少會遇到需要調整的情況但有需要都會忘記，紀錄一下不然每次都要查</p>
-<h1 id="先講結論">先講結論</h1>
+    <p>很久以前用過，紀錄一下怎麼做竄改封包找漏洞</p>
+<p>OWASP ZAP 也可以做到</p>
+<h1 id="local-env">local env</h1>
 <ol>
-<li><strong>Always use caret(^) instead of tilde(~)</strong></li>
-<li><strong><code>npm</code> is in the same rule</strong></li>
-</ol>
-<h1 id="細節">細節</h1>
-<h2 id="一般情況">一般情況</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># ~</span>
-~1.0   means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;2.0.0 same as 1.*
-~1.0.0 means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;1.1.0 same as 1.0.*
-<span style="color:#75715e"># ^</span>
-^1.0   means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;2.0.0 same as 1.*
-^1.0.0 means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;2.0.0 same as 1.*
-</code></pre></div><h2 id="特殊情況">特殊情況</h2>
-<p>版號為 <code>0.y.z</code> 的狀況：依照語意化版號的標準，在 <code>0.y.z</code> 時都算是 under development，不應被視為 stable</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Might break backward compatibility</span>
-~0.2 means &gt;<span style="color:#f92672">=</span>0.2.0 &lt;1.0.0
-<span style="color:#75715e"># This is fine</span>
-~1.2 means &gt;<span style="color:#f92672">=</span>1.2.0 &lt;2.0.0
-<span style="color:#75715e"># workaround</span>
-0.2.* means &gt;<span style="color:#f92672">=</span>0.2.0 &lt;0.3.0
+<li>關閉 proxy 攔截
+ 
 
-<span style="color:#75715e"># Solve it in simple way</span>
-^0.2 means &gt;<span style="color:#f92672">=</span>0.2.0 &lt;0.3.0
-</code></pre></div><h1 id="reference">Reference</h1>
-<ul>
-<li><a href="https://getcomposer.org/doc/articles/versions.md#writing-version-constraints">composer version constraints</a></li>
-<li><a href="https://semver.org/">semver</a></li>
-</ul>
+<figure class="center">
+  <img src="/images/burp-suite-setup-1.png" title="close proxy intercept" decoding="async" />
+  <figcaption>確認攔截器已關閉</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</li>
+<li>確認 proxy port 並設定為 loopback
+ 
+
+<figure class="center">
+  <img src="/images/burp-suite-setup-2.png" title="setup proxy" decoding="async" />
+  <figcaption>確認 proxy 設定正確</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</li>
+<li>設定 browser proxy
+ 
+
+<figure class="center">
+  <img src="/images/burp-suite-setup-3.png" title="setup browser proxy" decoding="async" />
+  <figcaption>在瀏覽器的設定直接改</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</li>
+<li>進行攔截
+ 
+
+<figure class="center">
+  <img src="/images/burp-suite-setup-4.png" title="start intercept" decoding="async" />
+  <figcaption></figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</li>
+</ol>
+<h1 id="other-env">other env</h1>
+<ol>
+<li>透過 burp suite 開啟瀏覽器輸入要攔截的網址
+ 
+
+<figure class="center">
+  <img src="/images/burp-suite-setup-5.png" title="" decoding="async" />
+  <figcaption>點擊 open browser</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</li>
+<li>進行攔截
+ 
+
+<figure class="center">
+  <img src="/images/burp-suite-setup-6.png" title="系統架構" decoding="async" />
+  <figcaption>Cloud CDN 獨立於 GKE 之外</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</li>
+</ol>
+<h2 id="針對-request-竄改封包">針對 request 竄改封包</h2>
+<p>每按一次 forward 就會讓網站繼續往下個 request跑</p>
+ 
+
+<figure class="center">
+  <img src="/images/burp-suite-tamper-1.png" title="tamper response" decoding="async" />
+  <figcaption>跑到要竄改的 request 時針對回應進行竄改</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+ 
+
+<figure class="center">
+  <img src="/images/burp-suite-tamper-2.png" title="tamper response" decoding="async" />
+  <figcaption>竄改完畢後按 forward 即可</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
 
   </section>
   <div class="clearfix">
@@ -152,14 +298,14 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2021-8-5
+        2021-8-26
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag"><a href="http://shachiku.life/tags/composer/">#composer</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/information-security/">#information security</a></span>
       
       
     </div>
@@ -179,16 +325,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2021/07/drone-ci-installation/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2021/08/tilde-vs-caret-in-composer/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2021/08/tamper-packet-using-burp-suite/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       

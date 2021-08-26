@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 05 Aug 2021 18:15:54 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Aug 2021 12:41:03 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Burp Suite 進行封包竄改</title>
+      <link>http://shachiku.life/2021/08/tamper-packet-using-burp-suite/</link>
+      <pubDate>Thu, 26 Aug 2021 12:41:03 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2021/08/tamper-packet-using-burp-suite/</guid>
+      <description>改封包 94 這麼簡單</description>
+    </item>
+    
     <item>
       <title>Tilde(~) vs Caret(^) in composer</title>
       <link>http://shachiku.life/2021/08/tilde-vs-caret-in-composer/</link>

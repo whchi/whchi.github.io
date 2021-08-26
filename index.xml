@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 05 Aug 2021 18:15:54 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Aug 2021 12:41:03 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Burp Suite 進行封包竄改</title>
+      <link>http://shachiku.life/2021/08/tamper-packet-using-burp-suite/</link>
+      <pubDate>Thu, 26 Aug 2021 12:41:03 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2021/08/tamper-packet-using-burp-suite/</guid>
+      <description>改封包 94 這麼簡單</description>
+    </item>
+    
     <item>
       <title>Tilde(~) vs Caret(^) in composer</title>
       <link>http://shachiku.life/2021/08/tilde-vs-caret-in-composer/</link>
@@ -412,7 +421,8 @@ skills  Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2021 Aug 05 &amp;ndash; Tilde(~) vs Caret(^) in composer
+      <description>2021 Aug 26 &amp;ndash; 使用 Burp Suite 進行封包竄改
+Aug 05 &amp;ndash; Tilde(~) vs Caret(^) in composer
 Jul 22 &amp;ndash; 玩玩 Drone CI
 Jul 09 &amp;ndash; [From medium]天下雜誌 2020 總統大選專題-技術紀錄
 Jul 09 &amp;ndash; [From medium]Elasticsearch 中文同義詞與自動完成
@@ -421,8 +431,7 @@ Jul 05 &amp;ndash; 綁定 domain 給 github page
 Jun 07 &amp;ndash; [翻譯]Best practices for writing Dockerfiles
 May 25 &amp;ndash; 韭菜成長心得（1）
 Jan 26 &amp;ndash; Ethereum POA 架設
-2020 Dec 22 &amp;ndash; Docker Compose yml 小技巧
-Dec 16 &amp;ndash; Skateboard Kickturn</description>
+2020 Dec 22 &amp;ndash; Docker Compose yml 小技巧</description>
     </item>
     
     <item>
