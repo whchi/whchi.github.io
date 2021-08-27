@@ -314,21 +314,44 @@ sequenceDiagram
 <script src="/js/fuse.js"></script>
 <script>
   const url = new URL(location.href);
-  const key = 'uknowhow2srh@' + url.host;
+  const srhkey = url.host + '_uknowhow2srh';
 
-  if (!sessionStorage.getItem(key)) {
+  if (!sessionStorage.getItem(srhkey)) {
     document.getElementById('tips').style.visibility = 'visible';
   }
 
   function uknowhow2srh() {
-    if (sessionStorage.getItem(key)) {
+    if (sessionStorage.getItem(srhkey)) {
       document.getElementById('tips').style.visibility = 'hidden';
     } else {
-      sessionStorage.setItem(key, 1);
+      sessionStorage.setItem(srhkey, 1);
     }
   }
 </script>
 <script src="/js/fastsearch.js"></script>
+
+<div class="day-night-switch">
+  <input type="checkbox" id="switch_theme" class="theme-toggle" />
+  <label for="switch_theme" class="theme-toggle-label">Toggle Theme</label>
+</div>
+<script>
+  const themekey = url.host + '_thememode';
+  if (localStorage.getItem(themekey)) {
+    document.body.className = 'dark';
+    document.getElementById('switch_theme').checked = 'checked';
+  }
+  document
+    .getElementById('switch_theme')
+    .addEventListener('click', function (e) {
+      if (e.target.checked) {
+        localStorage.setItem(themekey, '1');
+        document.body.className = 'dark';
+      } else {
+        localStorage.removeItem(themekey);
+        document.body.className = '';
+      }
+    });
+</script>
 
 </body>
 </html>
