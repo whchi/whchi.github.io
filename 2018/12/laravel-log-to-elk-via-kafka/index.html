@@ -211,7 +211,7 @@
 </ol>
 <h4 id="設定-logstash-conf">設定 logstash conf</h4>
 <p>進入 local_elk container 並增加 logstash 接收 kafka 訊息的設定如下</p>
-<pre><code class="language-conf" data-lang="conf">input {
+<pre tabindex="0"><code class="language-conf" data-lang="conf">input {
   kafka {
     bootstrap_servers =&gt; &quot;local_kafka:9092&quot;
     topics =&gt; [&quot;localtest&quot;]

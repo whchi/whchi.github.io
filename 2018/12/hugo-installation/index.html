@@ -110,16 +110,16 @@
   <section>
     <h2 id="step1-install-hugo">Step1. install hugo</h2>
 <p>install <a href="https://brew.sh/index_zh-tw">homebrew</a></p>
-<pre><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+<pre tabindex="0"><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
 </code></pre><p>then install hugo</p>
-<pre><code>brew install hugo
+<pre tabindex="0"><code>brew install hugo
 </code></pre><h2 id="step2-start-a-hugo-project">Step2. start a hugo project</h2>
 <p>make your project folder</p>
-<pre><code>hugo new site your_blog
+<pre tabindex="0"><code>hugo new site your_blog
 cd your_blog
 </code></pre><h2 id="step3-add-theme">Step3. add theme</h2>
 <p>you can find more themes <a href="https://themes.gohugo.io">here</a></p>
-<pre><code>mkdir themes
+<pre tabindex="0"><code>mkdir themes
 
 # use git clone
 git clone https://github.com/josephhutch/aether.git themes/aether
@@ -127,7 +127,7 @@ git clone https://github.com/josephhutch/aether.git themes/aether
 # use git submodule(recommend)
 git submodule add https://github.com/josephhutch/aether.git themes/aether
 </code></pre><p>enable theme</p>
-<pre><code>vim config.toml
+<pre tabindex="0"><code>vim config.toml
 # add new line
 theme = &quot;aether&quot;
 </code></pre><h2 id="step4-add-post">Step4. add post</h2>
@@ -147,7 +147,7 @@ change <code>draft: true</code> then run <code>hugo server -w</code> for local t
 </li>
 <li>
 <p>add shell to project folder, named <code>deploy.sh</code></p>
-<pre><code>#!/bin/bash
+<pre tabindex="0"><code>#!/bin/bash
 
 echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
 # Build the project.

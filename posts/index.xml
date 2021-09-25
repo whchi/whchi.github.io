@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 26 Aug 2021 12:41:03 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Sep 2021 17:53:49 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>透過 GTM 綁定客製事件到 GA4</title>
+      <link>http://shachiku.life/2021/09/setup-custom-event-tracking-to-ga-via-gtm/</link>
+      <pubDate>Fri, 17 Sep 2021 17:53:49 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2021/09/setup-custom-event-tracking-to-ga-via-gtm/</guid>
+      <description>埋了 GTM 卻不用客製化 event，履歷上敢寫你會 GTM？</description>
+    </item>
+    
     <item>
       <title>使用 Burp Suite 進行封包竄改</title>
       <link>http://shachiku.life/2021/08/tamper-packet-using-burp-suite/</link>
