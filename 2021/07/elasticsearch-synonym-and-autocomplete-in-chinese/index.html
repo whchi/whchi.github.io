@@ -230,8 +230,8 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> elasticsearch</span><span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><p>利用上面這些範例可快速在本地建立一個具有 ik 分詞功能的 elasticsearch，接著在設定 mapping 與 setting</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">PUT</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;</span>
-{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// PUT /&lt;index&gt;
+</span><span style="color:#75715e"></span>{
   <span style="color:#f92672">&#34;mappings&#34;</span>: {
     <span style="color:#f92672">&#34;properties&#34;</span>: {
       <span style="color:#f92672">&#34;field1&#34;</span>: {
@@ -270,22 +270,22 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
   }
 }
 </code></pre></div><p>設定成功的話測試結果如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">POST</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;/_analyze</span>
-
-<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span>
-{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// POST /&lt;index&gt;/_analyze
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// request
+</span><span style="color:#75715e"></span>{
     <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;流行性感冒&#34;</span>,
     <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>
 }
-<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">response</span>
-{
+<span style="color:#75715e">// response
+</span><span style="color:#75715e"></span>{
     <span style="color:#f92672">&#34;tokens&#34;</span>: [
         {
             <span style="color:#f92672">&#34;token&#34;</span>: <span style="color:#e6db74">&#34;流感&#34;</span>,
             <span style="color:#f92672">&#34;start_offset&#34;</span>: <span style="color:#ae81ff">0</span>,
             <span style="color:#f92672">&#34;end_offset&#34;</span>: <span style="color:#ae81ff">5</span>,
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;SYNONYM&#34;</span>, <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">同義詞判斷成功</span>
-            <span style="color:#f92672">&#34;position&#34;</span>: <span style="color:#ae81ff">0</span>
+            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;SYNONYM&#34;</span>, <span style="color:#75715e">// 同義詞判斷成功
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;position&#34;</span>: <span style="color:#ae81ff">0</span>
         }
     ]
 }
@@ -301,8 +301,8 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
 <p>使用 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-shingle-tokenfilter.html">shingle token filter</a> 當作 base，因此可以做到 infix completion，舊的版本可以用 ngram token filter 達到類似效果。</p>
 <p>我最後使用 search-as-you-type，因為這個效果比較符合使用情境，設定步驟如下：</p>
 <p>建立 mapping</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">PUT</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;</span>
-{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// PUT /&lt;index&gt;
+</span><span style="color:#75715e"></span>{
     <span style="color:#f92672">&#34;mappings&#34;</span>: {
         <span style="color:#f92672">&#34;properties&#34;</span> : {
             <span style="color:#f92672">&#34;completion_field&#34;</span> : {
@@ -313,35 +313,35 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
     }
 }
 </code></pre></div><p>建立 data</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">PUT</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;/&lt;id&gt;</span>
-
-<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span> <span style="color:#ae81ff">1</span>
-{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// PUT /&lt;index&gt;/&lt;id&gt;
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// request 1
+</span><span style="color:#75715e"></span>{
   <span style="color:#f92672">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
 }
-<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span> <span style="color:#ae81ff">2</span>
-{
+<span style="color:#75715e">// request 2
+</span><span style="color:#75715e"></span>{
   <span style="color:#f92672">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
 }
 <span style="color:#960050;background-color:#1e0010">...</span>
 </code></pre></div><p>測試結果</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">GET</span> <span style="color:#960050;background-color:#1e0010">/&lt;index&gt;/_search</span>
-
-<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">request</span>
-{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// GET /&lt;index&gt;/_search
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// request
+</span><span style="color:#75715e"></span>{
   <span style="color:#f92672">&#34;_source&#34;</span>: [<span style="color:#e6db74">&#34;completion_field&#34;</span>],
   <span style="color:#f92672">&#34;query&#34;</span>: {
     <span style="color:#f92672">&#34;multi_match&#34;</span>: {
       <span style="color:#f92672">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;甲狀&#34;</span>,
-      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;best_fields&#34;</span>, <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">按照有對應到的順序計算</span>
-      <span style="color:#f92672">&#34;fields&#34;</span>: [
+      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;best_fields&#34;</span>, <span style="color:#75715e">// 按照有對應到的順序計算
+</span><span style="color:#75715e"></span>      <span style="color:#f92672">&#34;fields&#34;</span>: [
         <span style="color:#e6db74">&#34;completion_field&#34;</span>
       ]
     }
   }
 }
-<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">response</span>
-{
+<span style="color:#75715e">// response
+</span><span style="color:#75715e"></span>{
     <span style="color:#960050;background-color:#1e0010">...</span>
   <span style="color:#f92672">&#34;hits&#34;</span> : {
       <span style="color:#960050;background-color:#1e0010">...</span>

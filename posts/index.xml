@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Fri, 17 Sep 2021 17:53:49 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Nov 2021 23:07:27 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Skateboard 各種站位</title>
+      <link>http://shachiku.life/2021/11/skateboard-stance/</link>
+      <pubDate>Mon, 22 Nov 2021 23:07:27 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2021/11/skateboard-stance/</guid>
+      <description>滑不好沒關係，要講的很專業</description>
+    </item>
+    
     <item>
       <title>透過 GTM 綁定客製事件到 GA4</title>
       <link>http://shachiku.life/2021/09/setup-custom-event-tracking-to-ga-via-gtm/</link>

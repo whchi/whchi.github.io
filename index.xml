@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Fri, 17 Sep 2021 17:53:49 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Nov 2021 23:07:27 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Skateboard 各種站位</title>
+      <link>http://shachiku.life/2021/11/skateboard-stance/</link>
+      <pubDate>Mon, 22 Nov 2021 23:07:27 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2021/11/skateboard-stance/</guid>
+      <description>滑不好沒關係，要講的很專業</description>
+    </item>
+    
     <item>
       <title>透過 GTM 綁定客製事件到 GA4</title>
       <link>http://shachiku.life/2021/09/setup-custom-event-tracking-to-ga-via-gtm/</link>
@@ -430,7 +439,8 @@ skills  Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2021 Sep 17 &amp;ndash; 透過 GTM 綁定客製事件到 GA4
+      <description>2021 Nov 22 &amp;ndash; Skateboard 各種站位
+Sep 17 &amp;ndash; 透過 GTM 綁定客製事件到 GA4
 Aug 26 &amp;ndash; 使用 Burp Suite 進行封包竄改
 Aug 05 &amp;ndash; Tilde(~) vs Caret(^) in composer
 Jul 22 &amp;ndash; 玩玩 Drone CI
@@ -438,9 +448,7 @@ Jul 09 &amp;ndash; [From medium]天下雜誌 2020 總統大選專題-技術紀�
 Jul 09 &amp;ndash; [From medium]Elasticsearch 中文同義詞與自動完成
 Jul 08 &amp;ndash; 設定 GA4 與 GTM
 Jul 05 &amp;ndash; 綁定 domain 給 github page
-Jun 07 &amp;ndash; [翻譯]Best practices for writing Dockerfiles
-May 25 &amp;ndash; 韭菜成長心得（1）
-Jan 26 &amp;ndash; Ethereum POA 架設</description>
+Jun 07 &amp;ndash; [翻譯]Best practices for writing Dockerfiles</description>
     </item>
     
     <item>

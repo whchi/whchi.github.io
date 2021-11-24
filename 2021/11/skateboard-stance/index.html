@@ -4,23 +4,23 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="透過 GTM 綁定客製事件到 GA4 &middot; 社畜人生" />
+  <meta property="og:title" content="Skateboard 各種站位 &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2021/09/setup-custom-event-tracking-to-ga-via-gtm/" />
+  <meta property="og:url" content="http://shachiku.life/2021/11/skateboard-stance/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2021-09-17T17:53:49&#43;08:00" />
+  <meta property="og:article:published_time" content="2021-11-22T23:07:27&#43;08:00" />
   
-  <meta property="og:article:tag" content="seo" />
+  <meta property="og:article:tag" content="skateboard" />
   
   
 
   <title>
-     透過 GTM 綁定客製事件到 GA4 &middot;  社畜人生
+     Skateboard 各種站位 &middot;  社畜人生
   </title>
 
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
@@ -51,7 +51,7 @@
 
 <body>
   
-  <header class="global-header" style="background-image:url()">
+  <header class="global-header" style="background-image:url(/images/skate-baby.png)">
     
       <section class="header-text">
         <div class="header-desc">
@@ -102,98 +102,32 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">透過 GTM 綁定客製事件到 GA4</h1>
+    <h1 class="text-primary">Skateboard 各種站位</h1>
   </header>
   <div class="delimiter"></div>
   
   
   <figure class="preview">
-      <img src="">
+      <img src="/images/skate-baby.png">
       
       <figcaption></figcaption>
       
   </figure>
   
   <section>
-    <h1 id="設置-trigger">設置 trigger</h1>
-<p>前往你的 GTM 管理平台點擊 trigger 頁籤，新增 trigger</p>
-<p>有許多不同種類的 trigger 可以設定，這裡列舉 click 事件的 <code>url</code> 和 <code>element</code> 的 trigger 作為範例</p>
- 
-
-<figure class="center">
-  <img src="/images/setup-gtm-trigger-type.png" title="" decoding="async" />
-  <figcaption>以 link 為主，且 path 為 tags/.&#43;</figcaption>
-</figure>
-<style lang="css">
-  figure.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  figure.center > img {
-    max-width: 100%;
-    height: auto;
-  }
-</style>
-
- 
-
-<figure class="center">
-  <img src="/images/setup-gtm-trigger-type-1.png" title="" decoding="async" />
-  <figcaption>以 element 為主，id 等於 switch_theme</figcaption>
-</figure>
-<style lang="css">
-  figure.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  figure.center > img {
-    max-width: 100%;
-    height: auto;
-  }
-</style>
-
-<p>此外還有 page view、user engagement 以及其他還無法歸納的類型可以使用，可依照自己的需求決定要埋設的類型 trigger</p>
-<h1 id="設置-tag-並綁定-trigger">設置 tag 並綁定 trigger</h1>
- 
-
-<figure class="center">
-  <img src="/images/setup-gtm-tag.png" title="" decoding="async" />
-  <figcaption>新增 tag 綁定 trigger</figcaption>
-</figure>
-<style lang="css">
-  figure.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  figure.center > img {
-    max-width: 100%;
-    height: auto;
-  }
-</style>
-
+    <p>雖然想怎麼站都沒問題，不過滑一滑突然烙個英文好像可以感覺比較專業</p>
+<p>這邊簡單介紹一下滑板的四種站位專有名詞</p>
+<h1 id="版頭nose版尾tail">版頭（nose）版尾（tail）</h1>
+<p>有幾種分辨方法</p>
 <ol>
-<li>tag type 選擇 <strong>GA4 Event</strong></li>
-<li>Configuration Tag 選擇 <strong>Google Analytics GA4 Configuration</strong></li>
-<li>定義要顯示到 GA console 的 event_name</li>
-<li>綁定對應的 trigger</li>
-</ol>
-<p>設定完畢後先 preview，確定有效果再 submit（做版控）</p>
-<h1 id="檢驗結果">檢驗結果</h1>
-<p>前往 GA console，過一段時間在 <strong>Engagement::Events</strong> 畫面就能看到自訂義事件的結果摟
+<li>看圖案：依照閱讀順序，左-&gt;右、上-&gt;下 = 頭-&gt;尾</li>
+<li>看砂（貼）紙</li>
+<li>用長短跟平緩程度：一般來說比較平且短是板尾，翹且高是板頭
  
 
 <figure class="center">
-  <img src="/images/setup-gtm-event-result-review.png" title="" decoding="async" />
-  <figcaption>額外設定的 switch_theme 事件呈現在 console 上</figcaption>
+  <img src="https://cf.shopee.tw/file/5ea19e4d738317f3fcfca82260804c96" title="krooked skateboard" decoding="async" />
+  <figcaption>上方板頭，下方板尾</figcaption>
 </figure>
 <style lang="css">
   figure.center {
@@ -208,9 +142,46 @@
     height: auto;
   }
 </style>
-</p>
-<h2 id="補充">補充</h2>
-<p>regex 不熟悉的話可以到 <a href="https://regex101.com/">https://regex101.com/</a> 或是 <a href="https://ihateregex.io/">https://ihateregex.io/</a> 先找到 pattern，再貼回來</p>
+</li>
+</ol>
+<h1 id="regular--goofy">regular &amp; goofy</h1>
+<p>對頭尾有認知後，才能介紹這兩種腳位</p>
+<ul>
+<li>regular：左腳在頭</li>
+<li>goofy：右腳在頭，原因是大家都認識的迪士尼角色—高飛
+ 
+
+<figure class="center">
+  <img src="https://www.surfertoday.com/images/stories/goofysurfing.jpg" title="Goofy surfing" decoding="async" />
+  <figcaption>Goofy surfing</figcaption>
+</figure>
+<style lang="css">
+  figure.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  figure.center > img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</li>
+</ul>
+<h1 id="各種站位">各種站位</h1>
+<ol>
+<li>正腳正滑（normal）
+後腳踩板尾，前腳踩板頭後方，朝板頭滑行</li>
+<li>正腳反滑（fakie）
+同上，朝板尾滑行</li>
+<li>反腳正滑（switch）
+regular&lt;-&gt;goofy，朝板頭滑行</li>
+<li>反腳反滑（nollie）
+同上，朝板尾滑行，或是 normal 腳位往前跨一小步，前腳踩到板頭即可</li>
+</ol>
+<p>學會一些術語後，去板場烙英文將不再尷尬</p>
 
   </section>
   <div class="clearfix">
@@ -218,14 +189,14 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2021-9-17
+        2021-11-22
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag"><a href="http://shachiku.life/tags/seo/">#seo</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/skateboard/">#skateboard</a></span>
       
       
     </div>
@@ -245,16 +216,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2021/08/tamper-packet-using-burp-suite/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2021/09/setup-custom-event-tracking-to-ga-via-gtm/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2021/11/skateboard-stance/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       
