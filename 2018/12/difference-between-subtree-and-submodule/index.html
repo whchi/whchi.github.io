@@ -24,7 +24,6 @@
   <title>
      git 管理子庫的兩種方式 &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -155,7 +154,7 @@ subtree: 適合需要把 master repo 的某些 feature 獨立成一個 git branc
 <p>push</p>
 <pre tabindex="0"><code>cd /path/to/submodule
 git checkout master
-git commit -am 'commit msg'
+git commit -am &#39;commit msg&#39;
 git push origin master
 
 # push 完 submodule 之後 root 層會多一個 unstaged 的 change
@@ -163,7 +162,7 @@ git push origin master
 # 因此要回到 root 多進行一次 push 才能確保專案正常
 
 cd /path/to/root
-git commit -am 'commit msg'
+git commit -am &#39;commit msg&#39;
 git push origin master
 </code></pre></li>
 <li>

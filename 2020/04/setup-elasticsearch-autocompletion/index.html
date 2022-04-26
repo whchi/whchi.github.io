@@ -22,7 +22,6 @@
   <title>
      設定 Elasticsearch 自動完成 &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -153,135 +152,135 @@
 <ol>
 <li>set mapping</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PUT &lt;index&gt;
-<span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;mappings&#34;</span>: <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;properties&#34;</span> : <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;suggest&#34;</span> : <span style="color:#f92672">{</span>
-                <span style="color:#e6db74">&#34;type&#34;</span> : <span style="color:#e6db74">&#34;completion&#34;</span>,
-                <span style="color:#e6db74">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>
-            <span style="color:#f92672">}</span>,
-            <span style="color:#e6db74">&#34;title&#34;</span> : <span style="color:#f92672">{</span>
-                <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;keyword&#34;</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><ol start="2">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>PUT &lt;index&gt;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;mappings&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;properties&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;suggest&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;type&#34;</span> : <span style="color:#e6db74">&#34;completion&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;title&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;keyword&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ol start="2">
 <li>add data to suggest</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PUT &lt;index&gt;/_doc/1?refresh
-<span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;suggest&#34;</span> : <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;input&#34;</span>: <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>, <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span> <span style="color:#f92672">]</span>,
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><ol start="3">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>PUT &lt;index&gt;/_doc/1?refresh
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;suggest&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;input&#34;</span>: <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>, <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span> <span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ol start="3">
 <li>get completion suggest</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">POST &lt;index&gt;/_search?pretty
-<span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;suggest&#34;</span>: <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;_doc&#34;</span> : <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;prefix&#34;</span> : <span style="color:#e6db74">&#34;甲&#34;</span>,
-            <span style="color:#e6db74">&#34;completion&#34;</span> : <span style="color:#f92672">{</span>
-                <span style="color:#e6db74">&#34;field&#34;</span> : <span style="color:#e6db74">&#34;suggest&#34;</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-<span style="color:#75715e">##### response #####</span>
-<span style="color:#f92672">{</span>
-    ...
-  <span style="color:#e6db74">&#34;suggest&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;_doc&#34;</span> : <span style="color:#f92672">[</span> <span style="color:#f92672">{</span>
-        ...
-      <span style="color:#e6db74">&#34;options&#34;</span> : <span style="color:#f92672">[</span> <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;text&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>,
-        <span style="color:#e6db74">&#34;_index&#34;</span>: <span style="color:#e6db74">&#34;music&#34;</span>,
-        <span style="color:#e6db74">&#34;_type&#34;</span>: <span style="color:#e6db74">&#34;_doc&#34;</span>,
-        <span style="color:#e6db74">&#34;_id&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
-        <span style="color:#e6db74">&#34;_score&#34;</span>: 1.0,
-        <span style="color:#e6db74">&#34;_source&#34;</span>: <span style="color:#f92672">{</span>
-          <span style="color:#e6db74">&#34;suggest&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>, <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span><span style="color:#f92672">]</span>
-        <span style="color:#f92672">}</span>
-      <span style="color:#f92672">}</span> <span style="color:#f92672">]</span>
-    <span style="color:#f92672">}</span> <span style="color:#f92672">]</span>
-  <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>可以直接拿 _source 裡面的東西或是 text 作為 api 回傳的資料</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>POST &lt;index&gt;/_search?pretty
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;suggest&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_doc&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;prefix&#34;</span> : <span style="color:#e6db74">&#34;甲&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;completion&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;field&#34;</span> : <span style="color:#e6db74">&#34;suggest&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##### response #####</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;suggest&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;_doc&#34;</span> : <span style="color:#f92672">[</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;options&#34;</span> : <span style="color:#f92672">[</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;text&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_index&#34;</span>: <span style="color:#e6db74">&#34;music&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_type&#34;</span>: <span style="color:#e6db74">&#34;_doc&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_id&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_score&#34;</span>: 1.0,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_source&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;suggest&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>, <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>可以直接拿 _source 裡面的東西或是 text 作為 api 回傳的資料</p>
 <h3 id="search_as_you_type">search_as_you_type</h3>
 <p>這是 7.2 之後才推出的欄位，使用 ngram 為基礎並打造的自動完成 field type，因此<strong>可以做到 infix 自動完成</strong>。<br>
 搜尋 <code>edge_ngram auto completion elasticsearch</code>或是參考我的 Reference 可以知道 7.2 之前的版本大概都是怎麼完成 infix 的</p>
 <ol>
 <li>set mapping</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PUT &lt;index&gt;
-<span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;mappings&#34;</span>: <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;properties&#34;</span> : <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;completion_field&#34;</span> : <span style="color:#f92672">{</span>
-                <span style="color:#e6db74">&#34;type&#34;</span> : <span style="color:#e6db74">&#34;search_as_you_type&#34;</span>,
-                <span style="color:#e6db74">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><ol start="2">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>PUT &lt;index&gt;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;mappings&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;properties&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;completion_field&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;type&#34;</span> : <span style="color:#e6db74">&#34;search_as_you_type&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ol start="2">
 <li>update index</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">PUT &lt;index&gt;/_doc/1?refresh
-<span style="color:#f92672">{</span>
-  <span style="color:#e6db74">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
-<span style="color:#f92672">}</span>
-PUT &lt;index&gt;/_doc/2?refresh
-<span style="color:#f92672">{</span>
-  <span style="color:#e6db74">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><ol start="3">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>PUT &lt;index&gt;/_doc/1?refresh
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>PUT &lt;index&gt;/_doc/2?refresh
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ol start="3">
 <li>get result</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">GET my_index/_search
-<span style="color:#f92672">{</span>
-  <span style="color:#e6db74">&#34;_source&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;completion_field&#34;</span><span style="color:#f92672">]</span>,
-  <span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;multi_match&#34;</span>: <span style="color:#f92672">{</span>
-      <span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;甲狀&#34;</span>,
-      <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;best_fields&#34;</span>, <span style="color:#75715e"># 按照有對應到的順序計算</span>
-      <span style="color:#e6db74">&#34;fields&#34;</span>: <span style="color:#f92672">[</span>
-        <span style="color:#e6db74">&#34;completion_field&#34;</span>
-      <span style="color:#f92672">]</span>
-    <span style="color:#f92672">}</span>
-  <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-<span style="color:#75715e">##### response #####</span>
-<span style="color:#f92672">{</span>
-    ...
-  <span style="color:#e6db74">&#34;hits&#34;</span> : <span style="color:#f92672">{</span>
-      ...
-    <span style="color:#e6db74">&#34;hits&#34;</span> : <span style="color:#f92672">[</span>
-      <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;_index&#34;</span> : <span style="color:#e6db74">&#34;completion_field&#34;</span>,
-        <span style="color:#e6db74">&#34;_type&#34;</span> : <span style="color:#e6db74">&#34;_doc&#34;</span>,
-        <span style="color:#e6db74">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span>,
-        <span style="color:#e6db74">&#34;_score&#34;</span> : 0.8630463,
-        <span style="color:#e6db74">&#34;_source&#34;</span> : <span style="color:#f92672">{</span>
-          <span style="color:#e6db74">&#34;completion_field&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
-        <span style="color:#f92672">}</span>
-      <span style="color:#f92672">}</span>,
-      <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;_index&#34;</span> : <span style="color:#e6db74">&#34;completion_field&#34;</span>,
-        <span style="color:#e6db74">&#34;_type&#34;</span> : <span style="color:#e6db74">&#34;_doc&#34;</span>,
-        <span style="color:#e6db74">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span>,
-        <span style="color:#e6db74">&#34;_score&#34;</span> : 0.8630463,
-        <span style="color:#e6db74">&#34;_source&#34;</span> : <span style="color:#f92672">{</span>
-          <span style="color:#e6db74">&#34;completion_field&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
-        <span style="color:#f92672">}</span>
-      <span style="color:#f92672">}</span>
-    <span style="color:#f92672">]</span>
-  <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>_source 裡面的就是結果<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>GET my_index/_search
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;_source&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;completion_field&#34;</span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;multi_match&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;甲狀&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;best_fields&#34;</span>, <span style="color:#75715e"># 按照有對應到的順序計算</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;fields&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;completion_field&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##### response #####</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;hits&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      ...
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;hits&#34;</span> : <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_index&#34;</span> : <span style="color:#e6db74">&#34;completion_field&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_type&#34;</span> : <span style="color:#e6db74">&#34;_doc&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_score&#34;</span> : 0.8630463,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_source&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;completion_field&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_index&#34;</span> : <span style="color:#e6db74">&#34;completion_field&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_type&#34;</span> : <span style="color:#e6db74">&#34;_doc&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_score&#34;</span> : 0.8630463,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;_source&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;completion_field&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>_source 裡面的就是結果<br>
  
 
 <figure class="center">

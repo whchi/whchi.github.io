@@ -22,7 +22,6 @@
   <title>
      在 laravel 中使用第三方登入並整合 Auth Facade &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -114,144 +113,143 @@
 <ul>
 <li>config/auth.php</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-<span style="color:#f92672">...</span>
-<span style="color:#e6db74">&#39;providers&#39;</span> <span style="color:#f92672">=&gt;</span> [
-    <span style="color:#e6db74">&#39;users&#39;</span> <span style="color:#f92672">=&gt;</span> [
-        <span style="color:#e6db74">&#39;driver&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;custom-driver&#39;</span>,
-    ]
-]
-<span style="color:#f92672">...</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;providers&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;users&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;driver&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;custom-driver&#39;</span>,
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><ul>
 <li>AuthServiceProvider.php</li>
 </ul>
 <p>you can use <code>php artisan</code> to create provider</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">boot</span>() {
-    <span style="color:#f92672">...</span>
-    <span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">provider</span>(<span style="color:#e6db74">&#39;custom-driver&#39;</span>, <span style="color:#66d9ef">function</span> ($app, <span style="color:#66d9ef">array</span> $config) {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">YourCustomAuthProvider</span>();
-    });
-}
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">boot</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">provider</span>(<span style="color:#e6db74">&#39;custom-driver&#39;</span>, <span style="color:#66d9ef">function</span> ($app, <span style="color:#66d9ef">array</span> $config) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">YourCustomAuthProvider</span>();
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
 <li>YourCustomAuthProvider.php</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Contracts\Auth\Authenticatable</span>;
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Auth\GenericUser</span>;
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">YourCustomAuthProvider</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">\Illuminate\Contracts\Auth\UserProvider</span>
-{
-    <span style="color:#75715e">// implement all contrat
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// below is sample
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">retrieveById</span>($identifier)
-    {
-        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUser</span>($identifier);
-    }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">retrieveByToken</span>($identifier, $token)
-    {
-        $user <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUser</span>($identifier);
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">isset</span>($user[<span style="color:#e6db74">&#39;remember_token&#39;</span>]) <span style="color:#f92672">&amp;&amp;</span> $user[<span style="color:#e6db74">&#39;remember_token&#39;</span>] <span style="color:#f92672">==</span> $token <span style="color:#f92672">?</span> $user <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
-    }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateRememberToken</span>(<span style="color:#a6e22e">Authenticatable</span> $user, $token)
-    {
-        <span style="color:#a6e22e">Session</span><span style="color:#f92672">::</span><span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#39;remember_token&#39;</span>, $token);
-    }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">retrieveByCredentials</span>(<span style="color:#66d9ef">array</span> $credentials)
-    {
-        $token <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getAccessToken</span>();
-        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>$token) {
-            <span style="color:#75715e">// invalid token actions here
-</span><span style="color:#75715e"></span>        }
-        $data <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUserData</span>($token);
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">GenericUser</span>($data);
-    }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">validateCredentials</span>(<span style="color:#a6e22e">Authenticatable</span> $user, <span style="color:#66d9ef">array</span> $credentials)
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">yourCredentialsIsValidate</span>() <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>;
-    }
-}
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Contracts\Auth\Authenticatable</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Auth\GenericUser</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">YourCustomAuthProvider</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">\Illuminate\Contracts\Auth\UserProvider</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// implement all contrat
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// below is sample
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">retrieveById</span>($identifier)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUser</span>($identifier);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">retrieveByToken</span>($identifier, $token)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $user <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUser</span>($identifier);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">isset</span>($user[<span style="color:#e6db74">&#39;remember_token&#39;</span>]) <span style="color:#f92672">&amp;&amp;</span> $user[<span style="color:#e6db74">&#39;remember_token&#39;</span>] <span style="color:#f92672">==</span> $token <span style="color:#f92672">?</span> $user <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateRememberToken</span>(<span style="color:#a6e22e">Authenticatable</span> $user, $token)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Session</span><span style="color:#f92672">::</span><span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#39;remember_token&#39;</span>, $token);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">retrieveByCredentials</span>(<span style="color:#66d9ef">array</span> $credentials)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $token <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getAccessToken</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>$token) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// invalid token actions here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>        $data <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getUserData</span>($token);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">GenericUser</span>($data);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">validateCredentials</span>(<span style="color:#a6e22e">Authenticatable</span> $user, <span style="color:#66d9ef">array</span> $credentials)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">yourCredentialsIsValidate</span>() <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
 <li>YourLoginController.php</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-<span style="color:#f92672">...</span>
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Auth\GenericUser</span>;
-<span style="color:#f92672">...</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">Request</span> $request)
-{
-    $data <span style="color:#f92672">=</span> <span style="color:#a6e22e">getTokenAndUserDataFromThirdParty</span>();
-
-    <span style="color:#75715e">// the key-point is here
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">guard</span>(<span style="color:#e6db74">&#39;web&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">login</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">GenericUser</span>([<span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=&gt;</span> $data[<span style="color:#e6db74">&#39;email&#39;</span>]]))
-    <span style="color:#75715e">// then you keep your facade works as usual
-</span><span style="color:#75715e"></span>}
-</code></pre></div><h2 id="補充使用-redis-實現-sso">補充：使用 redis 實現 sso</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Auth\GenericUser</span>;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">Request</span> $request)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    $data <span style="color:#f92672">=</span> <span style="color:#a6e22e">getTokenAndUserDataFromThirdParty</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// the key-point is here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">guard</span>(<span style="color:#e6db74">&#39;web&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">login</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">GenericUser</span>([<span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=&gt;</span> $data[<span style="color:#e6db74">&#39;email&#39;</span>]]))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// then you keep your facade works as usual
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h2 id="補充使用-redis-實現-sso">補充：使用 redis 實現 sso</h2>
 <ul>
 <li>redis retrive session</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-<span style="color:#f92672">...</span>
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Redis</span>;
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Auth</span>;
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">SessionHandlerInterface</span>;
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisSessionServices</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">SessionHandlerInterface</span>
-{
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">open</span>($savePath, $sessionName)
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
-    }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">close</span>()
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
-    }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">read</span>($sessionId)
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Redis</span><span style="color:#f92672">::</span><span style="color:#a6e22e">get</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">prefixCheck</span>($sessionId));
-    }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">write</span>($sessionId, $data)
-    {
-        <span style="color:#75715e">// can add auth check if needed
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">Redis</span><span style="color:#f92672">::</span><span style="color:#a6e22e">set</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">prefixCheck</span>($sessionId), $data, <span style="color:#e6db74">&#39;EX&#39;</span>, $expireTime);
-
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
-    }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">destroy</span>($sessionId)
-    {
-        <span style="color:#a6e22e">Redis</span><span style="color:#f92672">::</span><span style="color:#a6e22e">del</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">prefixCheck</span>($sessionId));
-
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
-    }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">gc</span>($lifetime)
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
-    }
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">    * laravel 原生會帶 :session:
-</span><span style="color:#e6db74">    */</span>
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">prefixCheck</span>($sessionId)
-    {
-        $prefix <span style="color:#f92672">=</span> <span style="color:#a6e22e">env</span>(<span style="color:#e6db74">&#39;REDIS_PREFIX&#39;</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;:session:&#39;</span>;
-        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strpos</span>($sessionId, $prefix) <span style="color:#f92672">===</span> <span style="color:#66d9ef">false</span>) {
-            $sessionId <span style="color:#f92672">=</span> $prefix <span style="color:#f92672">.</span> $sessionId;
-        }
-
-        <span style="color:#66d9ef">return</span> $sessionId;
-    }
-}
-
-</code></pre></div><h1 id="reference">Reference</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Redis</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Auth</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">SessionHandlerInterface</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RedisSessionServices</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">SessionHandlerInterface</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">open</span>($savePath, $sessionName)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">close</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">read</span>($sessionId)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Redis</span><span style="color:#f92672">::</span><span style="color:#a6e22e">get</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">prefixCheck</span>($sessionId));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">write</span>($sessionId, $data)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// can add auth check if needed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">Redis</span><span style="color:#f92672">::</span><span style="color:#a6e22e">set</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">prefixCheck</span>($sessionId), $data, <span style="color:#e6db74">&#39;EX&#39;</span>, $expireTime);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">destroy</span>($sessionId)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Redis</span><span style="color:#f92672">::</span><span style="color:#a6e22e">del</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">prefixCheck</span>($sessionId));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">gc</span>($lifetime)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    * laravel 原生會帶 :session:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">prefixCheck</span>($sessionId)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $prefix <span style="color:#f92672">=</span> <span style="color:#a6e22e">env</span>(<span style="color:#e6db74">&#39;REDIS_PREFIX&#39;</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;:session:&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strpos</span>($sessionId, $prefix) <span style="color:#f92672">===</span> <span style="color:#66d9ef">false</span>) {
+</span></span><span style="display:flex;"><span>            $sessionId <span style="color:#f92672">=</span> $prefix <span style="color:#f92672">.</span> $sessionId;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $sessionId;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="reference">Reference</h1>
 <p><a href="https://laravel.com/docs/6.x/authentication#adding-custom-user-providers">official doc</a></p>
 
   </section>

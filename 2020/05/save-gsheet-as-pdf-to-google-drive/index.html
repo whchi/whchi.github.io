@@ -24,7 +24,6 @@
   <title>
      轉存 gsheet 成 pdf 並存入 google drive &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -110,69 +109,69 @@
   
   
   <section>
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doGet</span>() {
-    <span style="color:#a6e22e">exportAsPDF</span>(<span style="color:#a6e22e">pdfName</span>);
-}
-
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">exportBlob</span>(<span style="color:#a6e22e">blob</span>, <span style="color:#a6e22e">fileName</span>) {
-  <span style="color:#a6e22e">blob</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blob</span>.<span style="color:#a6e22e">setName</span>(<span style="color:#a6e22e">fileName</span>)
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">folderId</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;your-google-drive-folder-id&#39;</span>;
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pdfFile</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">DriveApp</span>.<span style="color:#a6e22e">getFolderById</span>(<span style="color:#a6e22e">folderId</span>).<span style="color:#a6e22e">createFile</span>(<span style="color:#a6e22e">blob</span>)
-}
-
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">exportAsPDF</span>(<span style="color:#a6e22e">name</span>) {
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">SpreadSheet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SpreadsheetApp</span>.<span style="color:#a6e22e">openById</span>(<span style="color:#e6db74">&#39;your-id&#39;</span>)
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Sheet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SpreadSheet</span>.<span style="color:#a6e22e">getSheetByName</span>(<span style="color:#a6e22e">name</span>)
-
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">lastDataRowNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Sheet</span>.<span style="color:#a6e22e">getLastRow</span>();
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">range</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Sheet</span>.<span style="color:#a6e22e">getRange</span>(<span style="color:#e6db74">&#34;A1:F&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">lastDataRowNumber</span>);
-
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">blob</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getAsBlob</span>(<span style="color:#a6e22e">SpreadSheet</span>.<span style="color:#a6e22e">getUrl</span>(), <span style="color:#a6e22e">Sheet</span>, <span style="color:#a6e22e">range</span>)
-  <span style="color:#a6e22e">exportBlob</span>(<span style="color:#a6e22e">blob</span>, <span style="color:#a6e22e">name</span>)
-}
-
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAsBlob</span>(<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">sheet</span>, <span style="color:#a6e22e">range</span>) {
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">rangeParam</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sheetParam</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
-  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">range</span>){
-    <span style="color:#75715e">// data row-col
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">rangeParam</span> <span style="color:#f92672">=</span>
-      <span style="color:#e6db74">&#39;&amp;r1=&#39;</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getRow</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;r2=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getLastRow</span>()
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;c1=&#39;</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getColumn</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;c2=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getLastColumn</span>()
-  }
-
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sheet</span>) {
-    <span style="color:#75715e">// specific tab
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">sheetParam</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&amp;gid=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sheet</span>.<span style="color:#a6e22e">getSheetId</span>()
-  }
-
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">exportUrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/\/edit.*$/</span>, <span style="color:#e6db74">&#39;&#39;</span>)
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/export?exportFormat=pdf&amp;format=pdf&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;size=LETTER&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;portrait=true&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;fitw=true&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;top_margin=0.75&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;bottom_margin=0.75&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;left_margin=0.7&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;right_margin=0.7&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;sheetnames=false&amp;printtitle=false&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;pagenum=false&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;gridlines=true&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;fzr=FALSE&#39;</span>
-      <span style="color:#f92672">+</span> <span style="color:#a6e22e">sheetParam</span>
-      <span style="color:#f92672">+</span> <span style="color:#a6e22e">rangeParam</span>
-
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">UrlFetchApp</span>.<span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">exportUrl</span>, {
-    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
-      <span style="color:#a6e22e">Authorization</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bearer &#39;</span> <span style="color:#f92672">+</span>  <span style="color:#a6e22e">ScriptApp</span>.<span style="color:#a6e22e">getOAuthToken</span>(),
-    },
-  })
-
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">getBlob</span>()
-}
-</code></pre></div>
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doGet</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">exportAsPDF</span>(<span style="color:#a6e22e">pdfName</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">exportBlob</span>(<span style="color:#a6e22e">blob</span>, <span style="color:#a6e22e">fileName</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">blob</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blob</span>.<span style="color:#a6e22e">setName</span>(<span style="color:#a6e22e">fileName</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">folderId</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;your-google-drive-folder-id&#39;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pdfFile</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">DriveApp</span>.<span style="color:#a6e22e">getFolderById</span>(<span style="color:#a6e22e">folderId</span>).<span style="color:#a6e22e">createFile</span>(<span style="color:#a6e22e">blob</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">exportAsPDF</span>(<span style="color:#a6e22e">name</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">SpreadSheet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SpreadsheetApp</span>.<span style="color:#a6e22e">openById</span>(<span style="color:#e6db74">&#39;your-id&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Sheet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SpreadSheet</span>.<span style="color:#a6e22e">getSheetByName</span>(<span style="color:#a6e22e">name</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">lastDataRowNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Sheet</span>.<span style="color:#a6e22e">getLastRow</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">range</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Sheet</span>.<span style="color:#a6e22e">getRange</span>(<span style="color:#e6db74">&#34;A1:F&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">lastDataRowNumber</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">blob</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getAsBlob</span>(<span style="color:#a6e22e">SpreadSheet</span>.<span style="color:#a6e22e">getUrl</span>(), <span style="color:#a6e22e">Sheet</span>, <span style="color:#a6e22e">range</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">exportBlob</span>(<span style="color:#a6e22e">blob</span>, <span style="color:#a6e22e">name</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAsBlob</span>(<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">sheet</span>, <span style="color:#a6e22e">range</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">rangeParam</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sheetParam</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">range</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// data row-col
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">rangeParam</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#39;&amp;r1=&#39;</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getRow</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;r2=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getLastRow</span>()
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;c1=&#39;</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getColumn</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;c2=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">range</span>.<span style="color:#a6e22e">getLastColumn</span>()
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sheet</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// specific tab
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">sheetParam</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&amp;gid=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sheet</span>.<span style="color:#a6e22e">getSheetId</span>()
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">exportUrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#e6db74">/\/edit.*$/</span>, <span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/export?exportFormat=pdf&amp;format=pdf&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;size=LETTER&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;portrait=true&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;fitw=true&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;top_margin=0.75&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;bottom_margin=0.75&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;left_margin=0.7&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;right_margin=0.7&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;sheetnames=false&amp;printtitle=false&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;pagenum=false&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;gridlines=true&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&amp;fzr=FALSE&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#a6e22e">sheetParam</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">+</span> <span style="color:#a6e22e">rangeParam</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">UrlFetchApp</span>.<span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">exportUrl</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Authorization</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bearer &#39;</span> <span style="color:#f92672">+</span>  <span style="color:#a6e22e">ScriptApp</span>.<span style="color:#a6e22e">getOAuthToken</span>(),
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">getBlob</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
   </section>
   <div class="clearfix">
     

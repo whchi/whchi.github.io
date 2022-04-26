@@ -22,7 +22,6 @@
   <title>
      把 gsheet 當作 json api 使用 &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -123,34 +122,34 @@
 <blockquote>
 <p>google app script有幾種類型的 script, 這裡用 web app</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 發布後會有個 uri, get 他就進這邊
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doGet</span>(<span style="color:#a6e22e">e</span>) {
-    <span style="color:#75715e">// init sheet object
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">qs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">parameter</span>.<span style="color:#a6e22e">tab</span> <span style="color:#75715e">// https://webappuri/?tab=123, qs=123
-</span><span style="color:#75715e"></span>
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">spreadSheet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SpreadsheetApp</span>.<span style="color:#a6e22e">openById</span>(
-        <span style="color:#e6db74">&#34;your-sheet-id&#34;</span>
-    );
-    <span style="color:#75715e">//取得第一個 tab
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sheet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">spreadSheet</span>.<span style="color:#a6e22e">getSheets</span>()[<span style="color:#ae81ff">0</span>];
-    <span style="color:#75715e">// 就跟 excel 一樣，A行~G行的第1列，google稱作 A1 notation
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sheet</span>.<span style="color:#a6e22e">getRange</span>(<span style="color:#e6db74">&#34;A1:G1&#34;</span>).<span style="color:#a6e22e">getValues</span>()[<span style="color:#ae81ff">0</span>];
-    <span style="color:#75715e">// 最後一列, 空白也算
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">lastDataRowNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sheet</span>.<span style="color:#a6e22e">getLastRow</span>();
-    <span style="color:#75715e">// 取得列裡面的值
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rows</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sheet</span>
-    .<span style="color:#a6e22e">getRange</span>(<span style="color:#e6db74">&#34;A2:G&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">lastDataRowNumber</span>)
-    .<span style="color:#a6e22e">getValues</span>();
-
-    <span style="color:#75715e">// return as json
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ContentService</span>.<span style="color:#a6e22e">createTextOutput</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">rows</span>)).<span style="color:#a6e22e">setMimeType</span>(
-        <span style="color:#a6e22e">ContentService</span>.<span style="color:#a6e22e">MimeType</span>.<span style="color:#a6e22e">JSON</span>)
-}
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doPost</span>(<span style="color:#a6e22e">e</span>){
-    <span style="color:#75715e">// post action here
-</span><span style="color:#75715e"></span>}
-<span style="color:#75715e">// 其實就是 javascript
-</span></code></pre></div><p>script editor 有提供中斷點進行 debug 如圖
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// 發布後會有個 uri, get 他就進這邊
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doGet</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// init sheet object
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">qs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">parameter</span>.<span style="color:#a6e22e">tab</span> <span style="color:#75715e">// https://webappuri/?tab=123, qs=123
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">spreadSheet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">SpreadsheetApp</span>.<span style="color:#a6e22e">openById</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;your-sheet-id&#34;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//取得第一個 tab
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sheet</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">spreadSheet</span>.<span style="color:#a6e22e">getSheets</span>()[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 就跟 excel 一樣，A行~G行的第1列，google稱作 A1 notation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sheet</span>.<span style="color:#a6e22e">getRange</span>(<span style="color:#e6db74">&#34;A1:G1&#34;</span>).<span style="color:#a6e22e">getValues</span>()[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 最後一列, 空白也算
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">lastDataRowNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sheet</span>.<span style="color:#a6e22e">getLastRow</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 取得列裡面的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rows</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sheet</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">getRange</span>(<span style="color:#e6db74">&#34;A2:G&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">lastDataRowNumber</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">getValues</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// return as json
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ContentService</span>.<span style="color:#a6e22e">createTextOutput</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">rows</span>)).<span style="color:#a6e22e">setMimeType</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">ContentService</span>.<span style="color:#a6e22e">MimeType</span>.<span style="color:#a6e22e">JSON</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">doPost</span>(<span style="color:#a6e22e">e</span>){
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// post action here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 其實就是 javascript
+</span></span></span></code></pre></div><p>script editor 有提供中斷點進行 debug 如圖
 <img src="/images/script-editor-debugger.png" alt="">
 4. publish<br>
 點擊上方的<code>publish::Deploy as web app</code>，存取權限選擇<code>Anyone,even anonymous</code>後發布<br>

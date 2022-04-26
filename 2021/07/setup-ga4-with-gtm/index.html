@@ -22,7 +22,6 @@
   <title>
      設定 GA4 與 GTM &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -306,10 +305,10 @@
 <h2 id="放到-hugo-裡面">放到 hugo 裡面</h2>
 <p>善用 <a href="https://gohugo.io/content-management/shortcodes/">shortcode</a> 功能，建立一個 <code>tracking.html</code> 埋 GTM</p>
 <p>於放置的地方加入判斷</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{ <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">fileExists</span> <span style="color:#e6db74">&#34;layouts/partials/tracking.html&#34;</span>) }}
-{{ <span style="color:#a6e22e">partial</span> <span style="color:#e6db74">&#34;tracking.html&#34;</span> . }}
-{{ <span style="color:#a6e22e">end</span> }}
-</code></pre></div><h2 id="references">References</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>{{ <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">fileExists</span> <span style="color:#e6db74">&#34;layouts/partials/tracking.html&#34;</span>) }}
+</span></span><span style="display:flex;"><span>{{ <span style="color:#a6e22e">partial</span> <span style="color:#e6db74">&#34;tracking.html&#34;</span> . }}
+</span></span><span style="display:flex;"><span>{{ <span style="color:#a6e22e">end</span> }}
+</span></span></code></pre></div><h2 id="references">References</h2>
 <ul>
 <li><a href="https://www.analyticsmania.com/post/google-tag-manager-vs-google-analytics/">https://www.analyticsmania.com/post/google-tag-manager-vs-google-analytics/</a></li>
 <li><a href="https://www.adaptworldwide.com/insights/2021/google-analytics-4-vs-universal-analytics-whats-the-difference">https://www.adaptworldwide.com/insights/2021/google-analytics-4-vs-universal-analytics-whats-the-difference</a></li>

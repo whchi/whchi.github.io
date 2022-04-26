@@ -24,7 +24,6 @@
   <title>
      玩玩 Drone CI &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -215,90 +214,90 @@
 <p>於 repo 根目錄放 <code>.drone.yml</code></p>
 </li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">---
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">pipeline</span>
-<span style="color:#f92672">type</span>: <span style="color:#ae81ff">docker</span>
-<span style="color:#f92672">name</span>: <span style="color:#ae81ff">default</span>
-
-<span style="color:#f92672">steps</span>:
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">backend</span>
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">golang</span>
-    <span style="color:#f92672">commands</span>:
-      - <span style="color:#ae81ff">go build</span>
-      - <span style="color:#ae81ff">go test</span>
-    <span style="color:#f92672">when</span>:
-      <span style="color:#f92672">branch</span>:
-        - <span style="color:#ae81ff">main</span>
-
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">frontend</span>
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">node</span>
-    <span style="color:#f92672">commands</span>:
-      - <span style="color:#ae81ff">npm install</span>
-      - <span style="color:#ae81ff">npm test</span>
-    <span style="color:#f92672">when</span>:
-      <span style="color:#f92672">branch</span>:
-        - <span style="color:#ae81ff">main</span>
-
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">publish</span>
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">plugins/docker</span>
-    <span style="color:#f92672">settings</span>:
-      <span style="color:#f92672">repo</span>: <span style="color:#ae81ff">whchi/drone-example</span>
-      <span style="color:#f92672">registry</span>: <span style="color:#ae81ff">index.docker.io</span>
-
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">try</span>
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">busybox</span>
-    <span style="color:#f92672">commands</span>:
-      - <span style="color:#ae81ff">cat README.md</span>
-
-  <span style="color:#75715e"># 2021-07-22 只支援很早之前的 integration，紀錄當下並未支援現有 slack 版本</span>
-  <span style="color:#75715e"># 依照官方文件操作才能正確安裝</span>
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">notify</span>
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">plugins/slack</span>
-    <span style="color:#f92672">settings</span>:
-      <span style="color:#f92672">webhook</span>: <span style="color:#ae81ff">https://hooks.slack.com/services/...</span>
-      <span style="color:#f92672">channel</span>: <span style="color:#ae81ff">your-channel-name</span>
-    <span style="color:#f92672">when</span>:
-      <span style="color:#f92672">status</span>: [<span style="color:#ae81ff">success, failure]</span>
-</code></pre></div><h2 id="drone-設定">drone 設定</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">pipeline</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">docker</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">backend</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">golang</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">commands</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">go build</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">go test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">when</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">branch</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">frontend</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">node</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">commands</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">npm install</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">npm test</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">when</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">branch</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">publish</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">plugins/docker</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">settings</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">repo</span>: <span style="color:#ae81ff">whchi/drone-example</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">registry</span>: <span style="color:#ae81ff">index.docker.io</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">try</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">busybox</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">commands</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">cat README.md</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 2021-07-22 只支援很早之前的 integration，紀錄當下並未支援現有 slack 版本</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 依照官方文件操作才能正確安裝</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">notify</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">plugins/slack</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">settings</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">webhook</span>: <span style="color:#ae81ff">https://hooks.slack.com/services/...</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">channel</span>: <span style="color:#ae81ff">your-channel-name</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">when</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">status</span>: [<span style="color:#ae81ff">success, failure]</span>
+</span></span></code></pre></div><h2 id="drone-設定">drone 設定</h2>
 <ul>
 <li>.env</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">DRONE_GITHUB_CLIENT_ID</span><span style="color:#f92672">=</span><span style="color:#e6db74">your_github_oauth_app_client_id</span>
-<span style="color:#a6e22e">DRONE_GITHUB_CLIENT_SECRET</span><span style="color:#f92672">=</span><span style="color:#e6db74">your_github_oauth_app_client_secret</span>
-<span style="color:#a6e22e">DRONE_RPC_SECRET</span><span style="color:#f92672">=</span><span style="color:#e6db74">random_string</span>
-<span style="color:#a6e22e">DRONE_RPC_HOST</span><span style="color:#f92672">=</span><span style="color:#e6db74">drone-server</span>
-<span style="color:#a6e22e">DRONE_SERVER_PROTO</span><span style="color:#f92672">=</span><span style="color:#e6db74">http</span>
-<span style="color:#a6e22e">DRONE_SERVER_HOST</span><span style="color:#f92672">=</span><span style="color:#e6db74">your_hostname</span>
-</code></pre></div><p><code>DRONE_SERVER_HOST</code> 必須要和在 github 上面的一致，如果你用 <code>ngork</code> 的話就是 <code>xxxx.ngrok.io</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#a6e22e">DRONE_GITHUB_CLIENT_ID</span><span style="color:#f92672">=</span><span style="color:#e6db74">your_github_oauth_app_client_id</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">DRONE_GITHUB_CLIENT_SECRET</span><span style="color:#f92672">=</span><span style="color:#e6db74">your_github_oauth_app_client_secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">DRONE_RPC_SECRET</span><span style="color:#f92672">=</span><span style="color:#e6db74">random_string</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">DRONE_RPC_HOST</span><span style="color:#f92672">=</span><span style="color:#e6db74">drone-server</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">DRONE_SERVER_PROTO</span><span style="color:#f92672">=</span><span style="color:#e6db74">http</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">DRONE_SERVER_HOST</span><span style="color:#f92672">=</span><span style="color:#e6db74">your_hostname</span>
+</span></span></code></pre></div><p><code>DRONE_SERVER_HOST</code> 必須要和在 github 上面的一致，如果你用 <code>ngork</code> 的話就是 <code>xxxx.ngrok.io</code></p>
 <ul>
 <li>docker-compose.yml</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#ae81ff">3.9</span>
-<span style="color:#f92672">services</span>:
-  <span style="color:#f92672">drone-server</span>:
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">drone/drone</span>
-    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
-    <span style="color:#f92672">ports</span>:
-      - <span style="color:#ae81ff">8080</span>:<span style="color:#ae81ff">80</span>
-    <span style="color:#f92672">volumes</span>:
-      - <span style="color:#ae81ff">drone:/var/lib/drone</span>
-    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
-    <span style="color:#f92672">env_file</span>:
-      - <span style="color:#ae81ff">./.env</span>
-    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_drone_server</span>
-  <span style="color:#f92672">drone-runner</span>:
-    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">drone/drone-runner-docker</span>
-    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
-    <span style="color:#f92672">volumes</span>:
-      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock</span>
-    <span style="color:#f92672">depends_on</span>:
-      - <span style="color:#ae81ff">drone-server</span>
-    <span style="color:#f92672">env_file</span>:
-      - <span style="color:#ae81ff">./.env</span>
-    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_drone_runner</span>
-<span style="color:#f92672">volumes</span>:
-  <span style="color:#f92672">drone</span>:
-</code></pre></div><h1 id="測試">測試</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#ae81ff">3.9</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">drone-server</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">drone/drone</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">8080</span>:<span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">drone:/var/lib/drone</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env_file</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./.env</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_drone_server</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">drone-runner</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">drone/drone-runner-docker</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">drone-server</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env_file</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./.env</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local_drone_runner</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">drone</span>:
+</span></span></code></pre></div><h1 id="測試">測試</h1>
 <ol>
 <li>登入 drone-server
  

@@ -22,7 +22,6 @@
   <title>
      Tilde(~) vs Caret(^) in composer &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -123,24 +122,24 @@
 </ol>
 <h1 id="細節">細節</h1>
 <h2 id="一般情況">一般情況</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># ~</span>
-~1.0   means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;2.0.0 same as 1.*
-~1.0.0 means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;1.1.0 same as 1.0.*
-<span style="color:#75715e"># ^</span>
-^1.0   means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;2.0.0 same as 1.*
-^1.0.0 means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;2.0.0 same as 1.*
-</code></pre></div><h2 id="特殊情況">特殊情況</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># ~</span>
+</span></span><span style="display:flex;"><span>~1.0   means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;2.0.0 same as 1.*
+</span></span><span style="display:flex;"><span>~1.0.0 means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;1.1.0 same as 1.0.*
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ^</span>
+</span></span><span style="display:flex;"><span>^1.0   means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;2.0.0 same as 1.*
+</span></span><span style="display:flex;"><span>^1.0.0 means &gt;<span style="color:#f92672">=</span>1.0.0 &lt;2.0.0 same as 1.*
+</span></span></code></pre></div><h2 id="特殊情況">特殊情況</h2>
 <p>版號為 <code>0.y.z</code> 的狀況：依照語意化版號的標準，在 <code>0.y.z</code> 時都算是 under development，不應被視為 stable</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Might break backward compatibility</span>
-~0.2 means &gt;<span style="color:#f92672">=</span>0.2.0 &lt;1.0.0
-<span style="color:#75715e"># This is fine</span>
-~1.2 means &gt;<span style="color:#f92672">=</span>1.2.0 &lt;2.0.0
-<span style="color:#75715e"># workaround</span>
-0.2.* means &gt;<span style="color:#f92672">=</span>0.2.0 &lt;0.3.0
-
-<span style="color:#75715e"># Solve it in simple way</span>
-^0.2 means &gt;<span style="color:#f92672">=</span>0.2.0 &lt;0.3.0
-</code></pre></div><h1 id="reference">Reference</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Might break backward compatibility</span>
+</span></span><span style="display:flex;"><span>~0.2 means &gt;<span style="color:#f92672">=</span>0.2.0 &lt;1.0.0
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This is fine</span>
+</span></span><span style="display:flex;"><span>~1.2 means &gt;<span style="color:#f92672">=</span>1.2.0 &lt;2.0.0
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># workaround</span>
+</span></span><span style="display:flex;"><span>0.2.* means &gt;<span style="color:#f92672">=</span>0.2.0 &lt;0.3.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Solve it in simple way</span>
+</span></span><span style="display:flex;"><span>^0.2 means &gt;<span style="color:#f92672">=</span>0.2.0 &lt;0.3.0
+</span></span></code></pre></div><h1 id="reference">Reference</h1>
 <ul>
 <li><a href="https://getcomposer.org/doc/articles/versions.md#writing-version-constraints">composer version constraints</a></li>
 <li><a href="https://semver.org/">semver</a></li>

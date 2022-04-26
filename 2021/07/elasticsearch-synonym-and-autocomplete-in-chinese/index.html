@@ -24,7 +24,6 @@
   <title>
      [From medium]Elasticsearch 中文同義詞與自動完成 &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -210,86 +209,86 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
 <ul>
 <li>字典檔（custom-dict.txt）：讓進去的字不要被切斷，能夠正確被同義字字庫比對。</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">胃食道逆流
-流行性感冒
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>胃食道逆流
+</span></span><span style="display:flex;"><span>流行性感冒
+</span></span></code></pre></div><ul>
 <li>同義字字庫（synonym.txt）</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">流感,流行性感冒
-胃食道逆流=&gt;胃病
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>流感,流行性感冒
+</span></span><span style="display:flex;"><span>胃食道逆流=&gt;胃病
+</span></span></code></pre></div><ul>
 <li>Dockerfile</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> elasticsearch:7.6.2</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> ./bin/elasticsearch-plugin install -b <span style="color:#f92672">[</span>https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.6.2/elasticsearch-analysis-ik-7.6.2.zip<span style="color:#f92672">](</span>https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.6.2/elasticsearch-analysis-ik-7.6.2.zip<span style="color:#f92672">)</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir -p /usr/share/elasticsearch/config/analysis-ik/custom<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./dict/custom-dict.txt /usr/share/elasticsearch/config/analysis-ik/custom/custom-dict.dic<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./dict/synonym.txt /usr/share/elasticsearch/config/analysis/synonym.txt<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> elasticsearch</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>利用上面這些範例可快速在本地建立一個具有 ik 分詞功能的 elasticsearch，接著在設定 mapping 與 setting</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// PUT /&lt;index&gt;
-</span><span style="color:#75715e"></span>{
-  <span style="color:#f92672">&#34;mappings&#34;</span>: {
-    <span style="color:#f92672">&#34;properties&#34;</span>: {
-      <span style="color:#f92672">&#34;field1&#34;</span>: {
-        <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
-        <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
-      },
-      <span style="color:#f92672">&#34;field2&#34;</span>: {
-        <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
-        <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
-        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
-      }
-    }
-  },
-  <span style="color:#f92672">&#34;settings&#34;</span>: {
-    <span style="color:#f92672">&#34;analysis&#34;</span>: {
-      <span style="color:#f92672">&#34;analyzer&#34;</span>: {
-        <span style="color:#f92672">&#34;ik_syno_smart&#34;</span>: {
-          <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
-          <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_smart&#34;</span>,
-          <span style="color:#f92672">&#34;filter&#34;</span>: [<span style="color:#e6db74">&#34;my_synonym&#34;</span>]
-        },
-        <span style="color:#f92672">&#34;ik_syno_max&#34;</span>: {
-          <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
-          <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>,
-          <span style="color:#f92672">&#34;filter&#34;</span>: [<span style="color:#e6db74">&#34;my_synonym&#34;</span>]
-        }
-      },
-      <span style="color:#f92672">&#34;filter&#34;</span>: {
-        <span style="color:#f92672">&#34;my_synonym&#34;</span>: {
-          <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;synonym&#34;</span>,
-          <span style="color:#f92672">&#34;synonyms_path&#34;</span>: <span style="color:#e6db74">&#34;analysis/synonym.txt&#34;</span>
-        }
-      }
-    }
-  }
-}
-</code></pre></div><p>設定成功的話測試結果如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// POST /&lt;index&gt;/_analyze
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// request
-</span><span style="color:#75715e"></span>{
-    <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;流行性感冒&#34;</span>,
-    <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>
-}
-<span style="color:#75715e">// response
-</span><span style="color:#75715e"></span>{
-    <span style="color:#f92672">&#34;tokens&#34;</span>: [
-        {
-            <span style="color:#f92672">&#34;token&#34;</span>: <span style="color:#e6db74">&#34;流感&#34;</span>,
-            <span style="color:#f92672">&#34;start_offset&#34;</span>: <span style="color:#ae81ff">0</span>,
-            <span style="color:#f92672">&#34;end_offset&#34;</span>: <span style="color:#ae81ff">5</span>,
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;SYNONYM&#34;</span>, <span style="color:#75715e">// 同義詞判斷成功
-</span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;position&#34;</span>: <span style="color:#ae81ff">0</span>
-        }
-    ]
-}
-</code></pre></div><h2 id="自動完成">自動完成</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> elasticsearch:7.6.2</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> ./bin/elasticsearch-plugin install -b <span style="color:#f92672">[</span>https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.6.2/elasticsearch-analysis-ik-7.6.2.zip<span style="color:#f92672">](</span>https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.6.2/elasticsearch-analysis-ik-7.6.2.zip<span style="color:#f92672">)</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir -p /usr/share/elasticsearch/config/analysis-ik/custom<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./dict/custom-dict.txt /usr/share/elasticsearch/config/analysis-ik/custom/custom-dict.dic<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./dict/synonym.txt /usr/share/elasticsearch/config/analysis/synonym.txt<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> elasticsearch</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>利用上面這些範例可快速在本地建立一個具有 ik 分詞功能的 elasticsearch，接著在設定 mapping 與 setting</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// PUT /&lt;index&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mappings&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;field1&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;field2&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;search_analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_smart&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;settings&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;analysis&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;analyzer&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;ik_syno_smart&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_smart&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;filter&#34;</span>: [<span style="color:#e6db74">&#34;my_synonym&#34;</span>]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;ik_syno_max&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;tokenizer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;filter&#34;</span>: [<span style="color:#e6db74">&#34;my_synonym&#34;</span>]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;filter&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;my_synonym&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;synonym&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;synonyms_path&#34;</span>: <span style="color:#e6db74">&#34;analysis/synonym.txt&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>設定成功的話測試結果如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// POST /&lt;index&gt;/_analyze
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// request
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;流行性感冒&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_syno_max&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// response
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;tokens&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;token&#34;</span>: <span style="color:#e6db74">&#34;流感&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;start_offset&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;end_offset&#34;</span>: <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;SYNONYM&#34;</span>, <span style="color:#75715e">// 同義詞判斷成功
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#f92672">&#34;position&#34;</span>: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="自動完成">自動完成</h2>
 <p>官方推薦兩種方式</p>
 <ol>
 <li>Completion Suggester</li>
@@ -301,73 +300,73 @@ doc 透過 analyzer 處理後儲存成類似圖中的表，搜尋時用 <a href=
 <p>使用 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-shingle-tokenfilter.html">shingle token filter</a> 當作 base，因此可以做到 infix completion，舊的版本可以用 ngram token filter 達到類似效果。</p>
 <p>我最後使用 search-as-you-type，因為這個效果比較符合使用情境，設定步驟如下：</p>
 <p>建立 mapping</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// PUT /&lt;index&gt;
-</span><span style="color:#75715e"></span>{
-    <span style="color:#f92672">&#34;mappings&#34;</span>: {
-        <span style="color:#f92672">&#34;properties&#34;</span> : {
-            <span style="color:#f92672">&#34;completion_field&#34;</span> : {
-                <span style="color:#f92672">&#34;type&#34;</span> : <span style="color:#e6db74">&#34;search_as_you_type&#34;</span>,
-                <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>
-            }
-        }
-    }
-}
-</code></pre></div><p>建立 data</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// PUT /&lt;index&gt;/&lt;id&gt;
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// request 1
-</span><span style="color:#75715e"></span>{
-  <span style="color:#f92672">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
-}
-<span style="color:#75715e">// request 2
-</span><span style="color:#75715e"></span>{
-  <span style="color:#f92672">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
-}
-<span style="color:#960050;background-color:#1e0010">...</span>
-</code></pre></div><p>測試結果</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#75715e">// GET /&lt;index&gt;/_search
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// request
-</span><span style="color:#75715e"></span>{
-  <span style="color:#f92672">&#34;_source&#34;</span>: [<span style="color:#e6db74">&#34;completion_field&#34;</span>],
-  <span style="color:#f92672">&#34;query&#34;</span>: {
-    <span style="color:#f92672">&#34;multi_match&#34;</span>: {
-      <span style="color:#f92672">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;甲狀&#34;</span>,
-      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;best_fields&#34;</span>, <span style="color:#75715e">// 按照有對應到的順序計算
-</span><span style="color:#75715e"></span>      <span style="color:#f92672">&#34;fields&#34;</span>: [
-        <span style="color:#e6db74">&#34;completion_field&#34;</span>
-      ]
-    }
-  }
-}
-<span style="color:#75715e">// response
-</span><span style="color:#75715e"></span>{
-    <span style="color:#960050;background-color:#1e0010">...</span>
-  <span style="color:#f92672">&#34;hits&#34;</span> : {
-      <span style="color:#960050;background-color:#1e0010">...</span>
-    <span style="color:#f92672">&#34;hits&#34;</span> : [
-      {
-        <span style="color:#f92672">&#34;_index&#34;</span> : <span style="color:#e6db74">&#34;completion_field&#34;</span>,
-        <span style="color:#f92672">&#34;_type&#34;</span> : <span style="color:#e6db74">&#34;_doc&#34;</span>,
-        <span style="color:#f92672">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span>,
-        <span style="color:#f92672">&#34;_score&#34;</span> : <span style="color:#ae81ff">0.8630463</span>,
-        <span style="color:#f92672">&#34;_source&#34;</span> : {
-          <span style="color:#f92672">&#34;completion_field&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
-        }
-      },
-      {
-        <span style="color:#f92672">&#34;_index&#34;</span> : <span style="color:#e6db74">&#34;completion_field&#34;</span>,
-        <span style="color:#f92672">&#34;_type&#34;</span> : <span style="color:#e6db74">&#34;_doc&#34;</span>,
-        <span style="color:#f92672">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span>,
-        <span style="color:#f92672">&#34;_score&#34;</span> : <span style="color:#ae81ff">0.8630463</span>,
-        <span style="color:#f92672">&#34;_source&#34;</span> : {
-          <span style="color:#f92672">&#34;completion_field&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
-        }
-      }
-    ]
-  }
-}
-</code></pre></div><p>前端隨便找一套看的順眼的 auto-completion library 套一下就好～這邊延用之前同義字的 analyzer，因為這樣自動完成出來的東西才不會被切的很奇怪。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// PUT /&lt;index&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;mappings&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;properties&#34;</span> : {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;completion_field&#34;</span> : {
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;type&#34;</span> : <span style="color:#e6db74">&#34;search_as_you_type&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;analyzer&#34;</span>: <span style="color:#e6db74">&#34;ik_max_word&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>建立 data</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// PUT /&lt;index&gt;/&lt;id&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// request 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// request 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;completion_field&#34;</span>: <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">...</span>
+</span></span></code></pre></div><p>測試結果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// GET /&lt;index&gt;/_search
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// request
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;_source&#34;</span>: [<span style="color:#e6db74">&#34;completion_field&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;query&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;multi_match&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;甲狀&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;best_fields&#34;</span>, <span style="color:#75715e">// 按照有對應到的順序計算
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#f92672">&#34;fields&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;completion_field&#34;</span>
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// response
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;hits&#34;</span> : {
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;hits&#34;</span> : [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;_index&#34;</span> : <span style="color:#e6db74">&#34;completion_field&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;_type&#34;</span> : <span style="color:#e6db74">&#34;_doc&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;_score&#34;</span> : <span style="color:#ae81ff">0.8630463</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;_source&#34;</span> : {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;completion_field&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺腫大&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;_index&#34;</span> : <span style="color:#e6db74">&#34;completion_field&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;_type&#34;</span> : <span style="color:#e6db74">&#34;_doc&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;_score&#34;</span> : <span style="color:#ae81ff">0.8630463</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;_source&#34;</span> : {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;completion_field&#34;</span> : <span style="color:#e6db74">&#34;甲狀腺凸眼症&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>前端隨便找一套看的順眼的 auto-completion library 套一下就好～這邊延用之前同義字的 analyzer，因為這樣自動完成出來的東西才不會被切的很奇怪。</p>
 <p>上面大概說明怎麼快速建立一個具有同義字和自動完成功能的 Elasticsearch node，至於效果好不好得看字庫範圍夠不夠集中且多元，這塊很吃領域知識，這篇文章提供了「有」的部分，要「好」的話還有更多需要做的。</p>
 
   </section>

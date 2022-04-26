@@ -22,7 +22,6 @@
   <title>
      Hugo安裝 &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -110,7 +109,7 @@
   <section>
     <h2 id="step1-install-hugo">Step1. install hugo</h2>
 <p>install <a href="https://brew.sh/index_zh-tw">homebrew</a></p>
-<pre tabindex="0"><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+<pre tabindex="0"><code>/usr/bin/ruby -e &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&#34;
 </code></pre><p>then install hugo</p>
 <pre tabindex="0"><code>brew install hugo
 </code></pre><h2 id="step2-start-a-hugo-project">Step2. start a hugo project</h2>
@@ -129,7 +128,7 @@ git submodule add https://github.com/josephhutch/aether.git themes/aether
 </code></pre><p>enable theme</p>
 <pre tabindex="0"><code>vim config.toml
 # add new line
-theme = &quot;aether&quot;
+theme = &#34;aether&#34;
 </code></pre><h2 id="step4-add-post">Step4. add post</h2>
 <p><code>hugo new posts/first-post.md</code>
 change <code>draft: true</code> then run <code>hugo server -w</code> for local test</p>
@@ -149,7 +148,7 @@ change <code>draft: true</code> then run <code>hugo server -w</code> for local t
 <p>add shell to project folder, named <code>deploy.sh</code></p>
 <pre tabindex="0"><code>#!/bin/bash
 
-echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
+echo -e &#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;
 # Build the project.
 hugo # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
 
@@ -162,7 +161,7 @@ git checkout master
 git add .
 
 # Commit changes.
-git commit -m &quot;rebuilding site `date`&quot;
+git commit -m &#34;rebuilding site `date`&#34;
 
 # Push source and build repos.
 git push origin master
@@ -170,15 +169,14 @@ git push origin master
 # Come Back up to the Project Root
 cd ..
 
-msg=&quot;updated at `date`&quot;
+msg=&#34;updated at `date`&#34;
 if [ $# -eq 1 ]
-then msg=&quot;$1&quot;
+then msg=&#34;$1&#34;
 fi
 git add .
-git commit -m &quot;$msg&quot;
+git commit -m &#34;$msg&#34;
 
 git push origin master
-
 </code></pre></li>
 <li>
 <p>run <code>git commit -am &quot;yout website-hugo commit message &quot;</code> then <code>git push origin master</code></p>

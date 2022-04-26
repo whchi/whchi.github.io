@@ -26,7 +26,6 @@
   <title>
      部署laravel應用程式到GKE上 &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -196,259 +195,259 @@
 <blockquote>
 <p>這裡沒有找到比較好的解釋說明兩者的差異, 我個人是偏好不變的資源用 create, 因為兩種command 建立出來的資源是在 command 中是互斥的, 避免 apply 倒不會動的資源</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 1. create resource</span>
-kubectl create -f xxxx.yml
-<span style="color:#75715e"># or</span>
-kubectl apply -f xxxx.yml
-
-<span style="color:#75715e"># 2. reload resource</span>
-kubectl replace -f xxxx.yml <span style="color:#75715e"># use create</span>
-<span style="color:#75715e"># or</span>
-kubectl apply -f xxxx.yml <span style="color:#75715e"># use apply</span>
-</code></pre></div><h2 id="預計建立架構">預計建立架構</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># 1. create resource</span>
+</span></span><span style="display:flex;"><span>kubectl create -f xxxx.yml
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f xxxx.yml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. reload resource</span>
+</span></span><span style="display:flex;"><span>kubectl replace -f xxxx.yml <span style="color:#75715e"># use create</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f xxxx.yml <span style="color:#75715e"># use apply</span>
+</span></span></code></pre></div><h2 id="預計建立架構">預計建立架構</h2>
 <p><img src="/images/k8s-infa-sample.png" alt=""></p>
 <h3 id="建立-laravel-app-image--push-to-gcr">建立 laravel app image &amp; push to GCR</h3>
 <p><a href="https://laravel.com/docs/5.8/installation">安裝完laravel</a>之後寫個 Dockerfile build image, 參考如下</p>
 <ul>
 <li>Dockerfile.php</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> php:7.3.3</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apt-get update -y <span style="color:#f92672">&amp;&amp;</span> apt-get install -y openssl zip unzip git<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> curl -sS https://getcomposer.org/installer | php -- --install-dir<span style="color:#f92672">=</span>/usr/local/bin --filename<span style="color:#f92672">=</span>composer<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> docker-php-ext-install pdo mbstring json sockets<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> MyProject /app<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> composer install<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> chown -R www-data:www-data /app/<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> www-data</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> php artisan serve --host<span style="color:#f92672">=</span>0.0.0.0 --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span> <span style="color:#75715e">#實務上不會這樣做, 本文只是為了可以建立環境所以這樣做</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8000</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> php:7.3.3</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apt-get update -y <span style="color:#f92672">&amp;&amp;</span> apt-get install -y openssl zip unzip git<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> curl -sS https://getcomposer.org/installer | php -- --install-dir<span style="color:#f92672">=</span>/usr/local/bin --filename<span style="color:#f92672">=</span>composer<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> docker-php-ext-install pdo mbstring json sockets<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> MyProject /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> composer install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> chown -R www-data:www-data /app/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> www-data</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> php artisan serve --host<span style="color:#f92672">=</span>0.0.0.0 --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span> <span style="color:#75715e">#實務上不會這樣做, 本文只是為了可以建立環境所以這樣做</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8000</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><ul>
 <li>build &amp; push image</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker build -t phpapp:1.0.0 -f Dockerfile.php .
-<span style="color:#75715e"># then</span>
-docker push gcr.io/<span style="color:#f92672">{</span>your-gcp-project-name<span style="color:#f92672">}</span>/phpapp:1.0.0
-<span style="color:#75715e"># 這裡以 gcr 為例, 推到 dockerhub 也可以, 總之要有一個本地連的到的地方</span>
-</code></pre></div><h3 id="yaml">yaml</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker build -t phpapp:1.0.0 -f Dockerfile.php .
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then</span>
+</span></span><span style="display:flex;"><span>docker push gcr.io/<span style="color:#f92672">{</span>your-gcp-project-name<span style="color:#f92672">}</span>/phpapp:1.0.0
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 這裡以 gcr 為例, 推到 dockerhub 也可以, 總之要有一個本地連的到的地方</span>
+</span></span></code></pre></div><h3 id="yaml">yaml</h3>
 <p>這裡直接把 deploy 跟 service 寫在一起</p>
 <ul>
 <li>nginx-k8s.yml</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-<span style="color:#f92672">data</span>:
-  <span style="color:#f92672">nginx.conf</span>: |<span style="color:#e6db74">
-</span><span style="color:#e6db74">    user nginx;
-</span><span style="color:#e6db74">    error_log  stderr warn;
-</span><span style="color:#e6db74">    events {}
-</span><span style="color:#e6db74">    http {
-</span><span style="color:#e6db74">      server {
-</span><span style="color:#e6db74">        listen 80;
-</span><span style="color:#e6db74">        location / {
-</span><span style="color:#e6db74">          proxy_pass http://phpapp-local:7777;
-</span><span style="color:#e6db74">        }
-</span><span style="color:#e6db74">      }
-</span><span style="color:#e6db74">    }</span>    
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-config-local</span> <span style="color:#75715e"># configmap&#39;s name</span>
----
-<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-local</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span> <span style="color:#75715e"># 建立幾個 pods</span>
-  <span style="color:#f92672">template</span>:
-    <span style="color:#f92672">metadata</span>:
-      <span style="color:#f92672">labels</span>:
-        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx</span> <span style="color:#75715e"># 建議需要設定 labels, 讓 service 可以透過 selector 選取</span>
-    <span style="color:#f92672">spec</span>:
-      <span style="color:#f92672">containers</span>:
-      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
-        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
-        <span style="color:#f92672">ports</span>:
-          - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">80</span>
-        <span style="color:#f92672">resources</span>: <span style="color:#75715e"># 不設定也可, 但就不知道 k8s 會怎麼分配</span>
-          <span style="color:#f92672">limits</span>: <span style="color:#75715e"># upper bound</span>
-            <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">50Mi</span>
-          <span style="color:#f92672">requests</span>: <span style="color:#75715e"># lower bound</span>
-            <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">10m</span> <span style="color:#75715e"># 1000m = 1CPU</span>
-        <span style="color:#f92672">volumeMounts</span>: <span style="color:#75715e"># 要 mount 的資源資訊</span>
-        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config-volume</span>
-          <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/etc/nginx</span> <span style="color:#75715e"># 掛載到此 pod 上的路徑</span>
-      <span style="color:#f92672">volumes</span>:
-      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config-volume</span> <span style="color:#75715e"># 被 mount 的資源 key 與其設定</span>
-        <span style="color:#f92672">configMap</span>:
-          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-config-local</span> <span style="color:#75715e"># 對應上面的 configmap&#39;s name</span>
----
-<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-local</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">ports</span>:
-  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span> <span style="color:#75715e"># service&#39;s port</span>
-    <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">80</span> <span style="color:#75715e"># pod&#39;s port</span>
-  <span style="color:#f92672">selector</span>:
-    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx</span> <span style="color:#75715e"># 這裡用 select 對應到實際的 deployment</span>
-  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span> <span style="color:#75715e"># 要注意的是, Ingress 目前只支援 NodePort, 如果不用 Ingress 的話可使用 ClusterIP</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">nginx.conf</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    user nginx;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    error_log  stderr warn;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    events {}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    http {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      server {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        listen 80;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        location / {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_pass http://phpapp-local:7777;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }</span>    
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-config-local</span> <span style="color:#75715e"># configmap&#39;s name</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-local</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span> <span style="color:#75715e"># 建立幾個 pods</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx</span> <span style="color:#75715e"># 建議需要設定 labels, 讓 service 可以透過 selector 選取</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">resources</span>: <span style="color:#75715e"># 不設定也可, 但就不知道 k8s 會怎麼分配</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">limits</span>: <span style="color:#75715e"># upper bound</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">50Mi</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">requests</span>: <span style="color:#75715e"># lower bound</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">10m</span> <span style="color:#75715e"># 1000m = 1CPU</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">volumeMounts</span>: <span style="color:#75715e"># 要 mount 的資源資訊</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config-volume</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/etc/nginx</span> <span style="color:#75715e"># 掛載到此 pod 上的路徑</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config-volume</span> <span style="color:#75715e"># 被 mount 的資源 key 與其設定</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">configMap</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-config-local</span> <span style="color:#75715e"># 對應上面的 configmap&#39;s name</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx-local</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span> <span style="color:#75715e"># service&#39;s port</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">80</span> <span style="color:#75715e"># pod&#39;s port</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx</span> <span style="color:#75715e"># 這裡用 select 對應到實際的 deployment</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span> <span style="color:#75715e"># 要注意的是, Ingress 目前只支援 NodePort, 如果不用 Ingress 的話可使用 ClusterIP</span>
+</span></span></code></pre></div><ul>
 <li>php-k8s.yml</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">phpapp-local</span>
-<span style="color:#f92672">spec</span>: <span style="color:#75715e"># pods instance</span>
-  <span style="color:#f92672">strategy</span>:
-    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">RollingUpdate</span>
-  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
-  <span style="color:#f92672">template</span>:
-    <span style="color:#f92672">metadata</span>:
-      <span style="color:#f92672">labels</span>:
-        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">phpapp</span>
-    <span style="color:#f92672">spec</span>:
-      <span style="color:#f92672">terminationGracePeriodSeconds</span>: <span style="color:#ae81ff">10</span>
-      <span style="color:#f92672">containers</span>:
-      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">php</span>
-        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">gcr.io/{your-project-name}/phpapp:latest</span>
-        <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
-        <span style="color:#f92672">resources</span>:
-          <span style="color:#f92672">limits</span>:
-            <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">100Mi</span>
-          <span style="color:#f92672">requests</span>:
-            <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">50m</span>
-        <span style="color:#f92672">ports</span>:
-        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">8000</span>
----
-<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">phpapp-local</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">ports</span>:
-  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">7777</span> <span style="color:#75715e"># cluster 的 port</span>
-    <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">8000</span>
-  <span style="color:#f92672">selector</span>:
-    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">phpapp</span>
-  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">ClusterIP</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">phpapp-local</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>: <span style="color:#75715e"># pods instance</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">strategy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">RollingUpdate</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">phpapp</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">terminationGracePeriodSeconds</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">php</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">gcr.io/{your-project-name}/phpapp:latest</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">100Mi</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">50m</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">phpapp-local</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">7777</span> <span style="color:#75715e"># cluster 的 port</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">phpapp</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">ClusterIP</span>
+</span></span></code></pre></div><ul>
 <li>mysql.yml<br>
 這裡用 cloudSQL, credential 的部分指的是 service account 金鑰, 有幾種方式設定</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 1. use kubectl (recommend)</span>
-kubectl create secret generic <span style="color:#f92672">{</span>secret-name<span style="color:#f92672">}</span> --from-file /path/to/service-account.json
-<span style="color:#75715e"># 2. use shell</span>
-cat /path/to/service-account.json | base64
-<span style="color:#75715e"># then paste to cloudsql-instance-credentials.yml</span>
-</code></pre></div><p>先跑完 credential 再跑下面的 yml, 不然跑的時候會找不到</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># 1. use kubectl (recommend)</span>
+</span></span><span style="display:flex;"><span>kubectl create secret generic <span style="color:#f92672">{</span>secret-name<span style="color:#f92672">}</span> --from-file /path/to/service-account.json
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. use shell</span>
+</span></span><span style="display:flex;"><span>cat /path/to/service-account.json | base64
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then paste to cloudsql-instance-credentials.yml</span>
+</span></span></code></pre></div><p>先跑完 credential 再跑下面的 yml, 不然跑的時候會找不到</p>
 <ul>
 <li>cloudsql-instance-credentials.yml <br>
 用 kubectl create 後也會建立此檔, 使用方法 2 的話可以先建立後再copy-paste</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-instance-credentials</span>
-<span style="color:#f92672">type</span>: <span style="color:#ae81ff">Opaque</span> <span style="color:#75715e"># k8s 提供的一種非明碼儲存方式, 使用 `kubectl create secret generic`也會產生一樣的檔案</span>
-<span style="color:#f92672">data</span>:
-  <span style="color:#75715e"># base64 encoded service-account.json</span>
-  <span style="color:#f92672">service-account.json</span>: <span style="color:#ae81ff">xxxxxxxxxxx=</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-instance-credentials</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">Opaque</span> <span style="color:#75715e"># k8s 提供的一種非明碼儲存方式, 使用 `kubectl create secret generic`也會產生一樣的檔案</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># base64 encoded service-account.json</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">service-account.json</span>: <span style="color:#ae81ff">xxxxxxxxxxx=</span>
+</span></span></code></pre></div><ul>
 <li>cloudsql.yml</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-proxy</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
-  <span style="color:#f92672">template</span>:
-    <span style="color:#f92672">metadata</span>:
-      <span style="color:#f92672">labels</span>:
-        <span style="color:#f92672">component</span>: <span style="color:#ae81ff">cloudsql-proxy</span>
-    <span style="color:#f92672">spec</span>:
-      <span style="color:#f92672">containers</span>:
-        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-proxy</span>
-          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">gcr.io/cloudsql-docker/gce-proxy:1.14</span>
-          <span style="color:#f92672">ports</span>:
-            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">3306</span>
-          <span style="color:#f92672">command</span>:
-            - <span style="color:#ae81ff">/cloud_sql_proxy</span>
-            - -<span style="color:#ae81ff">instances={gcp-project-name}:{cloud-sql-region}:{cloud-sql-database-name}=tcp:0.0.0.0:3306</span>
-            - -<span style="color:#ae81ff">credential_file=/secrets/cloudsql/{your-service-account.json}</span> <span style="color:#75715e"># 具有讀寫 cloudsql database 權限的service account 金鑰檔</span>
-          <span style="color:#f92672">volumeMounts</span>:
-            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-instance-credentials</span>
-              <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/secrets/cloudsql</span>
-              <span style="color:#f92672">readOnly</span>: <span style="color:#66d9ef">true</span>
-      <span style="color:#f92672">volumes</span>:
-        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-instance-credentials</span>
-          <span style="color:#f92672">secret</span>:
-            <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">cloudsql-instance-credentials</span>
----
-<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-proxy-service</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">ports</span>:
-    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
-      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">3306</span>
-      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">3306</span>
-  <span style="color:#f92672">selector</span>:
-    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">cloudsql-proxy</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-proxy</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">component</span>: <span style="color:#ae81ff">cloudsql-proxy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-proxy</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">gcr.io/cloudsql-docker/gce-proxy:1.14</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">3306</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">command</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#ae81ff">/cloud_sql_proxy</span>
+</span></span><span style="display:flex;"><span>            - -<span style="color:#ae81ff">instances={gcp-project-name}:{cloud-sql-region}:{cloud-sql-database-name}=tcp:0.0.0.0:3306</span>
+</span></span><span style="display:flex;"><span>            - -<span style="color:#ae81ff">credential_file=/secrets/cloudsql/{your-service-account.json}</span> <span style="color:#75715e"># 具有讀寫 cloudsql database 權限的service account 金鑰檔</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-instance-credentials</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/secrets/cloudsql</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">readOnly</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-instance-credentials</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">secret</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">cloudsql-instance-credentials</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cloudsql-proxy-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">3306</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">3306</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">cloudsql-proxy</span>
+</span></span></code></pre></div><ul>
 <li>redis.yml</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis-pod</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
-  <span style="color:#f92672">template</span>:
-    <span style="color:#f92672">metadata</span>:
-      <span style="color:#f92672">labels</span>:
-        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">redis-pod</span>
-    <span style="color:#f92672">spec</span>:
-      <span style="color:#f92672">containers</span>:
-        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis</span>
-          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:5.0.5</span>
-          <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
-          <span style="color:#f92672">ports</span>:
-            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">6379</span>
----
-<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis-svc</span> <span style="color:#75715e"># 記得把 laravel 的 env 中 redis 連線名稱改為這個</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">ports</span>:
-    - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">6379</span>
-      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">6379</span>
-      <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
-  <span style="color:#f92672">selector</span>:
-    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">redis-pod</span>
-  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">ClusterIP</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis-pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">redis-pod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:5.0.5</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">6379</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">redis-svc</span> <span style="color:#75715e"># 記得把 laravel 的 env 中 redis 連線名稱改為這個</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">6379</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">6379</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">redis-pod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">ClusterIP</span>
+</span></span></code></pre></div><ul>
 <li>ingress.yml<br>
 不一定要用ingress, 也可以使用 LoadBalancer</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Ingress</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ingress</span>
-  <span style="color:#f92672">annotations</span>:
-    <span style="color:#f92672">kubernetes.io/ingress.global-static-ip-name</span>: <span style="color:#e6db74">&#34;external-ip-name&#34;</span> <span style="color:#75715e"># 預留外部靜態ip的名稱, @see [GCP保留靜態IP位址](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address?hl=zh-tw)</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">backend</span>:
-    <span style="color:#f92672">serviceName</span>: <span style="color:#ae81ff">nginx-local</span> <span style="color:#75715e">#必須為 NodePort, 名稱為 nginx-k8s.yml 的 metadata</span>
-    <span style="color:#f92672">servicePort</span>: <span style="color:#ae81ff">80</span>
-</code></pre></div><h2 id="備註">備註</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Ingress</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ingress</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kubernetes.io/ingress.global-static-ip-name</span>: <span style="color:#e6db74">&#34;external-ip-name&#34;</span> <span style="color:#75715e"># 預留外部靜態ip的名稱, @see [GCP保留靜態IP位址](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address?hl=zh-tw)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backend</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">serviceName</span>: <span style="color:#ae81ff">nginx-local</span> <span style="color:#75715e">#必須為 NodePort, 名稱為 nginx-k8s.yml 的 metadata</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">servicePort</span>: <span style="color:#ae81ff">80</span>
+</span></span></code></pre></div><h2 id="備註">備註</h2>
 <ol>
 <li>nginx 跟 php 做分拆的話會有靜態檔案的問題, 這邊還沒想到一個很好的解法, 之前嘗試過的解法是用k8s的 pv(persistentVolume) + pvc(persistentVolumeClaim) 去掛可以掛 ROX(目前 GCE 還不支援) 的 disk 來做到多個 replicas 的時候也能正確 mount 新的靜態檔案</li>
 <li>圖檔之類的東西應該不適合丟在 pv 做, 畢竟流量就是$$</li>

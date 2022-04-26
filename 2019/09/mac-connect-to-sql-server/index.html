@@ -26,7 +26,6 @@
   <title>
      Mac Connect to SQL Server &middot;  社畜人生
   </title>
-
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/main.css" />
@@ -116,47 +115,47 @@
 這裡用<a href="http://mirlab.org/jang/books/asp/odbc&amp;dsn.asp?title=18-1%20ODBC%20%BBP%20DSN%20%C2%B2%A4%B6">DSN</a>連線</p>
 <h2 id="step1-安裝driver">Step1 安裝driver</h2>
 <p>使用 brew</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew update
-brew install unixodbc freetds
-</code></pre></div><h2 id="step2-修改-odbc-設定">Step2 修改 odbc 設定</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>brew update
+</span></span><span style="display:flex;"><span>brew install unixodbc freetds
+</span></span></code></pre></div><h2 id="step2-修改-odbc-設定">Step2 修改 odbc 設定</h2>
 <p>in <code>/usr/local/etc/odbcinst.ini</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[FreeTDS]</span>
-<span style="color:#a6e22e">Description</span><span style="color:#f92672">=</span><span style="color:#e6db74">FreeTDS Driver for Mac &amp; MSSQL</span>
-<span style="color:#a6e22e">Driver</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/lib/libtdsodbc.so # 這兩個 .so 在下 brew install unixodbc 的時候會自己裝到這</span>
-<span style="color:#a6e22e">Setup</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/lib/libtdsodbc.so</span>
-<span style="color:#a6e22e">UsageCount</span><span style="color:#f92672">=</span><span style="color:#e6db74">1</span>
-</code></pre></div><p>in <code>/usr/local/etc/odbc.ini</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">[TEST_DB] # DSN名稱, 要跟 freetds.conf 的 name mapping</span>
-<span style="color:#a6e22e">Description</span>         <span style="color:#f92672">=</span> <span style="color:#e6db74">test_db # 隨便</span>
-<span style="color:#a6e22e">Driver</span>              <span style="color:#f92672">=</span> <span style="color:#e6db74">FreeTDS # 要跟 odbcinst.ini 的 name mapping</span>
-<span style="color:#a6e22e">Servername</span>          <span style="color:#f92672">=</span> <span style="color:#e6db74">TEST_DB # 隨便</span>
-</code></pre></div><p>in <code>/usr/local/etc/freetds.conf</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[FreeTDS]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Description</span><span style="color:#f92672">=</span><span style="color:#e6db74">FreeTDS Driver for Mac &amp; MSSQL</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Driver</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/lib/libtdsodbc.so # 這兩個 .so 在下 brew install unixodbc 的時候會自己裝到這</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Setup</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/lib/libtdsodbc.so</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">UsageCount</span><span style="color:#f92672">=</span><span style="color:#e6db74">1</span>
+</span></span></code></pre></div><p>in <code>/usr/local/etc/odbc.ini</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#a6e22e">[TEST_DB] # DSN名稱, 要跟 freetds.conf 的 name mapping</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Description</span>         <span style="color:#f92672">=</span> <span style="color:#e6db74">test_db # 隨便</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Driver</span>              <span style="color:#f92672">=</span> <span style="color:#e6db74">FreeTDS # 要跟 odbcinst.ini 的 name mapping</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Servername</span>          <span style="color:#f92672">=</span> <span style="color:#e6db74">TEST_DB # 隨便</span>
+</span></span></code></pre></div><p>in <code>/usr/local/etc/freetds.conf</code></p>
 <pre tabindex="0"><code class="language-conf" data-lang="conf">[TEST_DB]
     host = sqlserver host
     port = sqlserver port
     tds version = 7.3 # version 說明參考 https://www.freetds.org/userguide/choosingtdsprotocol.htm
 </code></pre><h2 id="step3-測試連線">Step3 測試連線</h2>
 <p>設定完成後用command測試能否連上</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tsql -S TEST_DB -U username -P password
-</code></pre></div><p>下完有看到類似下面的畫面表示成功</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">locale is <span style="color:#e6db74">&#34;zh_TW.UTF-8&#34;</span>
-locale charset is <span style="color:#e6db74">&#34;UTF-8&#34;</span>
-using default charset <span style="color:#e6db74">&#34;UTF-8&#34;</span>
-1&gt;
-</code></pre></div><h2 id="python-連線範例">python 連線範例</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>tsql -S TEST_DB -U username -P password
+</span></span></code></pre></div><p>下完有看到類似下面的畫面表示成功</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>locale is <span style="color:#e6db74">&#34;zh_TW.UTF-8&#34;</span>
+</span></span><span style="display:flex;"><span>locale charset is <span style="color:#e6db74">&#34;UTF-8&#34;</span>
+</span></span><span style="display:flex;"><span>using default charset <span style="color:#e6db74">&#34;UTF-8&#34;</span>
+</span></span><span style="display:flex;"><span>1&gt;
+</span></span></code></pre></div><h2 id="python-連線範例">python 連線範例</h2>
 <p>安裝必要套件</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pip install sqlalchemy pyodbc
-</code></pre></div><p>範例如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
-namespace <span style="color:#f92672">=</span> YOUR_NAME_SPACE
-account <span style="color:#f92672">=</span> YOUR_ACCOUNT
-password <span style="color:#f92672">=</span> YOUR_PASSWORD
-DSN <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;TEST_DB&#39;</span>
-engine <span style="color:#f92672">=</span> create_engine(
-    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;mssql+pyodbc://</span><span style="color:#e6db74">{</span>namespace<span style="color:#e6db74">}</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">{</span>account<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">{</span>password<span style="color:#e6db74">}</span><span style="color:#e6db74">@</span><span style="color:#e6db74">{</span>DSN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
-con <span style="color:#f92672">=</span> engine<span style="color:#f92672">.</span>connect()
-<span style="color:#75715e"># more sample @see https://kite.com/python/docs/sqlalchemy.dialects.mssql.pyodbc</span>
-</code></pre></div><h2 id="reference">Reference</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pip install sqlalchemy pyodbc
+</span></span></code></pre></div><p>範例如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
+</span></span><span style="display:flex;"><span>namespace <span style="color:#f92672">=</span> YOUR_NAME_SPACE
+</span></span><span style="display:flex;"><span>account <span style="color:#f92672">=</span> YOUR_ACCOUNT
+</span></span><span style="display:flex;"><span>password <span style="color:#f92672">=</span> YOUR_PASSWORD
+</span></span><span style="display:flex;"><span>DSN <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;TEST_DB&#39;</span>
+</span></span><span style="display:flex;"><span>engine <span style="color:#f92672">=</span> create_engine(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;mssql+pyodbc://</span><span style="color:#e6db74">{</span>namespace<span style="color:#e6db74">}</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">{</span>account<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">{</span>password<span style="color:#e6db74">}</span><span style="color:#e6db74">@</span><span style="color:#e6db74">{</span>DSN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>con <span style="color:#f92672">=</span> engine<span style="color:#f92672">.</span>connect()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># more sample @see https://kite.com/python/docs/sqlalchemy.dialects.mssql.pyodbc</span>
+</span></span></code></pre></div><h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Mac-OSX">Connecting to SQL Server from Mac OSX</a></li>
 </ul>
