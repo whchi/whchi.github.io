@@ -15,7 +15,7 @@
       
       <guid>http://shachiku.life/2020/12/docker-create-redis-sentinel/</guid>
       <description>redis sentinel 是 redis 自帶的 ha 解決方案（failover only）可以搭配 cluster 做到更 ha 的架構
-這裡提供開發時自架的方式  Reference  https://redis.io/topics/sentinel  </description>
+這裡提供開發時自架的方式 Reference https://redis.io/topics/sentinel </description>
     </item>
     
   </channel>

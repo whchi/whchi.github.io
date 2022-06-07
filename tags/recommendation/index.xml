@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>recommendation on 社畜人生</title>
+    <link>http://shachiku.life/tags/recommendation/</link>
+    <description>Recent content in recommendation on 社畜人生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Mon, 06 Jun 2022 16:14:40 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦] Mock Database or Not</title>
+      <link>http://shachiku.life/2022/06/mock-database-or-not/</link>
+      <pubDate>Mon, 06 Jun 2022 16:14:40 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/06/mock-database-or-not/</guid>
+      <description>mock is a good thing</description>
+    </item>
+    
+  </channel>
+</rss>

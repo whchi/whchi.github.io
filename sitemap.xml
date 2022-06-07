@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://shachiku.life/2022/06/mock-database-or-not/</loc>
+    <lastmod>2022-06-06T16:14:40+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2022-06-06T16:14:40+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/recommendation/</loc>
+    <lastmod>2022-06-06T16:14:40+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2022-06-06T16:14:40+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2022-06-06T16:14:40+08:00</lastmod>
+  </url><url>
     <loc>http://shachiku.life/tags/facebook/</loc>
     <lastmod>2022-03-11T15:57:46+08:00</lastmod>
   </url><url>
@@ -9,15 +24,6 @@
     <lastmod>2022-03-11T15:57:46+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/instagram/</loc>
-    <lastmod>2022-03-11T15:57:46+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2022-03-11T15:57:46+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2022-03-11T15:57:46+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
     <lastmod>2022-03-11T15:57:46+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/skateboard/</loc>
