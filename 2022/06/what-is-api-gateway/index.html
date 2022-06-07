@@ -4,18 +4,23 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="recommendation &middot; 社畜人生" />
+  <meta property="og:title" content="[推薦] What Is Api Gateway &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/tags/recommendation/" />
+  <meta property="og:url" content="http://shachiku.life/2022/06/what-is-api-gateway/" />
   <meta name="description" content="雜談與紀錄" />
   
   
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2022-06-07T12:08:42&#43;08:00" />
+  
+  <meta property="og:article:tag" content="recommendation" />
+  
   
 
   <title>
-     recommendation &middot;  社畜人生
+     [推薦] What Is Api Gateway &middot;  社畜人生
   </title>
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
@@ -45,8 +50,8 @@
 
 <body>
   
-    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
-      
+  <header class="global-header" style="background-image:url()">
+    
       <section class="header-text">
         <div class="header-desc">
           <h1><a href="http://shachiku.life/">社畜人生</a></h1>
@@ -91,67 +96,92 @@
     </header>
     <main class="container">
 
-<section class="article-list">
-  <div id="container-tags-title">
-    <h1>Tag: recommendation</h1>
-    <a class="btn btn-primary" id="btn-all-tags" href="http://shachiku.life/tags">
-      所有標籤
-    </a>
-  </div>
+
+
+<article>
   
-    <div class="delimiter"></div>
-    <article class="list">
-  <header>
-    <h1 class="li-h1"><a href="http://shachiku.life/2022/06/what-is-api-gateway/">[推薦] What Is Api Gateway</a></h1>
+  <header class="article-title">
+    <h1 class="text-primary">[推薦] What Is Api Gateway</h1>
+  </header>
+  <div class="delimiter"></div>
+  
+  
+  <figure class="preview">
+      <img src="">
+      
+      <figcaption></figcaption>
+      
+  </figure>
+  
+  <section>
+    <h1 id="source">Source</h1>
+<p><a href="https://www.youtube.com/watch?v=vHQqQBYJtLI">https://www.youtube.com/watch?v=vHQqQBYJtLI</a></p>
+<h1 id="summary">Summary</h1>
+<ol>
+<li>Separate out cross cutting concerns: 把非 api 不需要關注的邏輯（ssl, 驗證, logging…）分離</li>
+<li>Separate and consolidate cross cutting concerns across microservices: 路徑 proxy</li>
+<li>Replacing multiple client calls with single API call. And, some features of reverse proxy: 靜態檔案與 http cache</li>
+<li>Routing based on headers, paths and params etc. And, some features of Load Balancer</li>
+</ol>
+<h1 id="main-idea">Main idea</h1>
+<p>以購物車為情境，分別羅列出對應的 component 與ssl、驗證分別需要用到的地方，再將 api gateway 放入此情境中描述其用途。</p>
+<p>大整體而言是 nginx 層，其背後概念與 middleware 相似，都是攔截 request 作處理。</p>
+<p>自架服務有 apache, haproxy, nginx, spring cloud gateway，雲端服務有 AWS API gateway, Azure API gateway, Google Cloud Endpoints, Apigee 等</p>
+<h1 id="reference">Reference</h1>
+<p><a href="https://openhome.cc/Gossip/SpringGossip/AOPConcept.html">cross cutting concerns</a></p>
+
+  </section>
+  <div class="clearfix">
     
-    <div class="clearfix">
-      <div class="post-date pull-left">
-        <span class="li-small">
-          發佈時間 2022-6-7
-        </span>
-      </div>
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2022-6-7
+      </span>
     </div>
     
-  </header>
-  <div class="summary">
-     gateway is a good thing 
+    <div class="pull-right">
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/recommendation/">#recommendation</a></span>
+      
+      
+    </div>
   </div>
-  <div class="tags">
-     
-    <span class="post-tag"><a href="http://shachiku.life/tags/recommendation/">#recommendation</a></span>
-     
-  </div>
-  
-</article>
-
-  
-    <div class="delimiter"></div>
-    <article class="list">
-  <header>
-    <h1 class="li-h1"><a href="http://shachiku.life/2022/06/mock-database-or-not/">[推薦] Mock Database or Not</a></h1>
+  <footer>
     
-    <div class="clearfix">
-      <div class="post-date pull-left">
-        <span class="li-small">
-          發佈時間 2022-6-6
-        </span>
-      </div>
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/06/mock-database-or-not/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span>
+        </div>
+      </a>
+      
     </div>
     
-  </header>
-  <div class="summary">
-     mock is a good thing 
-  </div>
-  <div class="tags">
-     
-    <span class="post-tag"><a href="http://shachiku.life/tags/recommendation/">#recommendation</a></span>
-     
-  </div>
-  
+  </footer>
 </article>
+<div class="delimiter"></div>
 
-  
-</section>
 </main>
 <footer class="container global-footer">
   <div class="copyright-note pull-left">
