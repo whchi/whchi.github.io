@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on 社畜人生</title>
+    <link>http://shachiku.life/tags/mysql/</link>
+    <description>Recent content in mysql on 社畜人生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Sat, 02 Jul 2022 23:29:49 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mysql Lock Index and Deadlock</title>
+      <link>http://shachiku.life/2022/07/mysql-lock-index-and-deadlock/</link>
+      <pubDate>Sat, 02 Jul 2022 23:29:49 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/07/mysql-lock-index-and-deadlock/</guid>
+      <description>lock is a good thing</description>
+    </item>
+    
+  </channel>
+</rss>

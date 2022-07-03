@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Tue, 07 Jun 2022 12:08:42 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Jul 2022 23:29:49 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mysql Lock Index and Deadlock</title>
+      <link>http://shachiku.life/2022/07/mysql-lock-index-and-deadlock/</link>
+      <pubDate>Sat, 02 Jul 2022 23:29:49 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/07/mysql-lock-index-and-deadlock/</guid>
+      <description>lock is a good thing</description>
+    </item>
+    
     <item>
       <title>[推薦] What Is Api Gateway</title>
       <link>http://shachiku.life/2022/06/what-is-api-gateway/</link>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Tue, 07 Jun 2022 12:08:42 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Jul 2022 23:29:49 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mysql Lock Index and Deadlock</title>
+      <link>http://shachiku.life/2022/07/mysql-lock-index-and-deadlock/</link>
+      <pubDate>Sat, 02 Jul 2022 23:29:49 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/07/mysql-lock-index-and-deadlock/</guid>
+      <description>lock is a good thing</description>
+    </item>
+    
     <item>
       <title>[推薦] What Is Api Gateway</title>
       <link>http://shachiku.life/2022/06/what-is-api-gateway/</link>
@@ -466,7 +475,8 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2022 Jun 07 &amp;ndash; [推薦] What Is Api Gateway
+      <description>2022 Jul 02 &amp;ndash; Mysql Lock Index and Deadlock
+Jun 07 &amp;ndash; [推薦] What Is Api Gateway
 Jun 06 &amp;ndash; [推薦] Mock Database or Not
 Mar 11 &amp;ndash; Facebook 應用程式審查要點
 2021 Nov 22 &amp;ndash; Skateboard 各種站位
@@ -474,9 +484,7 @@ Sep 17 &amp;ndash; 透過 GTM 綁定客製事件到 GA4
 Aug 26 &amp;ndash; 使用 Burp Suite 進行封包竄改
 Aug 05 &amp;ndash; Tilde(~) vs Caret(^) in composer
 Jul 22 &amp;ndash; 玩玩 Drone CI
-Jul 09 &amp;ndash; [From medium]天下雜誌 2020 總統大選專題-技術紀錄
-Jul 09 &amp;ndash; [From medium]Elasticsearch 中文同義詞與自動完成
-Jul 08 &amp;ndash; 設定 GA4 與 GTM</description>
+Jul 09 &amp;ndash; [From medium]天下雜誌 2020 總統大選專題-技術紀錄</description>
     </item>
     
     <item>
