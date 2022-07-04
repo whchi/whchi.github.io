@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>recommendations on 社畜人生</title>
+    <link>http://shachiku.life/tags/recommendations/</link>
+    <description>Recent content in recommendations on 社畜人生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Mon, 04 Jul 2022 12:15:52 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/recommendations/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦] 過早最佳化是萬惡的根源</title>
+      <link>http://shachiku.life/2022/07/premature-optimization-is-the-root-of-all-evil/</link>
+      <pubDate>Mon, 04 Jul 2022 12:15:52 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/07/premature-optimization-is-the-root-of-all-evil/</guid>
+      <description>過早最佳化是萬惡的根源</description>
+    </item>
+    
+  </channel>
+</rss>

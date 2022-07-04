@@ -4,25 +4,23 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="[推薦] Mysql Lock Index and Deadlock &middot; 社畜人生" />
+  <meta property="og:title" content="[推薦] 過早最佳化是萬惡的根源 &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2022/07/mysql-lock-index-and-deadlock/" />
+  <meta property="og:url" content="http://shachiku.life/2022/07/premature-optimization-is-the-root-of-all-evil/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2022-07-02T23:29:49&#43;08:00" />
+  <meta property="og:article:published_time" content="2022-07-04T12:15:52&#43;08:00" />
   
-  <meta property="og:article:tag" content="recommendation" />
-  
-  <meta property="og:article:tag" content="mysql" />
+  <meta property="og:article:tag" content="recommendations" />
   
   
 
   <title>
-     [推薦] Mysql Lock Index and Deadlock &middot;  社畜人生
+     [推薦] 過早最佳化是萬惡的根源 &middot;  社畜人生
   </title>
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
@@ -103,7 +101,7 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">[推薦] Mysql Lock Index and Deadlock</h1>
+    <h1 class="text-primary">[推薦] 過早最佳化是萬惡的根源</h1>
   </header>
   <div class="delimiter"></div>
   
@@ -117,16 +115,10 @@
   
   <section>
     <h1 id="source">Source</h1>
-<p><a href="https://yuanchieh.page/posts/2022/2022-04-25-mysqllock-%E8%88%87-index-%E9%97%9C%E4%BF%82%E5%92%8C-deadlock-%E5%88%86%E6%9E%90/">https://yuanchieh.page/posts/2022/2022-04-25-mysqllock-%E8%88%87-index-%E9%97%9C%E4%BF%82%E5%92%8C-deadlock-%E5%88%86%E6%9E%90/</a></p>
+<p><a href="https://blog.vgod.tw/2012/10/27/premature-optimization/">過早最佳化是萬惡的根源</a></p>
 <h1 id="summary">Summary</h1>
-<ol>
-<li>index 會造成寫入效能下降（lock），使用時須謹慎評估</li>
-<li>先篩選出 pk(fk) 後再使用他們避免 gap lock（不要用 where pk &gt; ?）</li>
-<li>沒特別狀況就使用 Read Committed，因預設的 Repeatable Read 在執行 update 時會把所有的 where 條件都 lock 起來，而 RC 只要條件不符就會 release</li>
-<li>可以使用 use index 決定要使用的 index，8.0 之後排序才有意義</li>
-</ol>
-<h1 id="main-idea">Main idea</h1>
-<p>首先點出結論再依照不同類型的 index 套入 isolation level 介紹順序、gap lock 是如何造成 dead lock 的，最後給予幾點建議</p>
+<p>這篇文章非常經典，每隔一段時間拿出來看都有不同感受，核心觀念可以套用在任何地方。
+以寫 code 舉例，假如一開始就直接用 laravel 開發且僅鑽研它，那路就被自己走窄了，可能影響到的層面就是抽換工作的機會成本</p>
 
   </section>
   <div class="clearfix">
@@ -134,18 +126,14 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2022-7-2
+        2022-7-4
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag"><a href="http://shachiku.life/tags/recommendation/">#recommendation</a></span>
-      
-      
-      
-      <span class="post-tag"><a href="http://shachiku.life/tags/mysql/">#mysql</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/recommendations/">#recommendations</a></span>
       
       
     </div>
@@ -165,16 +153,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/06/what-is-api-gateway/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/07/mysql-lock-index-and-deadlock/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2022/07/premature-optimization-is-the-root-of-all-evil/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       
