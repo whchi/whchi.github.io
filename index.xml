@@ -9,7 +9,7 @@
     <copyright>&amp;copy; whchi 2018</copyright>
     <lastBuildDate>Sat, 02 Jul 2022 23:29:49 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Mysql Lock Index and Deadlock</title>
+      <title>[推薦] Mysql Lock Index and Deadlock</title>
       <link>http://shachiku.life/2022/07/mysql-lock-index-and-deadlock/</link>
       <pubDate>Sat, 02 Jul 2022 23:29:49 +0800</pubDate>
       
@@ -475,7 +475,7 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2022 Jul 02 &amp;ndash; Mysql Lock Index and Deadlock
+      <description>2022 Jul 02 &amp;ndash; [推薦] Mysql Lock Index and Deadlock
 Jun 07 &amp;ndash; [推薦] What Is Api Gateway
 Jun 06 &amp;ndash; [推薦] Mock Database or Not
 Mar 11 &amp;ndash; Facebook 應用程式審查要點
