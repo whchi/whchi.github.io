@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Mon, 04 Jul 2022 12:15:52 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Jul 2022 19:33:53 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦]分布式系統的 8 個謬誤</title>
+      <link>http://shachiku.life/2022/07/8-fallacies-of-distributed-computing/</link>
+      <pubDate>Sun, 10 Jul 2022 19:33:53 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/07/8-fallacies-of-distributed-computing/</guid>
+      <description>設計分散式系統時須具備的基礎思考要點</description>
+    </item>
+    
     <item>
       <title>[推薦] 過早最佳化是萬惡的根源</title>
       <link>http://shachiku.life/2022/07/premature-optimization-is-the-root-of-all-evil/</link>
