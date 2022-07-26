@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sun, 10 Jul 2022 19:33:53 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Jul 2022 15:10:15 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦]如何找到開源專案貢獻</title>
+      <link>http://shachiku.life/2022/07/how-to-find-open-source-projects-to-contribute/</link>
+      <pubDate>Tue, 26 Jul 2022 15:10:15 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/07/how-to-find-open-source-projects-to-contribute/</guid>
+      <description>軟體面向全球，不該被拘束在一個地方</description>
+    </item>
+    
     <item>
       <title>[推薦]分布式系統的 8 個謬誤</title>
       <link>http://shachiku.life/2022/07/8-fallacies-of-distributed-computing/</link>
