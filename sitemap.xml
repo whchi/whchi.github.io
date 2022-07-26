@@ -2,19 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://shachiku.life/2022/07/how-to-find-open-source-projects-to-contribute/</loc>
-    <lastmod>2022-07-26T15:10:15+08:00</lastmod>
+    <loc>http://shachiku.life/2022/07/mindset-of-becoming-an-expert/</loc>
+    <lastmod>2022-07-26T16:01:07+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2022-07-26T15:10:15+08:00</lastmod>
+    <lastmod>2022-07-26T16:01:07+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/recommendation/</loc>
-    <lastmod>2022-07-26T15:10:15+08:00</lastmod>
+    <lastmod>2022-07-26T16:01:07+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2022-07-26T15:10:15+08:00</lastmod>
+    <lastmod>2022-07-26T16:01:07+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/</loc>
+    <lastmod>2022-07-26T16:01:07+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2022/07/how-to-find-open-source-projects-to-contribute/</loc>
     <lastmod>2022-07-26T15:10:15+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/07/8-fallacies-of-distributed-computing/</loc>
