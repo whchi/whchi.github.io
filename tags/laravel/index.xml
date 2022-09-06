@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>laravel on 社畜人生</title>
+    <title>Laravel on 社畜人生</title>
     <link>http://shachiku.life/tags/laravel/</link>
-    <description>Recent content in laravel on 社畜人生</description>
+    <description>Recent content in Laravel on 社畜人生</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
