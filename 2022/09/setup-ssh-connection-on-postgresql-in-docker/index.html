@@ -4,23 +4,25 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="[推薦] 成為專家的心態 &middot; 社畜人生" />
+  <meta property="og:title" content="使用 ssh 連入 Docker 中的 PostgreSQL &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2022/07/mindset-of-becoming-an-expert/" />
+  <meta property="og:url" content="http://shachiku.life/2022/09/setup-ssh-connection-on-postgresql-in-docker/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2022-07-26T16:01:07&#43;08:00" />
+  <meta property="og:article:published_time" content="2022-09-06T16:52:57&#43;08:00" />
   
-  <meta property="og:article:tag" content="recommendation" />
+  <meta property="og:article:tag" content="PostgreSQL" />
+  
+  <meta property="og:article:tag" content="devops" />
   
   
 
   <title>
-     [推薦] 成為專家的心態 &middot;  社畜人生
+     使用 ssh 連入 Docker 中的 PostgreSQL &middot;  社畜人生
   </title>
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
@@ -101,7 +103,7 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">[推薦] 成為專家的心態</h1>
+    <h1 class="text-primary">使用 ssh 連入 Docker 中的 PostgreSQL</h1>
   </header>
   <div class="delimiter"></div>
   
@@ -114,17 +116,73 @@
   </figure>
   
   <section>
-    <h1 id="source">Source</h1>
-<p><a href="https://mp.weixin.qq.com/s?from=timeline&amp;scene=2&amp;mid=2650181870&amp;idx=1&amp;sn=72a55e57c3d9196d42ffa6c50702886b&amp;__biz=MzAxNzEyODA2NQ%3D%3D&amp;srcid=0525vh1ke9m7bEhoaIuxnUCR&amp;isappinstalled=0#wechat_redirect">为什么你有10年经验，但成不了专家？</a></p>
-<h1 id="summary">Summary</h1>
-<p>基本上都是老生常談，不過經典的原則本來就是經的起考驗且務實</p>
+    <p>連到遠端的 database 有幾種方式</p>
+<p>
+
+
+
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>method</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>password</td>
+<td>透過 TCP/IP 連入，最基本的方法，缺點是 port 會暴露給外界</td>
+</tr>
+<tr>
+<td>ssh</td>
+<td>使用 ssh tunnel 的方式連入</td>
+</tr>
+<tr>
+<td>proxy</td>
+<td>透過 proxy 連入，可在 proxy 管理連線，firewall 也只需認他</td>
+</tr>
+<tr>
+<td>ssl</td>
+<td>透過 https 連入，與 password 的缺點一樣</td>
+</tr>
+</tbody>
+</table>
+
+
+在錢不夠的情況下最基本要做的是 ssh 設定，其餘 proxy / ssl 都要花比較多的錢才能做</p>
+<p>這裡介紹如何在機器上設定 ssh 連線</p>
+<h1 id="iptables-設定">iptables 設定</h1>
+<p>這裡透過 <code>ufw</code> 進行設定，主要就是增加一條 <code>127.0.0.1:5432</code> 的 rule</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># to any 是為了程式</span>
+</span></span><span style="display:flex;"><span>ufw allow from 127.0.0.1 to any port <span style="color:#ae81ff">5432</span>
+</span></span></code></pre></div><h1 id="docker-設定">docker 設定</h1>
+<p>docker 會建立獨特的 iptables rules 去達成網路環境隔離的效果，他的優先權比 ufw 高因此需再對 docker 做設定，有幾種方法</p>
 <ol>
-<li>避免自動完成：很反直覺，已經習慣的事情要不斷重新檢討精進</li>
-<li>離開舒適圈：跨入學習區，做那些超過自己能力一些的事情</li>
-<li>犧牲短期利益：進行刻意練級導致短期績效下降，比如用全新的程式語言做一樣的功能</li>
-<li>大量重複訓練</li>
-<li>持續取得反饋</li>
+<li>systemd: 於啟動處增加參數 <code>--iptables=false</code></li>
+<li>daemon.json: 於 <code>/etc/docker/daemon.json</code> 寫入 <code>{&quot;iptables&quot;:false}</code></li>
+<li>bind ip:port</li>
 </ol>
+<p>第三個方法比較適用，這裡列出 docker-compose 的寫法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">db</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./.docker/postgres/postgres.conf:/var/lib/postgresql/data/postgresql.conf</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./.docker/postgres/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;127.0.0.1:5432:5432&#39;</span>
+</span></span></code></pre></div><h1 id="postgresql-設定">PostgreSQL 設定</h1>
+<p>於 <code>pg_hba.conf</code> 增加來自 docker 的連線（ssh tunnel）設定以及對所有來源開放（程式）的連線設定</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf"># TYPE  DATABASE    USER            ADDRESS                 METHOD
+host    all         all             host.docker.internal    trust
+host	all		    all		        0.0.0.0/0		        md5
+</code></pre><p>上述設定都完成後就可以透過任一個 GUI tool 走 ssh 連線了</p>
+<h1 id="references">References</h1>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/ssh-tunnels.html">https://www.postgresql.org/docs/current/ssh-tunnels.html</a></li>
+<li><a href="https://docs.docker.com/network/iptables/">https://docs.docker.com/network/iptables/</a></li>
+</ul>
 
   </section>
   <div class="clearfix">
@@ -132,14 +190,18 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2022-7-26
+        2022-9-6
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag"><a href="http://shachiku.life/tags/recommendation/">#recommendation</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/postgresql/">#PostgreSQL</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/devops/">#devops</a></span>
       
       
     </div>
@@ -159,16 +221,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/07/how-to-find-open-source-projects-to-contribute/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/07/mindset-of-becoming-an-expert/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2022/09/setup-ssh-connection-on-postgresql-in-docker/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       

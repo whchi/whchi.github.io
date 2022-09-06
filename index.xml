@@ -7,7 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Tue, 26 Jul 2022 16:01:07 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Sep 2022 16:52:57 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 ssh 連入 Docker 中的 PostgreSQL</title>
+      <link>http://shachiku.life/2022/09/setup-ssh-connection-on-postgresql-in-docker/</link>
+      <pubDate>Tue, 06 Sep 2022 16:52:57 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/09/setup-ssh-connection-on-postgresql-in-docker/</guid>
+      <description>連到遠端的 database 有幾種方式
+method description password 透過 TCP/IP 連入，最基本的方法，缺點是 port 會暴露給外界 ssh 使用 ssh tunnel 的方式連入 proxy 透過 proxy 連入，可在 proxy 管理連線，firewall 也只需認他 ssl 透過 https 連入，與 password 的缺點一樣 在錢不夠的情況下最基本要做的是 ssh 設定，其餘 proxy / ssl 都要花比較多的錢才能做
+這裡介紹如何在機器上設定 ssh 連線
+iptables 設定 這裡透過 ufw 進行設定，主要就是增加一條 127.0.0.1:5432 的 rule
+# to any 是為了程式 ufw allow from 127.0.0.1 to any port 5432 docker 設定 docker 會建立獨特的 iptables rules 去達成網路環境隔離的效果，他的優先權比 ufw 高因此需再對 docker 做設定，有幾種方法</description>
+    </item>
+    
     <item>
       <title>[推薦] 成為專家的心態</title>
       <link>http://shachiku.life/2022/07/mindset-of-becoming-an-expert/</link>
@@ -513,7 +526,8 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2022 Jul 26 &amp;ndash; [推薦] 成為專家的心態
+      <description>2022 Sep 06 &amp;ndash; 使用 ssh 連入 Docker 中的 PostgreSQL
+Jul 26 &amp;ndash; [推薦] 成為專家的心態
 Jul 26 &amp;ndash; [推薦]如何找到開源專案貢獻
 Jul 10 &amp;ndash; [推薦]分布式系統的 8 個謬誤
 Jul 04 &amp;ndash; [推薦] 過早最佳化是萬惡的根源
@@ -522,8 +536,7 @@ Jun 07 &amp;ndash; [推薦] What Is Api Gateway
 Jun 06 &amp;ndash; [推薦] Mock Database or Not
 Mar 11 &amp;ndash; Facebook 應用程式審查要點
 2021 Nov 22 &amp;ndash; Skateboard 各種站位
-Sep 17 &amp;ndash; 透過 GTM 綁定客製事件到 GA4
-Aug 26 &amp;ndash; 使用 Burp Suite 進行封包竄改</description>
+Sep 17 &amp;ndash; 透過 GTM 綁定客製事件到 GA4</description>
     </item>
     
     <item>

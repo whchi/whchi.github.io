@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PostgreSQL on 社畜人生</title>
+    <link>http://shachiku.life/tags/postgresql/</link>
+    <description>Recent content in PostgreSQL on 社畜人生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Tue, 06 Sep 2022 16:52:57 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 ssh 連入 Docker 中的 PostgreSQL</title>
+      <link>http://shachiku.life/2022/09/setup-ssh-connection-on-postgresql-in-docker/</link>
+      <pubDate>Tue, 06 Sep 2022 16:52:57 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/09/setup-ssh-connection-on-postgresql-in-docker/</guid>
+      <description>連到遠端的 database 有幾種方式
+method description password 透過 TCP/IP 連入，最基本的方法，缺點是 port 會暴露給外界 ssh 使用 ssh tunnel 的方式連入 proxy 透過 proxy 連入，可在 proxy 管理連線，firewall 也只需認他 ssl 透過 https 連入，與 password 的缺點一樣 在錢不夠的情況下最基本要做的是 ssh 設定，其餘 proxy / ssl 都要花比較多的錢才能做
+這裡介紹如何在機器上設定 ssh 連線
+iptables 設定 這裡透過 ufw 進行設定，主要就是增加一條 127.0.0.1:5432 的 rule
+# to any 是為了程式 ufw allow from 127.0.0.1 to any port 5432 docker 設定 docker 會建立獨特的 iptables rules 去達成網路環境隔離的效果，他的優先權比 ufw 高因此需再對 docker 做設定，有幾種方法</description>
+    </item>
+    
+  </channel>
+</rss>

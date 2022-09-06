@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Tue, 26 Jul 2022 16:01:07 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Sep 2022 16:52:57 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>devops</title>
+      <link>http://shachiku.life/tags/devops/</link>
+      <pubDate>Tue, 06 Sep 2022 16:52:57 +0800</pubDate>
+      
+      <guid>http://shachiku.life/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL</title>
+      <link>http://shachiku.life/tags/postgresql/</link>
+      <pubDate>Tue, 06 Sep 2022 16:52:57 +0800</pubDate>
+      
+      <guid>http://shachiku.life/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>recommendation</title>
       <link>http://shachiku.life/tags/recommendation/</link>
@@ -86,15 +104,6 @@
       <pubDate>Thu, 05 Aug 2021 18:15:54 +0800</pubDate>
       
       <guid>http://shachiku.life/tags/composer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>devops</title>
-      <link>http://shachiku.life/tags/devops/</link>
-      <pubDate>Thu, 22 Jul 2021 10:23:18 +0800</pubDate>
-      
-      <guid>http://shachiku.life/tags/devops/</guid>
       <description></description>
     </item>
     
