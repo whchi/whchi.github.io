@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://shachiku.life/tags/docker/</loc>
+    <lastmod>2022-09-07T11:11:54+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2022-09-07T11:11:54+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2022-09-07T11:11:54+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2022-09-07T11:11:54+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2022/09/docker-custom-alpine-redis-conf/</loc>
+    <lastmod>2022-09-07T11:11:54+08:00</lastmod>
+  </url><url>
     <loc>http://shachiku.life/tags/devops/</loc>
     <lastmod>2022-09-06T16:52:57+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/postgresql/</loc>
-    <lastmod>2022-09-06T16:52:57+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2022-09-06T16:52:57+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2022-09-06T16:52:57+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
     <lastmod>2022-09-06T16:52:57+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/09/setup-ssh-connection-on-postgresql-in-docker/</loc>
@@ -136,9 +142,6 @@
   </url><url>
     <loc>http://shachiku.life/2021/01/ethereum-poa/</loc>
     <lastmod>2021-01-26T10:07:07+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/docker/</loc>
-    <lastmod>2020-12-22T16:26:41+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2020/12/docker-compose-yml-tips/</loc>
     <lastmod>2020-12-22T16:26:41+08:00</lastmod>
