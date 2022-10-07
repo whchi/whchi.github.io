@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ruby on 社畜人生</title>
+    <link>http://shachiku.life/tags/ruby/</link>
+    <description>Recent content in ruby on 社畜人生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Fri, 07 Oct 2022 10:08:47 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 mac os 12.6 上安裝 ruby 2.6</title>
+      <link>http://shachiku.life/2022/10/macos12.6_install_ruby2.6/</link>
+      <pubDate>Fri, 07 Oct 2022 10:08:47 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/10/macos12.6_install_ruby2.6/</guid>
+      <description>沒事不要亂升級本地開發環境</description>
+    </item>
+    
+  </channel>
+</rss>
