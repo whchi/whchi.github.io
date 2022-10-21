@@ -2,16 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2022-10-07T10:08:47+08:00</lastmod>
+    <loc>http://shachiku.life/tags/git/</loc>
+    <lastmod>2022-10-19T11:58:03+08:00</lastmod>
   </url><url>
-    <loc>http://shachiku.life/tags/ruby/</loc>
-    <lastmod>2022-10-07T10:08:47+08:00</lastmod>
+    <loc>http://shachiku.life/tags/github/</loc>
+    <lastmod>2022-10-19T11:58:03+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2022-10-19T11:58:03+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2022-10-07T10:08:47+08:00</lastmod>
+    <lastmod>2022-10-19T11:58:03+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2022/10/make-pull-request-correctly/</loc>
+    <lastmod>2022-10-19T11:58:03+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/</loc>
+    <lastmod>2022-10-19T11:58:03+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/ruby/</loc>
     <lastmod>2022-10-07T10:08:47+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/10/macos12.6_install_ruby2.6/</loc>
@@ -116,9 +125,6 @@
     <loc>http://shachiku.life/2021/07/setup-ga4-with-gtm/</loc>
     <lastmod>2021-07-08T17:35:21+08:00</lastmod>
   </url><url>
-    <loc>http://shachiku.life/tags/github/</loc>
-    <lastmod>2021-07-05T15:39:25+08:00</lastmod>
-  </url><url>
     <loc>http://shachiku.life/tags/godaddy/</loc>
     <lastmod>2021-07-05T15:39:25+08:00</lastmod>
   </url><url>
@@ -169,9 +175,6 @@
   </url><url>
     <loc>http://shachiku.life/2020/12/use-lru-cache-for-setting/</loc>
     <lastmod>2020-12-16T18:27:35+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/git/</loc>
-    <lastmod>2020-12-10T11:28:30+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2020/12/multi-git-ssh-key/</loc>
     <lastmod>2020-12-10T11:28:30+08:00</lastmod>

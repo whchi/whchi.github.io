@@ -4,23 +4,25 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="在 mac os 12.6 上安裝 ruby 2.6 &middot; 社畜人生" />
+  <meta property="og:title" content="發 Pull Request 的正確姿勢 &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2022/10/macos12.6_install_ruby2.6/" />
+  <meta property="og:url" content="http://shachiku.life/2022/10/make-pull-request-correctly/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2022-10-07T10:08:47&#43;08:00" />
+  <meta property="og:article:published_time" content="2022-10-19T11:58:03&#43;08:00" />
   
-  <meta property="og:article:tag" content="ruby" />
+  <meta property="og:article:tag" content="git" />
+  
+  <meta property="og:article:tag" content="github" />
   
   
 
   <title>
-     在 mac os 12.6 上安裝 ruby 2.6 &middot;  社畜人生
+     發 Pull Request 的正確姿勢 &middot;  社畜人生
   </title>
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
@@ -50,7 +52,7 @@
 
 <body>
   
-  <header class="global-header" style="background-image:url()">
+  <header class="global-header" style="background-image:url(https://images.unsplash.com/photo-1428790067070-0ebf4418d9d8?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80)">
     
       <section class="header-text">
         <div class="header-desc">
@@ -101,52 +103,73 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">在 mac os 12.6 上安裝 ruby 2.6</h1>
+    <h1 class="text-primary">發 Pull Request 的正確姿勢</h1>
   </header>
   <div class="delimiter"></div>
   
   
   <figure class="preview">
-      <img src="">
+      <img src="https://images.unsplash.com/photo-1428790067070-0ebf4418d9d8?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=394&amp;q=80">
       
       <figcaption></figcaption>
       
   </figure>
   
   <section>
-    <p>最近在寫 ruby，因為案子有切版本的需求就用了 <code>rbenv</code> 做不同版本環境切割</p>
-<p>沒想到切一切爛掉所以重罐整個環境，結果就炸了</p>
-<p>每次重灌時都跑出這種錯誤</p>
-<pre tabindex="0"><code>linking shared-library libruby.2.6.dylib
-Undefined symbols for architecture arm64:
-  &#34;__mh_execute_header&#34;, referenced from:
-      _rb_dump_backtrace_with_lines in addr2line.o
-ld: symbol(s) not found for architecture arm64
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
-make: *** [libruby.2.6.dylib] Error 1
-make: *** Waiting for unfinished jobs....
-</code></pre><p>參考幾篇文章後發現問題出在 xcode command line tool 14.0 在編譯 ruby 2.6.x 時會有問題</p>
-<p>最後安裝 13.4 就搞定了，解法如下</p>
-<h1 id="solution">solution</h1>
+    <p>在超多人對同一個 repo 進行開發的情況下很常會有發出去的 PR 過幾週甚至月才被合併的情況發生，會有不少小團隊很少遇到的問題</p>
 <ol>
-<li>
-<p>找出 command line tool 安裝路徑 <code>xcode-select -p</code></p>
-</li>
-<li>
-<p><code>sudo rm -rf /path/to/commandlinetool</code></p>
-</li>
-<li>
-<p>go to apple developer to download Command Line Tools for Xcode 13.4, <a href="https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_for_Xcode_13.4/Command_Line_Tools_for_Xcode_13.4.dmg">link</a></p>
-</li>
-<li>
-<p>install</p>
-</li>
+<li>與大量他人的 commit 發生衝突</li>
+<li>有共用的地方被改掉導致原本的 PR 失敗</li>
+<li>沒有衝突但一上去就壞掉，且很難看出原因</li>
+<li>reviewer 看 code 效率變低甚至可能無意義</li>
 </ol>
-<p>就搞定拉</p>
+<p>因此在發 PR 時要使用 rebase 功能簡化 commit，讓處理這些問題的阻力降至最低</p>
+<h1 id="rebase">rebase</h1>
+<p>rebase 字義上就是重新定義 base branch，詳細功能描述可參考 <a href="https://backlog.com/git-tutorial/tw/stepup/stepup2_8.html">https://backlog.com/git-tutorial/tw/stepup/stepup2_8.html</a></p>
+<p>主要目的是讓 branch 變乾淨</p>
+<p>有概念後可以很容易的理解為何用他有辦法解決一開始提到的問題</p>
+<h1 id="如何發-pr">如何發 PR</h1>
+<ol start="0">
+<li>
+<p>確認 branch 是從 repo 的 main 切出來</p>
+</li>
+<li>
+<p>整理開發好的 commit</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># fetch to latest upstream history</span>
+</span></span><span style="display:flex;"><span>git fetch origin
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看所有屬於自己的 commit</span>
+</span></span><span style="display:flex;"><span>git log --author<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-name&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 選擇要 rebase 的 head commit，或是取得你自己建立的 commit 總數後進行 rebase</span>
+</span></span><span style="display:flex;"><span>git rebase -i HEAD~n
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果你忘記你是從哪個 commit 切的可以用 merge-base 找出</span>
+</span></span><span style="display:flex;"><span>git merge-base current_branch main
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 66e506853b0366c87f4834bb6b39d341cd094fe9</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then</span>
+</span></span><span style="display:flex;"><span>git rebase -i 66e506853b0366c87f4834bb6b39d341cd094fe9
+</span></span></code></pre></div><p>在 interactive 介面可以對 commit 進行 squash 或是 reword</p>
+<p><strong>squash</strong>: 要整併的 commit</p>
+<p><strong>reword</strong>: 要修改 commit log 的 commit</p>
+</li>
+<li>
+<p>整理完畢後，rebase 到 main branch</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git rebase origin/main
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 可能會有衝突，解完之後繼續進行 rebase</span>
+</span></span><span style="display:flex;"><span>git rebase --continue
+</span></span></code></pre></div></li>
+<li>
+<p>rebase 玩主要 branch 後推上當前 PR</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git push -f
+</span></span></code></pre></div><p>使用 force push 的原因是因為遠端 branch 的 history 還在發 PR 當下，而本地的 history 已經被 rebase 打亂了，所以不能先 pull 否則會回到原本的 histiry</p>
+</li>
+<li>
+<p>成功合併後記得刪除 branch</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git branch -D &lt;branch_name&gt;
+</span></span><span style="display:flex;"><span>git push origin :&lt;branch_name&gt;
+</span></span></code></pre></div></li>
+</ol>
 <h1 id="references">References</h1>
 <ul>
-<li><a href="https://github.com/asdf-vm/asdf-ruby/issues/301">https://github.com/asdf-vm/asdf-ruby/issues/301</a></li>
-<li><a href="https://www.rubyonmac.dev/how-to-install-ruby-on-macos-12-6-apple-silicon">https://www.rubyonmac.dev/how-to-install-ruby-on-macos-12-6-apple-silicon</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-rebase-and-update-a-pull-request">https://www.digitalocean.com/community/tutorials/how-to-rebase-and-update-a-pull-request</a></li>
 </ul>
 
   </section>
@@ -155,14 +178,18 @@ make: *** Waiting for unfinished jobs....
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2022-10-7
+        2022-10-19
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag"><a href="http://shachiku.life/tags/ruby/">#ruby</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/git/">#git</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/github/">#github</a></span>
       
       
     </div>
@@ -182,16 +209,16 @@ make: *** Waiting for unfinished jobs....
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/09/docker-custom-alpine-redis-conf/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/10/macos12.6_install_ruby2.6/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2022/10/make-pull-request-correctly/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       

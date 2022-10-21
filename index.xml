@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Fri, 07 Oct 2022 10:08:47 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Oct 2022 11:58:03 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>發 Pull Request 的正確姿勢</title>
+      <link>http://shachiku.life/2022/10/make-pull-request-correctly/</link>
+      <pubDate>Wed, 19 Oct 2022 11:58:03 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/10/make-pull-request-correctly/</guid>
+      <description>貢獻開源專案也是如此</description>
+    </item>
+    
     <item>
       <title>在 mac os 12.6 上安裝 ruby 2.6</title>
       <link>http://shachiku.life/2022/10/macos12.6_install_ruby2.6/</link>
@@ -544,7 +553,8 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2022 Oct 07 &amp;ndash; 在 mac os 12.6 上安裝 ruby 2.6
+      <description>2022 Oct 19 &amp;ndash; 發 Pull Request 的正確姿勢
+Oct 07 &amp;ndash; 在 mac os 12.6 上安裝 ruby 2.6
 Sep 07 &amp;ndash; 在 docker 中設定自定義的 redis config
 Sep 06 &amp;ndash; 使用 ssh 連入 Docker 中的 PostgreSQL
 Jul 26 &amp;ndash; [推薦] 成為專家的心態
@@ -552,8 +562,7 @@ Jul 26 &amp;ndash; [推薦]如何找到開源專案貢獻
 Jul 10 &amp;ndash; [推薦]分布式系統的 8 個謬誤
 Jul 04 &amp;ndash; [推薦] 過早最佳化是萬惡的根源
 Jul 02 &amp;ndash; [推薦] Mysql Lock Index and Deadlock
-Jun 07 &amp;ndash; [推薦] What Is Api Gateway
-Jun 06 &amp;ndash; [推薦] Mock Database or Not</description>
+Jun 07 &amp;ndash; [推薦] What Is Api Gateway</description>
     </item>
     
     <item>

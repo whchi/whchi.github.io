@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Fri, 07 Oct 2022 10:08:47 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Oct 2022 11:58:03 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>發 Pull Request 的正確姿勢</title>
+      <link>http://shachiku.life/2022/10/make-pull-request-correctly/</link>
+      <pubDate>Wed, 19 Oct 2022 11:58:03 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/10/make-pull-request-correctly/</guid>
+      <description>貢獻開源專案也是如此</description>
+    </item>
+    
     <item>
       <title>在 mac os 12.6 上安裝 ruby 2.6</title>
       <link>http://shachiku.life/2022/10/macos12.6_install_ruby2.6/</link>

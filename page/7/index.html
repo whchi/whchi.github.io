@@ -4,23 +4,18 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="在 mac os 12.6 上安裝 ruby 2.6 &middot; 社畜人生" />
+  <meta property="og:title" content="社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2022/10/macos12.6_install_ruby2.6/" />
+  <meta property="og:url" content="http://shachiku.life/" />
   <meta name="description" content="雜談與紀錄" />
   
   
-  <meta property="og:type" content="article" />
-  
-  <meta property="og:article:published_time" content="2022-10-07T10:08:47&#43;08:00" />
-  
-  <meta property="og:article:tag" content="ruby" />
-  
+  <meta property="og:type" content="website" />
   
 
   <title>
-     在 mac os 12.6 上安裝 ruby 2.6 &middot;  社畜人生
+     社畜人生
   </title>
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
@@ -34,6 +29,8 @@
   <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
   
 
+  
+  <link rel="alternate" type="application/rss+xml" href="http://shachiku.life/index.xml" title="社畜人生" />
   
 
   
@@ -50,8 +47,8 @@
 
 <body>
   
-  <header class="global-header" style="background-image:url()">
-    
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
       <section class="header-text">
         <div class="header-desc">
           <h1><a href="http://shachiku.life/">社畜人生</a></h1>
@@ -96,110 +93,202 @@
     </header>
     <main class="container">
 
-
-
-<article>
+<div class="article-list">
   
-  <header class="article-title">
-    <h1 class="text-primary">在 mac os 12.6 上安裝 ruby 2.6</h1>
+  
+    
+    <article class="list">
+  <header>
+    <h1 class="li-h1"><a href="http://shachiku.life/2020/05/hbase-installation/">安裝 Hbase</a></h1>
+    
+    <div class="clearfix">
+      <div class="post-date pull-left">
+        <span class="li-small">
+          發佈時間 2020-5-25
+        </span>
+      </div>
+    </div>
+    
   </header>
-  <div class="delimiter"></div>
-  
-  
-  <figure class="preview">
-      <img src="">
-      
-      <figcaption></figcaption>
-      
-  </figure>
-  
-  <section>
-    <p>最近在寫 ruby，因為案子有切版本的需求就用了 <code>rbenv</code> 做不同版本環境切割</p>
-<p>沒想到切一切爛掉所以重罐整個環境，結果就炸了</p>
-<p>每次重灌時都跑出這種錯誤</p>
-<pre tabindex="0"><code>linking shared-library libruby.2.6.dylib
-Undefined symbols for architecture arm64:
-  &#34;__mh_execute_header&#34;, referenced from:
-      _rb_dump_backtrace_with_lines in addr2line.o
-ld: symbol(s) not found for architecture arm64
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
-make: *** [libruby.2.6.dylib] Error 1
-make: *** Waiting for unfinished jobs....
-</code></pre><p>參考幾篇文章後發現問題出在 xcode command line tool 14.0 在編譯 ruby 2.6.x 時會有問題</p>
-<p>最後安裝 13.4 就搞定了，解法如下</p>
-<h1 id="solution">solution</h1>
-<ol>
-<li>
-<p>找出 command line tool 安裝路徑 <code>xcode-select -p</code></p>
-</li>
-<li>
-<p><code>sudo rm -rf /path/to/commandlinetool</code></p>
-</li>
-<li>
-<p>go to apple developer to download Command Line Tools for Xcode 13.4, <a href="https://download.developer.apple.com/Developer_Tools/Command_Line_Tools_for_Xcode_13.4/Command_Line_Tools_for_Xcode_13.4.dmg">link</a></p>
-</li>
-<li>
-<p>install</p>
-</li>
-</ol>
-<p>就搞定拉</p>
-<h1 id="references">References</h1>
-<ul>
-<li><a href="https://github.com/asdf-vm/asdf-ruby/issues/301">https://github.com/asdf-vm/asdf-ruby/issues/301</a></li>
-<li><a href="https://www.rubyonmac.dev/how-to-install-ruby-on-macos-12-6-apple-silicon">https://www.rubyonmac.dev/how-to-install-ruby-on-macos-12-6-apple-silicon</a></li>
-</ul>
-
-  </section>
-  <div class="clearfix">
-    
-    <div class="post-date pull-left">
-      <span class="small">
-        發佈時間
-        2022-10-7
-      </span>
-    </div>
-    
-    <div class="pull-right">
-      
-      
-      <span class="post-tag"><a href="http://shachiku.life/tags/ruby/">#ruby</a></span>
-      
-      
-    </div>
+  <div class="summary">
+     hbase only 
   </div>
-  <footer>
-    
-    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
-    
-    <div class="delimiter"></div>
-    <div id="disqus_thread"></div>
-    <script type="application/javascript" src="/js/disqus.js"></script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    
-    
-    
-    
-    <div class="delimiter"></div>
-    <div class="pager-container">
+  <div class="tags">
+     
+    <span class="post-tag"><a href="http://shachiku.life/tags/hadoop/">#hadoop</a></span>
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/09/docker-custom-alpine-redis-conf/">
-        <div>
-          <span aria-hidden="true">&larr;</span>
-        </div>
-      </a>
-      
-      
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2022/10/make-pull-request-correctly/">
-        <div>
-          <span aria-hidden="true">&rarr;</span>
-        </div>
-      </a>
-      
+    <span class="post-tag"><a href="http://shachiku.life/tags/hbase/">#hbase</a></span>
+     
+  </div>
+  
+</article>
+
+  
+    
+      <div class="delimiter"></div>
+    
+    <article class="list">
+  <header>
+    <h1 class="li-h1"><a href="http://shachiku.life/2020/05/murmur-2/">雜談（2）</a></h1>
+    
+    <div class="clearfix">
+      <div class="post-date pull-left">
+        <span class="li-small">
+          發佈時間 2020-5-17
+        </span>
+      </div>
     </div>
     
-  </footer>
+  </header>
+  <div class="summary">
+     關於同溫層 
+  </div>
+  <div class="tags">
+     
+    <span class="post-tag"><a href="http://shachiku.life/tags/murmur/">#murmur</a></span>
+     
+  </div>
+  
 </article>
+
+  
+    
+      <div class="delimiter"></div>
+    
+    <article class="list">
+  <header>
+    <h1 class="li-h1"><a href="http://shachiku.life/2020/05/docker-vscode-xdebug/">在 vscode 中設定 docker xdebug</a></h1>
+    
+    <div class="clearfix">
+      <div class="post-date pull-left">
+        <span class="li-small">
+          發佈時間 2020-5-14
+        </span>
+      </div>
+    </div>
+    
+  </header>
+  <div class="summary">
+     記錄一下比較好 copy-paste 
+  </div>
+  <div class="tags">
+     
+    <span class="post-tag"><a href="http://shachiku.life/tags/docker/">#docker</a></span>
+      
+    <span class="post-tag"><a href="http://shachiku.life/tags/time-saving/">#time-saving</a></span>
+     
+  </div>
+  
+</article>
+
+  
+    
+      <div class="delimiter"></div>
+    
+    <article class="list">
+  <header>
+    <h1 class="li-h1"><a href="http://shachiku.life/2020/05/save-gsheet-as-pdf-to-google-drive/">轉存 gsheet 成 pdf 並存入 google drive</a></h1>
+    
+    <div class="clearfix">
+      <div class="post-date pull-left">
+        <span class="li-small">
+          發佈時間 2020-5-6
+        </span>
+      </div>
+    </div>
+    
+  </header>
+  <div class="summary">
+     感覺很有機會用就紀錄在這 
+  </div>
+  <div class="tags">
+     
+    <span class="post-tag"><a href="http://shachiku.life/tags/google-app-script/">#google app script</a></span>
+      
+    <span class="post-tag"><a href="http://shachiku.life/tags/time-saving/">#time-saving</a></span>
+     
+  </div>
+  
+</article>
+
+  
+    
+      <div class="delimiter"></div>
+    
+    <article class="list">
+  <header>
+    <h1 class="li-h1"><a href="http://shachiku.life/2020/04/murmur-1/">雜談（1）</a></h1>
+    
+    <div class="clearfix">
+      <div class="post-date pull-left">
+        <span class="li-small">
+          發佈時間 2020-4-22
+        </span>
+      </div>
+    </div>
+    
+  </header>
+  <div class="summary">
+     關於學習 
+  </div>
+  <div class="tags">
+     
+    <span class="post-tag"><a href="http://shachiku.life/tags/murmur/">#murmur</a></span>
+     
+  </div>
+  
+</article>
+
+  
+    
+      <div class="delimiter"></div>
+    
+    <article class="list">
+  <header>
+    <h1 class="li-h1"><a href="http://shachiku.life/2020/04/setup-elasticsearch-autocompletion/">設定 Elasticsearch 自動完成</a></h1>
+    
+    <div class="clearfix">
+      <div class="post-date pull-left">
+        <span class="li-small">
+          發佈時間 2020-4-22
+        </span>
+      </div>
+    </div>
+    
+  </header>
+  <div class="summary">
+     使用 elasticsearch 7.6.2 
+  </div>
+  <div class="tags">
+     
+    <span class="post-tag"><a href="http://shachiku.life/tags/elasticsearch/">#elasticsearch</a></span>
+     
+  </div>
+  
+</article>
+
+  
+</div>
+
+  
 <div class="delimiter"></div>
+<nav class="pagination" role="navigation">
+  
+  <a class="btn btn-primary btn-older-posts" href="/page/6/">
+    <div><span aria-hidden="true">&larr;</span></div>
+  </a>
+  
+  <div>
+    <span> 7 / 10</span>
+  </div>
+  
+  <a class="btn btn-primary btn-newer-posts" href="/page/8/">
+    <div> <span aria-hidden="true">&rarr;</span></div>
+  </a>
+  
+</nav>
+
+
 
 </main>
 <footer class="container global-footer">
