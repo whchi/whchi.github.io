@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 19 Oct 2022 11:58:03 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Nov 2022 22:24:17 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦]為何預估這麼困難</title>
+      <link>http://shachiku.life/2022/11/why-are-estimations-so-hard/</link>
+      <pubDate>Sat, 05 Nov 2022 22:24:17 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/11/why-are-estimations-so-hard/</guid>
+      <description>divide and conquer</description>
+    </item>
+    
     <item>
       <title>發 Pull Request 的正確姿勢</title>
       <link>http://shachiku.life/2022/10/make-pull-request-correctly/</link>
