@@ -4,23 +4,23 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="[推薦]為何預估這麼困難 &middot; 社畜人生" />
+  <meta property="og:title" content="物件導向的 SOLID 原則 &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2022/11/why-are-estimations-so-hard/" />
+  <meta property="og:url" content="http://shachiku.life/2022/11/oop-solid-principle/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2022-11-05T22:24:17&#43;08:00" />
+  <meta property="og:article:published_time" content="2022-11-18T19:31:01&#43;08:00" />
   
-  <meta property="og:article:tag" content="recommendation" />
+  <meta property="og:article:tag" content="recommendations" />
   
   
 
   <title>
-     [推薦]為何預估這麼困難 &middot;  社畜人生
+     物件導向的 SOLID 原則 &middot;  社畜人生
   </title>
   <link rel="alternative stylesheet" href="http://shachiku.life/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://shachiku.life/css/font-awesome.min.css" />
@@ -50,8 +50,8 @@
 
 <body>
   
-    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
-      
+  <header class="global-header" style="background-image:url()">
+    
       <section class="header-text">
         <div class="header-desc">
           <h1><a href="http://shachiku.life/">社畜人生</a></h1>
@@ -101,13 +101,13 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">[推薦]為何預估這麼困難</h1>
+    <h1 class="text-primary">物件導向的 SOLID 原則</h1>
   </header>
   <div class="delimiter"></div>
   
   
   <figure class="preview">
-      <img src="https://static.fmgsuite.com/media/images/03f28e96-c19f-42ea-8aa8-a9194e8e8ef6.jpg">
+      <img src="">
       
       <figcaption></figcaption>
       
@@ -115,18 +115,19 @@
   
   <section>
     <h1 id="source">Source</h1>
-<p><a href="https://www.youtube.com/watch?v=XhUAIVJ62dQ">https://www.youtube.com/watch?v=XhUAIVJ62dQ</a></p>
+<p><a href="https://www.youtube.com/watch?v=dGbzlsBuw9M">https://www.youtube.com/watch?v=dGbzlsBuw9M</a></p>
 <h1 id="summary">Summary</h1>
-<p>要預估一件事多久會完成有三個面相：複雜度、時間、錯估的風險，降低風險最有效的方式就是工作拆解，拆得越細風險越低</p>
-<h1 id="main-idea">Main idea</h1>
-<p>提出預估事情的元素有</p>
+<p>講得十分本質，比起追逐新潮名詞，顧好 SOLID 的根本就可以寫出好程式了</p>
+<ul>
+<li>conway 定律：軟體系統的最佳結構與團隊的組織社會結構互相影響</li>
+</ul>
 <ol>
-<li>誰該做</li>
-<li>何時要做完</li>
-<li>要做多久</li>
-<li>誰是低效者</li>
+<li>SRP: 一種分類的方法，一個模組應該只對一種角色負責，只有當角色的需求改變了模組才會改變，為 DDD 的本質</li>
+<li>OCP: 利用 SRP 與 DIP 的規範設計出符合此原則的程式而非為了遵循此原則而寫</li>
+<li>LSP: 模組只需知道合約的行為，繼承合約的實作不可因互相替換後影響程式</li>
+<li>ISP: 模組不應依賴不屬於該模組所需要方法；no god interface/object</li>
+<li>DIP: 高層次（角色）不該依賴於低層次（IO），比如直接在 controller 裡面叫 orm 就不是好寫法，應該另外拉個 service interface 後去注入他</li>
 </ol>
-<p>再將 3 獨立出來講解，並提出可能的解法</p>
 
   </section>
   <div class="clearfix">
@@ -134,14 +135,14 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2022-11-5
+        2022-11-18
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag"><a href="http://shachiku.life/tags/recommendation/">#recommendation</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/recommendations/">#recommendations</a></span>
       
       
     </div>
@@ -161,16 +162,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/10/make-pull-request-correctly/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/11/why-are-estimations-so-hard/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2022/11/oop-solid-principle/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 05 Nov 2022 22:24:17 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Nov 2022 19:31:01 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>物件導向的 SOLID 原則</title>
+      <link>http://shachiku.life/2022/11/oop-solid-principle/</link>
+      <pubDate>Fri, 18 Nov 2022 19:31:01 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/11/oop-solid-principle/</guid>
+      <description>越基礎越抽象</description>
+    </item>
+    
     <item>
       <title>[推薦]為何預估這麼困難</title>
       <link>http://shachiku.life/2022/11/why-are-estimations-so-hard/</link>
@@ -562,7 +571,8 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2022 Nov 05 &amp;ndash; [推薦]為何預估這麼困難
+      <description>2022 Nov 18 &amp;ndash; 物件導向的 SOLID 原則
+Nov 05 &amp;ndash; [推薦]為何預估這麼困難
 Oct 19 &amp;ndash; 發 Pull Request 的正確姿勢
 Oct 07 &amp;ndash; 在 mac os 12.6 上安裝 ruby 2.6
 Sep 07 &amp;ndash; 在 docker 中設定自定義的 redis config
@@ -571,8 +581,7 @@ Jul 26 &amp;ndash; [推薦] 成為專家的心態
 Jul 26 &amp;ndash; [推薦]如何找到開源專案貢獻
 Jul 10 &amp;ndash; [推薦]分布式系統的 8 個謬誤
 Jul 04 &amp;ndash; [推薦] 過早最佳化是萬惡的根源
-Jul 02 &amp;ndash; [推薦] Mysql Lock Index and Deadlock
-Jun 07 &amp;ndash; [推薦] What Is Api Gateway</description>
+Jul 02 &amp;ndash; [推薦] Mysql Lock Index and Deadlock</description>
     </item>
     
     <item>

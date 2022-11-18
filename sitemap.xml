@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2022-11-18T19:31:01+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/recommendations/</loc>
+    <lastmod>2022-11-18T19:31:01+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2022-11-18T19:31:01+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2022-11-18T19:31:01+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2022/11/oop-solid-principle/</loc>
+    <lastmod>2022-11-18T19:31:01+08:00</lastmod>
+  </url><url>
     <loc>http://shachiku.life/2022/11/why-are-estimations-so-hard/</loc>
     <lastmod>2022-11-05T22:24:17+08:00</lastmod>
   </url><url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2022-11-05T22:24:17+08:00</lastmod>
-  </url><url>
     <loc>http://shachiku.life/tags/recommendation/</loc>
-    <lastmod>2022-11-05T22:24:17+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2022-11-05T22:24:17+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
     <lastmod>2022-11-05T22:24:17+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/git/</loc>
@@ -57,9 +63,6 @@
     <lastmod>2022-07-10T19:33:53+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/07/premature-optimization-is-the-root-of-all-evil/</loc>
-    <lastmod>2022-07-04T12:15:52+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/recommendations/</loc>
     <lastmod>2022-07-04T12:15:52+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/07/mysql-lock-index-and-deadlock/</loc>
