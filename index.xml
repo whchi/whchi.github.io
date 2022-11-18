@@ -9,7 +9,7 @@
     <copyright>&amp;copy; whchi 2018</copyright>
     <lastBuildDate>Fri, 18 Nov 2022 19:31:01 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>物件導向的 SOLID 原則</title>
+      <title>[推薦]物件導向的 SOLID 原則</title>
       <link>http://shachiku.life/2022/11/oop-solid-principle/</link>
       <pubDate>Fri, 18 Nov 2022 19:31:01 +0800</pubDate>
       
@@ -571,7 +571,7 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2022 Nov 18 &amp;ndash; 物件導向的 SOLID 原則
+      <description>2022 Nov 18 &amp;ndash; [推薦]物件導向的 SOLID 原則
 Nov 05 &amp;ndash; [推薦]為何預估這麼困難
 Oct 19 &amp;ndash; 發 Pull Request 的正確姿勢
 Oct 07 &amp;ndash; 在 mac os 12.6 上安裝 ruby 2.6
