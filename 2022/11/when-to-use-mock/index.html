@@ -4,23 +4,23 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="[推薦] 成為專家的心態 &middot; 社畜人生" />
+  <meta property="og:title" content="[寓言故事] When to Use Mock &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2022/07/mindset-of-becoming-an-expert/" />
+  <meta property="og:url" content="http://shachiku.life/2022/11/when-to-use-mock/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2022-07-26T16:01:07&#43;08:00" />
+  <meta property="og:article:published_time" content="2022-11-22T12:21:46&#43;08:00" />
   
-  <meta property="og:article:tag" content="recommendation" />
+  <meta property="og:article:tag" content="fable-story" />
   
   
 
   <title>
-     [推薦] 成為專家的心態 &middot;  社畜人生
+     [寓言故事] When to Use Mock &middot;  社畜人生
   </title>
   <link rel="alternative stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -50,8 +50,8 @@
 
 <body>
   
-  <header class="global-header" style="background-image:url()">
-    
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
       <section class="header-text">
         <div class="header-desc">
           <h1><a href="http://shachiku.life/">社畜人生</a></h1>
@@ -101,7 +101,7 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">[推薦] 成為專家的心態</h1>
+    <h1 class="text-primary">[寓言故事] When to Use Mock</h1>
   </header>
   <div class="delimiter"></div>
   
@@ -114,17 +114,18 @@
   </figure>
   
   <section>
-    <h1 id="source">Source</h1>
-<p><a href="https://mp.weixin.qq.com/s?from=timeline&amp;scene=2&amp;mid=2650181870&amp;idx=1&amp;sn=72a55e57c3d9196d42ffa6c50702886b&amp;__biz=MzAxNzEyODA2NQ%3D%3D&amp;srcid=0525vh1ke9m7bEhoaIuxnUCR&amp;isappinstalled=0#wechat_redirect">为什么你有10年经验，但成不了专家？</a></p>
-<h1 id="summary">Summary</h1>
-<p>基本上都是老生常談，不過經典的原則本來就是經的起考驗且務實</p>
-<ol>
-<li>避免自動完成：很反直覺，已經習慣的事情要不斷重新檢討精進</li>
-<li>離開舒適圈：跨入學習區，做那些超過自己能力一些的事情</li>
-<li>犧牲短期利益：進行刻意練級導致短期績效下降，比如用全新的程式語言做一樣的功能</li>
-<li>大量重複訓練</li>
-<li>持續取得反饋</li>
-</ol>
+    <h1 id="路邊撿到的不是我說的">路邊撿到的，不是我說的</h1>
+<hr>
+<p>「其實 mock object 在 testing 時非常有用，你最好也看看我的 Pull Request 去學一下吧」</p>
+<p>「用上 mock object 的 testcase 總比沒用的好，因為 mock object 可以讓你很專心只測試你要測的部份。
+排除掉其他你所 depend on 的部份的bug所引起的 testcase fail。」</p>
+<p>「但是 mock object 非常昂貴(指用上的額外的開發時間)所以，我絕對不會建議你任何時候都用上 mock object。」</p>
+<p><strong>『那什麼時候才應該用 mock object 呢？』</strong></p>
+<p>「通常我會用上 mock object 的時機」</p>
+<p>「我寫的東西要 depends on 3rd party 的 resource，像是 aws S3，與其每次 test 都真的跑 aws 去拿 S3 file，我會用上 mock object 去偽裝 aws S3」</p>
+<p>「我要測試的 procedure，有又臭又長的 dependency。而且要 depend on 的 module 不太穏定很多 bug。我會用上 mock object 去迴避」</p>
+<p>「我在寫 core library (像是 caching library )，我要 100% 清楚其怎對 redis/db 操作。這時我會用上 mock object for redis / db。」</p>
+<p>「一般 application logic。我是不會對 db / redis 做 mocking 的。一般而言，這時 mock object 帶來的好處未大得值得其大量所花的時間。」</p>
 
   </section>
   <div class="clearfix">
@@ -132,14 +133,14 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2022-7-26
+        2022-11-22
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag"><a href="http://shachiku.life/tags/recommendation/">#recommendation</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/fable-story/">#fable-story</a></span>
       
       
     </div>
@@ -159,16 +160,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/07/how-to-find-open-source-projects-to-contribute/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/11/oop-solid-principle/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2022/09/setup-ssh-connection-on-postgresql-in-docker/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       
