@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Tue, 22 Nov 2022 12:21:46 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Dec 2022 12:34:59 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>If Web Development Is a Poetry</title>
+      <link>http://shachiku.life/2022/12/if-web-development-is-a-poetry/</link>
+      <pubDate>Sat, 03 Dec 2022 12:34:59 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/12/if-web-development-is-a-poetry/</guid>
+      <description>如果開發是首詩</description>
+    </item>
+    
     <item>
       <title>[寓言故事] When to Use Mock</title>
       <link>http://shachiku.life/2022/11/when-to-use-mock/</link>

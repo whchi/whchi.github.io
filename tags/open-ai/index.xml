@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>open-ai on 社畜人生</title>
+    <link>http://shachiku.life/tags/open-ai/</link>
+    <description>Recent content in open-ai on 社畜人生</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <copyright>&amp;copy; whchi 2018</copyright>
+    <lastBuildDate>Sat, 03 Dec 2022 12:34:59 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/open-ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>If Web Development Is a Poetry</title>
+      <link>http://shachiku.life/2022/12/if-web-development-is-a-poetry/</link>
+      <pubDate>Sat, 03 Dec 2022 12:34:59 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/12/if-web-development-is-a-poetry/</guid>
+      <description>如果開發是首詩</description>
+    </item>
+    
+  </channel>
+</rss>

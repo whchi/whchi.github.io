@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Tue, 22 Nov 2022 12:21:46 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Dec 2022 12:34:59 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>If Web Development Is a Poetry</title>
+      <link>http://shachiku.life/2022/12/if-web-development-is-a-poetry/</link>
+      <pubDate>Sat, 03 Dec 2022 12:34:59 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/12/if-web-development-is-a-poetry/</guid>
+      <description>如果開發是首詩</description>
+    </item>
+    
     <item>
       <title>[寓言故事] When to Use Mock</title>
       <link>http://shachiku.life/2022/11/when-to-use-mock/</link>
@@ -586,7 +595,8 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2022 Nov 22 &amp;ndash; [寓言故事] When to Use Mock
+      <description>2022 Dec 03 &amp;ndash; If Web Development Is a Poetry
+Nov 22 &amp;ndash; [寓言故事] When to Use Mock
 Nov 18 &amp;ndash; [推薦]物件導向的 SOLID 原則
 Nov 05 &amp;ndash; [推薦]為何預估這麼困難
 Oct 19 &amp;ndash; 發 Pull Request 的正確姿勢
@@ -594,9 +604,7 @@ Oct 07 &amp;ndash; 在 mac os 12.6 上安裝 ruby 2.6
 Sep 07 &amp;ndash; 在 docker 中設定自定義的 redis config
 Sep 06 &amp;ndash; 使用 ssh 連入 Docker 中的 PostgreSQL
 Jul 26 &amp;ndash; [推薦] 成為專家的心態
-Jul 26 &amp;ndash; [推薦]如何找到開源專案貢獻
-Jul 10 &amp;ndash; [推薦]分布式系統的 8 個謬誤
-Jul 04 &amp;ndash; [推薦] 過早最佳化是萬惡的根源</description>
+Jul 26 &amp;ndash; [推薦]如何找到開源專案貢獻</description>
     </item>
     
     <item>
