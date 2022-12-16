@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://shachiku.life/tags/docker/</loc>
+    <lastmod>2022-12-16T11:58:19+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/fastapi/</loc>
+    <lastmod>2022-12-16T11:58:19+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2022-12-16T11:58:19+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/python/</loc>
+    <lastmod>2022-12-16T11:58:19+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2022/12/setup-fastapi-debugger-in-pycharm-with-docker/</loc>
+    <lastmod>2022-12-16T11:58:19+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2022-12-16T11:58:19+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2022-12-16T11:58:19+08:00</lastmod>
+  </url><url>
     <loc>http://shachiku.life/tags/ai/</loc>
     <lastmod>2022-12-03T12:34:59+08:00</lastmod>
   </url><url>
@@ -9,15 +30,6 @@
     <lastmod>2022-12-03T12:34:59+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/open-ai/</loc>
-    <lastmod>2022-12-03T12:34:59+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2022-12-03T12:34:59+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2022-12-03T12:34:59+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
     <lastmod>2022-12-03T12:34:59+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/11/when-to-use-mock/</loc>
@@ -52,9 +64,6 @@
   </url><url>
     <loc>http://shachiku.life/2022/10/macos12.6_install_ruby2.6/</loc>
     <lastmod>2022-10-07T10:08:47+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/docker/</loc>
-    <lastmod>2022-09-07T11:11:54+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/09/docker-custom-alpine-redis-conf/</loc>
     <lastmod>2022-09-07T11:11:54+08:00</lastmod>
@@ -190,9 +199,6 @@
   </url><url>
     <loc>http://shachiku.life/2020/12/add-js-support-on-hugo/</loc>
     <lastmod>2020-12-16T19:21:15+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/python/</loc>
-    <lastmod>2020-12-16T18:27:35+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2020/12/use-lru-cache-for-setting/</loc>
     <lastmod>2020-12-16T18:27:35+08:00</lastmod>

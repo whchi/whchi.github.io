@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 07 Sep 2022 11:11:54 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Dec 2022 11:58:19 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setup Fastapi Debugger in Pycharm With Docker</title>
+      <link>http://shachiku.life/2022/12/setup-fastapi-debugger-in-pycharm-with-docker/</link>
+      <pubDate>Fri, 16 Dec 2022 11:58:19 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/12/setup-fastapi-debugger-in-pycharm-with-docker/</guid>
+      <description>The key is running only one worker when start uvicorn
+0. Dockerfile A Dockerfile which only runs non-application part, like database/redis&amp;hellip;etc
+Here I use docker-compose as example
+version: &amp;#34;3.8&amp;#34; services: pgsql: image: postgres:13 restart: unless-stopped environment: - POSTGRES_HOST_AUTH_METHOD=trust - POSTGRES_USER=root - POSTGRES_PASSWORD= - POSTGRES_DB=postgres volumes: - postgres:/var/lib/postgresql/data ports: - &amp;#39;5432:5432&amp;#39; privileged: true volumes: postgres: 1. setup Run/Debug configurations It&amp;rsquo;s on the top-right corner 2. setup local running configuration choose &amp;ldquo;fastapi&amp;rdquo; for running configuration</description>
+    </item>
+    
     <item>
       <title>在 docker 中設定自定義的 redis config</title>
       <link>http://shachiku.life/2022/09/docker-custom-alpine-redis-conf/</link>
