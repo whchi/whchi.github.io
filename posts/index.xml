@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Fri, 16 Dec 2022 13:57:12 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Dec 2022 21:21:43 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Parse Don&#39;t Validate</title>
+      <link>http://shachiku.life/2022/12/parse-dont-validate/</link>
+      <pubDate>Tue, 20 Dec 2022 21:21:43 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/12/parse-dont-validate/</guid>
+      <description>輸入的階段就直接解析成正確的型態</description>
+    </item>
+    
     <item>
       <title>Setup FastAPI Debugger in VSCode With Docker</title>
       <link>http://shachiku.life/2022/12/setup-fastapi-debugger-in-vscode-with-docker/</link>
