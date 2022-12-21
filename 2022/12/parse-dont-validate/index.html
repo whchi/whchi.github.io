@@ -117,12 +117,38 @@
     <h1 id="source">Source</h1>
 <p><a href="https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/">https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/</a></p>
 <h1 id="summary">Summary</h1>
+<p>取得正確值的過程都會做驗證，parser 是解析成指定類型的過程報錯（做一次），validation 是檢查是否符合特定類型報錯（做 n 次），so parse, don&rsquo;t validate</p>
+<h3 id="文內重點">文內重點</h3>
 <ol>
 <li>the difference between validation and parsing lies almost entirely in how information is preserved</li>
 <li>a parser is just a function that consumes less-structured input and produces more-structured output. By its very nature, a parser is a partial function—some values in the domain do not correspond to any value in the range—so all parsers must have some notion of failure.</li>
 <li>type-hinting is the key</li>
 </ol>
-<p>取得正確值的過程都會做驗證，parser 是解析成指定類型的過程報錯（做一次），validation 是檢查是否符合特定類型報錯（做 n 次），so parse, don&rsquo;t validate</p>
+<h3 id="實作重點">實作重點</h3>
+<ol>
+<li>Let your datatypes inform your code, don’t let your code control your datatypes</li>
+</ol>
+<p>使用 type-hinting as much as you can</p>
+<ol start="2">
+<li>Treat functions that return <code>m()</code> with deep suspicion</li>
+</ol>
+<p>任何回傳 function 的 function 都要特別謹慎看待，有可能<code>m()</code> 的主要目的是 raise exception</p>
+<ol start="3">
+<li>Don’t be afraid to parse data in multiple passes</li>
+</ol>
+<p>input 的解析可以依賴於其他 input 的值</p>
+<ol start="4">
+<li>Avoid denormalized representations of data, <em>especially</em> if it’s mutable</li>
+</ol>
+<p>不要亂修改 input 的值，keep single source of truth</p>
+<ol start="5">
+<li>Keep denormalized representations of data behind abstraction boundaries</li>
+</ol>
+<p>如果必須要修改 input，就封裝一層 DTO 去負責處理</p>
+<ol start="6">
+<li>Use abstract datatypes to make validators “look like” parsers</li>
+</ol>
+<p>如果原生的 type 無法有效驗證非法狀態時，另外定義一個 type 處理，不要硬用</p>
 
   </section>
   <div class="clearfix">
