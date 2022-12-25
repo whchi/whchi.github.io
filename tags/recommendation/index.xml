@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 05 Nov 2022 22:24:17 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Dec 2022 16:12:51 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦] auth 沒你想像的複雜</title>
+      <link>http://shachiku.life/2022/12/what-is-auth/</link>
+      <pubDate>Sun, 25 Dec 2022 16:12:51 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/12/what-is-auth/</guid>
+      <description>當我們說到 auth 時，我們究竟在說什麼</description>
+    </item>
+    
     <item>
       <title>[推薦]為何預估這麼困難</title>
       <link>http://shachiku.life/2022/11/why-are-estimations-so-hard/</link>

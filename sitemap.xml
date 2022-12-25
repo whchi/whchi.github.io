@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://shachiku.life/2022/12/what-is-auth/</loc>
+    <lastmod>2022-12-25T16:12:51+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2022-12-25T16:12:51+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/recommendation/</loc>
+    <lastmod>2022-12-25T16:12:51+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2022-12-25T16:12:51+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2022-12-25T16:12:51+08:00</lastmod>
+  </url><url>
     <loc>http://shachiku.life/2022/12/parse-dont-validate/</loc>
     <lastmod>2022-12-20T21:21:43+08:00</lastmod>
   </url><url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2022-12-20T21:21:43+08:00</lastmod>
-  </url><url>
     <loc>http://shachiku.life/tags/recommendations/</loc>
-    <lastmod>2022-12-20T21:21:43+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2022-12-20T21:21:43+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
     <lastmod>2022-12-20T21:21:43+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/docker/</loc>
@@ -51,9 +57,6 @@
     <lastmod>2022-11-18T19:31:01+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/11/why-are-estimations-so-hard/</loc>
-    <lastmod>2022-11-05T22:24:17+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/recommendation/</loc>
     <lastmod>2022-11-05T22:24:17+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/git/</loc>

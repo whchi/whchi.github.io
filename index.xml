@@ -7,9 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Tue, 20 Dec 2022 21:21:43 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Dec 2022 16:12:51 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Parse Don&#39;t Validate</title>
+      <title>[推薦] auth 沒你想像的複雜</title>
+      <link>http://shachiku.life/2022/12/what-is-auth/</link>
+      <pubDate>Sun, 25 Dec 2022 16:12:51 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2022/12/what-is-auth/</guid>
+      <description>當我們說到 auth 時，我們究竟在說什麼</description>
+    </item>
+    
+    <item>
+      <title>[推薦] Parse Don&#39;t Validate</title>
       <link>http://shachiku.life/2022/12/parse-dont-validate/</link>
       <pubDate>Tue, 20 Dec 2022 21:21:43 +0800</pubDate>
       
@@ -630,7 +639,8 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2022 Dec 20 &amp;ndash; Parse Don&#39;t Validate
+      <description>2022 Dec 25 &amp;ndash; [推薦] auth 沒你想像的複雜
+Dec 20 &amp;ndash; [推薦] Parse Don&#39;t Validate
 Dec 16 &amp;ndash; Setup FastAPI Debugger in VSCode With Docker
 Dec 16 &amp;ndash; Setup FastAPI Debugger in PyCharm With Docker
 Dec 03 &amp;ndash; If Web Development Is a Poetry
@@ -638,7 +648,7 @@ Nov 22 &amp;ndash; [寓言故事] When to Use Mock
 Nov 18 &amp;ndash; [推薦]物件導向的 SOLID 原則
 Nov 05 &amp;ndash; [推薦]為何預估這麼困難
 Oct 19 &amp;ndash; 發 Pull Request 的正確姿勢
-Oct 07 &amp;ndash; 在 mac os 12.6 上安裝 ruby 2.</description>
+Oct 07 &amp;ndash; 在 mac os 12.</description>
     </item>
     
     <item>
