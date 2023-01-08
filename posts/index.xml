@@ -7,7 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sun, 25 Dec 2022 16:12:51 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Jan 2023 11:13:34 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦]少用繼承，多用 composition</title>
+      <link>http://shachiku.life/2023/01/prefer-composition-over-inheritance/</link>
+      <pubDate>Sun, 08 Jan 2023 11:13:34 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/01/prefer-composition-over-inheritance/</guid>
+      <description>Source https://www.youtube.com/watch?v=hxGOiiR9ZKg
+Summary Inheritance&amp;rsquo;s cost is expensive when changing requirement, and will need to write methods which your subclass doesn&amp;rsquo;t needs. Use composition to write more usable code.
+re-use abstraction inheritance extending parent class composition using interface Unlike extending parent class, interfaces defines only the critical part of the contract, it&amp;rsquo;s coupling the codes and is adaptable with new requirements.</description>
+    </item>
+    
+    <item>
+      <title>使用 python 模擬 laravel filesystem</title>
+      <link>http://shachiku.life/2023/01/laravel-like-filesystem-using-python/</link>
+      <pubDate>Wed, 04 Jan 2023 13:47:17 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/01/laravel-like-filesystem-using-python/</guid>
+      <description>good artists copy</description>
+    </item>
+    
     <item>
       <title>[推薦] auth 沒你想像的複雜</title>
       <link>http://shachiku.life/2022/12/what-is-auth/</link>

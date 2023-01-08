@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="使用 python 模擬 laravel filesystem &middot; 社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2023/01/laravel-like-filesystem-using-python/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2023-01-04T13:47:17&#43;08:00" />
+  
+  <meta property="og:article:tag" content="python" />
+  
+  <meta property="og:article:tag" content="laravel" />
+  
+  
+
+  <title>
+     使用 python 模擬 laravel filesystem &middot;  社畜人生
+  </title>
+  <link rel="alternative stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h2 class="tag-line">
+            雜談與紀錄
+          </h2>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/archives">
+            archives
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  
+  <header class="article-title">
+    <h1 class="text-primary">使用 python 模擬 laravel filesystem</h1>
+  </header>
+  <div class="delimiter"></div>
+  
+  
+  <figure class="preview">
+      <img src="">
+      
+      <figcaption></figcaption>
+      
+  </figure>
+  
+  <section>
+    <p>This is a tutorial of how to make a laravel&rsquo;s filesystem-like feature in python</p>
+<h1 id="1-a-interface">1. A interface</h1>
+<p>We can create interface by python&rsquo;s <code>abc</code> module</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">import</span> abc
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FileSystemManager</span>(abc<span style="color:#f92672">.</span>ABC):
+</span></span><span style="display:flex;"><span>    _instance: Any <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __new__(cls, <span style="color:#f92672">*</span>args: Any) <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#39;FileSystemManager&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># use singleton for saving memory usage</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> cls<span style="color:#f92672">.</span>_instance:
+</span></span><span style="display:flex;"><span>            cls<span style="color:#f92672">.</span>_instance <span style="color:#f92672">=</span> super(FileSystemManager, cls)<span style="color:#f92672">.</span>__new__(cls)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cls<span style="color:#f92672">.</span>_instance
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abc.abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">register</span>(cls) <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#39;FileSystemManager&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># register new disk provider</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abc.abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">write</span>(self, filepath: str) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># and other file related methods like read,mkdir,rmdir...</span>
+</span></span></code></pre></div><h1 id="2-a-caller-like-laravels-storage-facade">2. A caller like laravel&rsquo;s Storage Facade</h1>
+<p>Then we wants to interactive with the contract like laravel&rsquo;s <code>Storage::disk()</code>, so make a <code>Storage</code> class with <code>@classmethod</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Storage</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># provider map, acts like factory</span>
+</span></span><span style="display:flex;"><span>    instances <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;local&#39;</span>: LocalProvider, <span style="color:#e6db74">&#39;s3&#39;</span>: S3Provider}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">disk</span>(cls, driver: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;file&#39;</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cls<span style="color:#f92672">.</span>instances[driver]<span style="color:#f92672">.</span>register()
+</span></span></code></pre></div><h1 id="3-implement-providers">3. Implement providers</h1>
+<p>As you can see at second step, there&rsquo;s two providers to implement</p>
+<h3 id="1-localprovider">1. LocalProvider</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> . <span style="color:#f92672">import</span> FileSystemManager
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LocalProvider</span>(FileSystemManager):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>root <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/path/to/root/storage&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">register</span>(cls) <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#39;LocalProvider&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cls()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read</span>(self, filepath: str) <span style="color:#f92672">-&gt;</span> str <span style="color:#f92672">|</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> FileUtil<span style="color:#f92672">.</span>read(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>root<span style="color:#e6db74">}{</span>filepath<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">write</span>(self, filepath: str, content: Any, <span style="color:#f92672">**</span>kwargs: str <span style="color:#f92672">|</span> <span style="color:#66d9ef">None</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> isinstance(content, str):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">TypeError</span>(<span style="color:#e6db74">&#39;content MUST be a str&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        FileUtil<span style="color:#f92672">.</span>write(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>root<span style="color:#e6db74">}{</span>filepath<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>, content)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">exists</span>(self, filepath: str) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> FileUtil<span style="color:#f92672">.</span>exists(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>root<span style="color:#e6db74">}{</span>filepath<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">url</span>(self, filename: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;https://</span><span style="color:#e6db74">{</span>your_host<span style="color:#e6db74">}</span><span style="color:#e6db74">/public/</span><span style="color:#e6db74">{</span>filename<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_dirs</span>(self, filepath: str) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        FileUtil<span style="color:#f92672">.</span>make_dirs(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>root<span style="color:#e6db74">}{</span>filepath<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">remove_file</span>(self, filepath: str) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        FileUtil<span style="color:#f92672">.</span>remove_file(filepath)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">remove_dir</span>(self, dir_path: str) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        FileUtil<span style="color:#f92672">.</span>remove_dir(dir_path)
+</span></span></code></pre></div><h3 id="2-s3provider">2. S3Provider</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> . <span style="color:#f92672">import</span> FileSystemManager
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> boto3
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> botocore.exceptions <span style="color:#f92672">import</span> ClientError
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">S3Provider</span>(FileSystemManager):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        config <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;id&#39;</span>: <span style="color:#e6db74">&#39;AWS_ACCESS_KEY_ID&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;secret&#39;</span>: <span style="color:#e6db74">&#39;AWS_SECRET_ACCESS_KEY&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;region&#39;</span>: <span style="color:#e6db74">&#39;AWS_S3_REGION&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;bucket&#39;</span>: <span style="color:#e6db74">&#39;AWS_S3_BUCKET&#39;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>config <span style="color:#f92672">=</span> config
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>s3 <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;s3&#39;</span>,
+</span></span><span style="display:flex;"><span>                               aws_access_key_id<span style="color:#f92672">=</span>config[<span style="color:#e6db74">&#39;id&#39;</span>],
+</span></span><span style="display:flex;"><span>                               aws_secret_access_key<span style="color:#f92672">=</span>config[<span style="color:#e6db74">&#39;secret&#39;</span>],
+</span></span><span style="display:flex;"><span>                               region_name<span style="color:#f92672">=</span>config[<span style="color:#e6db74">&#39;region&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">register</span>(cls) <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#39;S3Provider&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cls()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read</span>(self, filepath: str) <span style="color:#f92672">-&gt;</span> str <span style="color:#f92672">|</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        s3_obj <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>s3<span style="color:#f92672">.</span>get_object(Bucket<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>config[<span style="color:#e6db74">&#39;bucket&#39;</span>], Key<span style="color:#f92672">=</span>filepath)
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> s3_obj[<span style="color:#e6db74">&#39;Body&#39;</span>]<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">write</span>(self, filepath: str, content: Any, <span style="color:#f92672">**</span>kwargs: str <span style="color:#f92672">|</span> <span style="color:#66d9ef">None</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> isinstance(content, str):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">TypeError</span>(<span style="color:#e6db74">&#39;content MUST be types in BytesIO|StringIO&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>s3<span style="color:#f92672">.</span>upload_fileobj(
+</span></span><span style="display:flex;"><span>            content,
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>config[<span style="color:#e6db74">&#39;bucket&#39;</span>],
+</span></span><span style="display:flex;"><span>            filepath,
+</span></span><span style="display:flex;"><span>            ExtraArgs<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;ACL&#39;</span>: <span style="color:#e6db74">&#39;public-read&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;ContentType&#39;</span>: kwargs<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;content_type&#39;</span>, <span style="color:#e6db74">&#39;application/octet-stream&#39;</span>)
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">exists</span>(self, filepath: str) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            response <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>s3<span style="color:#f92672">.</span>head_object(Bucket<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>config[<span style="color:#e6db74">&#39;bucket&#39;</span>], Key<span style="color:#f92672">=</span>filepath)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> response[<span style="color:#e6db74">&#39;ResponseMetadata&#39;</span>][<span style="color:#e6db74">&#39;HTTPStatusCode&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">200</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> ClientError <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>            logging<span style="color:#f92672">.</span>info(e)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">url</span>(self, filename: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;https://</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>config[<span style="color:#e6db74">&#34;bucket&#34;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">.s3.</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>config[<span style="color:#e6db74">&#34;region&#34;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">.amazonaws.com/</span><span style="color:#e6db74">{</span>filename<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_dirs</span>(self, filepath: str) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">NotImplementedError</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;method make_dirs not implemented in </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>__class__<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">remove_file</span>(self, filepath: str) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>s3<span style="color:#f92672">.</span>delete_object(Bucket<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>config[<span style="color:#e6db74">&#39;bucket&#39;</span>], Key<span style="color:#f92672">=</span>filepath)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">remove_dir</span>(self, dir_path: str) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> dir_path[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;/&#39;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#39;dir_path MUST endswith &#34;/&#34;&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>s3<span style="color:#f92672">.</span>list_objects(Bucket<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>config[<span style="color:#e6db74">&#39;bucket&#39;</span>], Prefix<span style="color:#f92672">=</span>dir_path)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;Contents&#39;</span> <span style="color:#f92672">in</span> response:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> obj <span style="color:#f92672">in</span> response[<span style="color:#e6db74">&#39;Contents&#39;</span>]:
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>remove_file(obj[<span style="color:#e6db74">&#39;Key&#39;</span>])
+</span></span></code></pre></div><h1 id="4-start-use">4. start use</h1>
+<p>After implemented all of them, we can call it like laravel filesystem</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>Storage<span style="color:#f92672">.</span>disk(<span style="color:#e6db74">&#39;s3&#39;</span>)<span style="color:#f92672">.</span>read(<span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>Storage<span style="color:#f92672">.</span>disk(<span style="color:#e6db74">&#39;local&#39;</span>)<span style="color:#f92672">.</span>write(<span style="color:#f92672">...</span>, <span style="color:#f92672">...</span>)
+</span></span></code></pre></div>
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2023-1-4
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/python/">#python</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/laravel/">#Laravel</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/12/what-is-auth/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2023/01/prefer-composition-over-inheritance/">
+        <div>
+          <span aria-hidden="true">&rarr;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://medium.com/@whccchi" target="_blank">
+        <i class="fa fa-medium"></i>
+    </a>
+  
+</div>
+
+</footer>
+
+
+
+
+<style lang="css">
+  #fast-search {
+    visibility: hidden;
+    position: fixed;
+    z-index: 2;
+    top: 15%;
+    left: 50%;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    height: 45px;
+    background-color: #eee7d4;
+    transform: translate(-50%, -50%);
+    border: 3px solid #eee7d4;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 5px;
+  }
+
+  #fast-search input {
+    width: 100%;
+    height: 31px;
+    font-size: 1.6em;
+    color: #5e7579;
+    font-weight: bold;
+    background-color: #eee7d4;
+    border-radius: 3px 3px 0px 0px;
+    border: none;
+    outline: none;
+    text-align: left;
+    display: inline-block;
+  }
+
+  #search-results {
+    width: 100%;
+    list-style-type: none;
+    visibility: inherit;
+    display: inline-block;
+    background-color: #002733;
+  }
+  #search-results a {
+    width: 100%;
+    text-decoration: none !important;
+    padding: 10px;
+    display: inline-block;
+  }
+  #search-results a:hover,
+  #search-results a:focus {
+    outline: 0;
+    background-color: #9c9c9c;
+    color: #fff;
+  }
+  span.title {
+    font-size: 1.1em;
+    color: #bf4918;
+    font-weight: bold;
+  }
+  span.summary {
+    font-size: 0.9em;
+    color: #576e73;
+    font-weight: bold;
+  }
+  .list-item {
+    border-bottom: 0.5px dotted #258ad0;
+  }
+  #tips {
+    visibility: hidden;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #eee7d4;
+  }
+  @media (min-width: 320px) and (max-width: 736px) {
+    #tips {
+      display: none;
+    }
+  }
+</style>
+<div id="tips">cmd + /</div>
+<div id="fast-search">
+  <input id="search-input" autocomplete="off" tabindex="0" />
+  <section id="search-results"></section>
+</div>
+<script src="/js/fuse.js"></script>
+<script>
+  const url = new URL(location.href);
+  const srhkey = url.host + '_uknowhow2srh';
+
+  if (!sessionStorage.getItem(srhkey)) {
+    document.getElementById('tips').style.visibility = 'visible';
+  }
+
+  function uknowhow2srh() {
+    if (sessionStorage.getItem(srhkey)) {
+      document.getElementById('tips').style.visibility = 'hidden';
+    } else {
+      sessionStorage.setItem(srhkey, 1);
+    }
+  }
+</script>
+<script src="/js/fastsearch.js"></script>
+
+<div class="day-night-switch">
+  <input type="checkbox" id="switch_theme" class="theme-toggle" />
+  <label for="switch_theme" class="theme-toggle-label">Toggle Theme</label>
+</div>
+<script>
+  const themekey = url.host + '_thememode';
+  if (localStorage.getItem(themekey)) {
+    document.body.className = 'dark';
+    document.getElementById('switch_theme').checked = 'checked';
+  }
+  document
+    .getElementById('switch_theme')
+    .addEventListener('click', function (e) {
+      if (e.target.checked) {
+        localStorage.setItem(themekey, '1');
+        document.body.className = 'dark';
+      } else {
+        localStorage.removeItem(themekey);
+        document.body.className = '';
+      }
+    });
+</script>
+
+</body>
+</html>
+

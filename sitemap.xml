@@ -2,34 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://shachiku.life/2022/12/what-is-auth/</loc>
-    <lastmod>2022-12-25T16:12:51+08:00</lastmod>
+    <loc>http://shachiku.life/2023/01/prefer-composition-over-inheritance/</loc>
+    <lastmod>2023-01-08T11:13:34+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2023-01-08T11:13:34+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/recommendations/</loc>
+    <lastmod>2023-01-08T11:13:34+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2023-01-08T11:13:34+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2023-01-08T11:13:34+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/laravel/</loc>
+    <lastmod>2023-01-04T13:47:17+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/python/</loc>
+    <lastmod>2023-01-04T13:47:17+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2023/01/laravel-like-filesystem-using-python/</loc>
+    <lastmod>2023-01-04T13:47:17+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/2022/12/what-is-auth/</loc>
     <lastmod>2022-12-25T16:12:51+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/recommendation/</loc>
     <lastmod>2022-12-25T16:12:51+08:00</lastmod>
   </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2022-12-25T16:12:51+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
-    <lastmod>2022-12-25T16:12:51+08:00</lastmod>
-  </url><url>
     <loc>http://shachiku.life/2022/12/parse-dont-validate/</loc>
-    <lastmod>2022-12-20T21:21:43+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/recommendations/</loc>
     <lastmod>2022-12-20T21:21:43+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/docker/</loc>
     <lastmod>2022-12-16T13:57:12+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/fastapi/</loc>
-    <lastmod>2022-12-16T13:57:12+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/python/</loc>
     <lastmod>2022-12-16T13:57:12+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/12/setup-fastapi-debugger-in-vscode-with-docker/</loc>
@@ -235,9 +244,6 @@
   </url><url>
     <loc>http://shachiku.life/2020/07/docker-compose-mongo-replica/</loc>
     <lastmod>2020-07-27T15:21:29+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/laravel/</loc>
-    <lastmod>2020-06-16T23:16:10+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2020/06/laravel-third-party-login-auth/</loc>
     <lastmod>2020-06-16T23:16:10+08:00</lastmod>

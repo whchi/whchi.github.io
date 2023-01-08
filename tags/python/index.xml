@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Fri, 16 Dec 2022 13:57:12 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Jan 2023 13:47:17 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 python 模擬 laravel filesystem</title>
+      <link>http://shachiku.life/2023/01/laravel-like-filesystem-using-python/</link>
+      <pubDate>Wed, 04 Jan 2023 13:47:17 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/01/laravel-like-filesystem-using-python/</guid>
+      <description>good artists copy</description>
+    </item>
+    
     <item>
       <title>Setup FastAPI Debugger in VSCode With Docker</title>
       <link>http://shachiku.life/2022/12/setup-fastapi-debugger-in-vscode-with-docker/</link>

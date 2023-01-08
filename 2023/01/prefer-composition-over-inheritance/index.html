@@ -4,23 +4,23 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="[推薦] auth 沒你想像的複雜 &middot; 社畜人生" />
+  <meta property="og:title" content="[推薦]少用繼承，多用 composition &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2022/12/what-is-auth/" />
+  <meta property="og:url" content="http://shachiku.life/2023/01/prefer-composition-over-inheritance/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2022-12-25T16:12:51&#43;08:00" />
+  <meta property="og:article:published_time" content="2023-01-08T11:13:34&#43;08:00" />
   
-  <meta property="og:article:tag" content="recommendation" />
+  <meta property="og:article:tag" content="recommendations" />
   
   
 
   <title>
-     [推薦] auth 沒你想像的複雜 &middot;  社畜人生
+     [推薦]少用繼承，多用 composition &middot;  社畜人生
   </title>
   <link rel="alternative stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -101,7 +101,7 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">[推薦] auth 沒你想像的複雜</h1>
+    <h1 class="text-primary">[推薦]少用繼承，多用 composition</h1>
   </header>
   <div class="delimiter"></div>
   
@@ -115,28 +115,38 @@
   
   <section>
     <h1 id="source">Source</h1>
-<p><a href="https://www.youtube.com/watch?v=h6wBYWWdyYQ">https://www.youtube.com/watch?v=h6wBYWWdyYQ</a></p>
+<p><a href="https://www.youtube.com/watch?v=hxGOiiR9ZKg">https://www.youtube.com/watch?v=hxGOiiR9ZKg</a></p>
 <h1 id="summary">Summary</h1>
-<p>auth 的本質，很適合上補習班出來的人看</p>
-<ul>
-<li>Authentication(AuthN): 身份認證（你是誰）</li>
-<li>Authorization(AuthZ): 可以使用哪些權限</li>
-<li>AuthN flow
-<ol>
-<li>user sign-in</li>
-<li>client(browser) stores cookie(session)</li>
-<li>rest of client&rsquo;s request will bring session</li>
-</ol>
-</li>
-<li>AuthZ flow
-<ol>
-<li>login user requests data</li>
-<li>server parse and check user from cookie</li>
-<li>server checks if the request action is authorized</li>
-<li>response</li>
-</ol>
-</li>
-</ul>
+<p>Inheritance&rsquo;s cost is expensive when changing requirement, and will need to write methods which your subclass doesn&rsquo;t needs. Use composition to write more usable code.</p>
+
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:left">re-use</th>
+<th style="text-align:left">abstraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">inheritance</td>
+<td style="text-align:left">extending</td>
+<td style="text-align:left">parent class</td>
+</tr>
+<tr>
+<td style="text-align:center">composition</td>
+<td style="text-align:left">using</td>
+<td style="text-align:left">interface</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Unlike extending parent class, interfaces defines only the critical part of the contract, it&rsquo;s coupling the codes and is adaptable with new requirements.</p>
 
   </section>
   <div class="clearfix">
@@ -144,14 +154,14 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2022-12-25
+        2023-1-8
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag"><a href="http://shachiku.life/tags/recommendation/">#recommendation</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/recommendations/">#recommendations</a></span>
       
       
     </div>
@@ -171,16 +181,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2022/12/parse-dont-validate/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2023/01/laravel-like-filesystem-using-python/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2023/01/laravel-like-filesystem-using-python/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       
