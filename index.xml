@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sun, 08 Jan 2023 11:13:34 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Mar 2023 18:58:15 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦] Function Programing 的基礎觀念</title>
+      <link>http://shachiku.life/2023/03/function-programing-the-basics/</link>
+      <pubDate>Sat, 04 Mar 2023 18:58:15 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/03/function-programing-the-basics/</guid>
+      <description>少見的中文講解 FP 概念</description>
+    </item>
+    
     <item>
       <title>[推薦]少用繼承，多用 composition</title>
       <link>http://shachiku.life/2023/01/prefer-composition-over-inheritance/</link>
@@ -659,15 +668,15 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2023 Jan 08 &amp;ndash; [推薦]少用繼承，多用 composition
+      <description>2023 Mar 04 &amp;ndash; [推薦] Function Programing 的基礎觀念
+Jan 08 &amp;ndash; [推薦]少用繼承，多用 composition
 Jan 04 &amp;ndash; 使用 python 模擬 laravel filesystem
 2022 Dec 25 &amp;ndash; [推薦] auth 沒你想像的複雜
 Dec 20 &amp;ndash; [推薦] Parse Don&#39;t Validate
 Dec 16 &amp;ndash; Setup FastAPI Debugger in VSCode With Docker
 Dec 16 &amp;ndash; Setup FastAPI Debugger in PyCharm With Docker
 Dec 03 &amp;ndash; If Web Development Is a Poetry
-Nov 22 &amp;ndash; [寓言故事] When to Use Mock
-Nov 18 &amp;ndash; [推薦]物件導向的 SOLID 原則</description>
+Nov 22 &amp;ndash; [寓言故事] When to Use Mock</description>
     </item>
     
     <item>

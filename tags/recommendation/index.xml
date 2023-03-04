@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sun, 25 Dec 2022 16:12:51 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Mar 2023 18:58:15 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦] Function Programing 的基礎觀念</title>
+      <link>http://shachiku.life/2023/03/function-programing-the-basics/</link>
+      <pubDate>Sat, 04 Mar 2023 18:58:15 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/03/function-programing-the-basics/</guid>
+      <description>少見的中文講解 FP 概念</description>
+    </item>
+    
     <item>
       <title>[推薦] auth 沒你想像的複雜</title>
       <link>http://shachiku.life/2022/12/what-is-auth/</link>

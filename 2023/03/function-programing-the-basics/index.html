@@ -4,23 +4,23 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="[推薦]少用繼承，多用 composition &middot; 社畜人生" />
+  <meta property="og:title" content="[推薦] Function Programing 的基礎觀念 &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2023/01/prefer-composition-over-inheritance/" />
+  <meta property="og:url" content="http://shachiku.life/2023/03/function-programing-the-basics/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2023-01-08T11:13:34&#43;08:00" />
+  <meta property="og:article:published_time" content="2023-03-04T18:58:15&#43;08:00" />
   
-  <meta property="og:article:tag" content="recommendations" />
+  <meta property="og:article:tag" content="recommendation" />
   
   
 
   <title>
-     [推薦]少用繼承，多用 composition &middot;  社畜人生
+     [推薦] Function Programing 的基礎觀念 &middot;  社畜人生
   </title>
   <link rel="alternative stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -50,8 +50,8 @@
 
 <body>
   
-    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
-      
+  <header class="global-header" style="background-image:url()">
+    
       <section class="header-text">
         <div class="header-desc">
           <h1><a href="http://shachiku.life/">社畜人生</a></h1>
@@ -101,7 +101,7 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">[推薦]少用繼承，多用 composition</h1>
+    <h1 class="text-primary">[推薦] Function Programing 的基礎觀念</h1>
   </header>
   <div class="delimiter"></div>
   
@@ -115,38 +115,15 @@
   
   <section>
     <h1 id="source">Source</h1>
-<p><a href="https://www.youtube.com/watch?v=hxGOiiR9ZKg">https://www.youtube.com/watch?v=hxGOiiR9ZKg</a></p>
+<p><a href="https://www.youtube.com/watch?v=qpOcRG3e9Q8">https://www.youtube.com/watch?v=qpOcRG3e9Q8</a> 24:22</p>
 <h1 id="summary">Summary</h1>
-<p>Inheritance&rsquo;s cost is expensive when changing requirement, and will need to write methods which your subclass doesn&rsquo;t needs. Use composition to write more usable code.</p>
-
-
-
-
-
-<table class="table table-bordered table-hover">
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:left">re-use</th>
-<th style="text-align:left">abstraction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">inheritance</td>
-<td style="text-align:left">extending</td>
-<td style="text-align:left">parent class</td>
-</tr>
-<tr>
-<td style="text-align:center">composition</td>
-<td style="text-align:left">using</td>
-<td style="text-align:left">interface</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>Unlike extending parent class, interfaces defines only the critical part of the contract, it&rsquo;s coupling the codes and is adaptable with new requirements.</p>
+<ol>
+<li>pure function 是可預測且容易測試—input 什麼 output 就會是什麼</li>
+<li>pure function no side effect–不會改到外部變數（output to screen, exception, db 存取等都算）</li>
+<li>Immutability 是指對 args 的不可變更性</li>
+<li>avoid loops(mutation) 因為 loop 通常是對變數進行修改或 output data</li>
+<li>declarative 的重點在於讓 function 成為一個 expression，而不是使用內建函數或拆小函數</li>
+</ol>
 
   </section>
   <div class="clearfix">
@@ -154,14 +131,14 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2023-1-8
+        2023-3-4
       </span>
     </div>
     
     <div class="pull-right">
       
       
-      <span class="post-tag"><a href="http://shachiku.life/tags/recommendations/">#recommendations</a></span>
+      <span class="post-tag"><a href="http://shachiku.life/tags/recommendation/">#recommendation</a></span>
       
       
     </div>
@@ -181,16 +158,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2023/01/laravel-like-filesystem-using-python/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2023/01/prefer-composition-over-inheritance/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2023/03/function-programing-the-basics/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       

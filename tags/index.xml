@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sun, 08 Jan 2023 11:13:34 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Mar 2023 18:58:15 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>recommendation</title>
+      <link>http://shachiku.life/tags/recommendation/</link>
+      <pubDate>Sat, 04 Mar 2023 18:58:15 +0800</pubDate>
+      
+      <guid>http://shachiku.life/tags/recommendation/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>recommendations</title>
       <link>http://shachiku.life/tags/recommendations/</link>
@@ -32,15 +41,6 @@
       <pubDate>Wed, 04 Jan 2023 13:47:17 +0800</pubDate>
       
       <guid>http://shachiku.life/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>recommendation</title>
-      <link>http://shachiku.life/tags/recommendation/</link>
-      <pubDate>Sun, 25 Dec 2022 16:12:51 +0800</pubDate>
-      
-      <guid>http://shachiku.life/tags/recommendation/</guid>
       <description></description>
     </item>
     

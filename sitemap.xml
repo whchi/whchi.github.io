@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://shachiku.life/2023/03/function-programing-the-basics/</loc>
+    <lastmod>2023-03-04T18:58:15+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2023-03-04T18:58:15+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/recommendation/</loc>
+    <lastmod>2023-03-04T18:58:15+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2023-03-04T18:58:15+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2023-03-04T18:58:15+08:00</lastmod>
+  </url><url>
     <loc>http://shachiku.life/2023/01/prefer-composition-over-inheritance/</loc>
     <lastmod>2023-01-08T11:13:34+08:00</lastmod>
   </url><url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2023-01-08T11:13:34+08:00</lastmod>
-  </url><url>
     <loc>http://shachiku.life/tags/recommendations/</loc>
-    <lastmod>2023-01-08T11:13:34+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2023-01-08T11:13:34+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
     <lastmod>2023-01-08T11:13:34+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/laravel/</loc>
@@ -27,9 +33,6 @@
     <lastmod>2023-01-04T13:47:17+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/12/what-is-auth/</loc>
-    <lastmod>2022-12-25T16:12:51+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/recommendation/</loc>
     <lastmod>2022-12-25T16:12:51+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2022/12/parse-dont-validate/</loc>

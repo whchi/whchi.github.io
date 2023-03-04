@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sun, 08 Jan 2023 11:13:34 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Mar 2023 18:58:15 +0800</lastBuildDate><atom:link href="http://shachiku.life/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦] Function Programing 的基礎觀念</title>
+      <link>http://shachiku.life/2023/03/function-programing-the-basics/</link>
+      <pubDate>Sat, 04 Mar 2023 18:58:15 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/03/function-programing-the-basics/</guid>
+      <description>少見的中文講解 FP 概念</description>
+    </item>
+    
     <item>
       <title>[推薦]少用繼承，多用 composition</title>
       <link>http://shachiku.life/2023/01/prefer-composition-over-inheritance/</link>
