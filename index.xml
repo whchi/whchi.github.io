@@ -7,9 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 04 Mar 2023 21:13:57 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Mar 2023 08:39:21 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>如何在沒有 mentor 的情況下自學成才</title>
+      <title>Disable sqlmodel foreign key constraint</title>
+      <link>http://shachiku.life/2023/03/disable-sqlmodel-foreign-key-constraint/</link>
+      <pubDate>Mon, 06 Mar 2023 08:39:21 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/03/disable-sqlmodel-foreign-key-constraint/</guid>
+      <description>When writing tests, you should follow the unit-of-work principle, which means separating data with each test. In Django, there is a method called refresh_from_db that can achieve this. However, in Flask or FastAPI, you need to implement it yourself. Here&amp;rsquo;s how to do it with SQLModel (a SQLAlchemy wrapper):
+conftest.py from sqlalchemy.orm import sessionmaker from sqlmodel import Session, SQLModel @pytest.fixture(autouse=True) def refresh_database(db: Session): SQLModel.metadata.create_all(engine) yield db.close() SQLModel.metadata.drop_all(engine) If your SQLModel ORM includes foreign keys, creating or dropping all of them will result in a foreign key constraint issue.</description>
+    </item>
+    
+    <item>
+      <title>[推薦] 如何在沒有 mentor 的情況下自學成才</title>
       <link>http://shachiku.life/2023/03/learning-without-a-mentor/</link>
       <pubDate>Sat, 04 Mar 2023 21:13:57 +0800</pubDate>
       
@@ -677,15 +687,15 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2023 Mar 04 &amp;ndash; 如何在沒有 mentor 的情況下自學成才
+      <description>2023 Mar 06 &amp;ndash; Disable sqlmodel foreign key constraint
+Mar 04 &amp;ndash; [推薦] 如何在沒有 mentor 的情況下自學成才
 Mar 04 &amp;ndash; [推薦] Function Programing 的基礎觀念
 Jan 08 &amp;ndash; [推薦]少用繼承，多用 composition
 Jan 04 &amp;ndash; 使用 python 模擬 laravel filesystem
 2022 Dec 25 &amp;ndash; [推薦] auth 沒你想像的複雜
 Dec 20 &amp;ndash; [推薦] Parse Don&#39;t Validate
 Dec 16 &amp;ndash; Setup FastAPI Debugger in VSCode With Docker
-Dec 16 &amp;ndash; Setup FastAPI Debugger in PyCharm With Docker
-Dec 03 &amp;ndash; If Web Development Is a Poetry</description>
+Dec 16 &amp;ndash; Setup FastAPI Debugger in PyCharm With Docker</description>
     </item>
     
     <item>
