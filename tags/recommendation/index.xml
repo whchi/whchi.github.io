@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 04 Mar 2023 21:13:57 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Mar 2023 21:31:16 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/recommendation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦] 程式設計師最不該做的事</title>
+      <link>http://shachiku.life/2023/03/things-you-should-never-do/</link>
+      <pubDate>Tue, 07 Mar 2023 21:31:16 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/03/things-you-should-never-do/</guid>
+      <description>Source https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/
+Summary 為何大部分的 programer 都喜歡重寫 code? 因為讀 code 遠比寫 code 難。 不要隨意重寫 code，因為你等於是丟掉過去所有人的知識之後再寫自己認為更好的—其實只是重頭踩一遍所有的問題，或是達成一件已經毫無經濟效益的事
+重構不是重寫，是每次的修改都會讓程式更加好懂</description>
+    </item>
+    
     <item>
       <title>[推薦] 如何在沒有 mentor 的情況下自學成才</title>
       <link>http://shachiku.life/2023/03/learning-without-a-mentor/</link>
