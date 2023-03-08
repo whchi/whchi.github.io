@@ -4,23 +4,23 @@
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-  <meta property="og:title" content="[推薦] 系統設計面試時的思考框架 &middot; 社畜人生" />
+  <meta property="og:title" content="[推薦] 程式設計師最不該做的事 &middot; 社畜人生" />
   
   <meta property="og:site_name" content="社畜人生" />
-  <meta property="og:url" content="http://shachiku.life/2023/03/framework-of-system-design-interview/" />
+  <meta property="og:url" content="http://shachiku.life/2023/03/things-programer-should-never-do/" />
   <meta name="description" content="雜談與紀錄" />
   
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2023-03-08T21:44:22&#43;08:00" />
+  <meta property="og:article:published_time" content="2023-03-07T21:31:16&#43;08:00" />
   
   <meta property="og:article:tag" content="recommendation" />
   
   
 
   <title>
-     [推薦] 系統設計面試時的思考框架 &middot;  社畜人生
+     [推薦] 程式設計師最不該做的事 &middot;  社畜人生
   </title>
   <link rel="alternative stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -101,7 +101,7 @@
 <article>
   
   <header class="article-title">
-    <h1 class="text-primary">[推薦] 系統設計面試時的思考框架</h1>
+    <h1 class="text-primary">[推薦] 程式設計師最不該做的事</h1>
   </header>
   <div class="delimiter"></div>
   
@@ -115,37 +115,11 @@
   
   <section>
     <h1 id="source">Source</h1>
-<p><a href="https://www.youtube.com/watch?v=i7twT3x5yv8">https://www.youtube.com/watch?v=i7twT3x5yv8</a></p>
+<p><a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/">https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/</a></p>
 <h1 id="summary">Summary</h1>
-<p>適用於大概 60 min 的面試</p>
-<ol>
-<li>理解問題（5 min）
-<ol>
-<li>who is the user? what core feature to build?</li>
-<li>釐清 non-functional requirement.(安全性、可用性&hellip;)</li>
-</ol>
-</li>
-<li>進行高度抽象的設計並取得認同（20 min）
-<ol>
-<li>functional-related RESTful API interfaces，注意 API 的回應資料</li>
-<li>系統設計示意圖（user-&gt;service-&gt;database），重點在於畫出來的每個服務都是 e2e</li>
-<li>不要太快進入細節（db scaling, concurrency, failure scenarios）</li>
-<li>data model design: <strong>the key part of non-functional requirements</strong>
-<ol>
-<li>data access pattern, R/W ratio</li>
-<li>what db to choose? how to make indexes?</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>深入設計細節（25 min）
-<ol>
-<li>對 non-functional requirement 更為細節的討論</li>
-<li>闡明問題-&gt;提出 2 種解法-&gt;討論解法的 tradeoffs-&gt;選定決定解法 無限 loop</li>
-</ol>
-</li>
-<li>wrap up（5 min）</li>
-</ol>
+<p>為何大部分的 programer 都喜歡重寫 code? 因為讀 code 遠比寫 code 難。
+不要隨意重寫 code，因為你等於是丟掉過去所有人的知識之後再寫自己認為更好的—其實只是重頭踩一遍所有的問題，或是達成一件已經毫無經濟效益的事</p>
+<p>重構不是重寫，是每次的修改都會讓程式更加好懂</p>
 
   </section>
   <div class="clearfix">
@@ -153,7 +127,7 @@
     <div class="post-date pull-left">
       <span class="small">
         發佈時間
-        2023-3-8
+        2023-3-7
       </span>
     </div>
     
@@ -180,16 +154,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2023/03/things-programer-should-never-do/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2023/03/disable-sqlmodel-foreign-key-constraint/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2023/03/framework-of-system-design-interview/">
         <div>
-          <span aria-hidden="true">&#10006;</span>
+          <span aria-hidden="true">&rarr;</span>
         </div>
       </a>
       
