@@ -16,7 +16,7 @@
       <guid>http://shachiku.life/2023/03/framework-of-system-design-interview/</guid>
       <description>Source https://www.youtube.com/watch?v=i7twT3x5yv8
 Summary 適用於大概 60 min 的面試
-理解問題（5 min） 理解需求 who is the user? what feature to build? 釐清 non-functional requirement.(安全性、可用性&amp;hellip;) 進行高度抽象的設計並取得認同（20 min） functional-related RESTful API interfaces，注意 API 的回應資料 系統設計示意圖（user-&amp;gt;service-&amp;gt;database），重點在於畫出來的每個服務都是 e2e 不要太快進入細節（db scaling, concurrency, failure scenarios） data model design: the key part of non-functional requirements data access pattern, R/W ratio what db to choose? how to make indexes? 深入設計細節（25 min） 對 non-functional requirement 更為細節的討論 闡明問題-&amp;gt;提出 2 種解法-&amp;gt;討論解法的 tradeoffs-&amp;gt;選定決定解法 無限 loop wrap up（5 min） </description>
+理解問題（5 min） who is the user? what core feature to build? 釐清 non-functional requirement.(安全性、可用性&amp;hellip;) 進行高度抽象的設計並取得認同（20 min） functional-related RESTful API interfaces，注意 API 的回應資料 系統設計示意圖（user-&amp;gt;service-&amp;gt;database），重點在於畫出來的每個服務都是 e2e 不要太快進入細節（db scaling, concurrency, failure scenarios） data model design: the key part of non-functional requirements data access pattern, R/W ratio what db to choose? how to make indexes? 深入設計細節（25 min） 對 non-functional requirement 更為細節的討論 闡明問題-&amp;gt;提出 2 種解法-&amp;gt;討論解法的 tradeoffs-&amp;gt;選定決定解法 無限 loop wrap up（5 min） </description>
     </item>
     
     <item>
