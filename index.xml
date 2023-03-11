@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Wed, 08 Mar 2023 21:44:22 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Mar 2023 11:35:55 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何限制 python json api 格式</title>
+      <link>http://shachiku.life/2023/03/use-python-typing-to-restrict-json-api-format/</link>
+      <pubDate>Sat, 11 Mar 2023 11:35:55 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/03/use-python-typing-to-restrict-json-api-format/</guid>
+      <description>use pydantic, the world is better</description>
+    </item>
+    
     <item>
       <title>[推薦] 系統設計面試時的思考框架</title>
       <link>http://shachiku.life/2023/03/framework-of-system-design-interview/</link>
@@ -707,7 +716,8 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2023 Mar 08 &amp;ndash; [推薦] 系統設計面試時的思考框架
+      <description>2023 Mar 11 &amp;ndash; 如何限制 python json api 格式
+Mar 08 &amp;ndash; [推薦] 系統設計面試時的思考框架
 Mar 07 &amp;ndash; [推薦] 程式設計師最不該做的事
 Mar 06 &amp;ndash; Disable sqlmodel foreign key constraint
 Mar 04 &amp;ndash; [推薦] 如何在沒有 mentor 的情況下自學成才
