@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Thu, 16 Mar 2023 00:28:34 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Mar 2023 23:28:49 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦] 正向代理 vs 反向代理</title>
+      <link>http://shachiku.life/2023/03/forward-proxy-vs-reverse-proxy/</link>
+      <pubDate>Fri, 17 Mar 2023 23:28:49 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/03/forward-proxy-vs-reverse-proxy/</guid>
+      <description>後端的前面就是前端，前端的後面就是後端</description>
+    </item>
+    
     <item>
       <title>如何換 macbook 的電池</title>
       <link>http://shachiku.life/2023/03/how-to-change-macbook-battery/</link>
@@ -725,7 +734,8 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2023 Mar 16 &amp;ndash; 如何換 macbook 的電池
+      <description>2023 Mar 17 &amp;ndash; [推薦] 正向代理 vs 反向代理
+Mar 16 &amp;ndash; 如何換 macbook 的電池
 Mar 11 &amp;ndash; 如何限制 python json api 格式
 Mar 08 &amp;ndash; [推薦] 系統設計面試時的思考框架
 Mar 07 &amp;ndash; [推薦] 程式設計師最不該做的事
@@ -734,8 +744,7 @@ Mar 04 &amp;ndash; [推薦] 如何在沒有 mentor 的情況下自學成才
 Mar 04 &amp;ndash; [推薦] Function Programing 的基礎觀念
 Jan 08 &amp;ndash; [推薦] 少用繼承，多用 composition
 Jan 04 &amp;ndash; 使用 python 模擬 laravel filesystem
-2022 Dec 25 &amp;ndash; [推薦] auth 沒你想像的複雜
-Dec 20 &amp;ndash; [推薦] Parse Don&#39;t Validate</description>
+2022 Dec 25 &amp;ndash; [推薦] auth 沒你想像的複雜</description>
     </item>
     
     <item>
