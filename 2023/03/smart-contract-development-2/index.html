@@ -13,7 +13,7 @@
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:article:published_time" content="2023-03-18T15:21:47&#43;08:00" />
+  <meta property="og:article:published_time" content="2023-03-18T16:21:47&#43;08:00" />
   
   <meta property="og:article:tag" content="solidity" />
   
@@ -54,8 +54,8 @@
 
 <body>
   
-    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
-      
+  <header class="global-header" style="background-image:url(https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1500&amp;q=20)">
+    
       <section class="header-text">
         <div class="header-desc">
           <h1><a href="http://shachiku.life/">社畜人生</a></h1>
@@ -111,7 +111,7 @@
   
   
   <figure class="preview">
-      <img src="">
+      <img src="https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1280&amp;q=60">
       
       <figcaption></figcaption>
       
@@ -121,342 +121,175 @@
     <p>這裡整理之前上課的筆記，都是入門級別一共 4 章，分別如下：</p>
 <ul>
 <li><a href="/2023/03/smart-contract-development-1">專有名詞（Terms）</a></li>
-<li>資料型別與控制流程（Data types &amp; Control flow）</li>
-<li>functions</li>
-<li>實踐 ERC 20 合約</li>
+<li>solidity basics（Data types &amp; Control flow）</li>
+<li><a href="/2023/03/smart-contract-development-3">functions</a></li>
+<li><a href="/2023/03/smart-contract-development-4">實踐 ERC 20</a></li>
 </ul>
-<h1 id="開發相關名詞">開發相關名詞</h1>
-<h2 id="概覽">概覽</h2>
-
-
-
-
-
-<table class="table table-bordered table-hover">
-<thead>
-<tr>
-<th style="text-align:left">原文</th>
-<th style="text-align:left">解釋</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Ethereum</td>
-<td style="text-align:left">可縮寫為 eth, Eth，一個 Layer 1 的區塊鏈實作項目，可以類比為一個全球通用的公開資料庫</td>
-</tr>
-<tr>
-<td style="text-align:left">Eth node</td>
-<td style="text-align:left">參與 Ethereum chain 的儲存節點</td>
-</tr>
-<tr>
-<td style="text-align:left">EVM</td>
-<td style="text-align:left">Ethereum Virtual Machine 的縮寫，執行 Smart Contract 的 runtime environment, it runs application of bytecode on consensus</td>
-</tr>
-<tr>
-<td style="text-align:left">smart contract</td>
-<td style="text-align:left">智能合約，程式本人，對鏈只有兩種操作：狀態修改（<strong>transaction</strong>）或是取得資料（<strong>call</strong>）</td>
-</tr>
-</tbody>
-</table>
-
-
-<h2 id="帳戶account">帳戶（account）</h2>
-
-
-
-
-
-<table class="table table-bordered table-hover">
-<thead>
-<tr>
-<th style="text-align:left">原文</th>
-<th style="text-align:left">解釋</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Externally Owned Account</td>
-<td style="text-align:left">又稱 EOA，可以想像成個人的戶頭</td>
-</tr>
-<tr>
-<td style="text-align:left">Contract Account</td>
-<td style="text-align:left">又稱 CA，執行智能合約的帳戶細節參考</td>
-</tr>
-<tr>
-<td style="text-align:left">nonce</td>
-<td style="text-align:left">由指定帳戶送出的 tx counter(確保同個 tx 不會發生 double spending)</td>
-</tr>
-<tr>
-<td style="text-align:left">blance</td>
-<td style="text-align:left">帳戶餘額，單位是 wei</td>
-</tr>
-<tr>
-<td style="text-align:left">address</td>
-<td style="text-align:left">帳戶位置，為一串 hash，每條鏈有不同的算法，ETH 使用的是 keccak-256</td>
-</tr>
-<tr>
-<td style="text-align:left">Key pair</td>
-<td style="text-align:left">非對稱加密的 key，EOA 才有，private key 用來 sign tx。在鏈上持有的金額實際上不是「持有」而是透過而是透過 private key 去解密出放在以太鏈上的 fund</td>
-</tr>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">the immutable EVM bytecode, CA 才有</td>
-</tr>
-<tr>
-<td style="text-align:left">storage</td>
-<td style="text-align:left">empty by default, CA 才有</td>
-</tr>
-<tr>
-<td style="text-align:left">wallet</td>
-<td style="text-align:left">集中管理帳戶的工具，有些 CeFi 會出自己的錢包，最常聽到的是 MetaMask （跨練且為個人持有）</td>
-</tr>
-</tbody>
-</table>
-
-
-<h2 id="手續費gas">手續費（gas）</h2>
-<p>執行「狀態修改」的操作時需要 gas
-
-
-
-
-
-<table class="table table-bordered table-hover">
-<thead>
-<tr>
-<th style="text-align:left">原文</th>
-<th style="text-align:left">解釋</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">transaction</td>
-<td style="text-align:left">又可簡寫為 tx，每個 block 包含多筆 tx，同時也有 tx 數量上限，其依據 gasPrice 與 gasLimit 動態調整</td>
-</tr>
-<tr>
-<td style="text-align:left">ETH</td>
-<td style="text-align:left">Ether 的縮寫，以太幣本人，用來繳納交易手續費，1 ETH === 10^18 wei</td>
-</tr>
-<tr>
-<td style="text-align:left">gas</td>
-<td style="text-align:left">交易手續費的通稱，單位是 gwei，1 gwei === 10^-9 wei，一個 block 的所有 gas 會被成功算出該 block 的 miner 取得</td>
-</tr>
-<tr>
-<td style="text-align:left">Wei</td>
-<td style="text-align:left">以太幣的最小單位，1 wei === 10^-18</td>
-</tr>
-<tr>
-<td style="text-align:left">gasPrice</td>
-<td style="text-align:left">交易發起者想要支付的 gas 數量以確保他發起的 tx 能被 mint，越高代表發起的 tx 越快被 mint</td>
-</tr>
-<tr>
-<td style="text-align:left">gasLimit</td>
-<td style="text-align:left">每個 tx 能消耗的最大 gas 數，目的是避免對運算的 DoS 攻擊，預設為 21,000</td>
-</tr>
-<tr>
-<td style="text-align:left">OPCODE</td>
-<td style="text-align:left">被 EVM 執行的運算操作, 每次操作都需要 gas，eth 官方有每個 OPCODE 對應的 gas</td>
-</tr>
-</tbody>
-</table>
-
-</p>
-<h2 id="eth-explorerhttpsetherscanio帳本查詢工具"><a href="https://etherscan.io/">eth explorer</a>(帳本查詢工具)</h2>
-
-
-
-
-
-<table class="table table-bordered table-hover">
-<thead>
-<tr>
-<th style="text-align:left">原文</th>
-<th style="text-align:left">解釋</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">block height</td>
-<td style="text-align:left">該 chain 的長度</td>
-</tr>
-<tr>
-<td style="text-align:left">gas used</td>
-<td style="text-align:left">total gas consumed in block(percentage of gas limit)</td>
-</tr>
-<tr>
-<td style="text-align:left">nonce</td>
-<td style="text-align:left">puzzles found by the miner</td>
-</tr>
-</tbody>
-</table>
-
-
-<h2 id="transaction-fields">transaction fields</h2>
-
-
-
-
-
-<table class="table table-bordered table-hover">
-<thead>
-<tr>
-<th style="text-align:left">原文</th>
-<th style="text-align:left">解釋</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">data</td>
-<td style="text-align:left">deploy contract 行為會顯示 bytecode，call function 行為會顯示 function args</td>
-</tr>
-<tr>
-<td style="text-align:left">value</td>
-<td style="text-align:left">如果是 tx 則顯示 eth in wei，如果為 0 表示此次呼叫為 deploy contract 或是 call</td>
-</tr>
-<tr>
-<td style="text-align:left">nonce</td>
-<td style="text-align:left">puzzles found by the miner</td>
-</tr>
-<tr>
-<td style="text-align:left">gasLimit</td>
-<td style="text-align:left">如果該交易消耗的 gas 小於此值，剩餘會返回給 sender</td>
-</tr>
-<tr>
-<td style="text-align:left">hash</td>
-<td style="text-align:left">又稱作 id, unique id to trace</td>
-</tr>
-</tbody>
-</table>
-
-
-<h1 id="其他名詞">其他名詞</h1>
-
-
-
-
-
-<table class="table table-bordered table-hover">
-<thead>
-<tr>
-<th style="text-align:left">原文</th>
-<th style="text-align:left">解釋</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Consensus</td>
-<td style="text-align:left">共識機制，決定鏈當下狀態的規則，有 PoW, PoS, PoA 三種機制</td>
-</tr>
-<tr>
-<td style="text-align:left">DeFi</td>
-<td style="text-align:left">去中心化交易所，透過個人錢包進行交易</td>
-</tr>
-<tr>
-<td style="text-align:left">CeFi</td>
-<td style="text-align:left">中心化交易所，就是虛擬貨幣銀行，同常會代管你的錢包</td>
-</tr>
-<tr>
-<td style="text-align:left">HD wallet</td>
-<td style="text-align:left">具有 seed phrase 的 wallet</td>
-</tr>
-<tr>
-<td style="text-align:left">seed phrase</td>
-<td style="text-align:left">助記詞，由隨機的單詞組成的密碼，用來加密錢包使用</td>
-</tr>
-<tr>
-<td style="text-align:left">miner</td>
-<td style="text-align:left">礦工，算 block 的節點，PoW 時代的稱呼</td>
-</tr>
-<tr>
-<td style="text-align:left">minter</td>
-<td style="text-align:left">礦工，PoS 時代的稱呼</td>
-</tr>
-<tr>
-<td style="text-align:left">sealer</td>
-<td style="text-align:left">礦工，又稱 block signer，PoA 時代的稱呼</td>
-</tr>
-</tbody>
-</table>
-
-
-<h2 id="補充說明">補充說明</h2>
-<ul>
-<li>EOA 產生 tx，CA 產生 message</li>
-<li>交易失敗表示消耗完所有的 gas 後交易失敗</li>
-</ul>
-<h3 id="address">Address</h3>
-<ul>
-<li>EOA address 透過 keccak-256 雜湊 public key 的最橫 20 bytes，使用 hex format 表示，最前面再加上 &ldquo;0x&rdquo;</li>
-<li>CA address 由 contract creator 去計算，包含 nonce</li>
-</ul>
-<h3 id="transaction">transaction</h3>
-<ul>
-<li>交易生命週期
+<h1 id="storage-detail">storage detail</h1>
+<p>在 EVM 中有三個地方儲存變數</p>
 <ol>
-<li>sender 初始化 tx 物件</li>
-<li>sender 使用 private key 簽署 tx</li>
-<li>tx 被廣播給的所有的 client 並回傳 tx hash</li>
-<li>tx 被加入到 tx pool 裡面等待被礦工驗證（挖礦）。礦工節點接收 tx，pool 是許多礦工與非礦工節點聚合的地方</li>
-<li>礦工透過共識機制進行解謎，最先解出謎題的礦工會建立一個 block，每個 block 裡面有多少個 tx 取決於該 block 定義的 gasLimit</li>
-<li>解出謎題的礦工把 block 廣播給鍊上的所有節點，所有節點會執行該 tx 表示有收到，但只有解出謎題的礦工能取得該 block 的 獎勵（block reward + txfee - gas）</li>
+<li>storage
+<ol>
+<li>holds state variables</li>
+<li>persistent and expensive(cost gas)</li>
+<li>like HDD</li>
 </ol>
 </li>
-<li>執行智能合約定義的 function 有兩種方式
+<li>memory
+<ol>
+<li>local variables with <code>memory</code> keyword</li>
+<li>like RAM</li>
+<li>free to be used</li>
+<li>holds function args</li>
+</ol>
+</li>
+<li>stack
+<ol>
+<li>hold local variables inside functions if they are not reference types(e.g: int)</li>
+<li>free to be used</li>
+<li>reference types: <code>string</code>, <code>array</code>, <code>struct</code>, <code>mapping</code></li>
+</ol>
+</li>
+</ol>
+<h1 id="variables">variables</h1>
+<p>solidity 的變數大致上分以下兩種</p>
+<ol>
+<li>state(global) variable: declare at contract level
+<ol>
+<li>store in contract storage</li>
+<li>can be constant</li>
+<li>cost gas to declare</li>
+<li>set by init, construct or setter</li>
+</ol>
+</li>
+<li>local variable: declare at function level
+<ol>
+<li>can allocate at runtime(use <code>memory</code> keyword and in <code>array</code> or <code>struct</code> data types)</li>
+<li><code>string</code> default saves in storage, use <code>memory</code> if you want <code>string</code> be local variable</li>
+</ol>
+</li>
+</ol>
+<h1 id="variable-types">variable types</h1>
+<h2 id="boolean">boolean</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> myBoolean <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span></code></pre></div><h2 id="int-and-uint">int and uint</h2>
+<p>有 uint8,uint16,uint32&hellip;uint256，如果都不指定預設是 uint256</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> noAssign; <span style="color:#75715e">// int256 noAssign = 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint256</span> myUnsignedInt <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int256</span> mySignedInt <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">42</span>;
+</span></span></code></pre></div><h2 id="address">address</h2>
+<p>20-byte 的 eth address</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">address</span> myAddress <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1234567890123456789012345678901234567890</span>;
+</span></span></code></pre></div><h2 id="bytes">bytes</h2>
+<p>array of byte，alias of byte[]</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">bytes</span> myBytes <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1234567890abcdef&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">byte</span>[] sameMyBytes <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1234567890abcdef&#34;</span>;
+</span></span></code></pre></div><h2 id="string">string</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">string</span> myString <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, World!&#34;</span>;
+</span></span></code></pre></div><h2 id="enum">enum</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">State</span> {
+</span></span><span style="display:flex;"><span>    Open,
+</span></span><span style="display:flex;"><span>    Closed,
+</span></span><span style="display:flex;"><span>    Unknown
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>State xxx <span style="color:#f92672">=</span> State.Open;
+</span></span></code></pre></div><h2 id="struct">struct</h2>
+<p>自定義的 key-value 結構，通常用來定義單數的物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Person</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">string</span> name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint</span> age;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Person myStruct;
+</span></span><span style="display:flex;"><span>myStruct.name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Jon Doe&#34;</span>;
+</span></span><span style="display:flex;"><span>myStruct.age <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// or
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Person myStruct <span style="color:#f92672">=</span> Person(<span style="color:#e6db74">&#34;Jon Doe&#34;</span>, <span style="color:#ae81ff">18</span>);
+</span></span></code></pre></div><h2 id="mapping">mapping</h2>
+<p>自定義的 key-value 結構，通常用來定義複數的物件</p>
 <ul>
-<li>call: 純粹的 read，no broadcast or publish to the blockchain，不需要 gas</li>
-<li>transaction: 執行 write 行為，修改 state，需要 gas，will broadcast to the blockchain</li>
+<li>not iterable(key is hash and not saved into mapping)</li>
+<li>key 不可以是 <code>mapping</code>, <code>array</code>, <code>enum</code> or <code>struct</code></li>
+<li>如果對不存在的 key 進行存取的話，會取得 value 變數的預設值</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">mapping</span> (<span style="color:#66d9ef">uint256</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">string</span>) myMapping;
+</span></span><span style="display:flex;"><span>myMapping[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello&#34;</span>;
+</span></span><span style="display:flex;"><span>myMapping[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;World&#34;</span>;
+</span></span></code></pre></div><h2 id="array">array</h2>
+<ul>
+<li>fixed-size(compile time)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">uint</span>[<span style="color:#ae81ff">3</span>] numbers <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>];
+</span></span></code></pre></div><ul>
+<li>dynamic-size(runtime)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">uint</span>[] numbers;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">byte</span>[] byteNums;
+</span></span></code></pre></div><h1 id="能見度visibility">能見度（visibility）</h1>
+<p>變數與 function 都有能見度，宣告在 contract level，共有 4 個層級</p>
+<ul>
+<li>public
+<ul>
+<li>可在同個 contract 中被呼叫或是被其他 account 呼叫</li>
+<li>variable 預設會建立對應的 getter</li>
 </ul>
 </li>
-<li>transaction vs call
-
-
-
-
-
-<table class="table table-bordered table-hover">
-<thead>
-<tr>
-<th style="text-align:left">tx</th>
-<th style="text-align:left">call</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">write</td>
-<td style="text-align:left">read</td>
-</tr>
-<tr>
-<td style="text-align:left">修改 blockchain 的狀態</td>
-<td style="text-align:left">不會修改</td>
-</tr>
-<tr>
-<td style="text-align:left">會有 hash</td>
-<td style="text-align:left">不會</td>
-</tr>
-<tr>
-<td style="text-align:left">會廣播</td>
-<td style="text-align:left">不會</td>
-</tr>
-<tr>
-<td style="text-align:left">需要 gas</td>
-<td style="text-align:left">不需要</td>
-</tr>
-<tr>
-<td style="text-align:left">時間較久（要被 mint）</td>
-<td style="text-align:left">時間很快</td>
-</tr>
-<tr>
-<td style="text-align:left">return tx hash</td>
-<td style="text-align:left">return value</td>
-</tr>
-</tbody>
-</table>
-
+<li>private
+<ul>
+<li>internal 的子集</li>
+<li>state variable 的預設能見度</li>
+<li>只活在該 contract 中</li>
+</ul>
 </li>
+<li>internal
+<ul>
+<li>有點類似 protected, 活在 contract 本身與繼承的 contract</li>
+</ul>
+</li>
+<li>external
+<ul>
+<li>可視為 contract 的 interface，只能被其他 contract 或是 EOA 呼叫</li>
+<li>not available for state variables</li>
+</ul>
+</li>
+</ul>
+<p>實際撰寫時的語法如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#75715e">// SPDX-License-Identifier: GPL-3.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">8</span>.<span style="color:#ae81ff">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">contract</span> <span style="color:#a6e22e">MyContract</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// &lt;variable type&gt; &lt;visibility&gt; &lt;variable name&gt;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">uint</span> <span style="color:#66d9ef">public</span> myNum;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// function &lt;function name&gt;(&lt;variable type&gt; &lt;variable name&gt;) &lt;visibility&gt; {}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">addNum</span>(<span style="color:#66d9ef">uint</span> _myNum) <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>        myNum <span style="color:#f92672">+=</span> _myNum;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="global-variable">global variable</h1>
+<p>預設的全域變數，比較常用的有</p>
+<ul>
+<li>msg: 如專有名詞那裡提到，CA 會產生 message，只的就是這個 msg
+<ul>
+<li>msg.sender: account address of tx maker</li>
+<li>msg.value: eth value (in wei) sent to this contract</li>
+<li>msg.gas: remaining gas(will be replaced by gasleft())</li>
+<li>msg.data: data field from tx or called this function&rsquo;s data</li>
+</ul>
+</li>
+<li>gasleft(): remain gas of this transaction, can calculate a function&rsquo;s gas</li>
+<li>this: the current contract, e.g: address(this).balance =&gt; this contract&rsquo;s balance</li>
+<li>block: the block itself
+<ul>
+<li>block.timestmap: alias of now, unix epoch</li>
+</ul>
+</li>
+<li>tx.gasprice: gas price of the transaction</li>
 </ul>
 <h1 id="references">references</h1>
 <ul>
-<li><a href="https://ethereum.org/en/developers/docs/evm/opcodes/">eth 官方 OPCODE gas 對應表</a></li>
+<li><a href="https://docs.soliditylang.org/en/v0.8.17/units-and-global-variables.html">solidity global variables</a></li>
 </ul>
 
   </section>
@@ -500,16 +333,16 @@
     <div class="delimiter"></div>
     <div class="pager-container">
       
-      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2023/03/forward-proxy-vs-reverse-proxy/">
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2023/03/smart-contract-development-1/">
         <div>
           <span aria-hidden="true">&larr;</span>
         </div>
       </a>
       
       
-      <a class="btn btn-primary btn-newer-posts" href="http://shachiku.life/2023/03/smart-contract-development-1/">
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
         <div>
-          <span aria-hidden="true">&rarr;</span>
+          <span aria-hidden="true">&#10006;</span>
         </div>
       </a>
       
