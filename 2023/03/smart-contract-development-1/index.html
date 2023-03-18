@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="智能合約開發學習—專有名詞 &middot; 社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2023/03/smart-contract-development-1/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2023-03-18T15:21:47&#43;08:00" />
+  
+  <meta property="og:article:tag" content="solidity" />
+  
+  <meta property="og:article:tag" content="blockchain" />
+  
+  <meta property="og:article:tag" content="eth" />
+  
+  
+
+  <title>
+     智能合約開發學習—專有名詞 &middot;  社畜人生
+  </title>
+  <link rel="alternative stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+    <header class="global-header" style="background-image:url(http://shachiku.life/images/background.jpg)">
+      
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h2 class="tag-line">
+            雜談與紀錄
+          </h2>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/archives">
+            archives
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  
+  <header class="article-title">
+    <h1 class="text-primary">智能合約開發學習—專有名詞</h1>
+  </header>
+  <div class="delimiter"></div>
+  
+  
+  <figure class="preview">
+      <img src="">
+      
+      <figcaption></figcaption>
+      
+  </figure>
+  
+  <section>
+    <p>這裡整理之前上課的筆記，都是入門級別一共 4 章，分別如下：</p>
+<ol>
+<li><strong>專有名詞（Terms）</strong></li>
+<li>資料型別與控制流程（Data types &amp; Control flow）</li>
+<li>functions</li>
+<li>實踐 ERC 20 合約</li>
+</ol>
+<h1 id="開發相關名詞">開發相關名詞</h1>
+<h2 id="概覽">概覽</h2>
+
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:left">原文</th>
+<th style="text-align:left">解釋</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Ethereum</td>
+<td style="text-align:left">可縮寫為 eth, Eth，一個 Layer 1 的區塊鏈實作項目，可以類比為一個全球通用的公開資料庫</td>
+</tr>
+<tr>
+<td style="text-align:left">Eth node</td>
+<td style="text-align:left">參與 Ethereum chain 的儲存節點</td>
+</tr>
+<tr>
+<td style="text-align:left">EVM</td>
+<td style="text-align:left">Ethereum Virtual Machine 的縮寫，執行 Smart Contract 的 runtime environment, it runs application of bytecode on consensus</td>
+</tr>
+<tr>
+<td style="text-align:left">smart contract</td>
+<td style="text-align:left">智能合約，程式本人，對鏈只有兩種操作：狀態修改（<strong>transaction</strong>）或是取得資料（<strong>call</strong>）</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="帳戶account">帳戶（account）</h2>
+
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:left">原文</th>
+<th style="text-align:left">解釋</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Externally Owned Account</td>
+<td style="text-align:left">又稱 EOA，可以想像成個人的戶頭</td>
+</tr>
+<tr>
+<td style="text-align:left">Contract Account</td>
+<td style="text-align:left">又稱 CA，執行智能合約的帳戶細節參考</td>
+</tr>
+<tr>
+<td style="text-align:left">nonce</td>
+<td style="text-align:left">由指定帳戶送出的 tx counter(確保同個 tx 不會發生 double spending)</td>
+</tr>
+<tr>
+<td style="text-align:left">blance</td>
+<td style="text-align:left">帳戶餘額，單位是 wei</td>
+</tr>
+<tr>
+<td style="text-align:left">address</td>
+<td style="text-align:left">帳戶位置，為一串 hash，每條鏈有不同的算法，ETH 使用的是 keccak-256</td>
+</tr>
+<tr>
+<td style="text-align:left">Key pair</td>
+<td style="text-align:left">非對稱加密的 key，EOA 才有，private key 用來 sign tx。在鏈上持有的金額實際上不是「持有」而是透過而是透過 private key 去解密出放在以太鏈上的 fund</td>
+</tr>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">the immutable EVM bytecode, CA 才有</td>
+</tr>
+<tr>
+<td style="text-align:left">storage</td>
+<td style="text-align:left">empty by default, CA 才有</td>
+</tr>
+<tr>
+<td style="text-align:left">wallet</td>
+<td style="text-align:left">集中管理帳戶的工具，有些 CeFi 會出自己的錢包，最常聽到的是 MetaMask （跨練且為個人持有）</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="手續費gas">手續費（gas）</h2>
+<p>執行「狀態修改」的操作時需要 gas
+
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:left">原文</th>
+<th style="text-align:left">解釋</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">transaction</td>
+<td style="text-align:left">又可簡寫為 tx，每個 block 包含多筆 tx，同時也有 tx 數量上限，其依據 gasPrice 與 gasLimit 動態調整</td>
+</tr>
+<tr>
+<td style="text-align:left">ETH</td>
+<td style="text-align:left">Ether 的縮寫，以太幣本人，用來繳納交易手續費，1 ETH === 10^18 wei</td>
+</tr>
+<tr>
+<td style="text-align:left">gas</td>
+<td style="text-align:left">交易手續費的通稱，單位是 gwei，1 gwei === 10^-9 wei，一個 block 的所有 gas 會被成功算出該 block 的 miner 取得</td>
+</tr>
+<tr>
+<td style="text-align:left">Wei</td>
+<td style="text-align:left">以太幣的最小單位，1 wei === 10^-18</td>
+</tr>
+<tr>
+<td style="text-align:left">gasPrice</td>
+<td style="text-align:left">交易發起者想要支付的 gas 數量以確保他發起的 tx 能被 mint，越高代表發起的 tx 越快被 mint</td>
+</tr>
+<tr>
+<td style="text-align:left">gasLimit</td>
+<td style="text-align:left">每個 tx 能消耗的最大 gas 數，目的是避免對運算的 DoS 攻擊，預設為 21,000</td>
+</tr>
+<tr>
+<td style="text-align:left">OPCODE</td>
+<td style="text-align:left">被 EVM 執行的運算操作, 每次操作都需要 gas，eth 官方有每個 OPCODE 對應的 gas</td>
+</tr>
+</tbody>
+</table>
+
+</p>
+<h2 id="eth-explorerhttpsetherscanio帳本查詢工具"><a href="https://etherscan.io/">eth explorer</a>(帳本查詢工具)</h2>
+
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:left">原文</th>
+<th style="text-align:left">解釋</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">block height</td>
+<td style="text-align:left">該 chain 的長度</td>
+</tr>
+<tr>
+<td style="text-align:left">gas used</td>
+<td style="text-align:left">total gas consumed in block(percentage of gas limit)</td>
+</tr>
+<tr>
+<td style="text-align:left">nonce</td>
+<td style="text-align:left">puzzles found by the miner</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="transaction-fields">transaction fields</h2>
+
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:left">原文</th>
+<th style="text-align:left">解釋</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">deploy contract 行為會顯示 bytecode，call function 行為會顯示 function args</td>
+</tr>
+<tr>
+<td style="text-align:left">value</td>
+<td style="text-align:left">如果是 tx 則顯示 eth in wei，如果為 0 表示此次呼叫為 deploy contract 或是 call</td>
+</tr>
+<tr>
+<td style="text-align:left">nonce</td>
+<td style="text-align:left">puzzles found by the miner</td>
+</tr>
+<tr>
+<td style="text-align:left">gasLimit</td>
+<td style="text-align:left">如果該交易消耗的 gas 小於此值，剩餘會返回給 sender</td>
+</tr>
+<tr>
+<td style="text-align:left">hash</td>
+<td style="text-align:left">又稱作 id, unique id to trace</td>
+</tr>
+</tbody>
+</table>
+
+
+<h1 id="其他名詞">其他名詞</h1>
+
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:left">原文</th>
+<th style="text-align:left">解釋</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Consensus</td>
+<td style="text-align:left">共識機制，決定鏈當下狀態的規則，有 PoW, PoS, PoA 三種機制</td>
+</tr>
+<tr>
+<td style="text-align:left">DeFi</td>
+<td style="text-align:left">去中心化交易所，透過個人錢包進行交易</td>
+</tr>
+<tr>
+<td style="text-align:left">CeFi</td>
+<td style="text-align:left">中心化交易所，就是虛擬貨幣銀行，同常會代管你的錢包</td>
+</tr>
+<tr>
+<td style="text-align:left">HD wallet</td>
+<td style="text-align:left">具有 seed phrase 的 wallet</td>
+</tr>
+<tr>
+<td style="text-align:left">seed phrase</td>
+<td style="text-align:left">助記詞，由隨機的單詞組成的密碼，用來加密錢包使用</td>
+</tr>
+<tr>
+<td style="text-align:left">miner</td>
+<td style="text-align:left">礦工，算 block 的節點，PoW 時代的稱呼</td>
+</tr>
+<tr>
+<td style="text-align:left">minter</td>
+<td style="text-align:left">礦工，PoS 時代的稱呼</td>
+</tr>
+<tr>
+<td style="text-align:left">sealer</td>
+<td style="text-align:left">礦工，又稱 block signer，PoA 時代的稱呼</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="補充說明">補充說明</h2>
+<ul>
+<li>EOA 產生 tx，CA 產生 message</li>
+<li>交易失敗表示消耗完所有的 gas 後交易失敗</li>
+</ul>
+<h3 id="address">Address</h3>
+<ul>
+<li>EOA address 透過 keccak-256 雜湊 public key 的最橫 20 bytes，使用 hex format 表示，最前面再加上 &ldquo;0x&rdquo;</li>
+<li>CA address 由 contract creator 去計算，包含 nonce</li>
+</ul>
+<h3 id="transaction">transaction</h3>
+<ul>
+<li>交易生命週期
+<ol>
+<li>sender 初始化 tx 物件</li>
+<li>sender 使用 private key 簽署 tx</li>
+<li>tx 被廣播給的所有的 client 並回傳 tx hash</li>
+<li>tx 被加入到 tx pool 裡面等待被礦工驗證（挖礦）。礦工節點接收 tx，pool 是許多礦工與非礦工節點聚合的地方</li>
+<li>礦工透過共識機制進行解謎，最先解出謎題的礦工會建立一個 block，每個 block 裡面有多少個 tx 取決於該 block 定義的 gasLimit</li>
+<li>解出謎題的礦工把 block 廣播給鍊上的所有節點，所有節點會執行該 tx 表示有收到，但只有解出謎題的礦工能取得該 block 的 獎勵（block reward + txfee - gas）</li>
+</ol>
+</li>
+<li>執行智能合約定義的 function 有兩種方式
+<ul>
+<li>call: 純粹的 read，no broadcast or publish to the blockchain，不需要 gas</li>
+<li>transaction: 執行 write 行為，修改 state，需要 gas，will broadcast to the blockchain</li>
+</ul>
+</li>
+<li>transaction vs call
+
+
+
+
+
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th style="text-align:left">tx</th>
+<th style="text-align:left">call</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">write</td>
+<td style="text-align:left">read</td>
+</tr>
+<tr>
+<td style="text-align:left">修改 blockchain 的狀態</td>
+<td style="text-align:left">不會修改</td>
+</tr>
+<tr>
+<td style="text-align:left">會有 hash</td>
+<td style="text-align:left">不會</td>
+</tr>
+<tr>
+<td style="text-align:left">會廣播</td>
+<td style="text-align:left">不會</td>
+</tr>
+<tr>
+<td style="text-align:left">需要 gas</td>
+<td style="text-align:left">不需要</td>
+</tr>
+<tr>
+<td style="text-align:left">時間較久（要被 mint）</td>
+<td style="text-align:left">時間很快</td>
+</tr>
+<tr>
+<td style="text-align:left">return tx hash</td>
+<td style="text-align:left">return value</td>
+</tr>
+</tbody>
+</table>
+
+</li>
+</ul>
+<h1 id="references">references</h1>
+<ul>
+<li><a href="https://ethereum.org/en/developers/docs/evm/opcodes/">eth 官方 OPCODE gas 對應表</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2023-3-18
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/solidity/">#solidity</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/blockchain/">#blockchain</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/eth/">#eth</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2023/03/forward-proxy-vs-reverse-proxy/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://medium.com/@whccchi" target="_blank">
+        <i class="fa fa-medium"></i>
+    </a>
+  
+</div>
+
+</footer>
+
+
+
+
+<style lang="css">
+  #fast-search {
+    visibility: hidden;
+    position: fixed;
+    z-index: 2;
+    top: 15%;
+    left: 50%;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    height: 45px;
+    background-color: #eee7d4;
+    transform: translate(-50%, -50%);
+    border: 3px solid #eee7d4;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 5px;
+  }
+
+  #fast-search input {
+    width: 100%;
+    height: 31px;
+    font-size: 1.6em;
+    color: #5e7579;
+    font-weight: bold;
+    background-color: #eee7d4;
+    border-radius: 3px 3px 0px 0px;
+    border: none;
+    outline: none;
+    text-align: left;
+    display: inline-block;
+  }
+
+  #search-results {
+    width: 100%;
+    list-style-type: none;
+    visibility: inherit;
+    display: inline-block;
+    background-color: #002733;
+  }
+  #search-results a {
+    width: 100%;
+    text-decoration: none !important;
+    padding: 10px;
+    display: inline-block;
+  }
+  #search-results a:hover,
+  #search-results a:focus {
+    outline: 0;
+    background-color: #9c9c9c;
+    color: #fff;
+  }
+  span.title {
+    font-size: 1.1em;
+    color: #bf4918;
+    font-weight: bold;
+  }
+  span.summary {
+    font-size: 0.9em;
+    color: #576e73;
+    font-weight: bold;
+  }
+  .list-item {
+    border-bottom: 0.5px dotted #258ad0;
+  }
+  #tips {
+    visibility: hidden;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #eee7d4;
+  }
+  @media (min-width: 320px) and (max-width: 736px) {
+    #tips {
+      display: none;
+    }
+  }
+</style>
+<div id="tips">cmd + /</div>
+<div id="fast-search">
+  <input id="search-input" autocomplete="off" tabindex="0" />
+  <section id="search-results"></section>
+</div>
+<script src="/js/fuse.js"></script>
+<script>
+  const url = new URL(location.href);
+  const srhkey = url.host + '_uknowhow2srh';
+
+  if (!sessionStorage.getItem(srhkey)) {
+    document.getElementById('tips').style.visibility = 'visible';
+  }
+
+  function uknowhow2srh() {
+    if (sessionStorage.getItem(srhkey)) {
+      document.getElementById('tips').style.visibility = 'hidden';
+    } else {
+      sessionStorage.setItem(srhkey, 1);
+    }
+  }
+</script>
+<script src="/js/fastsearch.js"></script>
+
+<div class="day-night-switch">
+  <input type="checkbox" id="switch_theme" class="theme-toggle" />
+  <label for="switch_theme" class="theme-toggle-label">Toggle Theme</label>
+</div>
+<script>
+  const themekey = url.host + '_thememode';
+  if (localStorage.getItem(themekey)) {
+    document.body.className = 'dark';
+    document.getElementById('switch_theme').checked = 'checked';
+  }
+  document
+    .getElementById('switch_theme')
+    .addEventListener('click', function (e) {
+      if (e.target.checked) {
+        localStorage.setItem(themekey, '1');
+        document.body.className = 'dark';
+      } else {
+        localStorage.removeItem(themekey);
+        document.body.className = '';
+      }
+    });
+</script>
+
+</body>
+</html>
+
