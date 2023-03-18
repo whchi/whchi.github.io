@@ -7,7 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 18 Mar 2023 17:21:47 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/eth/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Mar 2023 17:30:47 +0800</lastBuildDate><atom:link href="http://shachiku.life/tags/eth/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>智能合約開發學習—實踐 ERC20</title>
+      <link>http://shachiku.life/2023/03/smart-contract-development-4/</link>
+      <pubDate>Sat, 18 Mar 2023 17:30:47 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/03/smart-contract-development-4/</guid>
+      <description>這裡整理之前上課的筆記，都是入門級別一共 4 章，分別如下：
+專有名詞（Terms） solidity basics（Data types &amp;amp; Control flow） functions 實踐 ERC-20 講那麼多，還是看個實際的例子比較有感覺
+所謂得 ERC 是 Ethereum Request for Comments 的縮寫，是被同意後的 EIP 演變而來的
+EIP 是 Ethereum Improvement Proposals 的縮寫，顧名思義就是提案，提案給 eth 社群經審查確定實作後就成為 ERC
+而 EIP-20 的標題是 Token standard，就是以太幣的標準
+interfaces EIP-20 的文件有明定要實現標準接口如下
+totalSupply 返回此 contract 的 token 最大值 function totalSupply() public view returns (uint256) balanceOf 返回傳入 owner 的 balance function balanceOf(address _owner) public view returns (uint256 balance) transfer 進行移轉，當 caller 的 balance 不夠時要丟出例外 function transfer(address _to, uint256 _value) public returns (bool success) transferFrom 用在提款流程，允許合約代表你進行 token 移轉，如果_from沒有授權合約的話要拋出例外 function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) approve 允許_spender從你的帳戶中多次提款，最大值為_value，每次呼叫都會複寫掉_value function approve(address _spender, uint256 _value) public returns (bool success) allowance 返回_spender剩餘可以從_owner中提出的 token 數量 function allowance(address _owner, address _spender) public view returns (uint256 remaining) (event) Transfer 當發生移轉時必須被 trigger，就算是 0 也是 event Transfer(address indexed _from, address indexed _to, uint256 _value) (event) Approve 在呼叫approve(address _spender, uint256 _value)必須被 trigger event Approval(address indexed _owner, address indexed _spender, uint256 _value) implementation 開發環境 這裡是用 Remix IDE 進行開發，不用煩惱本地環境配置的問題，如何使用它串接 metamask 請參考本文底部的 references</description>
+    </item>
+    
     <item>
       <title>智能合約開發學習—functions</title>
       <link>http://shachiku.life/2023/03/smart-contract-development-3/</link>

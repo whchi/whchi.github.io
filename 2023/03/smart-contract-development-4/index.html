@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="智能合約開發學習—實踐 ERC20 &middot; 社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2023/03/smart-contract-development-4/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2023-03-18T17:30:47&#43;08:00" />
+  
+  <meta property="og:article:tag" content="solidity" />
+  
+  <meta property="og:article:tag" content="blockchain" />
+  
+  <meta property="og:article:tag" content="eth" />
+  
+  
+
+  <title>
+     智能合約開發學習—實踐 ERC20 &middot;  社畜人生
+  </title>
+  <link rel="alternative stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+  <header class="global-header" style="background-image:url(https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1500&amp;q=20)">
+    
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h2 class="tag-line">
+            雜談與紀錄
+          </h2>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/archives">
+            archives
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  
+  <header class="article-title">
+    <h1 class="text-primary">智能合約開發學習—實踐 ERC20</h1>
+  </header>
+  <div class="delimiter"></div>
+  
+  
+  <figure class="preview">
+      <img src="https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1280&amp;q=60">
+      
+      <figcaption></figcaption>
+      
+  </figure>
+  
+  <section>
+    <p>這裡整理之前上課的筆記，都是入門級別一共 4 章，分別如下：</p>
+<ul>
+<li><a href="/2023/03/smart-contract-development-1">專有名詞（Terms）</a></li>
+<li><a href="/2023/03/smart-contract-development-2">solidity basics（Data types &amp; Control flow）</a></li>
+<li><a href="/2023/03/smart-contract-development-3">functions</a></li>
+<li>實踐 ERC-20</li>
+</ul>
+<p>講那麼多，還是看個實際的例子比較有感覺</p>
+<p>所謂得 ERC 是 Ethereum Request for Comments 的縮寫，是被同意後的 EIP 演變而來的</p>
+<p>EIP 是 Ethereum Improvement Proposals 的縮寫，顧名思義就是提案，提案給 eth 社群經審查確定實作後就成為 ERC</p>
+<p>而 EIP-20 的標題是 Token standard，就是以太幣的標準</p>
+<h1 id="interfaces">interfaces</h1>
+<p>EIP-20 的文件有明定要實現標準接口如下</p>
+<ul>
+<li>totalSupply
+<ul>
+<li>返回此 contract 的 token 最大值</li>
+<li><code>function totalSupply() public view returns (uint256)</code></li>
+</ul>
+</li>
+<li>balanceOf
+<ul>
+<li>返回傳入 owner 的 balance</li>
+<li><code>function balanceOf(address _owner) public view returns (uint256 balance)</code></li>
+</ul>
+</li>
+<li>transfer
+<ul>
+<li>進行移轉，當 caller 的 balance 不夠時要丟出例外</li>
+<li><code>function transfer(address _to, uint256 _value) public returns (bool success)</code></li>
+</ul>
+</li>
+<li>transferFrom
+<ul>
+<li>用在提款流程，允許合約代表你進行 token 移轉，如果<code>_from</code>沒有授權合約的話要拋出例外</li>
+<li><code>function transferFrom(address _from, address _to, uint256 _value) public returns (bool success)</code></li>
+</ul>
+</li>
+<li>approve
+<ul>
+<li>允許<code>_spender</code>從你的帳戶中多次提款，最大值為<code>_value</code>，每次呼叫都會複寫掉<code>_value</code></li>
+<li><code>function approve(address _spender, uint256 _value) public returns (bool success)</code></li>
+</ul>
+</li>
+<li>allowance
+<ul>
+<li>返回<code>_spender</code>剩餘可以從<code>_owner</code>中提出的 token 數量</li>
+<li><code>function allowance(address _owner, address _spender) public view returns (uint256 remaining)</code></li>
+</ul>
+</li>
+<li>(event) Transfer
+<ul>
+<li>當發生移轉時必須被 trigger，就算是 0 也是</li>
+<li><code>event Transfer(address indexed _from, address indexed _to, uint256 _value)</code></li>
+</ul>
+</li>
+<li>(event) Approve
+<ul>
+<li>在呼叫<code>approve(address _spender, uint256 _value)</code>必須被 trigger</li>
+<li><code>event Approval(address indexed _owner, address indexed _spender, uint256 _value)</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="implementation">implementation</h1>
+<ul>
+<li>開發環境</li>
+</ul>
+<p>這裡是用 Remix IDE 進行開發，不用煩惱本地環境配置的問題，如何使用它串接 metamask 請參考本文底部的 references</p>
+<ul>
+<li>ERC20.sol</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#75715e">//SPDX-License-Identifier: GPL-3.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">5</span>.<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">9</span>.<span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ----------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// EIP-20: ERC-20 Token Standard
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// https://eips.ethereum.org/EIPS/eip-20
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// -----------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ERC20Interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">totalSupply</span>() <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">view</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">uint</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">balanceOf</span>(<span style="color:#66d9ef">address</span> tokenOwner) <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">view</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">uint</span> balance);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">transfer</span>(<span style="color:#66d9ef">address</span> to, <span style="color:#66d9ef">uint</span> tokens) <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">bool</span> success);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">allowance</span>(<span style="color:#66d9ef">address</span> tokenOwner, <span style="color:#66d9ef">address</span> spender) <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">view</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">uint</span> remaining);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">approve</span>(<span style="color:#66d9ef">address</span> spender, <span style="color:#66d9ef">uint</span> tokens) <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">bool</span> success);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">transferFrom</span>(<span style="color:#66d9ef">address</span> <span style="color:#66d9ef">from</span>, <span style="color:#66d9ef">address</span> to, <span style="color:#66d9ef">uint</span> tokens) <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">bool</span> success);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">event</span> <span style="color:#a6e22e">Transfer</span>(<span style="color:#66d9ef">address</span> <span style="color:#66d9ef">indexed</span> <span style="color:#66d9ef">from</span>, <span style="color:#66d9ef">address</span> <span style="color:#66d9ef">indexed</span> to, <span style="color:#66d9ef">uint</span> tokens);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">event</span> <span style="color:#a6e22e">Approval</span>(<span style="color:#66d9ef">address</span> <span style="color:#66d9ef">indexed</span> tokenOwner, <span style="color:#66d9ef">address</span> <span style="color:#66d9ef">indexed</span> spender, <span style="color:#66d9ef">uint</span> tokens);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">contract</span> <span style="color:#a6e22e">Cryptos</span> <span style="color:#66d9ef">is</span> ERC20Interface{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">string</span> <span style="color:#66d9ef">public</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cryptos&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">string</span> <span style="color:#66d9ef">public</span> symbol <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CRPT&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint</span> <span style="color:#66d9ef">public</span> decimals <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">//18 is very common
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">uint</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> totalSupply;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">address</span> <span style="color:#66d9ef">public</span> founder;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">mapping</span>(<span style="color:#66d9ef">address</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">uint</span>) <span style="color:#66d9ef">public</span> balances;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// balances[0x1111...] = 100;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">mapping</span>(<span style="color:#66d9ef">address</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">mapping</span>(<span style="color:#66d9ef">address</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">uint</span>)) allowed;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// allowed[0x111][0x222] = 100;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constructor</span>(){
+</span></span><span style="display:flex;"><span>        totalSupply <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
+</span></span><span style="display:flex;"><span>        founder <span style="color:#f92672">=</span> msg.sender;
+</span></span><span style="display:flex;"><span>        balances[founder] <span style="color:#f92672">=</span> totalSupply;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">balanceOf</span>(<span style="color:#66d9ef">address</span> tokenOwner) <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">view</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">uint</span> balance){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> balances[tokenOwner];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">transfer</span>(<span style="color:#66d9ef">address</span> to, <span style="color:#66d9ef">uint</span> tokens) <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">returns</span>(<span style="color:#66d9ef">bool</span> success){
+</span></span><span style="display:flex;"><span>        require(balances[msg.sender] <span style="color:#f92672">&gt;=</span> tokens);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        balances[to] <span style="color:#f92672">+=</span> tokens;
+</span></span><span style="display:flex;"><span>        balances[msg.sender] <span style="color:#f92672">-=</span> tokens;
+</span></span><span style="display:flex;"><span>        emit Transfer(msg.sender, to, tokens);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">allowance</span>(<span style="color:#66d9ef">address</span> tokenOwner, <span style="color:#66d9ef">address</span> spender) <span style="color:#66d9ef">view</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">returns</span>(<span style="color:#66d9ef">uint</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> allowed[tokenOwner][spender];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">approve</span>(<span style="color:#66d9ef">address</span> spender, <span style="color:#66d9ef">uint</span> tokens) <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">bool</span> success){
+</span></span><span style="display:flex;"><span>        require(balances[msg.sender] <span style="color:#f92672">&gt;=</span> tokens);
+</span></span><span style="display:flex;"><span>        require(tokens <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        allowed[msg.sender][spender] <span style="color:#f92672">=</span> tokens;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        emit Approval(msg.sender, spender, tokens);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">transferFrom</span>(<span style="color:#66d9ef">address</span> <span style="color:#66d9ef">from</span>, <span style="color:#66d9ef">address</span> to, <span style="color:#66d9ef">uint</span> tokens) <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">bool</span> success){
+</span></span><span style="display:flex;"><span>         require(allowed[<span style="color:#66d9ef">from</span>][msg.sender] <span style="color:#f92672">&gt;=</span> tokens);
+</span></span><span style="display:flex;"><span>         require(balances[<span style="color:#66d9ef">from</span>] <span style="color:#f92672">&gt;=</span> tokens);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>         balances[<span style="color:#66d9ef">from</span>] <span style="color:#f92672">-=</span> tokens;
+</span></span><span style="display:flex;"><span>         allowed[<span style="color:#66d9ef">from</span>][msg.sender] <span style="color:#f92672">-=</span> tokens;
+</span></span><span style="display:flex;"><span>         balances[to] <span style="color:#f92672">+=</span> tokens;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>         emit Transfer(<span style="color:#66d9ef">from</span>, to, tokens);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="references">references</h1>
+<ul>
+<li><a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md">EIP-20</a></li>
+<li><a href="https://remix.ethereum.org/">Remix IDE</a></li>
+<li><a href="https://www.youtube.com/watch?v=UNRjhAA31DM">How to connect your metamask wallet to remix IDE for deploying smart contracts?</a></li>
+</ul>
+
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2023-3-18
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/solidity/">#solidity</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/blockchain/">#blockchain</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/eth/">#eth</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2023/03/smart-contract-development-3/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://medium.com/@whccchi" target="_blank">
+        <i class="fa fa-medium"></i>
+    </a>
+  
+</div>
+
+</footer>
+
+
+
+
+<style lang="css">
+  #fast-search {
+    visibility: hidden;
+    position: fixed;
+    z-index: 2;
+    top: 15%;
+    left: 50%;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    height: 45px;
+    background-color: #eee7d4;
+    transform: translate(-50%, -50%);
+    border: 3px solid #eee7d4;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 5px;
+  }
+
+  #fast-search input {
+    width: 100%;
+    height: 31px;
+    font-size: 1.6em;
+    color: #5e7579;
+    font-weight: bold;
+    background-color: #eee7d4;
+    border-radius: 3px 3px 0px 0px;
+    border: none;
+    outline: none;
+    text-align: left;
+    display: inline-block;
+  }
+
+  #search-results {
+    width: 100%;
+    list-style-type: none;
+    visibility: inherit;
+    display: inline-block;
+    background-color: #002733;
+  }
+  #search-results a {
+    width: 100%;
+    text-decoration: none !important;
+    padding: 10px;
+    display: inline-block;
+  }
+  #search-results a:hover,
+  #search-results a:focus {
+    outline: 0;
+    background-color: #9c9c9c;
+    color: #fff;
+  }
+  span.title {
+    font-size: 1.1em;
+    color: #bf4918;
+    font-weight: bold;
+  }
+  span.summary {
+    font-size: 0.9em;
+    color: #576e73;
+    font-weight: bold;
+  }
+  .list-item {
+    border-bottom: 0.5px dotted #258ad0;
+  }
+  #tips {
+    visibility: hidden;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #eee7d4;
+  }
+  @media (min-width: 320px) and (max-width: 736px) {
+    #tips {
+      display: none;
+    }
+  }
+</style>
+<div id="tips">cmd + /</div>
+<div id="fast-search">
+  <input id="search-input" autocomplete="off" tabindex="0" />
+  <section id="search-results"></section>
+</div>
+<script src="/js/fuse.js"></script>
+<script>
+  const url = new URL(location.href);
+  const srhkey = url.host + '_uknowhow2srh';
+
+  if (!sessionStorage.getItem(srhkey)) {
+    document.getElementById('tips').style.visibility = 'visible';
+  }
+
+  function uknowhow2srh() {
+    if (sessionStorage.getItem(srhkey)) {
+      document.getElementById('tips').style.visibility = 'hidden';
+    } else {
+      sessionStorage.setItem(srhkey, 1);
+    }
+  }
+</script>
+<script src="/js/fastsearch.js"></script>
+
+<div class="day-night-switch">
+  <input type="checkbox" id="switch_theme" class="theme-toggle" />
+  <label for="switch_theme" class="theme-toggle-label">Toggle Theme</label>
+</div>
+<script>
+  const themekey = url.host + '_thememode';
+  if (localStorage.getItem(themekey)) {
+    document.body.className = 'dark';
+    document.getElementById('switch_theme').checked = 'checked';
+  }
+  document
+    .getElementById('switch_theme')
+    .addEventListener('click', function (e) {
+      if (e.target.checked) {
+        localStorage.setItem(themekey, '1');
+        document.body.className = 'dark';
+      } else {
+        localStorage.removeItem(themekey);
+        document.body.className = '';
+      }
+    });
+</script>
+
+</body>
+</html>
+
