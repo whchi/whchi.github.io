@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="智能合約開發學習—functions &middot; 社畜人生" />
+  
+  <meta property="og:site_name" content="社畜人生" />
+  <meta property="og:url" content="http://shachiku.life/2023/03/smart-contract-development-3/" />
+  <meta name="description" content="雜談與紀錄" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2023-03-18T17:21:47&#43;08:00" />
+  
+  <meta property="og:article:tag" content="solidity" />
+  
+  <meta property="og:article:tag" content="blockchain" />
+  
+  <meta property="og:article:tag" content="eth" />
+  
+  
+
+  <title>
+     智能合約開發學習—functions &middot;  社畜人生
+  </title>
+  <link rel="alternative stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/github.css" />
+  <link rel="stylesheet" href="/css/color-theme.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+  
+  <link rel="stylesheet" href="http://shachiku.life/css/custom-hamburg.css">
+  
+
+  
+
+  
+  
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2DN7CD');</script>
+    
+
+  
+</head>
+
+<body>
+  
+  <header class="global-header" style="background-image:url(https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1500&amp;q=20)">
+    
+      <section class="header-text">
+        <div class="header-desc">
+          <h1><a href="http://shachiku.life/">社畜人生</a></h1>
+          
+          <h2 class="tag-line">
+            雜談與紀錄
+          </h2>
+          
+        </div>
+        
+        <div class="navbar-container">
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/about">
+            about
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/archives">
+            archives
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tags">
+            tags
+          </a>
+          
+          <a class="btn btn-default navbar-item" href="http://shachiku.life/tools">
+            tools
+          </a>
+          
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </section>
+    </header>
+    <main class="container">
+
+
+
+<article>
+  
+  <header class="article-title">
+    <h1 class="text-primary">智能合約開發學習—functions</h1>
+  </header>
+  <div class="delimiter"></div>
+  
+  
+  <figure class="preview">
+      <img src="https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1280&amp;q=60">
+      
+      <figcaption></figcaption>
+      
+  </figure>
+  
+  <section>
+    <p>這裡整理之前上課的筆記，都是入門級別一共 4 章，分別如下：</p>
+<ul>
+<li><a href="/2023/03/smart-contract-development-1">專有名詞（Terms）</a></li>
+<li><a href="/2023/03/smart-contract-development-2">solidity basics（Data types &amp; Control flow）</a></li>
+<li>functions</li>
+<li><a href="/2023/03/smart-contract-development-4">實踐 ERC 20</a></li>
+</ul>
+<p>function 的寫法跟一般的程式語言一樣，特別拉一個章節是因為有多個 function type</p>
+<h1 id="語法">語法</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#f92672">&lt;</span>name<span style="color:#f92672">&gt;</span>(<span style="color:#f92672">&lt;</span>params<span style="color:#f92672">&gt;</span>) <span style="color:#f92672">&lt;</span>visibility<span style="color:#f92672">&gt;</span> [<span style="color:#66d9ef">modifier</span>] <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">returns</span>(<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">return</span> type<span style="color:#f92672">&gt;</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// statements
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>return type 就是 variable type，比如 <code>int</code>、<code>array</code> &hellip;</p>
+<h2 id="function-type">function type</h2>
+<p>function type 大致上可以分為 4 種</p>
+<h3 id="1-view-function">1. view function</h3>
+<p>readonly function，不會修改任何的 state</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">example</span>(<span style="color:#66d9ef">int</span> num) <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">view</span> <span style="color:#66d9ef">returns</span>(<span style="color:#66d9ef">int</span>){}
+</span></span></code></pre></div><h3 id="2-pure-function">2. pure function</h3>
+<p>no read and modify state，作爲 helper function 使用（運算或是字串操作）</p>
+<p>可以被外部呼叫，不消耗 gas</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">example</span>(<span style="color:#66d9ef">int</span> numa, <span style="color:#66d9ef">int</span> numb) <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">pure</span> <span style="color:#66d9ef">returns</span>(<span style="color:#66d9ef">int</span>) {}
+</span></span></code></pre></div><h3 id="3-payable-function">3. payable function</h3>
+<p>可以用來收 eth 的 function</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">example</span>(<span style="color:#66d9ef">int</span> incoming) <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">payable</span> {}
+</span></span></code></pre></div><h3 id="4-special-function">4. special function</h3>
+<ul>
+<li>fallback function</li>
+</ul>
+<p>定義了 contract 的預設行為：當不使用該 contract 定義的 function 呼叫時執行，因此必為 external</p>
+<p>也可以設定為 payable 來接收 eth</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span>fallback() <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">payable</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fallback() <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>    require(msg.sender <span style="color:#f92672">==</span> msg.receiver)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>receive function</li>
+</ul>
+<p>必須是 external payable，可以不用指定參數就接收 eth，與 payable 差在 sender 不需要知道你的 api 參數，直接送就好</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span>receive() <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">payable</span> {}
+</span></span></code></pre></div><h1 id="function-modifier">function modifier</h1>
+<ul>
+<li>修改 function 行為的 helper function</li>
+<li>發生 function 的最上方，使用<code>modifier</code>關鍵字宣告</li>
+<li>用來把重複的驗證行為包裹起來讓 code 好讀</li>
+<li>只能寫<code>require</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">modifier</span> <span style="color:#a6e22e">onlyOwner</span>() {
+</span></span><span style="display:flex;"><span>    require(owner <span style="color:#f92672">==</span> msg.sender);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">_</span>; <span style="color:#75715e">// if pass then execute else is throw exception
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">xxx</span>() <span style="color:#66d9ef">public</span> onlyOwner {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// require(owner == msg.sender);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    xxxx
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+  </section>
+  <div class="clearfix">
+    
+    <div class="post-date pull-left">
+      <span class="small">
+        發佈時間
+        2023-3-18
+      </span>
+    </div>
+    
+    <div class="pull-right">
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/solidity/">#solidity</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/blockchain/">#blockchain</a></span>
+      
+      
+      
+      <span class="post-tag"><a href="http://shachiku.life/tags/eth/">#eth</a></span>
+      
+      
+    </div>
+  </div>
+  <footer>
+    
+    <i id="disqus-shortname" data-disqus-shortname=whcdc></i>
+    
+    <div class="delimiter"></div>
+    <div id="disqus_thread"></div>
+    <script type="application/javascript" src="/js/disqus.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+    
+    
+    <div class="delimiter"></div>
+    <div class="pager-container">
+      
+      <a class="btn btn-primary btn-older-posts" href="http://shachiku.life/2023/03/smart-contract-development-2/">
+        <div>
+          <span aria-hidden="true">&larr;</span>
+        </div>
+      </a>
+      
+      
+      <a class="btn btn-primary btn-newer-posts disabled" href="#">
+        <div>
+          <span aria-hidden="true">&#10006;</span>
+        </div>
+      </a>
+      
+    </div>
+    
+  </footer>
+</article>
+<div class="delimiter"></div>
+
+</main>
+<footer class="container global-footer">
+  <div class="copyright-note pull-left">
+    &copy; whchi 2018
+  </div>
+  <div class="sns-links hidden-print">
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://github.com/whchi" target="_blank">
+      <i class="fa fa-github"></i>
+    </a>
+  
+  
+  
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://linkedin.com/in/wei-han-chi-615006110" target="_blank">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  
+  
+  
+    <a rel="noopener noreferrer" href="https://medium.com/@whccchi" target="_blank">
+        <i class="fa fa-medium"></i>
+    </a>
+  
+</div>
+
+</footer>
+
+
+
+
+<style lang="css">
+  #fast-search {
+    visibility: hidden;
+    position: fixed;
+    z-index: 2;
+    top: 15%;
+    left: 50%;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    height: 45px;
+    background-color: #eee7d4;
+    transform: translate(-50%, -50%);
+    border: 3px solid #eee7d4;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 5px 5px;
+  }
+
+  #fast-search input {
+    width: 100%;
+    height: 31px;
+    font-size: 1.6em;
+    color: #5e7579;
+    font-weight: bold;
+    background-color: #eee7d4;
+    border-radius: 3px 3px 0px 0px;
+    border: none;
+    outline: none;
+    text-align: left;
+    display: inline-block;
+  }
+
+  #search-results {
+    width: 100%;
+    list-style-type: none;
+    visibility: inherit;
+    display: inline-block;
+    background-color: #002733;
+  }
+  #search-results a {
+    width: 100%;
+    text-decoration: none !important;
+    padding: 10px;
+    display: inline-block;
+  }
+  #search-results a:hover,
+  #search-results a:focus {
+    outline: 0;
+    background-color: #9c9c9c;
+    color: #fff;
+  }
+  span.title {
+    font-size: 1.1em;
+    color: #bf4918;
+    font-weight: bold;
+  }
+  span.summary {
+    font-size: 0.9em;
+    color: #576e73;
+    font-weight: bold;
+  }
+  .list-item {
+    border-bottom: 0.5px dotted #258ad0;
+  }
+  #tips {
+    visibility: hidden;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #eee7d4;
+  }
+  @media (min-width: 320px) and (max-width: 736px) {
+    #tips {
+      display: none;
+    }
+  }
+</style>
+<div id="tips">cmd + /</div>
+<div id="fast-search">
+  <input id="search-input" autocomplete="off" tabindex="0" />
+  <section id="search-results"></section>
+</div>
+<script src="/js/fuse.js"></script>
+<script>
+  const url = new URL(location.href);
+  const srhkey = url.host + '_uknowhow2srh';
+
+  if (!sessionStorage.getItem(srhkey)) {
+    document.getElementById('tips').style.visibility = 'visible';
+  }
+
+  function uknowhow2srh() {
+    if (sessionStorage.getItem(srhkey)) {
+      document.getElementById('tips').style.visibility = 'hidden';
+    } else {
+      sessionStorage.setItem(srhkey, 1);
+    }
+  }
+</script>
+<script src="/js/fastsearch.js"></script>
+
+<div class="day-night-switch">
+  <input type="checkbox" id="switch_theme" class="theme-toggle" />
+  <label for="switch_theme" class="theme-toggle-label">Toggle Theme</label>
+</div>
+<script>
+  const themekey = url.host + '_thememode';
+  if (localStorage.getItem(themekey)) {
+    document.body.className = 'dark';
+    document.getElementById('switch_theme').checked = 'checked';
+  }
+  document
+    .getElementById('switch_theme')
+    .addEventListener('click', function (e) {
+      if (e.target.checked) {
+        localStorage.setItem(themekey, '1');
+        document.body.className = 'dark';
+      } else {
+        localStorage.removeItem(themekey);
+        document.body.className = '';
+      }
+    });
+</script>
+
+</body>
+</html>
+

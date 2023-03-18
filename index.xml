@@ -7,7 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 18 Mar 2023 16:21:47 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Mar 2023 17:21:47 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>智能合約開發學習—functions</title>
+      <link>http://shachiku.life/2023/03/smart-contract-development-3/</link>
+      <pubDate>Sat, 18 Mar 2023 17:21:47 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/03/smart-contract-development-3/</guid>
+      <description>這裡整理之前上課的筆記，都是入門級別一共 4 章，分別如下：
+專有名詞（Terms） solidity basics（Data types &amp;amp; Control flow） functions 實踐 ERC 20 function 的寫法跟一般的程式語言一樣，特別拉一個章節是因為有多個 function type
+語法 function &amp;lt;name&amp;gt;(&amp;lt;params&amp;gt;) &amp;lt;visibility&amp;gt; [modifier] &amp;lt;function type&amp;gt; returns(&amp;lt;return type&amp;gt;) { // statements } return type 就是 variable type，比如 int、array &amp;hellip;
+function type function type 大致上可以分為 4 種
+1. view function readonly function，不會修改任何的 state
+function example(int num) public view returns(int){} 2. pure function no read and modify state，作爲 helper function 使用（運算或是字串操作）
+可以被外部呼叫，不消耗 gas</description>
+    </item>
+    
     <item>
       <title>智能合約開發學習—資料型別與控制流程</title>
       <link>http://shachiku.life/2023/03/smart-contract-development-2/</link>
@@ -756,7 +771,8 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2023 Mar 18 &amp;ndash; 智能合約開發學習—資料型別與控制流程
+      <description>2023 Mar 18 &amp;ndash; 智能合約開發學習—functions
+Mar 18 &amp;ndash; 智能合約開發學習—資料型別與控制流程
 Mar 18 &amp;ndash; 智能合約開發學習—專有名詞
 Mar 17 &amp;ndash; [推薦] 正向代理 vs 反向代理
 Mar 16 &amp;ndash; 如何換 macbook 的電池
@@ -766,8 +782,7 @@ Mar 07 &amp;ndash; [推薦] 程式設計師最不該做的事
 Mar 06 &amp;ndash; Disable sqlmodel foreign key constraint
 Mar 04 &amp;ndash; [推薦] 如何在沒有 mentor 的情況下自學成才
 Mar 04 &amp;ndash; [推薦] Function Programing 的基礎觀念
-Jan 08 &amp;ndash; [推薦] 少用繼承，多用 composition
-Jan 04 &amp;ndash; 使用 python 模擬 laravel filesystem</description>
+Jan 08 &amp;ndash; [推薦] 少用繼承，多用 composition</description>
     </item>
     
     <item>
