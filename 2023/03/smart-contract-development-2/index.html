@@ -169,6 +169,27 @@
 </li>
 </ol>
 <h1 id="variable-types">variable types</h1>
+<p>可以分為以下兩種</p>
+<ul>
+<li>value type
+<ul>
+<li>boolean</li>
+<li>int / uint</li>
+<li>fixed / ufixed</li>
+<li>address</li>
+<li>dynamically-sized byte array(bytes, byte[]), fixed-size byte array(byte[2])</li>
+</ul>
+</li>
+<li>reference type
+<ul>
+<li>array</li>
+<li>struct</li>
+<li>mapping</li>
+<li>string</li>
+</ul>
+</li>
+</ul>
+<p>每個 reference type 在定義的時候必須指定他的儲存位置，分為<code>storage</code>, <code>memory</code>, <code>calldata</code></p>
 <h2 id="boolean">boolean</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sol" data-lang="sol"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> myBoolean <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
 </span></span></code></pre></div><h2 id="int-and-uint">int and uint</h2>

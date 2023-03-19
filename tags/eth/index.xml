@@ -48,7 +48,7 @@ function example(int numa, int numb) public pure returns(int) {} 3.</description
       <description>這裡整理之前上課的筆記，都是入門級別一共 4 章，分別如下：
 專有名詞（Terms） solidity basics（Data types &amp;amp; Control flow） functions 實踐 ERC-20 在 EVM 中有三個地方儲存變數
 storage holds state variables persistent and expensive(cost gas) like HDD memory local variables with memory keyword like RAM free to be used holds function args stack hold local variables inside functions if they are not reference types(e.g: int) free to be used reference types: string, array, struct, mapping variables solidity 的變數大致上分以下兩種
-state variable: declare at contract level store in contract storage can be constant cost gas to declare set by init, construct or setter local variable: declare at function level can allocate at runtime(use memory keyword and in array or struct data types) string default saves in storage, use memory if you want string be local variable variable types boolean bool myBoolean = true; int and uint 有 uint8,uint16,uint32&amp;hellip;uint256，如果都不指定預設是 uint256</description>
+state variable: declare at contract level store in contract storage can be constant cost gas to declare set by init, construct or setter local variable: declare at function level can allocate at runtime(use memory keyword and in array or struct data types) string default saves in storage, use memory if you want string be local variable variable types 可以分為以下兩種</description>
     </item>
     
     <item>
