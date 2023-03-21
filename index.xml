@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <copyright>&amp;copy; whchi 2018</copyright>
-    <lastBuildDate>Sat, 18 Mar 2023 17:30:47 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Mar 2023 21:03:36 +0800</lastBuildDate><atom:link href="http://shachiku.life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[推薦] 如何自學科技相關的東西</title>
+      <link>http://shachiku.life/2023/03/how-to-self-study-technical-things/</link>
+      <pubDate>Tue, 21 Mar 2023 21:03:36 +0800</pubDate>
+      
+      <guid>http://shachiku.life/2023/03/how-to-self-study-technical-things/</guid>
+      <description>摸著石頭過河</description>
+    </item>
+    
     <item>
       <title>智能合約開發學習—實踐 ERC20</title>
       <link>http://shachiku.life/2023/03/smart-contract-development-4/</link>
@@ -787,7 +796,8 @@ skills Backend: php, node, python Frontend: Vue, jQuery Devops: docker, GCP, k8s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://shachiku.life/archives/</guid>
-      <description>2023 Mar 18 &amp;ndash; 智能合約開發學習—實踐 ERC20
+      <description>2023 Mar 21 &amp;ndash; [推薦] 如何自學科技相關的東西
+Mar 18 &amp;ndash; 智能合約開發學習—實踐 ERC20
 Mar 18 &amp;ndash; 智能合約開發學習—functions
 Mar 18 &amp;ndash; 智能合約開發學習—資料型別與控制流程
 Mar 18 &amp;ndash; 智能合約開發學習—專有名詞

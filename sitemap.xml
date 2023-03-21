@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://shachiku.life/2023/03/how-to-self-study-technical-things/</loc>
+    <lastmod>2023-03-21T21:03:36+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/posts/</loc>
+    <lastmod>2023-03-21T21:03:36+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/recommendation/</loc>
+    <lastmod>2023-03-21T21:03:36+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/tags/</loc>
+    <lastmod>2023-03-21T21:03:36+08:00</lastmod>
+  </url><url>
+    <loc>http://shachiku.life/</loc>
+    <lastmod>2023-03-21T21:03:36+08:00</lastmod>
+  </url><url>
     <loc>http://shachiku.life/tags/blockchain/</loc>
     <lastmod>2023-03-18T17:30:47+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/eth/</loc>
     <lastmod>2023-03-18T17:30:47+08:00</lastmod>
   </url><url>
-    <loc>http://shachiku.life/posts/</loc>
-    <lastmod>2023-03-18T17:30:47+08:00</lastmod>
-  </url><url>
     <loc>http://shachiku.life/tags/solidity/</loc>
-    <lastmod>2023-03-18T17:30:47+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/</loc>
-    <lastmod>2023-03-18T17:30:47+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/</loc>
     <lastmod>2023-03-18T17:30:47+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2023/03/smart-contract-development-4/</loc>
@@ -33,9 +39,6 @@
     <lastmod>2023-03-18T15:21:47+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/2023/03/forward-proxy-vs-reverse-proxy/</loc>
-    <lastmod>2023-03-17T23:28:49+08:00</lastmod>
-  </url><url>
-    <loc>http://shachiku.life/tags/recommendation/</loc>
     <lastmod>2023-03-17T23:28:49+08:00</lastmod>
   </url><url>
     <loc>http://shachiku.life/tags/macbook/</loc>
